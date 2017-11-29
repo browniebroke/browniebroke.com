@@ -1,4 +1,16 @@
 remote_theme: mmistakes/minimal-mistakes
 plugins:
   - jekyll-feed
-  - jekyll-paginate
+defaults:
+  # _posts
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: single
+      author_profile: true
+      read_time: true
+      comments: true
+      share: true
+      related: true
+  
