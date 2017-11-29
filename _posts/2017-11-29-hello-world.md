@@ -1,5 +1,4 @@
 ---
-layout: default
 author: browniebroke
 title:  "Hello World!"
 ---
