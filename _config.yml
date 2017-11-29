@@ -1,17 +1,3 @@
-remote_theme: mmistakes/minimal-mistakes
-minimal_mistakes_skin: "default"
-defaults:
-  # _posts
-  - scope:
-      path: ""
-      type: posts
-    values:
-      layout: single
-      author_profile: true
-      read_time: true
-      comments: true
-      share: true
-      related: true
 # Welcome to Jekyll!
 #
 # This config file is meant for settings that affect your entire site, values
@@ -200,11 +186,6 @@ defaults:
       comments: true
       share: true
       related: true
-
-# Sass/SCSS
-sass:
-  sass_dir: _sass
-  style: compressed # http://sass-lang.com/documentation/file.SASS_REFERENCE.html#output_style
 
 
 # Outputting
