@@ -1,6 +1,57 @@
 ---
-# You don't need to edit this file, it's empty on purpose.
-# Edit theme's home layout instead if you wanna make some changes
-# See: https://jekyllrb.com/docs/themes/#overriding-theme-defaults
 layout: default
 ---
+
+<div class="home">
+
+  {{ content }}
+
+  {% assign posts = site.posts %}
+  {% if site.paginate %}
+    {% assign posts = paginator.posts %}
+  {% endif %}
+
+  <h1 class="page-heading">Recent posts</h1>
+
+  <ul class="post-list">
+    {% for post in posts %}
+      <li>
+        {% assign date_format = site.minima.date_format | default: "%b %-d, %Y" %}
+        <span class="post-meta">{{ post.date | date: date_format }}
+            &nbsp;
+            <a
+              itemprop="author"
+              itemscope
+              itemtype="http://schema.org/Person"
+              href="https://github.com/{{ post.author }}">
+                <img src="https://github.com/{{ post.author }}.png?size=16"/>
+                <span itemprop="name">{{ post.author }}</span>
+            </a>
+        </span>
+        <h2>
+          <a class="post-link" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+        </h2>
+        <p>
+            {{ post.content | markdownify }}
+        </p>
+      </li>
+    {% endfor %}
+  </ul>
+
+  {% if site.paginate %}
+  <div class="pagination">
+    {% if paginator.previous_page %}
+      <a href="{{ paginator.previous_page_path }}" class="previous">&laquo; Previous</a>
+    {% endif %}
+
+    <span class="page_number">Page: {{ paginator.page }} of {{ paginator.total_pages }}</span>
+
+    {% if paginator.next_page %}
+      <a href="{{ paginator.next_page_path }}" class="next">Next &raquo;</a>
+    {% endif %}
+  </div>
+  {% endif %}
+
+  <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | relative_url }}">via RSS</a></p>
+
+</div>
