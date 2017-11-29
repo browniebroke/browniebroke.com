@@ -1,6 +1,5 @@
 remote_theme: mmistakes/minimal-mistakes
-plugins:
-  - jekyll-feed
+minimal_mistakes_skin: "default"
 defaults:
   # _posts
   - scope:
