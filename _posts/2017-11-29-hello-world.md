@@ -2,6 +2,11 @@
 author: browniebroke
 title:  "Hello World!"
 excerpt: "A first post with a welcome message"
+tags:
+  - welcome
+  - first post
+  - jekyll
+  - theme
 ---
 Setting up my blog using the [Jekyll](https://jekyllrb.com) static site generator
 and Github pages. This is using the [remote theme](https://github.com/blog/2464-use-any-theme-with-github-pages)
