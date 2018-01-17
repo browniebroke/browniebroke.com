@@ -41,3 +41,8 @@ Latlsy, there is still a chicken and egg situation where I need to login to Drop
 which requires the password from 1password, which settings are backed up in mackup.
 
 I'm very satisfied overall, the setup has been almost entirely automated.
+
+
+*UPDATE: I've submitted [a pull request](https://github.com/lra/mackup/pull/1116) 
+to Mackup to add support for Insomnia, as it was very simple to do, and it just got
+merged!*
