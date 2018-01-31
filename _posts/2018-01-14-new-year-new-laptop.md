@@ -37,7 +37,7 @@ Hopefully [this issue](https://github.com/KELiON/cerebro/issues/434) will be res
 soon. Also, it looks like Docker for Mac is not installable via Homebrew, I had to go and get
 it from their website.
 
-Latlsy, there is still a chicken and egg situation where I need to login to Dropbox first, 
+Lastly, there is still a chicken and egg situation where I need to login to Dropbox first, 
 which requires the password from 1password, which settings are backed up in mackup.
 
 I'm very satisfied overall, the setup has been almost entirely automated.
@@ -46,3 +46,7 @@ I'm very satisfied overall, the setup has been almost entirely automated.
 *UPDATE: I've submitted [a pull request](https://github.com/lra/mackup/pull/1116) 
 to Mackup to add support for Insomnia, as it was very simple to do, and it just got
 merged!*
+
+*UPDATE II: Since the Cerebro issue seems to be stuck, I've 
+[sent a PR](https://github.com/caskroom/homebrew-cask/pull/43305) to homebrew-cask
+to revert the 0.3.2 upgrade and install 0.3.1 instead.*
