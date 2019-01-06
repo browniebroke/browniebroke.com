@@ -10,7 +10,7 @@ tags:
 
 # Gatsby is awesome
 
-![Gatsby Logo](./images/gatsbyjs-logo.jpeg "Gatsby Logo")
+![Gatsby Logo](/assets/images/gatsbyjs-logo.jpeg "Gatsby Logo")
 
 Before I get down to the title of this post, I need to rewind to a few years ago to tell a story. 
 
@@ -40,7 +40,7 @@ And the winner is...
 
 ## Gatsby & JavaScript tooling 
 
-![Gatsby + Netlify](./images/gatsby-netlify.jpg "Gatsby Netlify")
+![Gatsby + Netlify](/assets/images/gatsby-netlify.jpg "Gatsby Netlify")
 
 Last year, I heard a lot about static site generators and one that caught my attention is [Gatsby](https://www.gatsbyjs.org/). I learned a bit of [React](https://reactjs.org/) at the end of 2017 (I recommend Wes Bos' [React for beginners](https://reactforbeginners.com/) course) and I liked its syntax. On the other hand, I've got a glimpse of the power of [Netlify](https://www.netlify.com/) and its great development experience at work. In combination with [Renovate](https://renovatebot.com/), it looked like I could achieve all my checklist. There was even a [CMS option](https://www.netlifycms.org/)! Only condition: make the Github repo public. Doesn't sound like a problem to me! 
 
