@@ -78,7 +78,7 @@ An easy win to achieve that is via [Probots](https://probot.github.io/) (and may
 
 ## Results
 
-After this got merged, I wanted to see my change propagated to the [gatsbyjs.org](https://gatsbyjs.org) site. Some time later, after this got deployed, here it was: 
+After this got merged, I wanted to see my change propagated to the [gatsbyjs.org](https://gatsbyjs.org) site. I checked again and here it was: 
 
 ![Gatsbyjs.org security headers report after](/assets/images/gatbsyjs-security-headers-after.png)
 
