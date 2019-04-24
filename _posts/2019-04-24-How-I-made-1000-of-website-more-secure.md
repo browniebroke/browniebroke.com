@@ -9,8 +9,6 @@ tags:
   - referrer-policy
 ---
 
-# How I made 1000's of website more secure with one line of code
-
 Or at least a lot of them...
 
 ## Learning about a new security header
