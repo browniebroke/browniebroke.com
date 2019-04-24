@@ -8,8 +8,6 @@ tags:
   - netlify
 ---
 
-# Gatsby is awesome
-
 ![Gatsby Logo](/assets/images/gatsbyjs-logo.jpeg "Gatsby Logo")
 
 Before I get down to the title of this post, I need to rewind to a few years ago to tell a story. 
