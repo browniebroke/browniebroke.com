@@ -8,6 +8,7 @@ tags:
   - jekyll
   - theme
 ---
+
 Setting up my blog using the [Jekyll](https://jekyllrb.com) static site generator
 and Github pages. This is using the [remote theme](https://github.com/blog/2464-use-any-theme-with-github-pages)
 feature and is I'm trying to get up and running with [Minimal Mistakes](https://mmistakes.github.io/minimal-mistakes/).
