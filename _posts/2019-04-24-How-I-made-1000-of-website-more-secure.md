@@ -13,7 +13,7 @@ Or at least [a lot of them](https://github.com/search?l=JavaScript&o=desc&q=gats
 
 ## Learning about a new security header
 
-Last week, I attended the [London Django meetup](https://www.meetup.com/djangolondon/). Among a very interesting lineup of talks, there was a [lighning presentation](https://skillsmatter.com/skillscasts/13859-london-django-lightening-talk) from Adam Johnson about security headers and how Django helps with them. If you don't know what security headers are, I urge you to watch the talk, it's a bit about Django but it applies about the web in general. 
+Last week, I attended the [London Django meetup](https://www.meetup.com/djangolondon/). Among a very interesting lineup of talks, there was a [lighning presentation](https://skillsmatter.com/skillscasts/13859-london-django-lightening-talk) from [Adam Johnson](https://adamj.eu/) about security headers and how Django helps with them. If you don't know what security headers are, I urge you to watch the talk, it's a bit about Django but it applies about the web in general. 
 
 While I knew the ones that comes with Django and the very important `Content-Security-Policy`, I discovered the `Referrer-Policy` header, including the [story of the `Referer` header mispelling](https://books.google.co.uk/books?id=3EybAgAAQBAJ&pg=PT541&lpg=PT541&redir_esc=y#v=onepage&q&f=false) from the early days of the web.
 
