@@ -1,6 +1,6 @@
 ---
 author: browniebroke
-title:  "How I made 1000 of websites more secure with one line of code"
+title:  "How I made 1000's of websites more secure with one line of code"
 excerpt: "This is the story of learning about a new security header, added it to Gatsby, and made tons of sites more secure"
 tags:
   - gatsby
