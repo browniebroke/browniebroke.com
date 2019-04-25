@@ -2,6 +2,8 @@
 author: browniebroke
 title:  "Gatsby is awesome"
 excerpt: "How I evolved the stack of a website to Gatsby"
+header:
+  og_image: /assets/images/gatsby-netlify.jpg
 tags:
   - website
   - gatsby
