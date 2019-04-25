@@ -11,16 +11,16 @@ minimal_mistakes_skin    : "dark" # "default", "air", "aqua", "contrast", "dark"
 
 # Site Settings
 locale                   : "en-GB"
-title                    : "Browniebroke's Blog"
+title                    : "Bruno Alla"
 title_separator          : "-"
 name                     : &name "Bruno Alla" # &name is a YAML anchor which can be *referenced later
-description              : &description "Welcome to my blog"
-url                      : https://browniebroke.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
+description              : &description "Bruno Alla's blog - about programming, and other random things that interest me."
+url                      : https://browniebroke.com # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : "/" # the subpath of your site, e.g. "/blog"
 repository               : "browniebroke/browniebroke.github.io"
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
 # breadcrumbs            : false # true, false (default)
-words_per_minute         : 200
+words_per_minute         : 150
 comments:
   provider               : "staticman_v2" # false (default), "disqus", "discourse", "facebook", "google-plus", "staticman_v2", "staticman" "custom"
   disqus:
@@ -89,7 +89,7 @@ analytics:
 author:
   name             : *name # *name is a YAML reference pointing to the &anchor earlier
   avatar           : "https://avatars3.githubusercontent.com/u/861044?s=460&v=4"
-  bio              : ""
+  bio              : "I'm a web developer based in London, I work mostly with Python & Django but find some interest in Gatsby for simpler project. I like rugby, electronic music & food. I'm French."
   location         : "London, United Kingdom"
   email            :
   uri              : 
