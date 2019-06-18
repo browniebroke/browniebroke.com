@@ -44,13 +44,13 @@ In development, [the setup is inefficient and optimised for convenience](https:/
 My go to solution used to be [`django-storages`](https://pypi.org/project/django-storages/)'s boto3 back-end for AWS S3 behind a CDN, which more or less gave this setup:
 
 <p style="text-align: center;">
-  <img src="/assets/images/django-static-with-bucket.png" alt="Static files in a Bucket" />
+  <img src="/assets/images/django-static-with-bucket.jpg" alt="Static files in a Bucket" />
 </p>
 
 However, recently I've switched to [Whitenoise](https://pypi.org/project/whitenoise/), which leads to a simpler setup, and remove the need for a S3 bucket, all hosting comes from the Django app. The CDN should serve most of the traffic anyway:
 
 <p style="text-align: center;">
-  <img src="/assets/images/django-static-with-whitenoise.png" alt="Static files with Whitenoise" />
+  <img src="/assets/images/django-static-with-whitenoise.jpg" alt="Static files with Whitenoise" />
 </p>
 
 I still use `django-storages` but only for media files, which brings us to the next section... 
