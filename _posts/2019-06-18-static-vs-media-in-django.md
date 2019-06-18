@@ -4,6 +4,7 @@ title:  "Static vs. Media files in Django"
 excerpt: "The difference between static and media files in Django, which are often confused by beginners."
 header:
   og_image: /assets/images/django-static-cover-image.jpg
+  image: /assets/images/django-static-cover-image.jpg
 tags:
   - django
   - python
