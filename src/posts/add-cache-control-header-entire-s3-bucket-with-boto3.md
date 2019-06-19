@@ -1,7 +1,8 @@
 ---
+date: 2019-05-01
 author: browniebroke
-title:  "Add cache-control header to an entire S3 Bucket using Boto3"
-excerpt: "How to change cache-control header for multiple objects in a AWS S3 bucket using boto3."
+title: 'Add cache-control header to an entire S3 Bucket using Boto3'
+description: 'How to change cache-control header for multiple objects in a AWS S3 bucket using boto3.'
 tags:
   - boto3
   - aws
@@ -41,5 +42,5 @@ This solution uses the [`copy_from` API](https://boto3.amazonaws.com/v1/document
 
 ## Failures to get there:
 
-* I initially tried via the [`put` API](https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Object.put), but this actually overrides the existing file with an empty one, which is not what I wanted.
-* The copy to itself operation failed without `MetadataDirective='REPLACE'`. I was about to give up but then discovered about it.
+- I initially tried via the [`put` API](https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Object.put), but this actually overrides the existing file with an empty one, which is not what I wanted.
+- The copy to itself operation failed without `MetadataDirective='REPLACE'`. I was about to give up but then discovered about it.

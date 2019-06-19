@@ -1,10 +1,11 @@
 ---
+date: 2019-06-18
 author: browniebroke
-title:  "Static vs. Media files in Django"
-excerpt: "The difference between static and media files in Django, which are often confused by beginners."
+title: 'Static vs. Media files in Django'
+description: 'The difference between static and media files in Django, which are often confused by beginners.'
 header:
-  og_image: /assets/images/django-static-cover-image.jpg
-  image: /assets/images/django-static-cover-image.jpg
+  og_image: images/django-static/django-static-cover-image.jpg
+  image: images/django-static/django-static-cover-image.jpg
 tags:
   - django
   - python
@@ -14,15 +15,15 @@ tags:
   - s3
 ---
 
-Django is a great Web framework for building Web applications in Python. It comes with a lot of batteries included that you'll most likely need at some point in your project. Two of them took me a while to differentiate when I started: static and media files. 
+Django is a great Web framework for building Web applications in Python. It comes with a lot of batteries included that you'll most likely need at some point in your project. Two of them took me a while to differentiate when I started: static and media files.
 
-After helping some less experienced people, I feel like I'm not the only one running into this, so I'm hoping to clarify this in this post. 
+After helping some less experienced people, I feel like I'm not the only one running into this, so I'm hoping to clarify this in this post.
 
-## TL;DR 
+## TL;DR
 
-Static files are part of your application code, while media is for generated content by your application or users of your application. 
+Static files are part of your application code, while media is for generated content by your application or users of your application.
 
-## Static files 
+## Static files
 
 Static files are managed by the [`staticfiles` app](https://docs.djangoproject.com/en/2.2/ref/contrib/staticfiles/) which you need to install. It provides a couple of important blocks, the 3 most importants ones being:
 
@@ -37,27 +38,27 @@ These pieces work together to serve the sources in a more or less optimised way 
 - `STATICFILES_DIRS`
 - `STATICFILES_STORAGE`
 
-Static files are usually either part of your code, or part of your dependencies' code. They can come from various places, each app may provide its own files. The Django admin ships with some javascript and CSS, for example. 
+Static files are usually either part of your code, or part of your dependencies' code. They can come from various places, each app may provide its own files. The Django admin ships with some javascript and CSS, for example.
 
 In development, [the setup is inefficient and optimised for convenience](https://docs.djangoproject.com/en/2.2/ref/contrib/staticfiles/#static-file-development-view). It's based on a view that looks into all the installed apps to find static files. In production, however this is done ahead of time via `collectstatic`, which copy all the static files into a single location, being another folder or somewhere on another machine, which could be in a different part of the world.
 
 My go to solution used to be [`django-storages`](https://pypi.org/project/django-storages/)'s boto3 back-end for AWS S3 behind a CDN, which more or less gave this setup:
 
 <p style="text-align: center;">
-  <img src="/assets/images/django-static-with-bucket.jpg" alt="Static files in a Bucket" />
+  <img src="images/django-static/django-static-with-bucket.jpg" alt="Static files in a Bucket" />
 </p>
 
 However, recently I've switched to [Whitenoise](https://pypi.org/project/whitenoise/), which leads to a simpler setup, and remove the need for a S3 bucket, all hosting comes from the Django app. The CDN should serve most of the traffic anyway:
 
 <p style="text-align: center;">
-  <img src="/assets/images/django-static-with-whitenoise.jpg" alt="Static files with Whitenoise" />
+  <img src="images/django-static/django-static-with-whitenoise.jpg" alt="Static files with Whitenoise" />
 </p>
 
-I still use `django-storages` but only for media files, which brings us to the next section... 
+I still use `django-storages` but only for media files, which brings us to the next section...
 
 ## Media files
 
-Media files are all files which are [uploaded by users](https://docs.djangoproject.com/en/2.2/topics/files/) during the life of your Django project. This could be in the admin, the profile picture of the user or some more private documents like medical records, or legal copies. Basically, anything which is going into a `FileField`, `ImageField` or the likes is going into the media storage by default. 
+Media files are all files which are [uploaded by users](https://docs.djangoproject.com/en/2.2/topics/files/) during the life of your Django project. This could be in the admin, the profile picture of the user or some more private documents like medical records, or legal copies. Basically, anything which is going into a `FileField`, `ImageField` or the likes is going into the media storage by default.
 
 By default, files are stored on the local file system. The settings controlling this are:
 
@@ -65,7 +66,7 @@ By default, files are stored on the local file system. The settings controlling 
 - `MEDIA_URL`
 - `DEFAULT_FILE_STORAGE`
 
-However, if you run your app on Heroku for instance, this default setup is not suitable for production, as the file system is hephemeral and is cleared each time the application is updated. This is where `django-storages` is still useful and needed. 
+However, if you run your app on Heroku for instance, this default setup is not suitable for production, as the file system is hephemeral and is cleared each time the application is updated. This is where `django-storages` is still useful and needed.
 
 If your app is hosting a mix of public media and private one, I recommended to define separate storage classes for each, you can tell in the field instanciation which storage class to use:
 
@@ -132,12 +133,12 @@ class User:
 
 In a real workd case, this helper should probably handle `KeyError` in the lookup and return the `DEFAULT_FILE_STORAGE`. You could also invent custom settings as you need.
 
-## Security concerns 
+## Security concerns
 
-If you decide to use `django-storages` for both Static and Media files, it's important that you make the separation very clear, a user of your website shouldn't be able to override one of your static assets by uploading a resource! I like to use a separate S3 Bucket for each type of storage. AWS has many options to customise the privacy of buckets and the objects their contain, and other providers have equivalent features. 
+If you decide to use `django-storages` for both Static and Media files, it's important that you make the separation very clear, a user of your website shouldn't be able to override one of your static assets by uploading a resource! I like to use a separate S3 Bucket for each type of storage. AWS has many options to customise the privacy of buckets and the objects their contain, and other providers have equivalent features.
 
-## Final note 
+## Final note
 
-While the Media storage might not be used by your application, the static files are a more essential, and any reasonable Django site will need it (at least for the admin). 
+While the Media storage might not be used by your application, the static files are a more essential, and any reasonable Django site will need it (at least for the admin).
 
-I hope this post will help reduce the confusion I see frequently with beginners. 
+I hope this post will help reduce the confusion I see frequently with beginners.
