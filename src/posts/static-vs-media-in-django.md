@@ -66,9 +66,9 @@ By default, files are stored on the local file system. The settings controlling 
 - `MEDIA_URL`
 - `DEFAULT_FILE_STORAGE`
 
-However, if you run your app on Heroku for instance, this default setup is not suitable for production, as the file system is hephemeral and is cleared each time the application is updated. This is where `django-storages` is still useful and needed.
+However, if you run your app on Heroku for instance, this default setup is not suitable for production, as the file system is ephemeral and is cleared each time the application is updated. This is where `django-storages` is still useful and needed.
 
-If your app is hosting a mix of public media and private one, I recommended to define separate storage classes for each, you can tell in the field instanciation which storage class to use:
+If your app is hosting a mix of public media and private one, I recommend to define separate storage classes for each, you can tell in the field instantiation which storage class to use:
 
 ```python
 class User:
@@ -103,7 +103,7 @@ class PrivateStorage(S3Boto3Storage):
 
 ### Use different class locally and in production
 
-There is one problem with the above approach, though: by defining your storage class on the model field, that means it would potentially be shared between you local environment and production, which is probably not what you want. To solve this, we can use a helper function to either use the local file system or a remote location, depending on a setting:
+There is one problem with the above approach, though: by defining your storage class on the model field, that means it would potentially be shared between you local environment and production, which is probably not what you want. To solve this, we can use a factory function to either use the local file system or a remote location, depending on a setting:
 
 ```python
 def get_storage(storage_type):
