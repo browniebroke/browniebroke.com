@@ -1,9 +1,9 @@
 ---
+date: 2019-04-24
 author: browniebroke
-title:  "How I made 1000's of websites more secure with one line of code"
-excerpt: "This is the story of learning about a new security header, added it to Gatsby, and made tons of sites more secure"
-header:
-  og_image: /assets/images/gatbsyjs-security-headers-after.png
+title: "How I made 1000's of websites more secure with one line of code"
+description: 'This is the story of learning about a new security header, added it to Gatsby, and made tons of sites more secure'
+og_image: images/gasby-first-contrib/gatbsyjs-security-headers-after.png
 tags:
   - gatsby
   - security
@@ -15,7 +15,7 @@ Or at least [a lot of them](https://github.com/search?l=JavaScript&o=desc&q=gats
 
 ## Learning about a new security header
 
-Last week, I attended the [London Django meetup](https://www.meetup.com/djangolondon/). Among a very interesting lineup of talks, there was a [lighning presentation](https://skillsmatter.com/skillscasts/13859-london-django-lightening-talk) from [Adam Johnson](https://adamj.eu/) about security headers and how Django helps with them. If you don't know what security headers are, I urge you to watch the talk, it's a bit about Django but it applies about the web in general. 
+Last week, I attended the [London Django meetup](https://www.meetup.com/djangolondon/). Among a very interesting lineup of talks, there was a [lighning presentation](https://skillsmatter.com/skillscasts/13859-london-django-lightening-talk) from [Adam Johnson](https://adamj.eu/) about security headers and how Django helps with them. If you don't know what security headers are, I urge you to watch the talk, it's a bit about Django but it applies about the web in general.
 
 While I knew the ones that comes with Django and the very important `Content-Security-Policy`, I discovered the `Referrer-Policy` header, including the [story of the `Referer` header mispelling](https://books.google.co.uk/books?id=3EybAgAAQBAJ&pg=PT541&lpg=PT541&redir_esc=y#v=onepage&q&f=false) from the early days of the web.
 
@@ -27,7 +27,7 @@ After the presentation, I decided to check for a couple of my recent sites I bui
 
 I quickly found that this could be easily set via an option from [`gatsby-plugin-netlify`](https://www.gatsbyjs.org/packages/gatsby-plugin-netlify/). I started adding it and set it to the suggested value of `'same-origin'`, which seems pretty sensible:
 
-```js{9}
+```js
 module.exports = {
   ...
   plugins: [
@@ -46,18 +46,18 @@ module.exports = {
 
 It all worked fine so I was going to add it to my other website, but then it strucked me that maybe I can push this to all websites built with Gatsby by contributing upstream, & multiply my impact! A quick check for [gatsbyjs.org](https://gatsbyjs.org) showed similar results as my own sites:
 
-![Gatsbyjs.org security headers report before](/assets/images/gatbsyjs-security-headers-before.png)
+![Gatsbyjs.org security headers report before](images/gasby-first-contrib/gatbsyjs-security-headers-before.png)
 
 ## Fixing 1000's of website at once
 
 So I went ahead and forked the repository on Github and quickly located [where the netlify plug-in](https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-plugin-netlify) is located in their monorepo architecture. Once in there, the plug-in codebase is actually pretty small so it was not hard to find the entry point and where to make the change, [in their SECURITY_HEADERS constants](https://github.com/gatsbyjs/gatsby/blob/5ef65a4a8783a9a81c3680d532432a26d2f4a27d/packages/gatsby-plugin-netlify/src/constants.js#L19-L26):
 
-```diff
+```js
 export const SECURITY_HEADERS = {
      `X-Frame-Options: DENY`,
      `X-XSS-Protection: 1; mode=block`,
      `X-Content-Type-Options: nosniff`,
-+    `Referrer-Policy: same-origin`,
+     `Referrer-Policy: same-origin`,
    ],
  }
 ```
@@ -68,11 +68,11 @@ Ideally I wanted to write tests but couldn't find any for the existing headers. 
 
 Only a few hours later, a maintainer jumped in, approved my pull request with a extremely welcoming message and then merged it:
 
-![Pull request approved](/assets/images/gatsby-pr-approved.png)
+![Pull request approved](images/gasby-first-contrib/gatsby-pr-approved.png)
 
 After that, a bot invited me into their organisation on Github with a welcome message, and pointed at their store where I could order a free swag!
 
-![Gatsbot message](/assets/images/gatbsot-invite.png)
+![Gatsbot message](images/gasby-first-contrib/gatbsot-invite.png)
 
 This an amazing contributor experience, I found this super welcoming and positive. Not every open source project can afford to give away some free swag, but a bit of automation around welcoming new contributors can go a long way in building a thriving community. I'll surely consider contributing again.
 
@@ -80,9 +80,9 @@ An easy win to achieve that is via [Probots](https://probot.github.io/) (and may
 
 ## Results
 
-After this got merged, I wanted to see my change propagated to the [gatsbyjs.org](https://gatsbyjs.org) site. I checked again and here it was: 
+After this got merged, I wanted to see my change propagated to the [gatsbyjs.org](https://gatsbyjs.org) site. I checked again and here it was:
 
-![Gatsbyjs.org security headers report after](/assets/images/gatbsyjs-security-headers-after.png)
+![Gatsbyjs.org security headers report after](images/gasby-first-contrib/gatbsyjs-security-headers-after.png)
 
 ## Next steps
 

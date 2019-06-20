@@ -1,7 +1,8 @@
 ---
+date: 2017-11-29
 author: browniebroke
-title:  "Hello World!"
-excerpt: "A first post with a welcome message"
+title: 'Hello World!'
+description: 'A first post with a welcome message'
 tags:
   - welcome
   - first post
