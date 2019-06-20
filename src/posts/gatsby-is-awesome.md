@@ -47,7 +47,7 @@ Last year, I heard a lot about static site generators and one that caught my att
 
 After playing around with small throwaway projects, I figured I liked Gatsby, but Netlify CMS was a bit too much for now. I went on to start my site using the [Gatstrap template](https://github.com/jaxx2104/gatsby-starter-bootstrap), based on Bootstrap. This might make some people scream "why???", but I wanted to get a CSS baseline I could build upon, and I already knew Bootstrap quite well. Let's not try to learn too much at the same time!
 
-After a bit of fiddling, the whole development experience is amazing. By open sourcing, I get all sort of services available to help me with [code quality](https://lgtm.com/) checks, Netlify deploy preview, and Renovate to keep dependencies up to date. I was so satisfied about this last one that I ended up activating auto merge. The site automatically keeps itself up to date! How amazing is that? Compared to Pyup (the Python equivalent I knew of) it behaves much better, especially when a rebase is needed.
+After a bit of fiddling, the whole development experience is amazing. By open sourcing, I get all sort of services available to help me with [code quality](https://lgtm.com/) checks, Netlify deploy preview, and Renovate to keep dependencies up to date. I was so satisfied about this last one that I ended up activating auto merge. The site automatically keeps itself up to date! How amazing is that? Compared to PyUp (the Python equivalent I knew of) it behaves much better, especially when a rebase is needed.
 
 ## Final words
 

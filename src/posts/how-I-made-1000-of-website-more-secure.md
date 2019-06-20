@@ -19,7 +19,7 @@ Last week, I attended the [London Django meetup](https://www.meetup.com/djangolo
 
 While I knew the ones that comes with Django and the very important `Content-Security-Policy`, I discovered the `Referrer-Policy` header, including the [story of the `Referer` header mispelling](https://books.google.co.uk/books?id=3EybAgAAQBAJ&pg=PT541&lpg=PT541&redir_esc=y#v=onepage&q&f=false) from the early days of the web.
 
-In the presentation, Adam mentioned a tool to check your site and educate about all the possible security headers: [Scott Helme](https://twitter.com/Scott_Helme)'s [securityheaders.com](https://securityheaders.com/). I was already following Scott on Twitter -I learned a great deal about CSP thnaks to him- but although he probably mentioned this tool, I forgot about it.
+In the presentation, Adam mentioned a tool to check your site and educate about all the possible security headers: [Scott Helme](https://twitter.com/Scott_Helme)'s [securityheaders.com](https://securityheaders.com/). I was already following Scott on Twitter -I learned a great deal about CSP thanks to him- but although he probably mentioned this tool, I forgot about it.
 
 ## Fixing my sites
 
@@ -44,13 +44,13 @@ module.exports = {
 }
 ```
 
-It all worked fine so I was going to add it to my other website, but then it strucked me that maybe I can push this to all websites built with Gatsby by contributing upstream, & multiply my impact! A quick check for [gatsbyjs.org](https://gatsbyjs.org) showed similar results as my own sites:
+It all worked fine so I was going to add it to my other website, but then it struck me that maybe I can push this to all websites built with Gatsby by contributing upstream, & multiply my impact! A quick check for [gatsbyjs.org](https://gatsbyjs.org) showed similar results as my own sites:
 
 ![Gatsbyjs.org security headers report before](images/gasby-first-contrib/gatbsyjs-security-headers-before.png)
 
 ## Fixing 1000's of website at once
 
-So I went ahead and forked the repository on Github and quickly located [where the netlify plug-in](https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-plugin-netlify) is located in their monorepo architecture. Once in there, the plug-in codebase is actually pretty small so it was not hard to find the entry point and where to make the change, [in their SECURITY_HEADERS constants](https://github.com/gatsbyjs/gatsby/blob/5ef65a4a8783a9a81c3680d532432a26d2f4a27d/packages/gatsby-plugin-netlify/src/constants.js#L19-L26):
+So I went ahead and forked the repository on Github and quickly located [where the Netlify plug-in](https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-plugin-netlify) is located in their monorepo architecture. Once in there, the plug-in codebase is actually pretty small so it was not hard to find the entry point and where to make the change, [in their SECURITY_HEADERS constants](https://github.com/gatsbyjs/gatsby/blob/5ef65a4a8783a9a81c3680d532432a26d2f4a27d/packages/gatsby-plugin-netlify/src/constants.js#L19-L26):
 
 ```js
 export const SECURITY_HEADERS = {
