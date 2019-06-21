@@ -9,6 +9,7 @@ class BlogPostTemplate extends React.Component {
     const post = this.props.data.markdownRemark
     const siteTitle = this.props.data.site.siteMetadata.title
     const headerImage = post.frontmatter.header_image
+    // This is wrong, it's a string, not the proper URL
     const ogImage = post.frontmatter.og_image
     const { previous, next } = this.props.pageContext
 
