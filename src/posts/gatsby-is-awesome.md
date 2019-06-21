@@ -3,8 +3,7 @@ date: 2019-01-06
 author: browniebroke
 title: 'Gatsby is awesome'
 description: 'How I evolved the stack of a website to Gatsby'
-header:
-  og_image: ../images/posts/gatsby-awesome/gatsby-netlify.jpg
+og_image: images/posts/gatsby-awesome/gatsby-netlify.jpg
 tags:
   - website
   - gatsby

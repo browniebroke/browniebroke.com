@@ -8,6 +8,8 @@ class BlogPostTemplate extends React.Component {
   render() {
     const post = this.props.data.markdownRemark
     const siteTitle = this.props.data.site.siteMetadata.title
+    const headerImage = post.frontmatter.header_image
+    const ogImage = post.frontmatter.og_image
     const { previous, next } = this.props.pageContext
 
     return (
@@ -15,6 +17,7 @@ class BlogPostTemplate extends React.Component {
         <SEO
           title={post.frontmatter.title}
           description={post.frontmatter.description || post.excerpt}
+          image={ogImage && ogImage.publicURL}
         />
         <h1>{post.frontmatter.title}</h1>
         <p
@@ -75,6 +78,9 @@ export const pageQuery = graphql`
         title
         date(formatString: "MMMM DD, YYYY")
         description
+        og_image {
+          publicURL
+        }
       }
     }
   }
