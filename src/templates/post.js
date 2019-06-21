@@ -9,8 +9,7 @@ class BlogPostTemplate extends React.Component {
     const post = this.props.data.markdownRemark
     const siteTitle = this.props.data.site.siteMetadata.title
     const headerImage = post.frontmatter.header_image
-    // This is wrong, it's a string, not the proper URL
-    const ogImage = post.frontmatter.og_image
+    const ogImage = post.frontmatter.image_og
     const { previous, next } = this.props.pageContext
 
     return (
@@ -19,7 +18,8 @@ class BlogPostTemplate extends React.Component {
           title={post.frontmatter.title}
           description={post.frontmatter.description || post.excerpt}
           image={
-            ogImage || (headerImage && headerImage.childImageSharp.fluid.src)
+            (ogImage && ogImage.publicURL) ||
+            (headerImage && headerImage.childImageSharp.fluid.src)
           }
         />
         <h1>{post.frontmatter.title}</h1>
@@ -88,7 +88,9 @@ export const pageQuery = graphql`
             }
           }
         }
-        og_image
+        image_og {
+          publicURL
+        }
       }
     }
   }
