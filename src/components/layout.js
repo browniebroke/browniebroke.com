@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { useStaticQuery, graphql } from 'gatsby'
 import Img from 'gatsby-image'
 import Header from './header'
+import '../utils/global.css'
 
 function getHeroImage(fluidImage) {
   if (fluidImage) {
