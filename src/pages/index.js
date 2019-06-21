@@ -6,11 +6,10 @@ import SEO from '../components/seo'
 import Avatar from '../components/avatar'
 
 const IndexPage = ({ data }) => {
-  const siteTitle = data.site.siteMetadata.title
   const posts = data.allMarkdownRemark.edges
   return (
     <Layout>
-      <SEO title={siteTitle} />
+      <SEO title="Home" />
       <section
         style={{
           textAlign: `center`,
