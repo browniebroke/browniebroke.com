@@ -44,9 +44,11 @@ const Layout = ({ children, headerImage }) => {
       >
         <main>{children}</main>
         <footer>
-          © {new Date().getFullYear()}, Built with
-          {` `}
-          <a href="https://www.gatsbyjs.org">Gatsby</a>
+          <span style={{ fontSize: `0.7em` }}>
+            © {new Date().getFullYear()}, Built with
+            {` `}
+            <a href="https://www.gatsbyjs.org">Gatsby</a>
+          </span>
         </footer>
       </div>
     </>
