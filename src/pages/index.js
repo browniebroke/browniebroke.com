@@ -14,6 +14,7 @@ const IndexPage = ({ data }) => {
         style={{
           textAlign: `center`,
           padding: `5rem`,
+          paddingTop: 0,
         }}
       >
         <h1>Hi</h1>
