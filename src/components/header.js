@@ -6,7 +6,9 @@ const Header = ({ siteTitle }) => (
   <header>
     <div
       style={{
-        padding: `1.45rem 4rem`,
+        padding: `1.5rem 1.5rem`,
+        maxWidth: `1300px`,
+        margin: `0 auto`,
         display: `flex`,
       }}
     >
