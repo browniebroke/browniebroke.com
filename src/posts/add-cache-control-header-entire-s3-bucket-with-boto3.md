@@ -30,7 +30,10 @@ bucket = s3.Bucket('my-public-bucket')
 for summary in bucket.objects.filter(Prefix='static'):
     obj = summary.Object()
     obj.copy_from(
-        CopySource={'Bucket': 'my-public-bucket', 'Key': obj.key},
+        CopySource={
+            'Bucket': 'my-public-bucket',
+            'Key': obj.key,
+        },
         CacheControl='public,max-age=604800,immutable',
         MetadataDirective='REPLACE',
     )
