@@ -4,6 +4,7 @@ import { Link, graphql } from 'gatsby'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
 import Avatar from '../components/avatar'
+import PostPreview from '../components/post'
 
 const IndexPage = ({ data }) => {
   const posts = data.allMarkdownRemark.edges
@@ -34,19 +35,15 @@ const IndexPage = ({ data }) => {
         </h2>
 
         {posts.map(({ node }) => {
-          const title = node.frontmatter.title || node.fields.slug
+          const title = node.frontmatter.title
           return (
-            <div key={node.fields.slug}>
-              <h3>
-                <Link to={node.fields.slug}>{title}</Link>
-              </h3>
-              <small>{node.frontmatter.date}</small>
-              <p
-                dangerouslySetInnerHTML={{
-                  __html: node.excerpt,
-                }}
-              />
-            </div>
+            <PostPreview
+              key={node.fields.slug}
+              slug={node.fields.slug}
+              title={title}
+              date={node.frontmatter.date}
+              excerpt={node.excerpt}
+            />
           )
         })}
 
