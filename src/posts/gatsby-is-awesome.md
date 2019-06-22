@@ -4,13 +4,12 @@ author: browniebroke
 title: 'Gatsby is awesome'
 description: 'How I evolved the stack of a website to Gatsby'
 image_og: images/gatsby-awesome/gatsby-netlify.jpg
+header_image: images/gatsby-awesome/gatsbyjs-logo.png
 tags:
   - website
   - gatsby
   - netlify
 ---
-
-![Gatsby Logo](images/gatsby-awesome/gatsbyjs-logo.jpeg 'Gatsby Logo')
 
 Before I get down to the title of this post, I need to rewind to a few years ago to tell a story.
 
