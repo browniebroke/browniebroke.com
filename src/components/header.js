@@ -20,9 +20,7 @@ const Header = ({ siteTitle }) => (
           lineHeight: `inherit`,
         }}
       >
-        <Link to="/" style={{ textDecoration: `none` }}>
-          {siteTitle}
-        </Link>
+        <Link to="/">{siteTitle}</Link>
       </h2>
       <ul className="list-inline">
         <li>
