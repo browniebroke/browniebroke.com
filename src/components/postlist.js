@@ -3,18 +3,15 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const PostsList = ({ posts }) => {
-  return posts.map(({ node }) => {
-    const title = node.frontmatter.title
-    return (
-      <PostPreview
-        key={node.fields.slug}
-        slug={node.fields.slug}
-        title={title}
-        date={node.frontmatter.date}
-        excerpt={node.excerpt}
-      />
-    )
-  })
+  return posts.map(({ node }) => (
+    <PostPreview
+      key={node.fields.slug}
+      slug={node.fields.slug}
+      title={node.frontmatter.title}
+      date={node.frontmatter.date}
+      excerpt={node.excerpt}
+    />
+  ))
 }
 
 PostsList.propTypes = {
