@@ -1,16 +1,23 @@
 import PostPreview from './post'
 import React from 'react'
 import PropTypes from 'prop-types'
+import styled from 'styled-components'
+
+const PostWrapper = styled.div`
+  padding-bottom: 1rem;
+`
 
 const PostsList = ({ posts }) => {
   return posts.map(({ node }) => (
-    <PostPreview
-      key={node.fields.slug}
-      slug={node.fields.slug}
-      title={node.frontmatter.title}
-      date={node.frontmatter.date}
-      excerpt={node.excerpt}
-    />
+    <PostWrapper>
+      <PostPreview
+        key={node.fields.slug}
+        slug={node.fields.slug}
+        title={node.frontmatter.title}
+        date={node.frontmatter.date}
+        excerpt={node.excerpt}
+      />
+    </PostWrapper>
   ))
 }
 
