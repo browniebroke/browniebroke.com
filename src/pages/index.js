@@ -5,6 +5,7 @@ import Layout from '../components/layout'
 import SEO from '../components/seo'
 import Avatar from '../components/avatar'
 import PostsList from '../components/postlist'
+import SocialLinks from '../components/social'
 
 const IndexPage = ({ data }) => {
   const posts = data.allMarkdownRemark.edges
@@ -29,6 +30,7 @@ const IndexPage = ({ data }) => {
           React & Gatsby. I'm one of the maintainers for cookiecutter-django
           from Pydanny. I like rugby, electronic music & cooking. I'm French.
         </p>
+        <SocialLinks />
       </section>
       <section>
         <h2 style={{ textAlign: `center`, marginBottom: `3rem` }}>
