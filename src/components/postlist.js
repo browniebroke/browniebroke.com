@@ -15,6 +15,7 @@ const PostsList = ({ posts }) => {
         slug={node.fields.slug}
         title={node.frontmatter.title}
         date={node.frontmatter.date}
+        timeToRead={node.timeToRead}
         excerpt={node.excerpt}
       />
     </PostWrapper>
@@ -31,6 +32,7 @@ PostsList.propTypes = {
         title: PropTypes.string.isRequired,
         date: PropTypes.string.isRequired,
       }),
+      timeToRead: PropTypes.number.isRequired,
       excerpt: PropTypes.string,
     })
   ).isRequired,
