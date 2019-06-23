@@ -18,15 +18,16 @@ const IndexPage = ({ data }) => {
           paddingTop: 0,
         }}
       >
-        <h1>Hi</h1>
+        <h1>Bruno Alla's Blog</h1>
         <Avatar
           sharpImage={data.avatarImage.childImageSharp.fluid}
           style={{ marginLeft: `auto`, marginRight: `auto` }}
         />
         <p>
-          I'm a web developer based in London, I work mostly with Python &
-          Django but find some interest in Gatsby for simpler project. I like
-          rugby, electronic music & food. I'm French.
+          Hi! I'm a web developer based in London, I work mostly with Python &
+          Django, but I also do a bit of Javascript on the side, mainly with
+          React & Gatsby. I'm one of the maintainers for cookiecutter-django
+          from @pydanny. I like rugby, electronic music & cooking. I'm French.
         </p>
       </section>
       <section>
