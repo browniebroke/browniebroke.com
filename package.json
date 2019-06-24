@@ -19,7 +19,7 @@
     "@fortawesome/free-brands-svg-icons": "5.9.0",
     "@fortawesome/react-fontawesome": "0.1.4",
     "@reach/router": "1.2.1",
-    "gatsby": "2.10.3",
+    "gatsby": "2.10.4",
     "gatsby-image": "2.2.3",
     "gatsby-link": "2.2.0",
     "gatsby-plugin-feed": "2.3.1",
