@@ -6,6 +6,7 @@ import {
 } from '@fortawesome/free-brands-svg-icons'
 import React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
+import ListInline from './listinline'
 
 const SocialLinks = () => {
   const { site } = useStaticQuery(graphql`
@@ -25,7 +26,7 @@ const SocialLinks = () => {
   const { twitter, stackoverflow, github } = site.siteMetadata.social
 
   return (
-    <ul className="list-inline">
+    <ListInline>
       <li>
         <a
           href={`https://www.twitter.com/${twitter}`}
@@ -49,7 +50,7 @@ const SocialLinks = () => {
           <FontAwesomeIcon icon={faGithub} />
         </a>
       </li>
-    </ul>
+    </ListInline>
   )
 }
 

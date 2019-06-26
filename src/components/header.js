@@ -1,9 +1,22 @@
 import { Link } from 'gatsby'
 import PropTypes from 'prop-types'
 import React from 'react'
+import styled from 'styled-components'
+
+import ListInline from './listinline'
+
+const HeaderWrapper = styled.header`
+  a {
+    text-decoration: none;
+  }
+
+  li {
+    padding-left: 2rem;
+  }
+`
 
 const Header = ({ siteTitle }) => (
-  <header>
+  <HeaderWrapper>
     <div
       style={{
         padding: `1.5rem 1.5rem`,
@@ -22,13 +35,13 @@ const Header = ({ siteTitle }) => (
       >
         <Link to="/">{siteTitle}</Link>
       </h2>
-      <ul className="list-inline">
+      <ListInline>
         <li>
           <Link to="/posts/">Posts</Link>
         </li>
-      </ul>
+      </ListInline>
     </div>
-  </header>
+  </HeaderWrapper>
 )
 
 Header.propTypes = {
