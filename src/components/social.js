@@ -6,6 +6,23 @@ import {
 } from '@fortawesome/free-brands-svg-icons'
 import React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
+import styled from 'styled-components'
+
+const ListInline = styled.ul`
+  list-style: none;
+  margin: 0;
+
+  li {
+    padding-left: 2rem;
+    margin-bottom: 0;
+    display: inline-block;
+  }
+
+  svg {
+    font-size: inherit;
+    height: 1em;
+  }
+`
 
 const SocialLinks = () => {
   const { site } = useStaticQuery(graphql`
@@ -25,7 +42,7 @@ const SocialLinks = () => {
   const { twitter, stackoverflow, github } = site.siteMetadata.social
 
   return (
-    <ul className="list-inline">
+    <ListInline>
       <li>
         <a
           href={`https://www.twitter.com/${twitter}`}
@@ -49,7 +66,7 @@ const SocialLinks = () => {
           <FontAwesomeIcon icon={faGithub} />
         </a>
       </li>
-    </ul>
+    </ListInline>
   )
 }
 
