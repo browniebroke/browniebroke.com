@@ -9,9 +9,8 @@ const PostWrapper = styled.div`
 
 const PostsList = ({ posts }) => {
   return posts.map(({ node }) => (
-    <PostWrapper>
+    <PostWrapper key={node.fields.slug}>
       <PostPreview
-        key={node.fields.slug}
         slug={node.fields.slug}
         title={node.frontmatter.title}
         date={node.frontmatter.date}
