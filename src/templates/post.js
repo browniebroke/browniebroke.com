@@ -22,7 +22,7 @@ class BlogPostTemplate extends React.Component {
           title={post.frontmatter.title}
           description={post.frontmatter.description || post.excerpt}
           image={
-            (ogImage && ogImage.publicURL) ||
+            (ogImage && ogImage.childImageSharp.fluid.src) ||
             (headerImage && headerImage.childImageSharp.fluid.src)
           }
         />
@@ -94,7 +94,11 @@ export const pageQuery = graphql`
           }
         }
         og_image {
-          publicURL
+          childImageSharp {
+            fluid(maxWidth: 800) {
+              ...GatsbyImageSharpFluid
+            }
+          }
         }
       }
     }
