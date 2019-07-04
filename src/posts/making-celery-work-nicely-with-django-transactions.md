@@ -1,9 +1,10 @@
 ---
 date: 2019-06-25
 author: browniebroke
-title: 'Celery best practice when working with Django transactions'
+title: 'Making Celery work nicely with Django transactions'
 description: "A short post about things I've learned when working with Celery in a Django project and a tip to avoid a common pitfall with DB transactions."
 header_image: images/django-celery/header.png
+og_image: images/django-celery/open-graph.png
 tags:
   - django
   - celery
@@ -16,7 +17,7 @@ I've been using Celery in my Django projects for about 5 years now. Along the wa
 
 ## Avoid to serialise complex objects
 
-This is a pretty simple best practice, but was easy to miss as the default serialization was pickle in version 3, the default is now JSON and enforces this. Failing that may cause hard to catch issues like when the pickle protocol changes. This happened when we migrated from Python 2 to 3 for instance. It's pretty much impossible to catch by your test suite, but will happen for sure in production.
+This is a pretty simple best practice, but was easy to miss as the default serialization was pickle in before v4 of Celery, the default is now JSON and enforces this. Failing that may cause hard to catch issues like when the pickle protocol changes. This happened when we migrated from Python 2 to 3 for instance. It's pretty much impossible to catch by your test suite, but will happen for sure in production.
 
 ## Worker throwing `ModelInstanceDoesNotExist`
 

@@ -9,7 +9,7 @@ class BlogPostTemplate extends React.Component {
     const post = this.props.data.markdownRemark
     const siteTitle = this.props.data.site.siteMetadata.title
     const headerImage = post.frontmatter.header_image
-    const ogImage = post.frontmatter.image_og
+    const ogImage = post.frontmatter.og_image
     const { previous, next } = this.props.pageContext
 
     return (
@@ -93,7 +93,7 @@ export const pageQuery = graphql`
             }
           }
         }
-        image_og {
+        og_image {
           publicURL
         }
       }
