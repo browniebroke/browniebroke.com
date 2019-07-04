@@ -3,3 +3,8 @@
   publish = "public"
   command = "gatsby build"
   environment = { GATSBY_CPU_COUNT = "1" }
+
+# A redirect rule with all the supported properties
+[[redirects]]
+  from = "/celery-best-pratices-with-django-transactions/"
+  to = "/making-celery-work-nicely-with-django-transactions/"
