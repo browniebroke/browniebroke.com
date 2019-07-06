@@ -1,17 +1,6 @@
 const path = require(`path`)
 const { createFilePath } = require(`gatsby-source-filesystem`)
-
-// Basic function to generate URL from tags
-function slugify(string) {
-  return string
-    .toString()
-    .toLowerCase()
-    .replace(/\s+/g, '-') // Replace spaces with -
-    .replace(/[^\w\-]+/g, '') // Remove all non-word characters
-    .replace(/\-\-+/g, '-') // Replace multiple - with single -
-    .replace(/^-+/, '') // Trim - from start of text
-    .replace(/-+$/, '') // Trim - from end of text
-}
+const slugify = require('slugify')
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
