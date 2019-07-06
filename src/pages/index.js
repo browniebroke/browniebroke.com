@@ -22,7 +22,8 @@ const IndexPage = ({ data }) => {
         <h1>Bruno Alla's Blog</h1>
         <Avatar
           sharpImage={data.avatarImage.childImageSharp.fluid}
-          style={{ marginLeft: `auto`, marginRight: `auto` }}
+          centered={true}
+          width={200}
         />
         <p>
           Hi! I'm a web developer based in London, I work mostly with Python &
