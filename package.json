@@ -43,7 +43,7 @@
     "react-dom": "16.8.6",
     "react-helmet": "5.2.1",
     "react-typography": "0.16.19",
-    "slugify": "^1.3.4",
+    "slugify": "1.3.4",
     "styled-components": "4.3.2",
     "typography": "0.16.19",
     "typography-theme-funston": "0.16.19"
