@@ -31,6 +31,10 @@ PostPreview.propTypes = {
 export default PostPreview
 
 export const postPreviewFragment = graphql`
+  fragment FormattedDate on MarkdownRemarkFrontmatter {
+    date(formatString: "MMMM DD, YYYY")
+  }
+
   fragment PostPreview on MarkdownRemark {
     timeToRead
     excerpt
@@ -38,7 +42,7 @@ export const postPreviewFragment = graphql`
       slug
     }
     frontmatter {
-      date(formatString: "DD/MM/YYYY")
+      ...FormattedDate
       title
     }
   }

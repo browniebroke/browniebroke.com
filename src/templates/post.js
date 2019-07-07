@@ -89,7 +89,7 @@ export const pageQuery = graphql`
       timeToRead
       frontmatter {
         title
-        date(formatString: "MMMM DD, YYYY")
+        ...FormattedDate
         description
         tags
         header_image {
