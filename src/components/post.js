@@ -1,4 +1,4 @@
-import { Link } from 'gatsby'
+import { graphql, Link } from 'gatsby'
 import React from 'react'
 import PropTypes from 'prop-types'
 
@@ -29,3 +29,17 @@ PostPreview.propTypes = {
 }
 
 export default PostPreview
+
+export const postPreviewFragment = graphql`
+  fragment PostPreview on MarkdownRemark {
+    timeToRead
+    excerpt
+    fields {
+      slug
+    }
+    frontmatter {
+      date(formatString: "DD/MM/YYYY")
+      title
+    }
+  }
+`
