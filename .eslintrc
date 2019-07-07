@@ -2,7 +2,7 @@
   "extends": ["prettier", "prettier/react"],
   "plugins": ["react", "prettier"],
   "parserOptions": {
-    "ecmaVersion": 2016,
+    "ecmaVersion": 8,
     "sourceType": "module",
     "ecmaFeatures": {
       "jsx": true
