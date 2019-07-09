@@ -6,7 +6,7 @@ import {
 } from '@fortawesome/free-brands-svg-icons'
 import React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
-import ListInline from './listinline'
+import ListInline from './list-inline'
 
 const SocialLinks = () => {
   const { site } = useStaticQuery(graphql`

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import styled from 'styled-components'
 
-import ListInline from './listinline'
+import ListInline from './list-inline'
 
 const HeaderWrapper = styled.header`
   a {
