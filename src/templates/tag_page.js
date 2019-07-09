@@ -3,7 +3,7 @@ import { Link, graphql } from 'gatsby'
 
 import Layout from '../components/layout'
 import SEO from '../components/seo'
-import PostsList from '../components/postlist'
+import PostsList from '../components/posts'
 
 const TagPageTemplate = ({ data, location, pageContext }) => {
   const posts = data.allMarkdownRemark.edges
