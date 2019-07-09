@@ -1,0 +1,8 @@
+language: node_js
+
+matrix:
+  include:
+    - name: Lint
+      script: yarn lint
+    - name: Test
+      script: yarn test

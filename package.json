@@ -50,7 +50,9 @@
   },
   "scripts": {
     "build": "gatsby build",
-    "develop": "gatsby develop"
+    "develop": "gatsby develop",
+    "lint": "eslint --ext .js,.jsx --ignore-pattern public .",
+    "test": "prettier --write \"**/*.+(js|jsx|json|css|scss)\""
   },
   "devDependencies": {
     "eslint": "6.0.1",
