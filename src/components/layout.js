@@ -2,18 +2,32 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { useStaticQuery, graphql } from 'gatsby'
 import Img from 'gatsby-image'
+import styled from 'styled-components'
+
 import Header from './header'
+
+const ContentWrapper = styled.div`
+  margin: 0 auto;
+  max-width: 700px;
+  padding: 0px 1rem 1.5rem;
+  padding-top: 3rem;
+  min-height: 100vh;
+`
+
+const HeroImageWrapper = styled.div`
+  padding: 0;
+`
+
+const SmallText = styled.span`
+  font-size: 0.7em;
+`
 
 function getHeroImage(fluidImage) {
   if (fluidImage) {
     return (
-      <div
-        style={{
-          padding: 0,
-        }}
-      >
+      <HeroImageWrapper>
         <Img fluid={fluidImage.childImageSharp.fluid} />
-      </div>
+      </HeroImageWrapper>
     )
   }
 }
@@ -33,24 +47,17 @@ const Layout = ({ children, headerImage }) => {
     <>
       <Header siteTitle={data.site.siteMetadata.title} />
       {getHeroImage(headerImage)}
-      <div
-        style={{
-          margin: `0 auto`,
-          maxWidth: 700,
-          padding: `0px 1rem 1.50rem`,
-          paddingTop: `3rem`,
-          minHeight: `100vh`,
-        }}
-      >
+      <ContentWrapper>
         <main>{children}</main>
         <footer>
-          <span style={{ fontSize: `0.7em` }}>
-            © {new Date().getFullYear()}, Built with
-            {` `}
-            <a href="https://www.gatsbyjs.org">Gatsby</a>
-          </span>
+          <SmallText>
+            © {new Date().getFullYear()}, Built with{` `}
+            <a href="https://www.gatsbyjs.org" target="_blank" rel="noopener">
+              Gatsby
+            </a>
+          </SmallText>
         </footer>
-      </div>
+      </ContentWrapper>
     </>
   )
 }
