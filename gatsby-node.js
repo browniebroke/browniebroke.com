@@ -30,7 +30,8 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   `)
 
   if (result.errors) {
-    reporter.panic(`Error creating posts`, reporter.errors)
+    reporter.panic(`Error in GraphQL query to create pages`)
+    return
   }
 
   // Create blog posts pages.
