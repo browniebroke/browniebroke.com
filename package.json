@@ -55,7 +55,7 @@
     "test": "prettier --check \"**/*.+(js|jsx|json|css|scss)\""
   },
   "devDependencies": {
-    "eslint": "6.2.1",
+    "eslint": "6.2.2",
     "eslint-config-prettier": "6.1.0",
     "eslint-plugin-prettier": "3.1.0",
     "eslint-plugin-react": "7.14.3",
