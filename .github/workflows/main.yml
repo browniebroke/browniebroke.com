@@ -1,0 +1,24 @@
+name: CI
+
+on: 
+  pull_request:
+    branches: 
+    - master
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: debug env
+      run: env
+    - name: Lighthouse Audit
+      uses: jakejarvis/lighthouse-action@v0.1.0
+      with:
+        url: 'https://browniebroke.com'
+    - uses: actions/upload-artifact@master
+      with:
+        name: report
+        path: './report'
+
