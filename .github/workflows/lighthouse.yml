@@ -19,11 +19,11 @@ jobs:
     - name: Expose event data
       run: cat ${GITHUB_EVENT_PATH}
     - name: Get PR ID
-      run: export GH_PULL_REQUEST_NUMBER=$(jq .number ${GITHUB_EVENT_PATH})
+      run: echo $(jq .number ${GITHUB_EVENT_PATH})
     - name: Lighthouse Audit
       uses: jakejarvis/lighthouse-action@v0.1.0
       with:
-        url: "https://deploy-preview-${GH_PULL_REQUEST_NUMBER}--browniebroke.netlify.com/"
+        url: "https://deploy-preview-$(jq .number ${GITHUB_EVENT_PATH})--browniebroke.netlify.com/"
     - uses: actions/upload-artifact@master
       with:
         name: report
