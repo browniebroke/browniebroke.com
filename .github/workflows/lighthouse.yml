@@ -1,4 +1,4 @@
-name: CI
+name: Lighthouse
 
 on: 
   pull_request:
