@@ -1,6 +1,9 @@
 name: Lighthouse
 
-on: 
+on:
+  push:
+    branches: 
+    - master
   pull_request:
     branches: 
     - master
@@ -11,8 +14,10 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    - name: debug env
+    - name: Debug env
       run: env
+    - name: Expose event data
+      run: cat ${GITHUB_EVENT_PATH}
     - name: Lighthouse Audit
       uses: jakejarvis/lighthouse-action@v0.1.0
       with:
