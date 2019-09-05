@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Lighthouse Audit
-      uses: browniebroke/lighthouse-action@netlify-deploy-integration
+      uses: jakejarvis/lighthouse-action@master
       with:
         url: 'https://browniebroke.com/'
         netlify_site: 'browniebroke.netlify.com'
