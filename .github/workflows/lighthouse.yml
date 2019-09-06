@@ -1,25 +1,20 @@
 name: Lighthouse
 
 on:
-  push:
-    branches: 
-    - master
   pull_request:
     branches: 
     - master
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-    
     steps:
     - name: Lighthouse Audit
-      uses: jakejarvis/lighthouse-action@v0.1.0
+      uses: jakejarvis/lighthouse-action@master
       with:
-        url: 'https://browniebroke.com'
+        url: 'https://browniebroke.com/'
+        netlify_site: 'browniebroke.netlify.com'
     - uses: actions/upload-artifact@master
       with:
         name: report
         path: './report'
-
