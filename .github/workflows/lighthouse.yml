@@ -4,17 +4,21 @@ on:
   pull_request:
     branches: 
     - master
+  push:
+    branches:
+    - master
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+    - name: Wait for deploy
+      run: sleep 300  # 5 mins in seconds
     - name: Lighthouse Audit
-      uses: browniebroke/lighthouse-action@race-conditions
+      uses: jakejarvis/lighthouse-action@master
       with:
         url: 'https://browniebroke.com/'
         netlify_site: 'browniebroke.netlify.com'
-        site_build_time: 300  # 5 mins in seconds
     - uses: actions/upload-artifact@master
       with:
         name: report
