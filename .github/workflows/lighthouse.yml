@@ -10,10 +10,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Lighthouse Audit
-      uses: jakejarvis/lighthouse-action@master
+      uses: browniebroke/lighthouse-action@race-conditions
       with:
         url: 'https://browniebroke.com/'
         netlify_site: 'browniebroke.netlify.com'
+        site_build_time: 300  # 5 mins in seconds
     - uses: actions/upload-artifact@master
       with:
         name: report
