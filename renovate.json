@@ -1,6 +1,7 @@
 {
   "extends": ["config:js-app", "schedule:monthly"],
   "automerge": true,
+  "prConcurrentLimit": 1,
   "major": {
     "automerge": false
   },
