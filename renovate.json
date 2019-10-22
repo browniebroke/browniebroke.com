@@ -1,9 +1,10 @@
 {
-  "extends": ["config:js-app", "schedule:monthly"],
+  "extends": ["config:js-app"],
   "automerge": true,
   "prConcurrentLimit": 1,
   "major": {
     "automerge": false
   },
+  "schedule": ["on Wednesday"],
   "supportPolicy": ["current"]
 }
