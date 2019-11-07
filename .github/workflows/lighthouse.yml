@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Wait for deploy
-      run: sleep 300  # 5 mins in seconds
+      run: sleep 900  # 15 mins in seconds
     - name: Lighthouse Audit
       uses: jakejarvis/lighthouse-action@master
       with:
