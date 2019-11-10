@@ -71,6 +71,7 @@ module.exports = {
     `gatsby-plugin-offline`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-styled-components`,
+    `gatsby-plugin-csp`,
     `gatsby-plugin-sitemap`,
     {
       resolve: `gatsby-plugin-typography`,
