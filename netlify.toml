@@ -1,7 +1,7 @@
 [build]
   base    = ""
   publish = "public"
-  command = "gatsby build"
+  command = "yarn build"
   environment = { GATSBY_CPU_COUNT = "1" }
 
 # A redirect rule with all the supported properties
