@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link, graphql } from 'gatsby'
 import slugify from 'slugify'
+import { DiscussionEmbed } from 'disqus-react'
 
 import Layout from '../components/layout'
 import SEO from '../components/seo'
@@ -12,6 +13,11 @@ const BlogPostTemplate = ({ location, data, pageContext }) => {
   const headerImage = post.frontmatter.header_image
   const ogImage = post.frontmatter.og_image
   const { previous, next } = pageContext
+
+  const disqusConfig = {
+    shortname: 'browniebroke',
+    config: { identifier: pageContext.slug, title: post.frontmatter.title },
+  }
 
   return (
     <Layout location={location} title={siteTitle} headerImage={headerImage}>
@@ -68,6 +74,8 @@ const BlogPostTemplate = ({ location, data, pageContext }) => {
           )}
         </li>
       </ul>
+
+      <DiscussionEmbed {...disqusConfig} />
     </Layout>
   )
 }
