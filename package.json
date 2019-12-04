@@ -20,6 +20,7 @@
     "@fortawesome/react-fontawesome": "0.1.7",
     "@reach/router": "1.2.1",
     "babel-plugin-styled-components": "1.10.6",
+    "disqus-react": "^1.0.7",
     "gatsby": "2.17.13",
     "gatsby-image": "2.2.32",
     "gatsby-link": "2.2.23",
