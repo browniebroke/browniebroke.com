@@ -6,6 +6,8 @@ import styled from 'styled-components'
 import ListInline from './list-inline'
 
 const HeaderWrapper = styled.header`
+  box-shadow: rgba(29, 33, 41, 0.15) 0px 30px 20px -32px;
+
   a {
     text-decoration: none;
   }
@@ -15,32 +17,32 @@ const HeaderWrapper = styled.header`
   }
 `
 
+const HeaderContent = styled.div`
+  padding: 1.5rem 1.5rem;
+  max-width: 1300px;
+  margin: 0 auto;
+  display: flex;
+`
+
+const SiteTitle = styled.h2`
+  margin: 0;
+  flex-grow: 1;
+  font-size: 18px;
+  line-height: inherit;
+`
+
 const Header = ({ siteTitle }) => (
   <HeaderWrapper>
-    <div
-      style={{
-        padding: `1.5rem 1.5rem`,
-        maxWidth: `1300px`,
-        margin: `0 auto`,
-        display: `flex`,
-      }}
-    >
-      <h2
-        style={{
-          margin: `0`,
-          flexGrow: 1,
-          fontSize: `18px`,
-          lineHeight: `inherit`,
-        }}
-      >
+    <HeaderContent>
+      <SiteTitle>
         <Link to="/">{siteTitle}</Link>
-      </h2>
+      </SiteTitle>
       <ListInline>
         <li>
           <Link to="/posts/">Posts</Link>
         </li>
       </ListInline>
-    </div>
+    </HeaderContent>
   </HeaderWrapper>
 )
 
