@@ -84,6 +84,7 @@ module.exports = {
           'font-src': `'self' data: fonts.gstatic.com`,
           'default-src': `'self' c.disquscdn.com disqus.com`,
           'connect-src': `'self' fonts.googleapis.com links.services.disqus.com`,
+          'prefetch-src': `'self' fonts.googleapis.com`,
         },
       },
     },
