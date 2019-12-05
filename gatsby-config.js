@@ -83,7 +83,7 @@ module.exports = {
           'img-src': `'self' data: www.google-analytics.com c.disquscdn.com referrer.disqus.com`,
           'font-src': `'self' data: fonts.gstatic.com`,
           'default-src': `'self' c.disquscdn.com disqus.com`,
-          'connect-src': `'self' links.services.disqus.com`,
+          'connect-src': `'self' fonts.googleapis.com links.services.disqus.com`,
         },
       },
     },
