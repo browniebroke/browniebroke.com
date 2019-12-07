@@ -4,6 +4,9 @@
   command = "yarn build"
   environment = { GATSBY_CPU_COUNT = "1" }
 
+[context.production]
+  environment = { GA_TRACKING_ID = "UA-110469572-1" }
+
 # A redirect rule with all the supported properties
 [[redirects]]
   from = "/celery-best-pratices-with-django-transactions/"
