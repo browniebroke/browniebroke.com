@@ -33,7 +33,7 @@ Avatar.defaultProps = {
 Avatar.propTypes = {
   sharpImage: PropTypes.object.isRequired,
   width: PropTypes.number.isRequired,
-  centered: PropTypes.boolean,
+  centered: PropTypes.bool,
 }
 
 export default Avatar
