@@ -79,12 +79,10 @@ module.exports = {
         directives: {
           'script-src':
             "'self' 'unsafe-inline' data: www.google-analytics.com c.disquscdn.com disqus.com browniebroke.disqus.com",
-          'style-src': `'self' 'unsafe-inline' fonts.googleapis.com fonts.gstatic.com c.disquscdn.com`,
+          'style-src': `'self' 'unsafe-inline' c.disquscdn.com`,
           'img-src': `'self' data: www.google-analytics.com c.disquscdn.com referrer.disqus.com`,
-          'font-src': `'self' data: fonts.gstatic.com`,
           'default-src': `'self' c.disquscdn.com disqus.com`,
-          'connect-src': `'self' fonts.googleapis.com links.services.disqus.com browniebroke.disqus.com`,
-          'prefetch-src': `'self' fonts.googleapis.com`,
+          'connect-src': `'self' links.services.disqus.com browniebroke.disqus.com`,
         },
       },
     },
@@ -93,6 +91,7 @@ module.exports = {
       resolve: `gatsby-plugin-typography`,
       options: {
         pathToConfigModule: `src/utils/typography`,
+        omitGoogleFont: true,
       },
     },
     {
