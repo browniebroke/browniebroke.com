@@ -11563,6 +11563,16 @@ typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
 
+typeface-cabin-condensed@0.0.72:
+  version "0.0.72"
+  resolved "https://registry.yarnpkg.com/typeface-cabin-condensed/-/typeface-cabin-condensed-0.0.72.tgz#8a66483e1e5d4702e41c1159e7ad95c890bc1736"
+  integrity sha512-IFldvlUazG86xhGfWL1/Rz/wyXk6pfBp7x5axfD7RbkSGmdIgfYman7VxQ9wyGz717T5KtpiwaM2Jx+B8E7TeQ==
+
+typeface-patua-one@0.0.71:
+  version "0.0.71"
+  resolved "https://registry.yarnpkg.com/typeface-patua-one/-/typeface-patua-one-0.0.71.tgz#458c7c4812665762d4f46fba3eb555185a1f8929"
+  integrity sha512-GPnupeF7BPhJtNoM42tZmPH1kSLUhydAJCV8Uo/fte2iQ05uq1lNilsw05GtFcV4uRqi5A36rlBSYGmV2UKuLg==
+
 typography-breakpoint-constants@^0.16.19:
   version "0.16.19"
   resolved "https://registry.yarnpkg.com/typography-breakpoint-constants/-/typography-breakpoint-constants-0.16.19.tgz#e0e89147749562cbb46ce76c47ff0f73372765e7"
