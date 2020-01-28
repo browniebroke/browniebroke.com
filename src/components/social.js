@@ -33,7 +33,7 @@ const SocialLinks = () => {
           target="_blank"
           rel="noopener"
         >
-          <FontAwesomeIcon icon={faTwitter} />
+          <FontAwesomeIcon icon={faTwitter} title="Twitter Profile" />
         </a>
       </li>
       <li>
@@ -42,12 +42,15 @@ const SocialLinks = () => {
           target="_blank"
           rel="noopener"
         >
-          <FontAwesomeIcon icon={faStackOverflow} />
+          <FontAwesomeIcon
+            icon={faStackOverflow}
+            title="Stackoverflow Profile"
+          />
         </a>
       </li>
       <li>
         <a href={`https://github.com/${github}`} target="_blank" rel="noopener">
-          <FontAwesomeIcon icon={faGithub} />
+          <FontAwesomeIcon icon={faGithub} title="Github Profile" />
         </a>
       </li>
     </ListInline>
