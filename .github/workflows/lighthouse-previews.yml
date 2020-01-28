@@ -1,0 +1,26 @@
+name: Lighthouse Deploy Previews
+
+on:
+  pull_request:
+    branches:
+    - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Wait for deploy
+      uses: maddox/actions/wait-for-200@master
+      env:
+        URL: 'https://deploy-preview-${{ github.event.pull_request.number }}--browniebroke.netlify.com/'
+        SECONDS_BETWEEN_CHECKS: 20
+        MAX_TRIES: 30
+    - name: Lighthouse Audit
+      uses: jakejarvis/lighthouse-action@master
+      with:
+        url: 'https://browniebroke.com/'
+        netlify_site: 'browniebroke.netlify.com'
+    - uses: actions/upload-artifact@master
+      with:
+        name: report
+        path: './report'

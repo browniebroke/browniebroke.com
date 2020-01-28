@@ -1,9 +1,6 @@
-name: Lighthouse
+name: Lighthouse Production
 
 on:
-  pull_request:
-    branches: 
-    - master
   push:
     branches:
     - master
@@ -13,12 +10,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Wait for deploy
-      run: sleep 900  # 15 mins in seconds
+      run: sleep 360  # 6 mins in seconds
     - name: Lighthouse Audit
       uses: jakejarvis/lighthouse-action@master
       with:
         url: 'https://browniebroke.com/'
-        netlify_site: 'browniebroke.netlify.com'
     - uses: actions/upload-artifact@master
       with:
         name: report
