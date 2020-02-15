@@ -15,8 +15,8 @@
   "license": "MIT",
   "private": false,
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "1.2.26",
-    "@fortawesome/free-brands-svg-icons": "5.12.0",
+    "@fortawesome/fontawesome-svg-core": "1.2.27",
+    "@fortawesome/free-brands-svg-icons": "5.12.1",
     "@fortawesome/react-fontawesome": "0.1.8",
     "@reach/router": "1.2.1",
     "babel-plugin-styled-components": "1.10.7",
