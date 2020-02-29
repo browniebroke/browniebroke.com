@@ -20,7 +20,15 @@ jobs:
       with:
         url: 'https://browniebroke.com/'
         netlify_site: 'browniebroke.netlify.com'
-    - uses: actions/upload-artifact@master
-      with:
-        name: report
-        path: './report'
+    - name: Upload report to Zeit
+      run: |
+        now -t ${{ secrets.ZEIT_TOKEN }} deploy ./report/https*.html | tee zeit-now.log
+        TARGET_URL=`tail -n1 zeit-now.log`
+        curl -X POST https://api.github.com/repos/${{ github.repository }}/statuses/${{ github.sha }} \
+          -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+          -d "{
+            \"state\": \"success\",
+            \"target_url\": \"${TARGET_URL}\",
+            \"description\": \"Lighthouse report\",
+            \"context\": \"lighthouse-report\"
+          }"
