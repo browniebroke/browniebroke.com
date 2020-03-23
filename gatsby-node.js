@@ -55,7 +55,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   // Create tag pages
   const tagsArray = result.data.tags.group
 
-  tagsArray.forEach(tagObj => {
+  tagsArray.forEach((tagObj) => {
     actions.createPage({
       path: `tags/${slugify(tagObj.tag)}`,
       component: require.resolve(`./src/templates/tag_page.js`),
