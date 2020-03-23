@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 
 const Wrapper = styled.div`
-  max-width: ${props => `${props.width}px;`}
+  max-width: ${(props) => `${props.width}px;`}
   padding: 1rem;
 
   img {
@@ -12,7 +12,7 @@ const Wrapper = styled.div`
     border: 1px solid #51555d;
     border-radius: 50%;
   }
-  ${props =>
+  ${(props) =>
     props.centered &&
     css`
       margin-left: auto;
