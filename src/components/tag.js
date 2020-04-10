@@ -1,8 +1,5 @@
 import { Link } from 'gatsby'
-import React from 'react'
 import styled from 'styled-components'
-
-const fontSize = 0.8
 
 const Tag = styled(Link)`
   font-size: 0.8em;
