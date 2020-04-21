@@ -1,4 +1,10 @@
-import { FaGithub, FaStackOverflow, FaTwitter } from 'react-icons/fa'
+import {
+  FaGithub,
+  FaGitlab,
+  FaMedium,
+  FaStackOverflow,
+  FaTwitter,
+} from 'react-icons/fa'
 import React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 import ListInline from './list-inline'
@@ -9,16 +15,24 @@ const SocialLinks = () => {
       site {
         siteMetadata {
           social {
-            twitter
-            stackoverflow
             github
+            gitlab
+            medium
+            stackoverflow
+            twitter
           }
         }
       }
     }
   `)
 
-  const { twitter, stackoverflow, github } = site.siteMetadata.social
+  const {
+    github,
+    gitlab,
+    medium,
+    twitter,
+    stackoverflow,
+  } = site.siteMetadata.social
 
   return (
     <ListInline>
@@ -43,6 +57,20 @@ const SocialLinks = () => {
       <li>
         <a href={`https://github.com/${github}`} target="_blank" rel="noopener">
           <FaGithub title="Github Profile" />
+        </a>
+      </li>
+      <li>
+        <a href={`https://gitlab.com/${gitlab}`} target="_blank" rel="noopener">
+          <FaGitlab title="Gitlab Profile" />
+        </a>
+      </li>
+      <li>
+        <a
+          href={`https://medium.com/@${medium}`}
+          target="_blank"
+          rel="noopener"
+        >
+          <FaMedium title="Medium Profile" />
         </a>
       </li>
     </ListInline>

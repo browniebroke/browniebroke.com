@@ -5,9 +5,11 @@ module.exports = {
     author: `Bruno Alla`,
     siteUrl: `https://browniebroke.com`,
     social: {
-      twitter: `_BrunoAlla`,
-      stackoverflow: `2261637`,
       github: `browniebroke`,
+      gitlab: `browniebroke`,
+      medium: `brunoalla`,
+      stackoverflow: `2261637`,
+      twitter: `_BrunoAlla`,
     },
   },
   plugins: [

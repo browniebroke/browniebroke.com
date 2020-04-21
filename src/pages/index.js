@@ -28,8 +28,7 @@ const IndexPage = ({ data }) => {
         <p>
           Hi! I'm a web developer based in London, I work mostly with Python &
           Django, but I also do a bit of Javascript on the side, mainly with
-          React & Gatsby. I'm one of the maintainers for cookiecutter-django
-          from Pydanny. I like rugby, electronic music & cooking. I'm French.
+          Gatsby.
         </p>
         <SocialLinks />
       </section>
