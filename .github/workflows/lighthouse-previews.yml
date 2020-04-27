@@ -12,14 +12,14 @@ jobs:
     - name: Wait for deploy
       uses: maddox/actions/wait-for-200@master
       env:
-        URL: 'https://deploy-preview-${{ github.event.pull_request.number }}--browniebroke.netlify.com/'
+        URL: 'https://deploy-preview-${{ github.event.pull_request.number }}--browniebroke.netlify.app'
         SECONDS_BETWEEN_CHECKS: 20
         MAX_TRIES: 30
     - name: Lighthouse Audit
       uses: jakejarvis/lighthouse-action@master
       with:
         url: 'https://browniebroke.com/'
-        netlify_site: 'browniebroke.netlify.com'
+        netlify_site: 'browniebroke.netlify.app'
     - name: Upload report to Zeit
       run: |
         now -t ${{ secrets.ZEIT_TOKEN }} deploy ./report/https*.html | tee zeit-now.log
