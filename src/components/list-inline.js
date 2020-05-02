@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const Wrapper = styled.ul`
+const ListInline = styled.ul`
   list-style: none;
   margin: 0;
 
@@ -11,9 +11,5 @@ const Wrapper = styled.ul`
     padding: 0 0.5rem;
   }
 `
-
-const ListInline = ({ children }) => {
-  return <Wrapper>{children}</Wrapper>
-}
 
 export default ListInline
