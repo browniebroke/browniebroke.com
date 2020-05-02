@@ -1,10 +1,9 @@
 import Img from 'gatsby-image'
 import React from 'react'
 import PropTypes from 'prop-types'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 
-const Wrapper = styled.div`
-  max-width: ${(props) => `${props.width}px;`}
+const AvatarStyles = styled.div`
   padding: 1rem;
 
   img {
@@ -12,18 +11,12 @@ const Wrapper = styled.div`
     border: 1px solid #51555d;
     border-radius: 50%;
   }
-  ${(props) =>
-    props.centered &&
-    css`
-      margin-left: auto;
-      margin-right: auto;
-    `}
 `
 
-const Avatar = ({ sharpImage, centered, width }) => (
-  <Wrapper centered={centered} width={width}>
-    <Img fluid={sharpImage} />
-  </Wrapper>
+const Avatar = ({ sharpImage }) => (
+  <AvatarStyles>
+    <Img fixed={sharpImage.fixed} />
+  </AvatarStyles>
 )
 
 Avatar.defaultProps = {
@@ -32,8 +25,6 @@ Avatar.defaultProps = {
 
 Avatar.propTypes = {
   sharpImage: PropTypes.object.isRequired,
-  width: PropTypes.number.isRequired,
-  centered: PropTypes.bool,
 }
 
 export default Avatar

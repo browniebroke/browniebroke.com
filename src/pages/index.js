@@ -8,18 +8,25 @@ import Avatar from '../components/avatar'
 import PostsList from '../components/posts'
 import SocialLinks from '../components/social'
 
-const HeroSection = styled.section`
-  text-align: center;
-  padding: 3rem;
+const HeroSectionStyles = styled.section`
+  padding: 3rem 0;
   padding-top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `
 
-const SectionTitle = styled.h2`
+const BioStyles = styled.p`
+  text-align: center;
+  max-width: 400px;
+`
+
+const SectionTitleStyles = styled.h2`
   text-align: center;
   margin: 3rem 0;
 `
 
-const SeeMoreStyle = styled.p`
+const SeeMoreStyles = styled.p`
   text-align: center;
   margin: 3rem;
 `
@@ -29,28 +36,24 @@ const IndexPage = ({ data }) => {
   return (
     <Layout>
       <SEO title="Home" />
-      <HeroSection>
+      <HeroSectionStyles>
         <h1>Bruno Alla's Blog</h1>
-        <Avatar
-          sharpImage={data.avatarImage.childImageSharp.fluid}
-          centered={true}
-          width={200}
-        />
-        <p>
+        <Avatar sharpImage={data.avatarImage.childImageSharp} />
+        <BioStyles>
           Hi! I'm a web developer based in London, I work mostly with Python &
           Django, but I also do a bit of Javascript on the side, mainly with
           Gatsby.
-        </p>
+        </BioStyles>
         <SocialLinks />
-      </HeroSection>
+      </HeroSectionStyles>
       <section>
-        <SectionTitle>Most recent posts</SectionTitle>
+        <SectionTitleStyles>Most recent posts</SectionTitleStyles>
 
         <PostsList posts={posts} />
 
-        <SeeMoreStyle>
+        <SeeMoreStyles>
           <Link to="/posts/">See more...</Link>
-        </SeeMoreStyle>
+        </SeeMoreStyles>
       </section>
     </Layout>
   )
@@ -77,8 +80,8 @@ export const pageQuery = graphql`
     }
     avatarImage: file(relativePath: { eq: "avatar.jpg" }) {
       childImageSharp {
-        fluid(maxWidth: 200) {
-          ...GatsbyImageSharpFluid
+        fixed(width: 160) {
+          ...GatsbyImageSharpFixed
         }
       }
     }
