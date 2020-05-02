@@ -14,6 +14,16 @@ const HeroSection = styled.section`
   padding-top: 0;
 `
 
+const SectionTitle = styled.h2`
+  text-align: center;
+  margin: 3rem 0;
+`
+
+const SeeMoreStyle = styled.p`
+  text-align: center;
+  margin: 3rem;
+`
+
 const IndexPage = ({ data }) => {
   const posts = data.allMarkdownRemark.edges
   return (
@@ -34,15 +44,13 @@ const IndexPage = ({ data }) => {
         <SocialLinks />
       </HeroSection>
       <section>
-        <h2 style={{ textAlign: `center`, marginBottom: `3rem` }}>
-          Most recent posts
-        </h2>
+        <SectionTitle>Most recent posts</SectionTitle>
 
         <PostsList posts={posts} />
 
-        <p style={{ textAlign: `center`, marginTop: `3rem` }}>
+        <SeeMoreStyle>
           <Link to="/posts/">See more...</Link>
-        </p>
+        </SeeMoreStyle>
       </section>
     </Layout>
   )
