@@ -5,6 +5,7 @@ import slugify from 'slugify'
 import Layout from '../components/layout'
 import Pagination from '../components/pagination'
 import SEO from '../components/seo'
+import Sharing from '../components/sharing'
 import Tag from '../components/tag'
 
 const BlogPostTemplate = ({ location, data, pageContext }) => {
@@ -44,7 +45,7 @@ const BlogPostTemplate = ({ location, data, pageContext }) => {
       </div>
 
       <hr />
-
+      <Sharing post={post} path={pageContext.slug} />
       <Pagination previous={previous} next={next} />
     </Layout>
   )
