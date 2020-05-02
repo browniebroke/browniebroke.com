@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link, graphql } from 'gatsby'
+import styled from 'styled-components'
 
 import Layout from '../components/layout'
 import SEO from '../components/seo'
@@ -7,18 +8,18 @@ import Avatar from '../components/avatar'
 import PostsList from '../components/posts'
 import SocialLinks from '../components/social'
 
+const HeroSection = styled.section`
+  text-align: center;
+  padding: 3rem;
+  padding-top: 0;
+`
+
 const IndexPage = ({ data }) => {
   const posts = data.allMarkdownRemark.edges
   return (
     <Layout>
       <SEO title="Home" />
-      <section
-        style={{
-          textAlign: `center`,
-          padding: `5rem`,
-          paddingTop: 0,
-        }}
-      >
+      <HeroSection>
         <h1>Bruno Alla's Blog</h1>
         <Avatar
           sharpImage={data.avatarImage.childImageSharp.fluid}
@@ -31,7 +32,7 @@ const IndexPage = ({ data }) => {
           Gatsby.
         </p>
         <SocialLinks />
-      </section>
+      </HeroSection>
       <section>
         <h2 style={{ textAlign: `center`, marginBottom: `3rem` }}>
           Most recent posts
