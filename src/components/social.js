@@ -36,43 +36,29 @@ const SocialLinks = () => {
 
   return (
     <ListInline>
-      <li>
-        <a
-          href={`https://www.twitter.com/${twitter}`}
-          target="_blank"
-          rel="noopener"
-        >
-          <FaTwitter title="Twitter Profile" />
-        </a>
-      </li>
-      <li>
-        <a
-          href={`https://stackoverflow.com/users/${stackoverflow}`}
-          target="_blank"
-          rel="noopener"
-        >
-          <FaStackOverflow title="Stackoverflow Profile" />
-        </a>
-      </li>
-      <li>
-        <a href={`https://github.com/${github}`} target="_blank" rel="noopener">
-          <FaGithub title="Github Profile" />
-        </a>
-      </li>
-      <li>
-        <a href={`https://gitlab.com/${gitlab}`} target="_blank" rel="noopener">
-          <FaGitlab title="Gitlab Profile" />
-        </a>
-      </li>
-      <li>
-        <a
-          href={`https://medium.com/@${medium}`}
-          target="_blank"
-          rel="noopener"
-        >
-          <FaMedium title="Medium Profile" />
-        </a>
-      </li>
+      <a
+        href={`https://www.twitter.com/${twitter}`}
+        target="_blank"
+        rel="noopener"
+      >
+        <FaTwitter title="Twitter Profile" />
+      </a>
+      <a
+        href={`https://stackoverflow.com/users/${stackoverflow}`}
+        target="_blank"
+        rel="noopener"
+      >
+        <FaStackOverflow title="Stackoverflow Profile" />
+      </a>
+      <a href={`https://github.com/${github}`} target="_blank" rel="noopener">
+        <FaGithub title="Github Profile" />
+      </a>
+      <a href={`https://gitlab.com/${gitlab}`} target="_blank" rel="noopener">
+        <FaGitlab title="Gitlab Profile" />
+      </a>
+      <a href={`https://medium.com/@${medium}`} target="_blank" rel="noopener">
+        <FaMedium title="Medium Profile" />
+      </a>
     </ListInline>
   )
 }

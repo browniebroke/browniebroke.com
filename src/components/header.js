@@ -38,9 +38,7 @@ const Header = ({ siteTitle }) => (
         <Link to="/">{siteTitle}</Link>
       </TitleStyles>
       <ListInline>
-        <li>
-          <Link to="/posts/">Posts</Link>
-        </li>
+        <Link to="/posts/">Posts</Link>
       </ListInline>
     </HeaderStyles>
   </HeaderWrapperStyles>

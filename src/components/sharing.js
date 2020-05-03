@@ -50,16 +50,12 @@ const Sharing = ({ post, path }) => {
     <SharingStyles>
       <h4>Liked it? Please share it!</h4>
       <ListInline>
-        <li>
-          <a href={emailUrl} target="_blank" rel="noopener">
-            <FaRegEnvelope title="Share via email" />
-          </a>
-        </li>
-        <li>
-          <a href={twitterUrl} target="_blank" rel="noopener">
-            <FaTwitter title="Share on Twitter" />
-          </a>
-        </li>
+        <a href={emailUrl} target="_blank" rel="noopener">
+          <FaRegEnvelope title="Share via email" />
+        </a>
+        <a href={twitterUrl} target="_blank" rel="noopener">
+          <FaTwitter title="Share on Twitter" />
+        </a>
       </ListInline>
     </SharingStyles>
   )
