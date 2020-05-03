@@ -11,8 +11,6 @@ import SEO from '../components/seo'
 import SocialLinks from '../components/social'
 
 const HeroSectionStyles = styled.section`
-  padding: 3rem 0;
-  padding-top: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
