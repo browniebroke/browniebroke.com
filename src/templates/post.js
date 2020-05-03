@@ -3,6 +3,7 @@ import { graphql } from 'gatsby'
 import slugify from 'slugify'
 
 import Layout from '../components/layout'
+import ListInline from '../components/list-inline'
 import Pagination from '../components/pagination'
 import SEO from '../components/seo'
 import Sharing from '../components/sharing'
@@ -26,25 +27,20 @@ const BlogPostTemplate = ({ location, data, pageContext }) => {
         }
       />
       <h1>{post.frontmatter.title}</h1>
-      <p
-        style={{
-          display: `block`,
-        }}
-      >
+      <p>
         {post.frontmatter.date} • {post.timeToRead} min read
       </p>
 
       <div dangerouslySetInnerHTML={{ __html: post.html }} />
 
-      <div style={{ paddingBottom: '2rem' }}>
+      <ListInline compact={true}>
         {post.frontmatter.tags.map((tag, index) => (
           <Tag to={`/tags/${slugify(tag)}/`} key={index}>
             {tag}
           </Tag>
         ))}
-      </div>
+      </ListInline>
 
-      <hr />
       <Sharing post={post} path={pageContext.slug} />
       <Pagination previous={previous} next={next} />
     </Layout>

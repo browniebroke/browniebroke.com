@@ -9,14 +9,16 @@ const ListInlineStyle = styled.ul`
 const ListItemStyle = styled.li`
   margin-bottom: 0;
   display: inline-block;
-  padding: 0 0.5rem;
+  padding: 0 ${(props) => (props.compact ? '0' : '0.5rem')};
 `
 
-const ListInline = ({ children }) => {
+const ListInline = ({ children, compact = false }) => {
   return (
     <ListInlineStyle>
       {React.Children.map(children, (child, i) => (
-        <ListItemStyle key={i}>{child}</ListItemStyle>
+        <ListItemStyle key={i} compact={compact}>
+          {child}
+        </ListItemStyle>
       ))}
     </ListInlineStyle>
   )
