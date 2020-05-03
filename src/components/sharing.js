@@ -2,6 +2,8 @@ import React from 'react'
 import { FaTwitter, FaRegEnvelope } from 'react-icons/fa'
 import { graphql, useStaticQuery } from 'gatsby'
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
+
 import ListInline from './list-inline'
 
 const SharingStyles = styled.div`
@@ -59,6 +61,16 @@ const Sharing = ({ post, path }) => {
       </ListInline>
     </SharingStyles>
   )
+}
+
+Sharing.propTypes = {
+  post: PropTypes.shape({
+    frontmatter: PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      tags: PropTypes.arrayOf(PropTypes.string),
+    }),
+  }),
+  path: PropTypes.string.isRequired,
 }
 
 export default Sharing
