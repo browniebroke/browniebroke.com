@@ -6,7 +6,7 @@ import SEO from '../components/seo'
 import PostsList from '../components/posts'
 
 const TagPageTemplate = ({ data, location, pageContext }) => {
-  const posts = data.allMarkdownRemark.edges
+  const posts = data.allMarkdownRemark.edges.map((edge) => edge.node)
   const title = `Tag "${pageContext.tag}"`
 
   return (

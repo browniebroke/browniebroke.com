@@ -6,7 +6,7 @@ import SEO from '../components/seo'
 import PostsList from '../components/posts'
 
 const IndexPage = ({ data }) => {
-  const posts = data.allMarkdownRemark.edges
+  const posts = data.allMarkdownRemark.edges.map((edge) => edge.node)
   return (
     <Layout>
       <SEO title="All my blog posts" />

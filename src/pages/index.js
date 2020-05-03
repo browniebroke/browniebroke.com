@@ -32,7 +32,7 @@ const SeeMoreStyles = styled.p`
 `
 
 const IndexPage = ({ data }) => {
-  const posts = data.allMarkdownRemark.edges
+  const posts = data.allMarkdownRemark.edges.map((edge) => edge.node)
   return (
     <Layout>
       <SEO title="Home" />

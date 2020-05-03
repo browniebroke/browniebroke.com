@@ -8,14 +8,14 @@ const PostWrapper = styled.div`
 `
 
 const PostsList = ({ posts }) => {
-  return posts.map(({ node }) => (
-    <PostWrapper key={node.fields.slug}>
+  return posts.map((post) => (
+    <PostWrapper key={post.fields.slug}>
       <PostPreview
-        slug={node.fields.slug}
-        title={node.frontmatter.title}
-        date={node.frontmatter.date}
-        timeToRead={node.timeToRead}
-        excerpt={node.excerpt}
+        slug={post.fields.slug}
+        title={post.frontmatter.title}
+        date={post.frontmatter.date}
+        timeToRead={post.timeToRead}
+        excerpt={post.excerpt}
       />
     </PostWrapper>
   ))
