@@ -2,8 +2,9 @@ import React from 'react'
 import { Link, graphql } from 'gatsby'
 
 import Layout from '../components/layout'
-import SEO from '../components/seo'
 import PostsList from '../components/posts'
+import SeeMoreStyles from '../components/see-more'
+import SEO from '../components/seo'
 
 const TagPageTemplate = ({ data, location, pageContext }) => {
   const posts = data.allMarkdownRemark.edges.map((edge) => edge.node)
@@ -20,9 +21,9 @@ const TagPageTemplate = ({ data, location, pageContext }) => {
 
         <PostsList posts={posts} />
 
-        <p style={{ textAlign: `center`, marginTop: `3rem` }}>
+        <SeeMoreStyles>
           <Link to="/posts/">See all posts...</Link>
-        </p>
+        </SeeMoreStyles>
       </section>
     </Layout>
   )

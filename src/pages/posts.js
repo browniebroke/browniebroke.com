@@ -2,8 +2,9 @@ import React from 'react'
 import { graphql } from 'gatsby'
 
 import Layout from '../components/layout'
-import SEO from '../components/seo'
 import PostsList from '../components/posts'
+import SectionTitleStyles from '../components/section-title'
+import SEO from '../components/seo'
 
 const IndexPage = ({ data }) => {
   const posts = data.allMarkdownRemark.edges.map((edge) => edge.node)
@@ -11,7 +12,7 @@ const IndexPage = ({ data }) => {
     <Layout>
       <SEO title="All my blog posts" />
       <section>
-        <h2 style={{ textAlign: `center`, marginBottom: `3rem` }}>All posts</h2>
+        <SectionTitleStyles>All posts</SectionTitleStyles>
 
         <PostsList posts={posts} />
       </section>

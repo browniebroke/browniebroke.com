@@ -2,10 +2,12 @@ import React from 'react'
 import { Link, graphql } from 'gatsby'
 import styled from 'styled-components'
 
-import Layout from '../components/layout'
-import SEO from '../components/seo'
 import Avatar from '../components/avatar'
+import Layout from '../components/layout'
 import PostsList from '../components/posts'
+import SectionTitleStyles from '../components/section-title'
+import SeeMoreStyles from '../components/see-more'
+import SEO from '../components/seo'
 import SocialLinks from '../components/social'
 
 const HeroSectionStyles = styled.section`
@@ -19,16 +21,6 @@ const HeroSectionStyles = styled.section`
 const BioStyles = styled.p`
   text-align: center;
   max-width: 400px;
-`
-
-const SectionTitleStyles = styled.h2`
-  text-align: center;
-  margin: 3rem 0;
-`
-
-const SeeMoreStyles = styled.p`
-  text-align: center;
-  margin: 3rem;
 `
 
 const IndexPage = ({ data }) => {
