@@ -5,7 +5,7 @@ import styled from 'styled-components'
 
 import ListInline from './list-inline'
 
-const HeaderWrapper = styled.header`
+const HeaderWrapperStyles = styled.header`
   box-shadow: rgba(29, 33, 41, 0.15) 0px 30px 20px -32px;
 
   a {
@@ -17,14 +17,14 @@ const HeaderWrapper = styled.header`
   }
 `
 
-const HeaderContent = styled.div`
+const HeaderStyles = styled.div`
   padding: 1.5rem 1.5rem;
   max-width: 1300px;
   margin: 0 auto;
   display: flex;
 `
 
-const SiteTitle = styled.h2`
+const TitleStyles = styled.h2`
   margin: 0;
   flex-grow: 1;
   font-size: 18px;
@@ -32,18 +32,18 @@ const SiteTitle = styled.h2`
 `
 
 const Header = ({ siteTitle }) => (
-  <HeaderWrapper>
-    <HeaderContent>
-      <SiteTitle>
+  <HeaderWrapperStyles>
+    <HeaderStyles>
+      <TitleStyles>
         <Link to="/">{siteTitle}</Link>
-      </SiteTitle>
+      </TitleStyles>
       <ListInline>
         <li>
           <Link to="/posts/">Posts</Link>
         </li>
       </ListInline>
-    </HeaderContent>
-  </HeaderWrapper>
+    </HeaderStyles>
+  </HeaderWrapperStyles>
 )
 
 Header.propTypes = {
