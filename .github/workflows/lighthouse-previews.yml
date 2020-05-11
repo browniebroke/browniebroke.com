@@ -13,7 +13,7 @@ jobs:
       uses: maddox/actions/wait-for-200@master
       env:
         URL: 'https://deploy-preview-${{ github.event.pull_request.number }}--browniebroke.netlify.app'
-        SECONDS_BETWEEN_CHECKS: 20
+        SECONDS_BETWEEN_CHECKS: 30
         MAX_TRIES: 30
     - name: Lighthouse Audit
       uses: jakejarvis/lighthouse-action@master
