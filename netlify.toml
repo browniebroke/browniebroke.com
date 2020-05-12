@@ -13,4 +13,4 @@
   to = "/making-celery-work-nicely-with-django-transactions/"
 
 [[plugins]]
-package = "netlify-plugin-gatsby-cache"
+  package = "netlify-plugin-gatsby-cache"
