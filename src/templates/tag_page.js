@@ -6,12 +6,12 @@ import PostsList from '../components/posts'
 import SeeMoreStyles from '../components/see-more'
 import SEO from '../components/seo'
 
-const TagPageTemplate = ({ data, location, pageContext }) => {
+const TagPageTemplate = ({ data, pageContext }) => {
   const posts = data.allMarkdownRemark.edges.map((edge) => edge.node)
   const title = `Tag "${pageContext.tag}"`
 
   return (
-    <Layout location={location} title={title}>
+    <Layout title={title}>
       <SEO
         title={title}
         description={`List of all posts tagged as "${pageContext.tag}"`}
