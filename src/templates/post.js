@@ -15,9 +15,10 @@ const BlogPostTemplate = ({ location, data, pageContext }) => {
   const headerImage = post.frontmatter.header_image
   const ogImage = post.frontmatter.og_image
   const { previous, next } = pageContext
+  console.log(location)
 
   return (
-    <Layout location={location} title={siteTitle} headerImage={headerImage}>
+    <Layout title={siteTitle} headerImage={headerImage}>
       <SEO
         title={post.frontmatter.title}
         description={post.frontmatter.description || post.excerpt}
@@ -41,7 +42,7 @@ const BlogPostTemplate = ({ location, data, pageContext }) => {
         ))}
       </ListInline>
 
-      <Sharing post={post} path={pageContext.path} />
+      <Sharing post={post} path={location.pathname} />
       <Pagination previous={previous} next={next} />
     </Layout>
   )

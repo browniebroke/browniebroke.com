@@ -40,14 +40,13 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   posts.forEach((post, index) => {
     const previous = index === posts.length - 1 ? null : posts[index + 1].node
     const next = index === 0 ? null : posts[index - 1].node
-    const pagePath = `/blog${post.node.fields.slug}`
+    const urlPath = `/blog${post.node.fields.slug}`
 
     actions.createPage({
-      path: pagePath,
+      path: urlPath,
       component: require.resolve(`./src/templates/post.js`),
       context: {
         slug: post.node.fields.slug,
-        path: pagePath,
         previous,
         next,
       },
@@ -58,8 +57,9 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   const tagsArray = result.data.tags.group
 
   tagsArray.forEach((tagObj) => {
+    const urlPath = `blog/tags/${slugify(tagObj.tag)}`
     actions.createPage({
-      path: `blog/tags/${slugify(tagObj.tag)}`,
+      path: urlPath,
       component: require.resolve(`./src/templates/tag_page.js`),
       context: {
         tag: tagObj.tag,
