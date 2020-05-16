@@ -1,5 +1,6 @@
 const { createFilePath } = require(`gatsby-source-filesystem`)
-const slugify = require('slugify')
+
+const { makePostUrl, makeTagUrl } = require('./src/utils/routes')
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
   // Run query to get data
@@ -40,10 +41,9 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   posts.forEach((post, index) => {
     const previous = index === posts.length - 1 ? null : posts[index + 1].node
     const next = index === 0 ? null : posts[index - 1].node
-    const urlPath = `/blog${post.node.fields.slug}`
 
     actions.createPage({
-      path: urlPath,
+      path: makePostUrl(post.node.fields.slug),
       component: require.resolve(`./src/templates/post.js`),
       context: {
         slug: post.node.fields.slug,
@@ -57,9 +57,8 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   const tagsArray = result.data.tags.group
 
   tagsArray.forEach((tagObj) => {
-    const urlPath = `blog/tags/${slugify(tagObj.tag)}`
     actions.createPage({
-      path: urlPath,
+      path: makeTagUrl(tagObj.tag),
       component: require.resolve(`./src/templates/tag_page.js`),
       context: {
         tag: tagObj.tag,

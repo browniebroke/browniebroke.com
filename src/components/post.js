@@ -2,11 +2,13 @@ import { graphql, Link } from 'gatsby'
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import { makePostUrl } from '../utils/routes'
+
 const PostPreview = ({ title, slug, date, timeToRead, excerpt }) => {
   return (
     <div>
       <h3>
-        <Link to={`blog/${slug}`}>{title}</Link>
+        <Link to={makePostUrl(slug)}>{title}</Link>
       </h3>
       <small>
         {date} • {timeToRead} min read
