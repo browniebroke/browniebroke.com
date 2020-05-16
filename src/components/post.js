@@ -6,7 +6,7 @@ const PostPreview = ({ title, slug, date, timeToRead, excerpt }) => {
   return (
     <div>
       <h3>
-        <Link to={slug}>{title}</Link>
+        <Link to={`blog/${slug}`}>{title}</Link>
       </h3>
       <small>
         {date} • {timeToRead} min read

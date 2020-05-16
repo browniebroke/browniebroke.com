@@ -22,7 +22,7 @@ const TagPageTemplate = ({ data, location, pageContext }) => {
         <PostsList posts={posts} />
 
         <SeeMoreStyles>
-          <Link to="/posts/">See all posts...</Link>
+          <Link to="/blog/">See all posts...</Link>
         </SeeMoreStyles>
       </section>
     </Layout>

@@ -10,7 +10,7 @@ const IndexPage = ({ data }) => {
   const posts = data.allMarkdownRemark.edges.map((edge) => edge.node)
   return (
     <Layout>
-      <SEO title="All my blog posts" />
+      <SEO title="My Blog" />
       <section>
         <SectionTitleStyles>All posts</SectionTitleStyles>
 
