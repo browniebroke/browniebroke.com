@@ -35,13 +35,13 @@ const BlogPostTemplate = ({ location, data, pageContext }) => {
 
       <ListInline compact={true}>
         {post.frontmatter.tags.map((tag, index) => (
-          <Tag to={`/tags/${slugify(tag)}/`} key={index}>
+          <Tag to={`/blog/tags/${slugify(tag)}/`} key={index}>
             {tag}
           </Tag>
         ))}
       </ListInline>
 
-      <Sharing post={post} path={pageContext.slug} />
+      <Sharing post={post} path={pageContext.path} />
       <Pagination previous={previous} next={next} />
     </Layout>
   )

@@ -27,7 +27,7 @@ const IndexPage = ({ data }) => {
     <Layout>
       <SEO title="Home" />
       <HeroSectionStyles>
-        <h1>Bruno Alla's Blog</h1>
+        <h1>Bruno Alla</h1>
         <Avatar sharpImage={data.avatarImage.childImageSharp} />
         <BioStyles>
           Hi! I'm a web developer based in London, I work mostly with Python &
@@ -42,7 +42,7 @@ const IndexPage = ({ data }) => {
         <PostsList posts={posts} />
 
         <SeeMoreStyles>
-          <Link to="/posts/">See more...</Link>
+          <Link to="/blog/">See more...</Link>
         </SeeMoreStyles>
       </section>
     </Layout>

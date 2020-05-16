@@ -7,10 +7,46 @@
 [context.production]
   environment = { GA_TRACKING_ID = "UA-110469572-1" }
 
-# A redirect rule with all the supported properties
-[[redirects]]
-  from = "/celery-best-pratices-with-django-transactions/"
-  to = "/making-celery-work-nicely-with-django-transactions/"
-
 [[plugins]]
   package = "netlify-plugin-gatsby-cache"
+
+# Redirect added when moving paosts under /blog/
+[[redirects]]
+  from = "/add-cache-control-header-entire-s3-bucket-with-boto3?"
+  to = "/blog/add-cache-control-header-entire-s3-bucket-with-boto3?"
+
+[[redirects]]
+  from = "/flexbox-zombie/"
+  to = "/blog/flexbox-zombie/"
+
+[[redirects]]
+  from = "/gatsby-is-awesome/"
+  to = "/blog/gatsby-is-awesome/"
+
+[[redirects]]
+  from = "/hello-world/"
+  to = "/blog/hello-world/"
+
+[[redirects]]
+  from = "/how-I-made-1000-of-website-more-secure/"
+  to = "/blog/how-I-made-1000-of-website-more-secure/"
+
+[[redirects]]
+  from = "/making-celery-work-nicely-with-django-transactions/"
+  to = "/blog/making-celery-work-nicely-with-django-transactions/"
+
+[[redirects]]
+  from = "/new-year-new-laptop/"
+  to = "/blog/new-year-new-laptop/"
+
+[[redirects]]
+  from = "/self-host-typographyjs-fonts-with-gatsby/"
+  to = "/blog/self-host-typographyjs-fonts-with-gatsby/"
+
+[[redirects]]
+  from = "/setting-up-content-security-policy-gatsby/"
+  to = "/blog/setting-up-content-security-policy-gatsby/"
+
+[[redirects]]
+  from = "/static-vs-media-in-django/"
+  to = "/blog/static-vs-media-in-django/"
