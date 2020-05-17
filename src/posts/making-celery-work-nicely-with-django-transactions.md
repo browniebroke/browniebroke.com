@@ -113,4 +113,4 @@ If we run it, we can confirm that it works now as intended, printing the numbers
 
 ## Closing words
 
-As Django developers, we are generally less used to the asynchronous way of thinking than in other programming languages, as Django does not requires us to think about that ([yet](https://www.aeracode.org/2018/06/04/django-async-roadmap/)). On the other hanb, Celery is asynchronous by its very nature, and it's easy to cause some unusual bugs in your application, if not careful. By adding a wrapper around a common pattern, to expose a better API, we can make our code easier to write, read and avoid bugs.
+As Django developers, we are generally less used to the asynchronous way of thinking than in other programming languages, as Django does not requires us to think about that ([yet](https://www.aeracode.org/2018/06/04/django-async-roadmap/)). On the other hand, Celery is asynchronous by its very nature, and it's easy to cause some unusual bugs in your application, if not careful. By adding a wrapper around a common pattern, to expose a better API, we can make our code easier to write, read and avoid bugs.
