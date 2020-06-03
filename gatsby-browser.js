@@ -1,4 +1,4 @@
-require('prismjs/themes/prism.css')
+require('./src/code-highlight.css')
 
 exports.onInitialClientRender = () => {
   require('typeface-patua-one')

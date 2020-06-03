@@ -36,7 +36,7 @@ Looks like a few things were missing... Let's customise this plugin!
 
 The plugin has a few options, I quickly glanced the documentation and immediately started adding directives for the errors that were reported. I'm using Google analytics and Google fonts, I need to whitelist them:
 
-```javascript
+```javascript{6-12}
 // gatsby-config.js
 module.exports = {
   plugins: [
@@ -60,7 +60,7 @@ Pushed to my branch again, waited for the deployment to be updated, but [it was 
 
 Hum, weird it looks even worse! Ok the errors are different, let's keep customising. Looking at the errors, I can see another Google font domain and inlines are missing, let's add them:
 
-```javascript
+```javascript{8-10}
 // gatsby-config.js
 module.exports = {
   plugins: [
