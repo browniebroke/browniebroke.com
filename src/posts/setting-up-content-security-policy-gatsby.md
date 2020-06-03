@@ -36,7 +36,7 @@ Looks like a few things were missing... Let's customise this plugin!
 
 The plugin has a few options, I quickly glanced the documentation and immediately started adding directives for the errors that were reported. I'm using Google analytics and Google fonts, I need to whitelist them:
 
-```javascript
+```javascript{6-12}
 // gatsby-config.js
 module.exports = {
   plugins: [
@@ -60,7 +60,7 @@ Pushed to my branch again, waited for the deployment to be updated, but [it was 
 
 Hum, weird it looks even worse! Ok the errors are different, let's keep customising. Looking at the errors, I can see another Google font domain and inlines are missing, let's add them:
 
-```javascript
+```javascript{8-10}
 // gatsby-config.js
 module.exports = {
   plugins: [
@@ -90,7 +90,7 @@ After going back to the plugin documentation, I can see they have 2 options `mer
 
 What happens? The plugin tries its best to generate a list of the hashes for the allowed inlines script and styles that Gatsby adds. It turns out that the CSP specification states that a policy cannot use both hashes and `'unsafe-inline'`, and to be fair, that's what my browser is telling me in the first warning at the top of my console:
 
-```text
+```log
 Content Security Policy: Ignoring "'unsafe-inline'" within script-src or style-src: nonce-source or hash-source specified
 ```
 

@@ -37,14 +37,12 @@ module.exports = {
               maxWidth: 700,
             },
           },
-          // {
-          //   resolve: `gatsby-remark-responsive-iframe`,
-          //   options: {
-          //     wrapperStyle: `margin-bottom: 1.0725rem`,
-          //   },
-          // },
-          `gatsby-remark-prismjs`,
-          // `gatsby-remark-copy-linked-files`,
+          {
+            resolve: `gatsby-remark-vscode`,
+            options: {
+              theme: 'Abyss',
+            },
+          },
           `gatsby-remark-smartypants`,
           `gatsby-remark-external-links`,
         ],

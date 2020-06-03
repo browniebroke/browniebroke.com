@@ -27,7 +27,7 @@ After the presentation, I decided to check for a couple of my recent sites I bui
 
 I quickly found that this could be easily set via an option from [`gatsby-plugin-netlify`](https://www.gatsbyjs.org/packages/gatsby-plugin-netlify/). I started adding it and set it to the suggested value of `'same-origin'`, which seems pretty sensible:
 
-```js
+```js{7-11}
 module.exports = {
   ...
   plugins: [
@@ -52,7 +52,7 @@ It all worked fine so I was going to add it to my other website, but then it str
 
 So I went ahead and forked the repository on Github and quickly located [where the Netlify plug-in](https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-plugin-netlify) is located in their monorepo architecture. Once in there, the plug-in codebase is actually pretty small so it was not hard to find the entry point and where to make the change, [in their SECURITY_HEADERS constants](https://github.com/gatsbyjs/gatsby/blob/5ef65a4a8783a9a81c3680d532432a26d2f4a27d/packages/gatsby-plugin-netlify/src/constants.js#L19-L26):
 
-```js
+```js{5}
 export const SECURITY_HEADERS = {
      `X-Frame-Options: DENY`,
      `X-XSS-Protection: 1; mode=block`,

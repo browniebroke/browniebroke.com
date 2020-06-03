@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'gatsby'
 import styled from 'styled-components'
+import { makePostUrl } from '../utils/routes'
 
 const PaginationStyles = styled.ul`
   display: flex;
@@ -15,7 +16,7 @@ const PageLink = ({ pageObj, rel }) => {
   return (
     pageObj && (
       <li>
-        <Link to={pageObj.fields.slug} rel={rel}>
+        <Link to={makePostUrl(pageObj.fields.slug)} rel={rel}>
           {`${prefix}${pageObj.frontmatter.title}${suffix}`}
         </Link>
       </li>
