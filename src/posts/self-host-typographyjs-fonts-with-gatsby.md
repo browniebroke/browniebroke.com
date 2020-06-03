@@ -35,19 +35,25 @@ Ok, looks like I got all the pieces of the puzzle, let's code!
 
 First, let's disable Google font from the `gatsby-plugin-typography` config:
 
-```javascript
+```javascript{9}
+// gatsby-config.js
 {
-  resolve: `gatsby-plugin-typography`,
-  options: {
-    pathToConfigModule: `src/utils/typography`,
-    omitGoogleFont: true,
-  },
+  ...
+  plugins: [
+    {
+      resolve: `gatsby-plugin-typography`,
+      options: {
+        pathToConfigModule: `src/utils/typography`,
+        omitGoogleFont: true,
+      },
+    },
+  ]
 }
 ```
 
 The 2 fonts I need are "Patua One" and "Cabin Condensed", and -following the previous Stackoverflow post- you can find on npm [here](https://www.npmjs.com/package/typeface-patua-one) and [here](https://www.npmjs.com/package/typeface-cabin-condensed):
 
-```shell
+```bash
 yarn add typeface-patua-one typeface-cabin-condensed
 ```
 

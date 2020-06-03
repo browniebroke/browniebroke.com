@@ -90,7 +90,7 @@ After going back to the plugin documentation, I can see they have 2 options `mer
 
 What happens? The plugin tries its best to generate a list of the hashes for the allowed inlines script and styles that Gatsby adds. It turns out that the CSP specification states that a policy cannot use both hashes and `'unsafe-inline'`, and to be fair, that's what my browser is telling me in the first warning at the top of my console:
 
-```text
+```log
 Content Security Policy: Ignoring "'unsafe-inline'" within script-src or style-src: nonce-source or hash-source specified
 ```
 
