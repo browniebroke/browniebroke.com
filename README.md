@@ -2,13 +2,14 @@
 
 <p align="center">
   <a href="https://app.netlify.com/sites/browniebroke/deploys">
-    <img src="https://api.netlify.com/api/v1/badges/2d3f146f-3ca0-4651-afa1-4fe16612de76/deploy-status" alt="Netlify Status"/>
+    <img alt="Netlify" src="https://img.shields.io/netlify/2d3f146f-3ca0-4651-afa1-4fe16612de76?label=Netlify&logo=netlify&logoColor=white&style=flat-square">
   </a>
+  
   <a href="https://travis-ci.com/browniebroke/browniebroke.com">
-    <img src="https://travis-ci.com/browniebroke/browniebroke.com.svg?branch=master" alt="Build status"/>
+    <img alt="Travis (.com) branch" src="https://img.shields.io/travis/com/browniebroke/browniebroke.com/master?label=Test&logo=travis&logoColor=white&style=flat-square">
   </a>
   <a href="https://github.com/browniebroke/browniebroke.com/actions">
-    <img src="https://github.com/browniebroke/browniebroke.com/workflows/Lighthouse/badge.svg" alt="Lighthouse"/>
+    <img alt="GitHub Workflow Status (branch)" src="https://img.shields.io/github/workflow/status/browniebroke/browniebroke.com/Lighthouse%20Production/master?label=Lighthouse&logo=github&logoColor=white&style=flat-square">
   </a>
 </p>
 
