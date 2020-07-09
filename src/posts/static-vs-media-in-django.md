@@ -23,7 +23,7 @@ Static files are part of your application code, while media is for generated con
 
 ## Static files
 
-Static files are managed by the [`staticfiles` app](https://docs.djangoproject.com/en/stable/ref/contrib/staticfiles/) which you need to install. It provides a couple of important blocks, the 3 most important ones being:
+Static files are managed by the [`staticfiles` app](https://docs.djangoproject.com/en/stable/ref/contrib/staticfiles/) which you need to install. It's made of several building blocks, the 3 most important ones being:
 
 - Storage classes
 - Templates tags
@@ -36,13 +36,17 @@ These components work together to serve the assets in a more or less optimised w
 - `STATICFILES_DIRS`
 - `STATICFILES_STORAGE`
 
-Static files are usually either part of your code, or part of your dependencies' code. They can come from various places, each app may provide its own files. The Django admin ships with some javascript and CSS, for example.
+Static files are usually either part of your code, or part of your dependencies' code. They can come from various places, each app may provide its own files. They are typically kept in source control. The Django admin ships with some javascript and CSS, for example, that are stored [in Django's Github repository](https://github.com/django/django/tree/master/django/contrib/admin/static/admin).
 
-In development, [the setup is inefficient and optimised for convenience](https://docs.djangoproject.com/en/stable/ref/contrib/staticfiles/#static-file-development-view). It's based on a view that, by default, looks into all the installed apps to find static files.
+### Local development setup
 
-In production, however this is done ahead of time via the `collectstatic` admin command. The command copies all the static files into a single location, being another folder or somewhere on another machine, which could be in a different part of the world.
+In development, [the setup for static files is inefficient and optimised for convenience](https://docs.djangoproject.com/en/stable/ref/contrib/staticfiles/#static-file-development-view). It’s based on a view that, by default, looks into all the installed apps to find static files. Works great for local development, but not ideal for production.
 
-My go-to solution used to be in [`django-storages`](https://pypi.org/project/django-storages/). It ships with a storage class for saving your files into AWS S3. I would also add a CDN in front to help caching the assets closer to my users. The setup looked like this:
+### Production setup
+
+In production, finding files is done ahead of time via the `collectstatic` admin command, which you should run as part of your deployment. At a high level, the command does a very similar job as the development view, but the main difference is that it runs outside of the request-response cycle, without blocking the person visiting your website. It copies all the static files into a single location, being another folder or somewhere on another machine, which could be in a different part of the world.
+
+My go-to solution for this used to be in [`django-storages`](https://pypi.org/project/django-storages/). It ships with a storage class for saving your files into AWS S3. I would also add a CDN in front to help caching the assets closer to my users. The setup looked like this:
 
 <p style="text-align: center;">
   <img src="images/django-static/django-static-with-bucket.jpg" alt="Static files in a Bucket" />
@@ -70,9 +74,9 @@ By default, files are stored on the local file system, and again a few settings 
 - `MEDIA_URL`
 - `DEFAULT_FILE_STORAGE`
 
-If you run your app on Heroku for instance, this default setup is not suitable, as the file system is ephemeral and is cleared each time the application is updated. This is where `django-storages` is still useful and needed.
+In some production environments -if you run your app on Heroku for instance- this default setup is not suitable. Heroku has an ephemeral file system meaning that it's cleared each time the application is updated. This is where `django-storages` is still useful and needed.
 
-If your app is hosting a mix of public media and private one, I recommend to define separate storage classes for each, you can tell in the field instantiation which storage class to use:
+If your app is hosting a mix of public and private medias, I recommend to define separate storage classes for each, you can tell in the field instantiation which storage class to use:
 
 ```python
 class User:
