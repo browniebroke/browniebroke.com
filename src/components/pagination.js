@@ -8,19 +8,33 @@ const PaginationStyles = styled.ul`
   justify-content: space-between;
   flex-wrap: wrap;
   list-style: none;
+  margin: 0;
 `
 
 const PageLink = ({ pageObj, rel }) => {
-  const prefix = rel === 'prev' ? '← ' : ''
-  const suffix = rel === 'next' ? ' →' : ''
+  let label = ''
+  switch (rel) {
+    case 'prev':
+      label = '← Previous'
+      break
+    case 'next':
+      label = 'Next →'
+      break
+    default:
+      label = ''
+  }
   return (
-    pageObj && (
-      <li>
-        <Link to={makePostUrl(pageObj.fields.slug)} rel={rel}>
-          {`${prefix}${pageObj.frontmatter.title}${suffix}`}
+    <li>
+      {pageObj && (
+        <Link
+          to={makePostUrl(pageObj.fields.slug)}
+          rel={rel}
+          title={pageObj.frontmatter.title}
+        >
+          {label}
         </Link>
-      </li>
-    )
+      )}
+    </li>
   )
 }
 
