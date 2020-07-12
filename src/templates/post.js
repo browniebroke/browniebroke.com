@@ -1,5 +1,6 @@
 import React from 'react'
 import { graphql } from 'gatsby'
+import styled from 'styled-components'
 
 import Layout from '../components/layout'
 import ListInline from '../components/list-inline'
@@ -8,6 +9,23 @@ import SEO from '../components/seo'
 import Sharing from '../components/sharing'
 import Tag from '../components/tag'
 import { makeTagUrl } from '../utils/routes'
+import { FaGithub } from 'react-icons/fa'
+
+const PostMetaData = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+
+  @media (min-width: 400px) {
+    flex-direction: row;
+  }
+
+  div {
+    margin-bottom: 0.5rem;
+  }
+`
 
 const BlogPostTemplate = ({ location, data, pageContext }) => {
   const post = data.markdownRemark
@@ -15,7 +33,9 @@ const BlogPostTemplate = ({ location, data, pageContext }) => {
   const headerImage = post.frontmatter.header_image
   const ogImage = post.frontmatter.og_image
   const { previous, next } = pageContext
-  console.log(location)
+  const editURL = `https://github.com/browniebroke/browniebroke.com/blob/master/src/${
+    post.fileAbsolutePath.split('/src/')[1]
+  }`
 
   return (
     <Layout title={siteTitle} headerImage={headerImage}>
@@ -28,9 +48,18 @@ const BlogPostTemplate = ({ location, data, pageContext }) => {
         }
       />
       <h1>{post.frontmatter.title}</h1>
-      <p>
-        {post.frontmatter.date} • {post.timeToRead} min read
-      </p>
+
+      <PostMetaData>
+        <div>
+          {post.frontmatter.date} • {post.timeToRead} min read
+        </div>
+        <div>
+          <a href={editURL} target="_blank" rel="noopener">
+            <FaGithub title="" />
+            {` `}Edit on Github
+          </a>
+        </div>
+      </PostMetaData>
 
       <div dangerouslySetInnerHTML={{ __html: post.html }} />
 
@@ -63,6 +92,7 @@ export const pageQuery = graphql`
       excerpt(pruneLength: 160)
       html
       timeToRead
+      fileAbsolutePath
       frontmatter {
         title
         ...FormattedDate
