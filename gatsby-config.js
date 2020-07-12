@@ -1,9 +1,13 @@
+const baseUrl = process.env.REVIEW_ID
+  ? `https://deploy-preview-${process.env.REVIEW_ID}--browniebroke.netlify.app`
+  : `https://browniebroke.com`
+
 module.exports = {
   siteMetadata: {
     title: `browniebroke.com`,
     description: `Bruno Alla's blog - about programming, and other random things that interest me.`,
     author: `Bruno Alla`,
-    siteUrl: `https://browniebroke.com`,
+    siteUrl: baseUrl,
     social: {
       github: `browniebroke`,
       gitlab: `browniebroke`,
