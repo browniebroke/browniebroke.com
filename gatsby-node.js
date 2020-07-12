@@ -20,6 +20,22 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
               description
             }
           }
+          next {
+            fields {
+              slug
+            }
+            frontmatter {
+              title
+            }
+          }
+          previous {
+            fields {
+              slug
+            }
+            frontmatter {
+              title
+            }
+          }
         }
       }
       tags: allMarkdownRemark {
@@ -38,17 +54,14 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   // Create blog posts pages.
   const posts = result.data.posts.edges
 
-  posts.forEach((post, index) => {
-    const previous = index === posts.length - 1 ? null : posts[index + 1].node
-    const next = index === 0 ? null : posts[index - 1].node
-
+  posts.forEach((post) => {
     actions.createPage({
       path: makePostUrl(post.node.fields.slug),
       component: require.resolve(`./src/templates/post.js`),
       context: {
         slug: post.node.fields.slug,
-        previous,
-        next,
+        previous: post.previous,
+        next: post.next,
       },
     })
   })
