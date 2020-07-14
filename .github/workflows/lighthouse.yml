@@ -14,7 +14,7 @@ jobs:
     - run: sleep 360  # 6 mins in seconds
       if: ${{ github.event_name == 'push' }}
     - name: Wait for deploy
-        if: ${{ github.event_name == 'pull_request' }}
+      if: ${{ github.event_name == 'pull_request' }}
       uses: maddox/actions/wait-for-200@master
       env:
         URL: 'https://deploy-preview-${{ github.event.pull_request.number }}--browniebroke.netlify.app'
