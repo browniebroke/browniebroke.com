@@ -46,7 +46,7 @@
     "react-typography": "0.16.19",
     "remark-external-links": "6.1.0",
     "replace-in-file": "6.1.0",
-    "slugify": "1.4.4",
+    "slugify": "1.4.5",
     "styled-components": "5.1.1",
     "typeface-cabin-condensed": "0.0.72",
     "typeface-patua-one": "0.0.71",
