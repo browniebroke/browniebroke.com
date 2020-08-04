@@ -5,6 +5,9 @@ on:
   # On the 10th day of each month at midnight
   - cron: "0 0 10 * *"
 
+  # Manual trigger
+  workflow_dispatch:
+
 jobs:
   upgrade:
     runs-on: ubuntu-latest
