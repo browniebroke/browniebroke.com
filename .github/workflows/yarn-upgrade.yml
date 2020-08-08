@@ -14,14 +14,13 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    # Setup node based on .nvmrc
-    # https://github.com/actions/setup-node/issues/32#issuecomment-539794249
-    - name: Read .nvmrc
-      run: echo ::set-output name=NVMRC::$(cat .nvmrc)
-      id: nvm
+    # Read node version from `.nvmrc` file
+    - id: nvmrc
+      uses: browniebroke/read-nvmrc-action@v1
+
     - uses: actions/setup-node@v1
       with:
-        node-version: '${{ steps.nvm.outputs.NVMRC }}'
+        node-version: '${{ steps.nvmrc.outputs.node_version }}'
 
     - uses: browniebroke/yarn-upgrade-action@v1
 
