@@ -22,7 +22,7 @@ const SmallText = styled.span`
   font-size: 0.7em;
 `
 
-function getHeroImage(fluidImage) {
+const getHeroImage = (fluidImage) => {
   if (fluidImage) {
     return (
       <HeroImageWrapper>
@@ -34,7 +34,7 @@ function getHeroImage(fluidImage) {
 
 const Layout = ({ children, headerImage }) => {
   const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
+    query {
       site {
         siteMetadata {
           title
