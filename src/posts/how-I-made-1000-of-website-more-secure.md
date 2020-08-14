@@ -64,20 +64,6 @@ export const SECURITY_HEADERS = {
 
 Ideally I wanted to write tests but couldn't find any for the existing headers. Since the change was small, I decided to open a [draft pull request](https://github.blog/2019-02-14-introducing-draft-pull-requests/), with the plan to fix potential test failures later, but there was none. I marked it as ready for review and at this point I was expecting to wait for a while.
 
-## The Gatsby community
-
-Only a few hours later, a maintainer jumped in, approved my pull request with a extremely welcoming message and then merged it:
-
-![Pull request approved](images/gasby-first-contrib/gatsby-pr-approved.png)
-
-After that, a bot invited me into their organisation on Github with a welcome message, and pointed at their store where I could order a free swag!
-
-![Gatsbot message](images/gasby-first-contrib/gatbsot-invite.png)
-
-This an amazing contributor experience, I found this super welcoming and positive. Not every open source project can afford to give away some free swag, but a bit of automation around welcoming new contributors can go a long way in building a thriving community. I'll surely consider contributing again.
-
-An easy win to achieve that is via [Probots](https://probot.github.io/) (and maybe also Action soon). There is a [welcome app](https://probot.github.io/apps/welcome/) that does something similar as the Gatbsy bot and which can be added to your project in a few minutes.
-
 ## Results
 
 After this got merged, I wanted to see my change propagated to the [gatsbyjs.org](https://gatsbyjs.org) site. I checked again and here it was:

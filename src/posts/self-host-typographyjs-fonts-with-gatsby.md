@@ -3,7 +3,7 @@ date: 2020-01-05
 author: browniebroke
 title: 'Self-host your Typography.js fonts with Gasby'
 description: 'How to self-host the fonts used by your Typography.js theme with GatsbyJS.'
-og_image: images/gatsby-awesome/gatsbyjs-logo.png
+og_image: images/gatsby-typography/gatsbyjs-logo.png
 tags:
   - gatsby
   - gatsbyjs

@@ -20,10 +20,6 @@
   to = "/blog/flexbox-zombie/"
 
 [[redirects]]
-  from = "/gatsby-is-awesome/"
-  to = "/blog/gatsby-is-awesome/"
-
-[[redirects]]
   from = "/hello-world/"
   to = "/blog/hello-world/"
 
