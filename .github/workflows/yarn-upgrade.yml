@@ -2,8 +2,8 @@ name: Yarn Upgrader
 
 on:
   schedule:
-  # On the 10th day of each month at midnight
-  - cron: "0 0 10 * *"
+  # On the 16th day of each month at midnight
+  - cron: "0 0 16 * *"
 
   # Manual trigger
   workflow_dispatch:
