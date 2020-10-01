@@ -45,7 +45,7 @@
     "react-helmet": "6.1.0",
     "react-icons": "3.11.0",
     "react-typography": "0.16.19",
-    "remark-external-links": "7.0.0",
+    "remark-external-links": "7.0.1",
     "replace-in-file": "6.1.0",
     "slugify": "1.4.5",
     "styled-components": "5.2.0",
