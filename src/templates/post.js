@@ -32,6 +32,7 @@ const BlogPostTemplate = ({ location, data, pageContext }) => {
   const siteTitle = data.site.siteMetadata.title
   const headerImage = post.frontmatter.header_image
   const ogImage = post.frontmatter.og_image
+  const headerOgImage = post.frontmatter.headerOgImage
   const { previous, next } = pageContext
   const editURL = `https://github.com/browniebroke/browniebroke.com/blob/master/src/${
     post.fileAbsolutePath.split('/src/')[1]
@@ -44,7 +45,7 @@ const BlogPostTemplate = ({ location, data, pageContext }) => {
         description={post.frontmatter.description || post.excerpt}
         image={
           (ogImage && ogImage.childImageSharp.fluid.src) ||
-          (headerImage && headerImage.childImageSharp.fluid.src)
+          (headerOgImage && headerOgImage.childImageSharp.fixed.src)
         }
       />
       <h1>{post.frontmatter.title}</h1>
@@ -102,6 +103,13 @@ export const pageQuery = graphql`
           childImageSharp {
             fluid(maxWidth: 1200) {
               ...GatsbyImageSharpFluid
+            }
+          }
+        }
+        headerOgImage: header_image {
+          childImageSharp {
+            fixed(fit: COVER, width: 1200, height: 600, cropFocus: CENTER) {
+              ...GatsbyImageSharpFixed
             }
           }
         }

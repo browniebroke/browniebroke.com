@@ -4,7 +4,6 @@ author: browniebroke
 title: 'Auto-update pre-commit hooks with GitHub Actions'
 description: 'A short post to explain how to get pre-hooks to automatically update their version in the config file.'
 header_image: images/gh-action-pre-commit-hook/header.png
-og_image: images/gh-action-pre-commit-hook/open-graph.png
 tags:
   - python
   - pre-commit
