@@ -25,23 +25,20 @@ function getCspContentFrom(inputFile) {
     let found = false
     let retVal = ''
 
-    const parser = new htmlparser.Parser(
-      {
-        onopentag: (name, attributes) => {
-          if (name === 'meta') {
-            if (
-              attributes['http-equiv'] &&
-              'Content-Security-Policy' === attributes['http-equiv']
-            ) {
-              console.log('Found the CSP content:', attributes['content'])
-              found = true
-              retVal = attributes['content']
-            }
+    const parser = new htmlparser.Parser({
+      onopentag: (name, attributes) => {
+        if (name === 'meta') {
+          if (
+            attributes['http-equiv'] &&
+            'Content-Security-Policy' === attributes['http-equiv']
+          ) {
+            console.log('Found the CSP content:', attributes['content'])
+            found = true
+            retVal = attributes['content']
           }
-        },
+        }
       },
-      { decodeEntities: true }
-    )
+    })
 
     parser.write(fileContents)
 
