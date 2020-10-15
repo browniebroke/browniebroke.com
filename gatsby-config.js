@@ -1,6 +1,9 @@
-const baseUrl = process.env.REVIEW_ID
-  ? `https://deploy-preview-${process.env.REVIEW_ID}--browniebroke.netlify.app`
-  : `https://browniebroke.com`
+const baseUrl =
+  process.env.NODE_ENV === 'development'
+    ? 'http://localhost:8000'
+    : process.env.REVIEW_ID
+    ? `https://deploy-preview-${process.env.REVIEW_ID}--browniebroke.netlify.app`
+    : `https://browniebroke.com`
 
 module.exports = {
   siteMetadata: {
