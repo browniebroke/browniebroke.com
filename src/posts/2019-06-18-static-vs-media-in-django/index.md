@@ -3,7 +3,7 @@ date: 2019-06-18
 author: browniebroke
 title: 'Static vs. Media files in Django'
 description: 'The difference between static and media files in Django, which are often confused by beginners.'
-header_image: images/django-static/django-static-cover-image.jpg
+header_image: cover-image.jpg
 tags:
   - django
   - python
@@ -49,13 +49,13 @@ In production, finding files is done ahead of time via the `collectstatic` admin
 My go-to solution for this used to be in [`django-storages`](https://pypi.org/project/django-storages/). It ships with a storage class for saving your files into AWS S3. I would also add a CDN in front to help caching the assets closer to my users. The setup looked like this:
 
 <p style="text-align: center;">
-  <img src="images/django-static/django-static-with-bucket.jpg" alt="Static files in a Bucket" />
+  <img src="with-bucket.jpg" alt="Static files in a Bucket" />
 </p>
 
 However, recently I've switched to [Whitenoise](https://pypi.org/project/whitenoise/), which leads to a simpler setup, and remove the need for a S3 bucket, all hosting comes from the Django app. The CDN should serve most of the traffic anyway:
 
 <p style="text-align: center;">
-  <img src="images/django-static/django-static-with-whitenoise.jpg" alt="Static files with Whitenoise" />
+  <img src="with-whitenoise.jpg" alt="Static files with Whitenoise" />
 </p>
 
 I still use `django-storages` but only for media files, which brings us to the next section...
