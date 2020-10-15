@@ -3,8 +3,8 @@ date: 2019-06-25
 author: browniebroke
 title: 'Making Celery work nicely with Django transactions'
 description: "A short post about things I've learned when working with Celery in a Django project and a tip to avoid a common pitfall with DB transactions."
-header_image: images/django-celery/header.png
-og_image: images/django-celery/open-graph.png
+header_image: header.png
+og_image: open-graph.png
 tags:
   - django
   - celery
