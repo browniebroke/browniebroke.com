@@ -14458,6 +14458,17 @@ toidentifier@1.0.0:
   resolved "https://registry.yarnpkg.com/toidentifier/-/toidentifier-1.0.0.tgz#7e1be3470f1e77948bc43d94a3c8f4d7752ba553"
   integrity sha512-yaOH/Pk/VEhBWWTlhI+qXxDFXlejDGcQipMlyxda9nthulaxLZUNcUqFxokp0vcYnvteJln5FNQDRrxj3YcbVw==
 
+"toml@github:GalAster/vscode-toml":
+  version "0.5.1"
+  resolved "https://codeload.github.com/GalAster/vscode-toml/tar.gz/0e866836c7b0aa4058185406cb7f901ce5273a0d"
+  dependencies:
+    toml_vscode "^0.1.3"
+
+toml_vscode@^0.1.3:
+  version "0.1.3"
+  resolved "https://registry.yarnpkg.com/toml_vscode/-/toml_vscode-0.1.3.tgz#1d9c3c379b2b686cbb54ab8c75c631e16118efec"
+  integrity sha512-nA/cdPHv0SrgMlDCgD40q3wlZtBM7gh5+CPHYwWarU9SiUFF1rTDkfHlw1wUg80pMWaHt/h0iBPr6likC6/jEw==
+
 toposort@^2.0.2:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/toposort/-/toposort-2.0.2.tgz#ae21768175d1559d48bef35420b2f4962f09c330"
