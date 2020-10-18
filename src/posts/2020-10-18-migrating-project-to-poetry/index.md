@@ -79,9 +79,9 @@ I'm not totally sure why the CLI produced incomplete config and it feels a bit o
 
 ### Docs dependencies
 
-The dependencies to build the docs were specified in a `requirements.txt` in the `docs/` folder and RTD was configured to pick this up. I initially thought that I wouldn't be able to remove that file, but it turns out it's possible to make it work.
+The dependencies to build the docs were specified in a `requirements.txt` in the `docs/` folder and RTD was configured to pick this up. I initially thought that I wouldn't be able to remove that file, but it turns out [it's possible to make it work][rtd-poetry-issue].
 
-You can `pip install` a package managed by Poetry since quite a while, and RTD uses a modern version of pip. However, it wouldn't install your development dependencies, so your docs dependencies cannot be specified as such. It works if you specify a `docs` extra, though:
+Thanks to [PEP 517][pep-517], which [Poetry is compliant with][poetry-pep-517], you can do `pip install .` in a Poetry package. This has been in pip since 19.0, and pip running on RTD is newer than this. However, this method wouldn't install your development dependencies, so your docs dependencies cannot be specified as such. It works if you specify a `docs` extra, though:
 
 ```toml
 # pyproject.toml
@@ -166,7 +166,7 @@ The rest of the changes are pretty simple, it's a matter or replacing `pip insta
 
 ## Verdict
 
-I was really impressed by the developer experience of Poetry, its CLI is really nice. Overall the migration was not too difficult, and you can check the [pull request] on Github. I'm going to wait a bit to see how this works with updates and I might migrate other of my projects soon.
+Did Poetry deliver on its ambitious tagline? I think so, I was really impressed by the developer experience of Poetry, its CLI is really nice, and I hit little issues on the way. Overall the migration was not too difficult, you can check the [pull request] on Github. I'm going to wait a bit to see how this works with updates and I might migrate other of my projects soon.
 
 [poetry]: https://python-poetry.org/
 [pendulum]: https://pendulum.eustace.io/
@@ -176,6 +176,9 @@ I was really impressed by the developer experience of Poetry, its CLI is really 
 [setup-cfg]: https://setuptools.readthedocs.io/en/latest/setuptools.html#setup-cfg-only-projects
 [psr]: https://python-semantic-release.readthedocs.io
 [extras-ex]: https://python-poetry.org/docs/pyproject/#extras
+[rtd-poetry-issue]: https://github.com/readthedocs/readthedocs.org/issues/4912
+[pep-517]: https://www.python.org/dev/peps/pep-0517/
+[poetry-pep-517]: https://python-poetry.org/docs/pyproject/#poetry-and-pep-517
 [flake8-issue]: https://gitlab.com/pycqa/flake8/-/issues/428
 [tox-poetry]: https://python-poetry.org/docs/faq/#is-tox-supported
 [actions-poetry]: https://github.com/abatilo/actions-poetry
