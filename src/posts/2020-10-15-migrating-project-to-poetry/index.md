@@ -143,7 +143,7 @@ With all the above, I was able to remove the `setup.cfg` as well as all the Pip 
 
 Poetry works nicely with Tox, I followed the [section in their FAQ][tox-poetry], and here is a overview of the changes:
 
-```ini{2,6,8-9}
+```conf{2,6,8-9}
 [tox]
 isolated_build = true
 envlist = py36,py37,py38,py39,pypy3,docs,lint,bandit

@@ -48,6 +48,7 @@ module.exports = {
             resolve: `gatsby-remark-vscode`,
             options: {
               theme: 'Abyss',
+              extensions: ['toml'],
             },
           },
           `gatsby-remark-smartypants`,
