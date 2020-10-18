@@ -5,10 +5,10 @@
     <img alt="Netlify" src="https://img.shields.io/netlify/2d3f146f-3ca0-4651-afa1-4fe16612de76?label=Netlify&logo=netlify&logoColor=white&style=flat-square">
   </a>
   <a href="https://github.com/browniebroke/browniebroke.com/actions?query=workflow%3ALint">
-    <img alt="Linting Workflow status" src="https://img.shields.io/github/workflow/status/browniebroke/browniebroke.com/Lint/master?label=Lint&logo=github&logoColor=white&style=flat-square">
+    <img alt="Linting Workflow status" src="https://img.shields.io/github/workflow/status/browniebroke/browniebroke.com/Lint/main?label=Lint&logo=github&logoColor=white&style=flat-square">
   </a>
   <a href="https://github.com/browniebroke/browniebroke.com/actions?query=workflow%3ALighthouse">
-    <img alt="Lighthouse Workflow status" src="https://img.shields.io/github/workflow/status/browniebroke/browniebroke.com/Lighthouse/master?label=Lighthouse&logo=github&logoColor=white&style=flat-square">
+    <img alt="Lighthouse Workflow status" src="https://img.shields.io/github/workflow/status/browniebroke/browniebroke.com/Lighthouse/main?label=Lighthouse&logo=github&logoColor=white&style=flat-square">
   </a>
 </p>
 
