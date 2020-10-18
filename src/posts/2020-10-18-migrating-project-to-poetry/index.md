@@ -1,5 +1,5 @@
 ---
-date: 2020-10-15
+date: 2020-10-18
 author: browniebroke
 title: 'Migrating a project to Poetry'
 description: 'How I migrated a Python project to Poetry.'
