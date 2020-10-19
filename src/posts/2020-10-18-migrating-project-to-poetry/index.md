@@ -60,22 +60,30 @@ Adding development dependencies was pretty simple, I just needed to run `poetry 
 
 ### Extra Dependencies
 
-This package had an "extra require" dependency which didn't work immediately as documented. By adding it on the CLI, it created this section in my `pyproject.toml`:
+This package had an "extra require" dependency. There is a good [example in the documentation][extras-ex], these dependencies needs to be specified in the same section as normal dependencies, but as `optional`:
 
 ```toml
 [tool.poetry.dependencies]
 ...
-tornado = {version = "^6.0.4", optional = true, extras = ["tornado"]}
+tornado = {version = "^6.0.4", optional = true}
 ```
 
-But that caused an error saying that the extra couldn't be found and [the example in the documentation][extras-ex] on this looked different. I needed to add another section below:
+And a dedicated `pyproject.toml` section maps the extras to an array of optional dependencies:
 
 ```toml
 [tool.poetry.extras]
 tornado = ["tornado"]
 ```
 
-I'm not totally sure why the CLI produced incomplete config and it feels a bit odd to have to repeat the `extras` array with the dependency only to specify a section with the reverse mapping later. From what I gathered, it might be simplified in a later release, but for now it works as is.
+I got confused initially because I thought it was done via the `poetry add ... -E ...` command. However, it does something different, it's for the extra of the dependency, not the extra of my own library the dependency should fall under.
+
+For example Django has [2 possible extras][django-extras] at the moment, so one would run the following commands to use them:
+
+```sh
+poetry add Django -E argon2
+```
+
+It means "install Django with the `argon2` extra". I thought it meant "install Django and put it under the `argon2` extra".
 
 ### Docs dependencies
 
@@ -87,14 +95,19 @@ Thanks to [PEP 517][pep-517], which [Poetry is compliant with][poetry-pep-517], 
 # pyproject.toml
 [tool.poetry.dependencies]
 ...
-myst-parser = {version = "^0.12", optional = true, extras = ["docs"]}
-sphinx = {version = "^3", optional = true, extras = ["docs"]}
-sphinx-autobuild = {version = "^2020.9.1", optional = true, extras = ["docs"]}
-sphinx-rtd-theme = {version = "^0.5", optional = true, extras = ["docs"]}
+myst-parser = {version = "^0.12", optional = true}
+sphinx = {version = "^3", optional = true}
+sphinx-autobuild = {version = "^2020.9.1", optional = true}
+sphinx-rtd-theme = {version = "^0.5", optional = true}
 
 [tool.poetry.extras]
 ...
-docs = ["myst-parser", "sphinx", "sphinx-autobuild", "sphinx-rtd-theme"]
+docs = [
+    "myst-parser",
+    "sphinx",
+    "sphinx-autobuild",
+    "sphinx-rtd-theme",
+]
 ```
 
 ```yaml
@@ -176,6 +189,7 @@ Did Poetry deliver on its ambitious tagline? I think so, I was really impressed 
 [setup-cfg]: https://setuptools.readthedocs.io/en/latest/setuptools.html#setup-cfg-only-projects
 [psr]: https://python-semantic-release.readthedocs.io
 [extras-ex]: https://python-poetry.org/docs/pyproject/#extras
+[django-extras]: https://github.com/django/django/blob/0eee5c1b9c2e306aa2c2807daf146ee88676bc97/setup.cfg#L52-L54
 [rtd-poetry-issue]: https://github.com/readthedocs/readthedocs.org/issues/4912
 [pep-517]: https://www.python.org/dev/peps/pep-0517/
 [poetry-pep-517]: https://python-poetry.org/docs/pyproject/#poetry-and-pep-517
