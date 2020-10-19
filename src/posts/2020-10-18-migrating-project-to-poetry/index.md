@@ -11,27 +11,27 @@ tags:
   - deezer
 ---
 
-[Poetry] is a tool aiming at solving the problem of Python packaging. It was started back in February 2018 by Sébastien Eustace (also the author of [pendulum]). It has a beautiful website and a ambitious headline:
+[Poetry] is a tool solving the problem of Python packaging. It was started back in February 2018 by Sébastien Eustace (also the author of [pendulum]). It has a beautiful website and a ambitious headline:
 
 > Python packaging and dependency management made easy
 
-It has been on my radar for a while, but I never gave it a proper go. I was happily using [pip-tools], which was solving my main use case, while being a lot more lightweight and meant I could keep working with pip since its output is a good old `requirements.txt`. Poetry came up a few times, often next to [Pipenv], but recently it looks like Poetry got a bit more traction.
+It has been on my radar for a while, but I never gave it a proper go. I was happily using [pip-tools], which was solving my main use case, while being a lot more lightweight and meant I could keep working with pip since its output is a good old `requirements.txt`. I heard about it a few times online, often next to [Pipenv], but recently it looks like Poetry got a bit more traction.
 
 Having a bit of time on my hands, a few weeks ago I decided to take a proper look at it and maybe migrate one of my projects, [Deezer Python].
 
 ## Starting point
 
-Before I started, here is how the package was managed:
+Before the migration, here is how the package was managed:
 
 - Project metadata were in `setup.cfg`, using [setuptools declarative config][setup-cfg].
 - Development (and documentation) dependencies managed by [pip-tools].
-- Documentation hosted on read the docs.
-- Releases automated with [Python Semantic Release][psr] on Github Actions.
+- Documentation hosted on Read the Docs (RTD).
+- Releases automated with [Python Semantic Release][psr] (PSR) on Github Actions.
 - Development tools configured in `setup.cfg` (black, isort, pyupgrade, flake8).
 - Using `tox` to help local testing.
 - Using Github Actions for CI.
 
-These are a couple of features that were affected by migrating to Poetry, and I think it's worth mentioning them for context. Since Poetry uses `pyproject.toml`, I was also aiming at moving all my config from `setup.cfg` to that file.
+These are a couple of features that were impacted by migrating to Poetry, and I think it's worth mentioning them for context. Since Poetry uses `pyproject.toml`, I was also hoping to move all my tools config from `setup.cfg` to that file.
 
 ## Migration
 
@@ -52,11 +52,11 @@ The first step was to migrate the project metadata from `setup.cfg` to `pyprojec
 - The CLI was very nice to interact with
 - The `author` and `author_email` from `setup.cfg` were merge into an array of `authors`, each with the format `Full Name <email@address.com>`.
 
-I then went on to translate more settings into the new format manually, and the translation was quite painless, many keys have the same name and values, and when they are different, it's mainly to simplify things. I guess it's something like setuptools cannot easily afford to do due to backwards compatibility, but that a new opt-in tool like Poetry can.
+I then went on to convert more settings into the new format manually, and the process was quite painless. Many settings have the same name and values, and when they are different, it's mainly to simplify things. I guess it's something a library like setuptools cannot easily afford to do due to backwards compatibility, but that a new opt-in tool like Poetry can.
 
 ### Dependencies
 
-Adding development dependencies was pretty simple, I just needed to run `poetry add -D ...` with the list of packages at the end.
+Adding dependencies and development dependencies was pretty simple, I just needed to run `poetry add [-D] ...` with the list of packages at the end.
 
 ### Extra Dependencies
 
@@ -179,7 +179,7 @@ The rest of the changes are pretty simple, it's a matter or replacing `pip insta
 
 ## Verdict
 
-Did Poetry deliver on its ambitious tagline? I think so, I was really impressed by the developer experience of Poetry, its CLI is really nice, and I hit little issues on the way. Overall the migration was not too difficult, you can check the [pull request] on Github. I'm going to wait a bit to see how this works with updates and I might migrate other of my projects soon.
+Did Poetry deliver on its ambitious tagline? I think so, I was really impressed by the developer experience of Poetry, its CLI is really nice, and I hit little issues on the way. Overall the migration was not too difficult, you can check the [pull request] on Github. I feel like there are quite a few features I just scratched the surface (like multi-environments). I'm going to wait a bit to see how this works in the longer run, but I think I'll migrate my other projects soon.
 
 [poetry]: https://python-poetry.org/
 [pendulum]: https://pendulum.eustace.io/
