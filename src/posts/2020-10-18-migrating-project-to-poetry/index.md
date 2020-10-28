@@ -164,7 +164,30 @@ All the tools I use for linting and code formatting were configured via `setup.c
 
 I decided to move as much things as I could to `pyproject.toml`, and move flake8 config to `.flake8`.
 
-With all the above, I was able to remove the `setup.cfg` as well as all the Pip Tools files for dependencies.
+With all the above, I was able to remove the `setup.cfg` as well as all the pip-tools files for dependencies.
+
+## Code Coverage
+
+Pytest had and [unexpected config section][pytest-config] for `pyproject.toml`, I didn't pay much attention to it initially and put its config under `[tool.pytest]`, while the section should actually be `[tool.pytest.ini_options]`.
+
+The consequence of this was that my config was ignored and I didn't run the tests with coverage enabled, which silenced another error in the coverage section `tool.coverage.run`, where source should be an array:
+
+```toml{1,6}
+[tool.pytest.ini_options]
+addopts = "-v -Wdefault --cov=deezer"
+
+[tool.coverage.run]
+branch = true
+source = ["deezer"]
+```
+
+With this, pytest was running with coverage, but for some reason, codecov wasn't picking up the report properly. I noticed that it used to find an `xml` file when it was working, so I edited the command on CI to generate it with `--cov-report=xml`:
+
+```sh
+poetry run pytest --cov-report=xml
+```
+
+With this changes I eventually got my code coverage reporting back, but it's something I missed in the original migration. Not directly related to Poetry, but interesting that Pytest decided to go with this section name.
 
 ## Tox
 
@@ -209,6 +232,7 @@ Did Poetry deliver on its ambitious tagline? I think so, I was really impressed 
 [pep-517]: https://www.python.org/dev/peps/pep-0517/
 [poetry-pep-517]: https://python-poetry.org/docs/pyproject/#poetry-and-pep-517
 [flake8-issue]: https://gitlab.com/pycqa/flake8/-/issues/428
+[pytest-config]: https://docs.pytest.org/en/stable/customize.html#pyproject-toml
 [tox-poetry]: https://python-poetry.org/docs/faq/#is-tox-supported
 [actions-poetry]: https://github.com/abatilo/actions-poetry
 [pull request]: https://github.com/browniebroke/deezer-python/pull/196
