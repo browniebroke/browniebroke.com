@@ -38,7 +38,7 @@
     "gatsby-source-filesystem": "2.3.34",
     "gatsby-transformer-remark": "2.8.40",
     "gatsby-transformer-sharp": "2.5.17",
-    "htmlparser2": "5.0.0",
+    "htmlparser2": "5.0.1",
     "prop-types": "15.7.2",
     "react": "16.14.0",
     "react-dom": "16.14.0",
