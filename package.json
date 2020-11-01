@@ -47,7 +47,7 @@
     "react-typography": "0.16.19",
     "remark-external-links": "8.0.0",
     "replace-in-file": "6.1.0",
-    "slugify": "1.4.5",
+    "slugify": "1.4.6",
     "styled-components": "5.2.0",
     "toml": "github:GalAster/vscode-toml",
     "typeface-cabin-condensed": "1.1.13",
