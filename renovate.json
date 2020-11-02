@@ -4,7 +4,7 @@
   "major": {
     "automerge": false
   },
-  "schedule": ["on the 1st and 15th day of the month"],
+  "schedule": ["on the 2nd and 15th day of the month"],
   "prHourlyLimit": 1,
   "supportPolicy": ["current"]
 }
