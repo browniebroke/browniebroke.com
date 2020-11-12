@@ -1,5 +1,3 @@
 {
-  "extends": [
-    "github>browniebroke/renovate-configs:js-app"
-  ]
+  "extends": ["github>browniebroke/renovate-configs:js-app"]
 }
