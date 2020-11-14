@@ -53,7 +53,7 @@ jobs:
         netlify_site: 'browniebroke.netlify.app'
     - name: Upload report to Zeit
       run: |
-        now -t ${{ secrets.ZEIT_TOKEN }} deploy ./report/https*.html | tee zeit-now.log
+        vercel -t ${{ secrets.VERCEL_TOKEN }} deploy ./report/https*.html | tee zeit-now.log
         TARGET_URL=`tail -n1 zeit-now.log`
         curl -X POST https://api.github.com/repos/${{ github.repository }}/statuses/${{ github.sha }} \
           -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
