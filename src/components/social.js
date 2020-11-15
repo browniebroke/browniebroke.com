@@ -7,6 +7,8 @@ import {
 } from 'react-icons/fa'
 import React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
+import { ExternalLink } from '@browniebroke/react-ui-components'
+
 import ListInline from './list-inline'
 
 const SocialLinks = () => {
@@ -36,29 +38,27 @@ const SocialLinks = () => {
 
   return (
     <ListInline>
-      <a
-        href={`https://www.twitter.com/${twitter}`}
-        target="_blank"
-        rel="noopener"
+      <ExternalLink
+        to={`https://www.twitter.com/${twitter}`}
+        title="Twitter profile"
       >
-        <FaTwitter title="Twitter Profile" />
-      </a>
-      <a
-        href={`https://stackoverflow.com/users/${stackoverflow}`}
-        target="_blank"
-        rel="noopener"
+        <FaTwitter />
+      </ExternalLink>
+      <ExternalLink
+        to={`https://stackoverflow.com/users/${stackoverflow}`}
+        title="Stackoverflow profile"
       >
-        <FaStackOverflow title="Stackoverflow Profile" />
-      </a>
-      <a href={`https://github.com/${github}`} target="_blank" rel="noopener">
+        <FaStackOverflow />
+      </ExternalLink>
+      <ExternalLink to={`https://github.com/${github}`} title="Github profile">
         <FaGithub title="Github Profile" />
-      </a>
-      <a href={`https://gitlab.com/${gitlab}`} target="_blank" rel="noopener">
-        <FaGitlab title="Gitlab Profile" />
-      </a>
-      <a href={`https://medium.com/@${medium}`} target="_blank" rel="noopener">
-        <FaMedium title="Medium Profile" />
-      </a>
+      </ExternalLink>
+      <ExternalLink to={`https://gitlab.com/${gitlab}`} title="Gitlab Profile">
+        <FaGitlab />
+      </ExternalLink>
+      <ExternalLink to={`https://medium.com/@${medium}`} title="Medium Profile">
+        <FaMedium />
+      </ExternalLink>
     </ListInline>
   )
 }
