@@ -1,10 +1,9 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import styled from 'styled-components'
-import { ExternalLink } from '@browniebroke/react-ui-components'
+import { ExternalLink, ListInline } from '@browniebroke/react-ui-components'
 
 import Layout from '../components/layout'
-import ListInline from '../components/list-inline'
 import Pagination from '../components/pagination'
 import SEO from '../components/seo'
 import Sharing from '../components/sharing'
@@ -65,7 +64,7 @@ const BlogPostTemplate = ({ location, data, pageContext }) => {
 
       <div dangerouslySetInnerHTML={{ __html: post.html }} />
 
-      <ListInline compact={true}>
+      <ListInline padding="0">
         {post.frontmatter.tags.map((tag, index) => (
           <Tag to={makeTagUrl(tag)} key={index}>
             {tag}

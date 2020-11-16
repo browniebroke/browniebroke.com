@@ -3,9 +3,7 @@ import { FaTwitter, FaRegEnvelope } from 'react-icons/fa'
 import { graphql, useStaticQuery } from 'gatsby'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
-import { ExternalLink } from '@browniebroke/react-ui-components'
-
-import ListInline from './list-inline'
+import { ExternalLink, ListInline } from '@browniebroke/react-ui-components'
 
 const SharingStyles = styled.div`
   margin: 3rem 0;
