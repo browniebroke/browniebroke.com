@@ -2,10 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { useStaticQuery, graphql } from 'gatsby'
 import Img from 'gatsby-image'
-import styled from 'styled-components'
+import styled, { ThemeProvider } from 'styled-components'
 import { ExternalLink } from '@browniebroke/react-ui-components'
 
 import Header from './header'
+import theme from '../utils/theme'
 
 const ContentWrapper = styled.div`
   margin: 0 auto;
@@ -46,19 +47,21 @@ const Layout = ({ children, headerImage }) => {
 
   return (
     <>
-      <Header siteTitle={data.site.siteMetadata.title} />
-      {getHeroImage(headerImage)}
-      <ContentWrapper>
-        <main>{children}</main>
-        <footer>
-          <SmallText>
-            © {new Date().getFullYear()}, Built with{` `}
-            <ExternalLink to="https://www.gatsbyjs.org" title="GatsbyJS">
-              Gatsby
-            </ExternalLink>
-          </SmallText>
-        </footer>
-      </ContentWrapper>
+      <ThemeProvider theme={theme}>
+        <Header siteTitle={data.site.siteMetadata.title} />
+        {getHeroImage(headerImage)}
+        <ContentWrapper>
+          <main>{children}</main>
+          <footer>
+            <SmallText>
+              © {new Date().getFullYear()}, Built with{` `}
+              <ExternalLink to="https://www.gatsbyjs.org" title="GatsbyJS">
+                Gatsby
+              </ExternalLink>
+            </SmallText>
+          </footer>
+        </ContentWrapper>
+      </ThemeProvider>
     </>
   )
 }

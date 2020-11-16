@@ -7,9 +7,7 @@ import {
 } from 'react-icons/fa'
 import React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
-import { ExternalLink } from '@browniebroke/react-ui-components'
-
-import ListInline from './list-inline'
+import { ExternalLink, ListInline } from '@browniebroke/react-ui-components'
 
 const SocialLinks = () => {
   const { site } = useStaticQuery(graphql`

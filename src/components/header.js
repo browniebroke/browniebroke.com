@@ -2,8 +2,7 @@ import { Link } from 'gatsby'
 import PropTypes from 'prop-types'
 import React from 'react'
 import styled from 'styled-components'
-
-import ListInline from './list-inline'
+import { ListInline } from '@browniebroke/react-ui-components'
 
 const HeaderWrapperStyles = styled.header`
   box-shadow: rgba(29, 33, 41, 0.15) 0px 30px 20px -32px;
