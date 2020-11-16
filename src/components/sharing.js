@@ -3,6 +3,7 @@ import { FaTwitter, FaRegEnvelope } from 'react-icons/fa'
 import { graphql, useStaticQuery } from 'gatsby'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
+import { ExternalLink } from '@browniebroke/react-ui-components'
 
 import ListInline from './list-inline'
 
@@ -52,12 +53,12 @@ const Sharing = ({ post, path }) => {
     <SharingStyles>
       <h4>Liked it? Please share it!</h4>
       <ListInline>
-        <a href={emailUrl} target="_blank" rel="noopener">
-          <FaRegEnvelope title="Share via email" />
-        </a>
-        <a href={twitterUrl} target="_blank" rel="noopener">
-          <FaTwitter title="Share on Twitter" />
-        </a>
+        <ExternalLink to={emailUrl} title="Share via email">
+          <FaRegEnvelope />
+        </ExternalLink>
+        <ExternalLink to={twitterUrl} title="Share on Twitter">
+          <FaTwitter />
+        </ExternalLink>
       </ListInline>
     </SharingStyles>
   )

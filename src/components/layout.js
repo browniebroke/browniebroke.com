@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { useStaticQuery, graphql } from 'gatsby'
 import Img from 'gatsby-image'
 import styled from 'styled-components'
+import { ExternalLink } from '@browniebroke/react-ui-components'
 
 import Header from './header'
 
@@ -52,9 +53,9 @@ const Layout = ({ children, headerImage }) => {
         <footer>
           <SmallText>
             © {new Date().getFullYear()}, Built with{` `}
-            <a href="https://www.gatsbyjs.org" target="_blank" rel="noopener">
+            <ExternalLink to="https://www.gatsbyjs.org" title="GatsbyJS">
               Gatsby
-            </a>
+            </ExternalLink>
           </SmallText>
         </footer>
       </ContentWrapper>

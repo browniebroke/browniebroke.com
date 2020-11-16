@@ -1,6 +1,7 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import styled from 'styled-components'
+import { ExternalLink } from '@browniebroke/react-ui-components'
 
 import Layout from '../components/layout'
 import ListInline from '../components/list-inline'
@@ -55,10 +56,10 @@ const BlogPostTemplate = ({ location, data, pageContext }) => {
           {post.frontmatter.date} • {post.timeToRead} min read
         </div>
         <div>
-          <a href={editURL} target="_blank" rel="noopener">
-            <FaGithub title="" />
+          <ExternalLink to={editURL} title="Edit on Github">
+            <FaGithub />
             {` `}Edit on Github
-          </a>
+          </ExternalLink>
         </div>
       </PostMetaData>
 

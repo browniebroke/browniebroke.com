@@ -1001,11 +1001,12 @@
     lodash "^4.17.19"
     to-fast-properties "^2.0.0"
 
-"@browniebroke/react-ui-components@1.0.3":
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/@browniebroke/react-ui-components/-/react-ui-components-1.0.3.tgz#307006efc7d3838fc2f6774cc277c5b1d6ef0e53"
-  integrity sha512-2/NppLdc1MsxL1fPyuyghP1TGTgCgZKm7wnr+In5ySyNYfsp3sBxuh2rwLlJTqeQPultfI1Xl0NwFaLVbkJMkg==
+"@browniebroke/react-ui-components@1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@browniebroke/react-ui-components/-/react-ui-components-1.2.0.tgz#cafc061f81eecd5be0266083613b2380d2dff74d"
+  integrity sha512-wL3ZEXLQedIMQPZHl8gUNNm2MyG8cOWGw1Q+qAhQAmLxiKNc4vlx1iJY26IgSualPiodD3uXxk3xrhGd0aDmXg==
   dependencies:
+    gray-percentage "^2.0.0"
     styled-components "^5.0.0"
 
 "@emotion/is-prop-valid@^0.8.8":
