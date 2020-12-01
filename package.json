@@ -15,7 +15,7 @@
   "license": "MIT",
   "private": false,
   "dependencies": {
-    "@browniebroke/react-ui-components": "1.2.0",
+    "@browniebroke/react-ui-components": "1.6.0",
     "babel-plugin-styled-components": "1.11.1",
     "disqus-react": "1.0.10",
     "gatsby": "2.26.1",
