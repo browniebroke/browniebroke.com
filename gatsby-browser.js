@@ -1,4 +1,5 @@
 exports.onInitialClientRender = () => {
-  require('typeface-patua-one')
-  require('typeface-cabin-condensed')
+  require('@fontsource/patua-one')
+  require('@fontsource/cabin-condensed')
+  require('@fontsource/cabin-condensed/700.css')
 }
