@@ -25,6 +25,8 @@ dephell deps convert \
   --to-path=pyproject.toml
 ```
 
+This converts some package metadata and add the dependencies which are listed in your `setup.py`.
+
 ## Convert development dependencies
 
 The development dependencies are located in `requirements.in` (as I used [pip-tools]), and to not overwrite the dependencies from the previous step, let's write them to a temporary file:
