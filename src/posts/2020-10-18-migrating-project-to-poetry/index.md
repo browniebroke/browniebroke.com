@@ -35,6 +35,8 @@ These are a couple of features that were impacted by migrating to Poetry, and I 
 
 ## Migration
 
+_Update: I recently came across [the `dephell` tool][dephell] which seems to automate some conversions check out [the follow-up post](../convert-requirements-to-pyproject/)._
+
 ### Installing Poetry
 
 The first step is to get the CLI. I initially installed it via Homebrew, but later realised that Poetry was setting some default values based on the Python version its installation uses. As the Homebrew Python can be updated without notice, I realised it was not the best option here, so I later reinstalled it via `pipx` using a Python installation managed by pyenv that wouldn't be wiped without my knowledge:
@@ -225,6 +227,7 @@ Did Poetry deliver on its ambitious tagline? I think so, I was really impressed 
 [deezer python]: https://deezer-python.readthedocs.io
 [setup-cfg]: https://setuptools.readthedocs.io/en/latest/setuptools.html#setup-cfg-only-projects
 [psr]: https://python-semantic-release.readthedocs.io
+[dephell]: https://dephell.readthedocs.io/cmd-deps-convert.html
 [pyupgrade-360]: https://github.com/asottile/scratch/wiki/python-3-statement#360
 [extras-ex]: https://python-poetry.org/docs/pyproject/#extras
 [django-extras]: https://github.com/django/django/blob/0eee5c1b9c2e306aa2c2807daf146ee88676bc97/setup.cfg#L52-L54
