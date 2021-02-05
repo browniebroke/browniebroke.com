@@ -12,19 +12,19 @@ import { useStaticQuery, graphql } from 'gatsby'
 type MetaProps = JSX.IntrinsicElements['meta']
 
 interface SEOProps {
-  description: string
-  lang: string
-  meta: MetaProps[]
   title: string
-  image: string
+  description?: string
+  image?: string
+  lang?: string
+  meta?: MetaProps[]
 }
 
 const SEO: React.FC<SEOProps> = ({
-  description,
-  lang = 'en',
-  meta = [],
   title,
+  description,
   image,
+  meta = [],
+  lang = 'en',
 }) => {
   const { site } = useStaticQuery(
     graphql`

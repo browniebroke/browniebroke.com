@@ -31,11 +31,11 @@ interface HeaderImage {
 }
 
 interface LayoutProps {
-  children: React.ReactNode
-  headerImage: HeaderImage
+  children?: React.ReactNode
+  headerImage?: HeaderImage
 }
 
-const getHeroImage = (fluidImage: HeaderImage) => {
+const getHeroImage = (fluidImage?: HeaderImage) => {
   if (fluidImage) {
     return (
       <HeroImageWrapper>
