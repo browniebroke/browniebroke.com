@@ -1,11 +1,12 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { useStaticQuery, graphql } from 'gatsby'
-import Img from 'gatsby-image'
+import Img, { FluidObject } from 'gatsby-image'
 import styled, { ThemeProvider } from 'styled-components'
+// @ts-ignore
 import { ExternalLink } from '@browniebroke/react-ui-components'
 
 import Header from './header'
+// @ts-ignore
 import theme from '../utils/theme'
 
 const ContentWrapper = styled.div`
@@ -24,7 +25,18 @@ const SmallText = styled.span`
   font-size: 0.7em;
 `
 
-const getHeroImage = (fluidImage) => {
+interface HeaderImage {
+  childImageSharp: {
+    fluid: FluidObject
+  }
+}
+
+interface LayoutProps {
+  children: any
+  headerImage: HeaderImage
+}
+
+const getHeroImage = (fluidImage: HeaderImage) => {
   if (fluidImage) {
     return (
       <HeroImageWrapper>
@@ -34,7 +46,7 @@ const getHeroImage = (fluidImage) => {
   }
 }
 
-const Layout = ({ children, headerImage }) => {
+const Layout = (props: LayoutProps) => {
   const data = useStaticQuery(graphql`
     query {
       site {
@@ -49,9 +61,9 @@ const Layout = ({ children, headerImage }) => {
     <>
       <ThemeProvider theme={theme}>
         <Header siteTitle={data.site.siteMetadata.title} />
-        {getHeroImage(headerImage)}
+        {getHeroImage(props.headerImage)}
         <ContentWrapper>
-          <main>{children}</main>
+          <main>{props.children}</main>
           <footer>
             <SmallText>
               © {new Date().getFullYear()}, Built with{` `}
@@ -64,15 +76,6 @@ const Layout = ({ children, headerImage }) => {
       </ThemeProvider>
     </>
   )
-}
-
-Layout.defaultProps = {
-  headerImage: null,
-}
-
-Layout.propTypes = {
-  children: PropTypes.node.isRequired,
-  headerImage: PropTypes.object,
 }
 
 export default Layout
