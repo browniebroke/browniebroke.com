@@ -17,6 +17,8 @@ Several tools exist to solve this problem, but my favorite is [pre-commit.com](h
 
 Each tool is referenced by their github repo and tag to install, which is great because each tool is pinned to a specific version. However, I usually have the tool versions already elsewhere in my repository, for example in `requirements.txt`, causing some duplication. The main project dependencies are automatically updated with Dependabot, [PyUP](https://pyup.io/) or [Renovate](https://renovate.whitesourcesoftware.com/) but none of these tools support the pre-commit config file. After a while, it's easy to end up with versions discrepancies.
 
+_UPDATE: since this article was written, Renovate added support for updating your pre-commit hook config._
+
 That is until this week-end, where I stumbled upon [the `autoupdate` command](https://pre-commit.com/#pre-commit-autoupdate) from pre-commit. I'm not sure how I missed this before, it looks like it's been part of pre-commit for a really long time. By combining this with the power of Github actions, I was able to get it to send me a pull request each time a new version is available:
 
 ```yaml
