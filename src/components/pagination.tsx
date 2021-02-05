@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'gatsby'
 import styled from 'styled-components'
+// @ts-ignore
 import { makePostUrl } from '../utils/routes'
 
 const PaginationStyles = styled.ul`
@@ -11,7 +12,26 @@ const PaginationStyles = styled.ul`
   margin: 0;
 `
 
-const PageLink = ({ pageObj, rel }) => {
+interface Page {
+  fields: {
+    slug: string
+  }
+  frontmatter: {
+    title: string
+  }
+}
+
+interface PageLinkProps {
+  pageObj: Page | null
+  rel: 'prev' | 'next'
+}
+
+interface PaginationProps {
+  previous: Page | null
+  next: Page | null
+}
+
+const PageLink: React.FC<PageLinkProps> = ({ pageObj, rel }) => {
   let label = ''
   switch (rel) {
     case 'prev':
@@ -38,7 +58,10 @@ const PageLink = ({ pageObj, rel }) => {
   )
 }
 
-const Pagination = ({ previous = null, next = null }) => {
+const Pagination: React.FC<PaginationProps> = ({
+  previous = null,
+  next = null,
+}) => {
   return (
     <PaginationStyles>
       <PageLink pageObj={previous} rel="prev" />
