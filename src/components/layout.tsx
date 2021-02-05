@@ -6,7 +6,6 @@ import styled, { ThemeProvider } from 'styled-components'
 import { ExternalLink } from '@browniebroke/react-ui-components'
 
 import Header from './header'
-// @ts-ignore
 import theme from '../utils/theme'
 
 const ContentWrapper = styled.div`
