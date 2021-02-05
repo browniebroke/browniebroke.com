@@ -60,7 +60,7 @@ This workflow is scheduled every day at midnight, runs `pre-commit autoupdate` a
 
 The piece that required a bit of fiddling is the action creating the pull request, partly to get commit message, title, content and labels right, but mostly because I initially used `secrets.GITHUB_TOKEN` as token, but it wouldn't trigger the CI build for that pull request.
 
-It's a limitation which is well documented on the action's README, and is intentional from Github. I chose the solution to create a PAT scoped to `repo` and added it to the secrets as `CPR_GITHUB_TOKEN`. It's deployed and running on [the repo of `django-codemod`](https://github.com/browniebroke/django-codemod/actions?query=workflow%3A%22Pre-commit+auto-update%22).
+It's a limitation which is well documented on the action's README, and is intentional from Github. I chose the solution to create a [PAT](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token) scoped to `repo` and added it to the secrets as `CPR_GITHUB_TOKEN`. It's deployed and running on [the repo of `django-codemod`](https://github.com/browniebroke/django-codemod/actions?query=workflow%3A%22Pre-commit+auto-update%22).
 
 The pull request action has fixed inputs, so it will create one pull request at a time for all updates. If several tools get a new version, they would all be updated at once, and if a pull request already exists, it would receive more updates. This is not necessarily a bad thing, but if one tool breaks the build due to new linting rules, all are stuck.
 
