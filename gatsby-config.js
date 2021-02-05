@@ -133,6 +133,7 @@ module.exports = {
         icon: `src/assets/avatar.jpg`,
       },
     },
+    `gatsby-plugin-typescript`,
     `gatsby-plugin-offline`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-styled-components`,
