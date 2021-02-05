@@ -6,11 +6,26 @@
  */
 
 import React from 'react'
-import PropTypes from 'prop-types'
 import { Helmet } from 'react-helmet'
 import { useStaticQuery, graphql } from 'gatsby'
 
-const SEO = ({ description, lang, meta, title, image }) => {
+type MetaProps = JSX.IntrinsicElements['meta']
+
+interface SEOProps {
+  description: string
+  lang: string
+  meta: MetaProps[]
+  title: string
+  image: string
+}
+
+const SEO: React.FC<SEOProps> = ({
+  description,
+  lang = 'en',
+  meta = [],
+  title,
+  image,
+}) => {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -27,7 +42,7 @@ const SEO = ({ description, lang, meta, title, image }) => {
   )
 
   const metaDescription = description || site.siteMetadata.description
-  let metaImage = []
+  let metaImage: Iterable<MetaProps> = []
   if (image) {
     const fullUrl = `${site.siteMetadata.siteUrl}${image}`
     metaImage = [
@@ -87,21 +102,6 @@ const SEO = ({ description, lang, meta, title, image }) => {
       ]}
     />
   )
-}
-
-SEO.defaultProps = {
-  lang: `en`,
-  meta: [],
-  description: ``,
-  image: ``,
-}
-
-SEO.propTypes = {
-  description: PropTypes.string,
-  lang: PropTypes.string,
-  meta: PropTypes.arrayOf(PropTypes.object),
-  title: PropTypes.string.isRequired,
-  image: PropTypes.string,
 }
 
 export default SEO
