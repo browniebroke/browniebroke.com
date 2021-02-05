@@ -13,7 +13,7 @@ tags:
 
 Pre-commit hooks are great to reduce the feedback loop for things like linting and auto-formatting. Git supports them out of the box, but they are not easy to share across all developers working on a project, they need to be installed by each developers.
 
-Several tools exist to solve this problem, but my favorite is [pre-commit](https://pre-commit.com/). It's written in Python, but it aims at being [language agnostic](https://pre-commit.com/#supported-languages). It saves your setup in a config file and developers can install all of them with a single command.
+Several tools exist to solve this problem, but my favorite is [pre-commit.com](https://pre-commit.com/). It's written in Python, but it aims at being [language agnostic](https://pre-commit.com/#supported-languages). It saves your setup in a config file and developers can install all of them with a single command.
 
 Each tool is referenced by their github repo and tag to install, which is great because each tool is pinned to a specific version. However, I usually have the tool versions already elsewhere in my repository, for example in `requirements.txt`, causing some duplication. The main project dependencies are automatically updated with Dependabot, [PyUP](https://pyup.io/) or [Renovate](https://renovate.whitesourcesoftware.com/) but none of these tools support the pre-commit config file. After a while, it's easy to end up with versions discrepancies.
 
