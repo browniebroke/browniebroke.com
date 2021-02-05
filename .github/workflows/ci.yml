@@ -6,52 +6,51 @@ on:
   pull_request:
 
 jobs:
-  lint:
-
+  test:
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        linter:
-        - eslint
-        - prettier
+        action:
+          - lint:eslint
+          - lint:prettier
+          - type-check
 
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-    # Setup node based on .nvmrc
-    # https://github.com/actions/setup-node/issues/32#issuecomment-539794249
-    - name: Read .nvmrc
-      run: echo ::set-output name=NVMRC::$(cat .nvmrc)
-      id: nvm
-    - uses: actions/setup-node@v2
-      with:
-        node-version: '${{ steps.nvm.outputs.NVMRC }}'
+      # Setup node based on .nvmrc
+      # https://github.com/actions/setup-node/issues/32#issuecomment-539794249
+      - name: Read .nvmrc
+        run: echo ::set-output name=NVMRC::$(cat .nvmrc)
+        id: nvm
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '${{ steps.nvm.outputs.NVMRC }}'
 
-    - run: yarn
-    - run: |
-        yarn lint:${{ matrix.linter }}
-
+      - run: yarn
+      - run: |
+          yarn ${{ matrix.action }}
 
   lighthouse:
     runs-on: ubuntu-latest
 
     steps:
-    - run: sleep 360  # 6 mins in seconds
-      if: ${{ github.event_name == 'push' }}
-    - name: Wait for deploy
-      if: ${{ github.event_name == 'pull_request' }}
-      uses: maddox/actions/wait-for-200@master
-      env:
-        URL: 'https://deploy-preview-${{ github.event.pull_request.number }}--browniebroke.netlify.app'
-        SECONDS_BETWEEN_CHECKS: 30
-        MAX_TRIES: 30
-    - name: Lighthouse Audit
-      uses: jakejarvis/lighthouse-action@master
-      with:
-        url: 'https://browniebroke.com/'
-        netlify_site: 'browniebroke.netlify.app'
-    - uses: browniebroke/deploy-lighthouse-report-action@main
-      with:
-        vercel_token: ${{ secrets.VERCEL_TOKEN }}
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+      - run: sleep 360 # 6 mins in seconds
+        if: ${{ github.event_name == 'push' }}
+      - name: Wait for deploy
+        if: ${{ github.event_name == 'pull_request' }}
+        uses: maddox/actions/wait-for-200@master
+        env:
+          URL: 'https://deploy-preview-${{ github.event.pull_request.number }}--browniebroke.netlify.app'
+          SECONDS_BETWEEN_CHECKS: 30
+          MAX_TRIES: 30
+      - name: Lighthouse Audit
+        uses: jakejarvis/lighthouse-action@master
+        with:
+          url: 'https://browniebroke.com/'
+          netlify_site: 'browniebroke.netlify.app'
+      - uses: browniebroke/deploy-lighthouse-report-action@main
+        with:
+          vercel_token: ${{ secrets.VERCEL_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
