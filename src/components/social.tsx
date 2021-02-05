@@ -7,6 +7,7 @@ import {
 } from 'react-icons/fa'
 import React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
+// @ts-ignore
 import { ExternalLink, ListInline } from '@browniebroke/react-ui-components'
 
 const SocialLinks = () => {
