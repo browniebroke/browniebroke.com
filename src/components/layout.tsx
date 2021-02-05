@@ -31,7 +31,7 @@ interface HeaderImage {
 }
 
 interface LayoutProps {
-  children: any
+  children: React.ReactNode
   headerImage: HeaderImage
 }
 
@@ -45,7 +45,7 @@ const getHeroImage = (fluidImage: HeaderImage) => {
   }
 }
 
-const Layout = (props: LayoutProps) => {
+const Layout: React.FC<LayoutProps> = ({ headerImage, children }) => {
   const data = useStaticQuery(graphql`
     query {
       site {
@@ -60,9 +60,9 @@ const Layout = (props: LayoutProps) => {
     <>
       <ThemeProvider theme={theme}>
         <Header siteTitle={data.site.siteMetadata.title} />
-        {getHeroImage(props.headerImage)}
+        {getHeroImage(headerImage)}
         <ContentWrapper>
-          <main>{props.children}</main>
+          <main>{children}</main>
           <footer>
             <SmallText>
               © {new Date().getFullYear()}, Built with{` `}

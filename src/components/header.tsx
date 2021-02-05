@@ -34,11 +34,11 @@ interface HeaderProps {
   siteTitle: String
 }
 
-const Header = (props: HeaderProps) => (
+const Header: React.FC<HeaderProps> = ({ siteTitle }) => (
   <HeaderWrapperStyles>
     <HeaderStyles>
       <TitleStyles>
-        <Link to="/">{props.siteTitle}</Link>
+        <Link to="/">{siteTitle}</Link>
       </TitleStyles>
       <ListInline>
         <Link to="/blog/">Blog</Link>

@@ -10,7 +10,7 @@ import { useStaticQuery, graphql } from 'gatsby'
 // @ts-ignore
 import { ExternalLink, ListInline } from '@browniebroke/react-ui-components'
 
-const SocialLinks = () => {
+const SocialLinks: React.FC = () => {
   const { site } = useStaticQuery(graphql`
     query {
       site {
