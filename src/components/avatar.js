@@ -19,10 +19,6 @@ const Avatar = ({ sharpImage }) => (
   </AvatarStyles>
 )
 
-Avatar.defaultProps = {
-  centered: false,
-}
-
 Avatar.propTypes = {
   sharpImage: PropTypes.object.isRequired,
 }
