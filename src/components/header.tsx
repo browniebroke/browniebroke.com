@@ -1,7 +1,7 @@
 import { Link } from 'gatsby'
-import PropTypes from 'prop-types'
 import React from 'react'
 import styled from 'styled-components'
+// @ts-ignore
 import { ListInline } from '@browniebroke/react-ui-components'
 
 const HeaderWrapperStyles = styled.header`
@@ -30,7 +30,11 @@ const TitleStyles = styled.h2`
   line-height: inherit;
 `
 
-const Header = ({ siteTitle }) => (
+interface HeaderProps {
+  siteTitle: String
+}
+
+const Header: React.FC<HeaderProps> = ({ siteTitle }) => (
   <HeaderWrapperStyles>
     <HeaderStyles>
       <TitleStyles>
@@ -42,13 +46,5 @@ const Header = ({ siteTitle }) => (
     </HeaderStyles>
   </HeaderWrapperStyles>
 )
-
-Header.propTypes = {
-  siteTitle: PropTypes.string,
-}
-
-Header.defaultProps = {
-  siteTitle: ``,
-}
 
 export default Header

@@ -2,7 +2,7 @@ import React from 'react'
 import { FaTwitter, FaRegEnvelope } from 'react-icons/fa'
 import { graphql, useStaticQuery } from 'gatsby'
 import styled from 'styled-components'
-import PropTypes from 'prop-types'
+// @ts-ignore
 import { ExternalLink, ListInline } from '@browniebroke/react-ui-components'
 
 const SharingStyles = styled.div`
@@ -12,7 +12,19 @@ const SharingStyles = styled.div`
   align-items: center;
 `
 
-const Sharing = ({ post, path }) => {
+interface Post {
+  frontmatter: {
+    title: string
+    tags: string[]
+  }
+}
+
+interface SharingProps {
+  post: Post
+  path: string
+}
+
+const Sharing: React.FC<SharingProps> = ({ post, path }) => {
   const {
     site: {
       siteMetadata: { siteUrl, social },
@@ -60,16 +72,6 @@ const Sharing = ({ post, path }) => {
       </ListInline>
     </SharingStyles>
   )
-}
-
-Sharing.propTypes = {
-  post: PropTypes.shape({
-    frontmatter: PropTypes.shape({
-      title: PropTypes.string.isRequired,
-      tags: PropTypes.arrayOf(PropTypes.string),
-    }),
-  }),
-  path: PropTypes.string.isRequired,
 }
 
 export default Sharing

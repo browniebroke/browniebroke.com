@@ -1,6 +1,5 @@
 import Img, { FixedObject } from 'gatsby-image'
 import React from 'react'
-import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 const AvatarStyles = styled.div`
@@ -19,14 +18,10 @@ interface AvatarProps {
   }
 }
 
-const Avatar = (props: AvatarProps) => (
+const Avatar: React.FC<AvatarProps> = ({ sharpImage }) => (
   <AvatarStyles>
-    <Img fixed={props.sharpImage.fixed} />
+    <Img fixed={sharpImage.fixed} />
   </AvatarStyles>
 )
-
-Avatar.propTypes = {
-  sharpImage: PropTypes.object.isRequired,
-}
 
 export default Avatar

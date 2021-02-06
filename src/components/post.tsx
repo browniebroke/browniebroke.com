@@ -1,33 +1,45 @@
 import { graphql, Link } from 'gatsby'
 import React from 'react'
-import PropTypes from 'prop-types'
 
+// @ts-ignore
 import { makePostUrl } from '../utils/routes'
 
-const PostPreview = ({ title, slug, date, timeToRead, excerpt }) => {
+export interface PostPreviewData {
+  timeToRead: number
+  excerpt: string
+  fields: {
+    slug: string
+  }
+  frontmatter: {
+    date: string
+    title: string
+  }
+}
+
+export interface PostPreviewEdge {
+  node: PostPreviewData
+}
+
+interface PostPreviewProp {
+  post: PostPreviewData
+}
+
+const PostPreview: React.FC<PostPreviewProp> = ({ post }) => {
   return (
     <div>
       <h3>
-        <Link to={makePostUrl(slug)}>{title}</Link>
+        <Link to={makePostUrl(post.fields.slug)}>{post.frontmatter.title}</Link>
       </h3>
       <small>
-        {date} • {timeToRead} min read
+        {post.frontmatter.date} • {post.timeToRead} min read
       </small>
       <p
         dangerouslySetInnerHTML={{
-          __html: excerpt,
+          __html: post.excerpt,
         }}
       />
     </div>
   )
-}
-
-PostPreview.propTypes = {
-  title: PropTypes.string.isRequired,
-  slug: PropTypes.string.isRequired,
-  date: PropTypes.string.isRequired,
-  timeToRead: PropTypes.number.isRequired,
-  excerpt: PropTypes.string.isRequired,
 }
 
 export default PostPreview

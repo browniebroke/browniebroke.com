@@ -1,12 +1,21 @@
 import React from 'react'
-import { graphql } from 'gatsby'
+import { graphql, Page } from 'gatsby'
 
 import Layout from '../components/layout'
+import { PostPreviewEdge } from '../components/post'
 import PostsList from '../components/posts'
 import SectionTitleStyles from '../components/section-title'
 import SEO from '../components/seo'
 
-const IndexPage = ({ data }) => {
+interface BlogPageData extends Page {
+  data: {
+    allMarkdownRemark: {
+      edges: PostPreviewEdge[]
+    }
+  }
+}
+
+const BlogPage = ({ data }: BlogPageData) => {
   const posts = data.allMarkdownRemark.edges.map((edge) => edge.node)
   return (
     <Layout>
@@ -20,15 +29,10 @@ const IndexPage = ({ data }) => {
   )
 }
 
-export default IndexPage
+export default BlogPage
 
 export const pageQuery = graphql`
   query {
-    site {
-      siteMetadata {
-        title
-      }
-    }
     allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
       edges {
         node {

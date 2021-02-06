@@ -1,3 +1,4 @@
+const path = require('path')
 const { createFilePath } = require(`gatsby-source-filesystem`)
 
 const { makePostUrl, makeTagUrl } = require('./src/utils/routes')
@@ -57,7 +58,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   posts.forEach((post) => {
     actions.createPage({
       path: makePostUrl(post.node.fields.slug),
-      component: require.resolve(`./src/templates/post.js`),
+      component: path.resolve(`./src/templates/post.tsx`),
       context: {
         slug: post.node.fields.slug,
         previous: post.previous,
@@ -72,7 +73,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   tagsArray.forEach((tagObj) => {
     actions.createPage({
       path: makeTagUrl(tagObj.tag),
-      component: require.resolve(`./src/templates/tag_page.js`),
+      component: path.resolve(`./src/templates/tag_page.tsx`),
       context: {
         tag: tagObj.tag,
       },

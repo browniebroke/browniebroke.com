@@ -1,9 +1,11 @@
 import React from 'react'
 import { Link, graphql } from 'gatsby'
+import { FixedObject } from 'gatsby-image'
 import styled from 'styled-components'
 
 import Avatar from '../components/avatar'
 import Layout from '../components/layout'
+import { PostPreviewEdge } from '../components/post'
 import PostsList from '../components/posts'
 import SectionTitleStyles from '../components/section-title'
 import SeeMoreStyles from '../components/see-more'
@@ -21,7 +23,20 @@ const BioStyles = styled.p`
   max-width: 400px;
 `
 
-const IndexPage = ({ data }) => {
+interface IndexPageData {
+  data: {
+    allMarkdownRemark: {
+      edges: PostPreviewEdge[]
+    }
+    avatarImage: {
+      childImageSharp: {
+        fixed: FixedObject
+      }
+    }
+  }
+}
+
+const IndexPage = ({ data }: IndexPageData) => {
   const posts = data.allMarkdownRemark.edges.map((edge) => edge.node)
   return (
     <Layout>
@@ -53,11 +68,6 @@ export default IndexPage
 
 export const pageQuery = graphql`
   query {
-    site {
-      siteMetadata {
-        title
-      }
-    }
     allMarkdownRemark(
       limit: 3
       sort: { fields: [frontmatter___date], order: DESC }
