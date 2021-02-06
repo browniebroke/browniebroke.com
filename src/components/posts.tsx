@@ -1,4 +1,4 @@
-import PostPreview from './post'
+import PostPreview, { PostPreviewData } from './post'
 import React from 'react'
 import styled from 'styled-components'
 
@@ -6,20 +6,8 @@ const PostWrapper = styled.div`
   padding-bottom: 1rem;
 `
 
-interface Post {
-  fields: {
-    slug: string
-  }
-  frontmatter: {
-    title: string
-    date: string
-  }
-  timeToRead: number
-  excerpt: string
-}
-
 interface PostsListProps {
-  posts: Post[]
+  posts: PostPreviewData[]
 }
 
 const PostsList: React.FC<PostsListProps> = ({ posts }) => {
@@ -27,13 +15,7 @@ const PostsList: React.FC<PostsListProps> = ({ posts }) => {
     <>
       {posts.map((post) => (
         <PostWrapper key={post.fields.slug}>
-          <PostPreview
-            slug={post.fields.slug}
-            title={post.frontmatter.title}
-            date={post.frontmatter.date}
-            timeToRead={post.timeToRead}
-            excerpt={post.excerpt}
-          />
+          <PostPreview post={post} />
         </PostWrapper>
       ))}
     </>

@@ -4,32 +4,34 @@ import React from 'react'
 // @ts-ignore
 import { makePostUrl } from '../utils/routes'
 
-interface PostPreviewProp {
-  title: string
-  slug: string
-  date: string
+export interface PostPreviewData {
   timeToRead: number
   excerpt: string
+  fields: {
+    slug: string
+  }
+  frontmatter: {
+    date: string
+    title: string
+  }
 }
 
-const PostPreview: React.FC<PostPreviewProp> = ({
-  title,
-  slug,
-  date,
-  timeToRead,
-  excerpt,
-}) => {
+interface PostPreviewProp {
+  post: PostPreviewData
+}
+
+const PostPreview: React.FC<PostPreviewProp> = ({ post }) => {
   return (
     <div>
       <h3>
-        <Link to={makePostUrl(slug)}>{title}</Link>
+        <Link to={makePostUrl(post.fields.slug)}>{post.frontmatter.title}</Link>
       </h3>
       <small>
-        {date} • {timeToRead} min read
+        {post.frontmatter.date} • {post.timeToRead} min read
       </small>
       <p
         dangerouslySetInnerHTML={{
-          __html: excerpt,
+          __html: post.excerpt,
         }}
       />
     </div>
