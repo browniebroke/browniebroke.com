@@ -143,12 +143,11 @@ module.exports = {
         mergeScriptHashes: false,
         mergeStyleHashes: false,
         directives: {
-          'script-src':
-            "'self' 'unsafe-inline' data: www.google-analytics.com c.disquscdn.com disqus.com browniebroke.disqus.com",
-          'style-src': `'self' 'unsafe-inline' c.disquscdn.com`,
-          'img-src': `'self' data: www.google-analytics.com c.disquscdn.com referrer.disqus.com`,
-          'default-src': `'self' c.disquscdn.com disqus.com`,
-          'connect-src': `'self' links.services.disqus.com browniebroke.disqus.com`,
+          'script-src': "'self' 'unsafe-inline' data: www.google-analytics.com",
+          'style-src': `'self' 'unsafe-inline'`,
+          'img-src': `'self' data: www.google-analytics.com`,
+          // 'default-src': `'self'`,
+          'connect-src': `'self' www.google-analytics.com`,
         },
       },
     },
