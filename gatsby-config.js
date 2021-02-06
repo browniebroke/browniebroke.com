@@ -124,12 +124,12 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Blog of Bruno alla`,
-        short_name: `browniebroke`,
+        name: `Bruno Alla's Blog`,
+        short_name: `Browniebroke`,
         start_url: `/`,
         background_color: `#ffffff`,
         theme_color: `#666666`,
-        display: `minimal-ui`,
+        display: `fullscreen`,
         icon: `src/assets/avatar.jpg`,
       },
     },
