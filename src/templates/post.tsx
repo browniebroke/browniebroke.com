@@ -1,6 +1,8 @@
 import React from 'react'
 import { graphql } from 'gatsby'
+import { PageContext } from 'gatsby/internal'
 import styled from 'styled-components'
+// @ts-ignore
 import { ExternalLink, ListInline } from '@browniebroke/react-ui-components'
 
 import Layout from '../components/layout'
@@ -8,8 +10,10 @@ import Pagination from '../components/pagination'
 import SEO from '../components/seo'
 import Sharing from '../components/sharing'
 import Tag from '../components/tag'
+// @ts-ignore
 import { makeTagUrl } from '../utils/routes'
 import { FaGithub } from 'react-icons/fa'
+import { FixedObject, FluidObject } from 'gatsby-image'
 
 const PostMetaData = styled.div`
   display: flex;
@@ -27,9 +31,48 @@ const PostMetaData = styled.div`
   }
 `
 
-const BlogPostTemplate = ({ location, data, pageContext }) => {
+interface PostTemplateData {
+  location: {
+    pathname: string
+  }
+  data: {
+    markdownRemark: {
+      excerpt: string
+      html: string
+      timeToRead: number
+      fileAbsolutePath: string
+      frontmatter: {
+        title: string
+        date: string
+        description: string
+        tags: string[]
+        header_image: {
+          childImageSharp: {
+            fluid: FluidObject
+          }
+        }
+        headerOgImage: {
+          childImageSharp: {
+            fixed: FixedObject
+          }
+        }
+        og_image: {
+          childImageSharp: {
+            fluid: FluidObject
+          }
+        }
+      }
+    }
+  }
+  pageContext: PageContext
+}
+
+const BlogPostTemplate = ({
+  location,
+  data,
+  pageContext,
+}: PostTemplateData) => {
   const post = data.markdownRemark
-  const siteTitle = data.site.siteMetadata.title
   const headerImage = post.frontmatter.header_image
   const ogImage = post.frontmatter.og_image
   const headerOgImage = post.frontmatter.headerOgImage
@@ -39,7 +82,7 @@ const BlogPostTemplate = ({ location, data, pageContext }) => {
   }`
 
   return (
-    <Layout title={siteTitle} headerImage={headerImage}>
+    <Layout headerImage={headerImage}>
       <SEO
         title={post.frontmatter.title}
         description={post.frontmatter.description || post.excerpt}
@@ -82,12 +125,6 @@ export default BlogPostTemplate
 
 export const pageQuery = graphql`
   query BlogPostBySlug($slug: String!) {
-    site {
-      siteMetadata {
-        title
-        author
-      }
-    }
     markdownRemark(fields: { slug: { eq: $slug } }) {
       id
       excerpt(pruneLength: 160)
