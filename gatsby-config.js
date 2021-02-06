@@ -131,6 +131,14 @@ module.exports = {
         theme_color: `#666666`,
         display: `fullscreen`,
         icon: `src/assets/avatar.jpg`,
+        icons: [
+          {
+            src: 'src/assets/avatar.png',
+            sizes: '512x512',
+            type: 'image/png',
+            purpose: 'maskable',
+          },
+        ],
       },
     },
     `gatsby-plugin-offline`,
