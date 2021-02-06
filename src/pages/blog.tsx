@@ -2,25 +2,21 @@ import React from 'react'
 import { graphql, Page } from 'gatsby'
 
 import Layout from '../components/layout'
-import { PostPreviewData } from '../components/post'
+import { PostPreviewEdge } from '../components/post'
 import PostsList from '../components/posts'
 import SectionTitleStyles from '../components/section-title'
 import SEO from '../components/seo'
 
-interface PostEdge {
-  node: PostPreviewData
-}
-
 interface BlogPageData extends Page {
   data: {
     allMarkdownRemark: {
-      edges: PostEdge[]
+      edges: PostPreviewEdge[]
     }
   }
 }
 
 const BlogPage = ({ data }: BlogPageData) => {
-  const posts = data.allMarkdownRemark.edges.map((edge: PostEdge) => edge.node)
+  const posts = data.allMarkdownRemark.edges.map((edge) => edge.node)
   return (
     <Layout>
       <SEO title="My Blog" />

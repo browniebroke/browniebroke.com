@@ -16,6 +16,10 @@ export interface PostPreviewData {
   }
 }
 
+export interface PostPreviewEdge {
+  node: PostPreviewData
+}
+
 interface PostPreviewProp {
   post: PostPreviewData
 }

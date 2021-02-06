@@ -5,7 +5,7 @@ import styled from 'styled-components'
 
 import Avatar from '../components/avatar'
 import Layout from '../components/layout'
-import { PostPreviewData } from '../components/post'
+import { PostPreviewEdge } from '../components/post'
 import PostsList from '../components/posts'
 import SectionTitleStyles from '../components/section-title'
 import SeeMoreStyles from '../components/see-more'
@@ -23,14 +23,10 @@ const BioStyles = styled.p`
   max-width: 400px;
 `
 
-interface PostEdge {
-  node: PostPreviewData
-}
-
 interface IndexPageData {
   data: {
     allMarkdownRemark: {
-      edges: PostEdge[]
+      edges: PostPreviewEdge[]
     }
     avatarImage: {
       childImageSharp: {

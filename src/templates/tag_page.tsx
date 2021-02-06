@@ -1,17 +1,28 @@
 import React from 'react'
 import { Link, graphql } from 'gatsby'
+import { PageContext } from 'gatsby/internal'
 
 import Layout from '../components/layout'
 import PostsList from '../components/posts'
 import SeeMoreStyles from '../components/see-more'
 import SEO from '../components/seo'
+import { PostPreviewEdge } from '../components/post'
 
-const TagPageTemplate = ({ data, pageContext }) => {
+interface TagPageData {
+  data: {
+    allMarkdownRemark: {
+      edges: PostPreviewEdge[]
+    }
+  }
+  pageContext: PageContext
+}
+
+const TagPageTemplate = ({ data, pageContext }: TagPageData) => {
   const posts = data.allMarkdownRemark.edges.map((edge) => edge.node)
   const title = `Tag "${pageContext.tag}"`
 
   return (
-    <Layout title={title}>
+    <Layout>
       <SEO
         title={title}
         description={`List of all posts tagged as "${pageContext.tag}"`}
@@ -33,12 +44,6 @@ export default TagPageTemplate
 
 export const pageQuery = graphql`
   query TagBySlug($tag: String!) {
-    site {
-      siteMetadata {
-        title
-        author
-      }
-    }
     allMarkdownRemark(
       filter: { frontmatter: { tags: { eq: $tag } } }
       sort: { fields: frontmatter___date, order: DESC }
