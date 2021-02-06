@@ -124,18 +124,26 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Blog of Bruno alla`,
-        short_name: `browniebroke`,
+        name: `Bruno Alla's Blog`,
+        short_name: `Browniebroke`,
         start_url: `/`,
         background_color: `#ffffff`,
         theme_color: `#666666`,
-        display: `minimal-ui`,
+        display: `fullscreen`,
         icon: `src/assets/avatar.jpg`,
+        icons: [
+          {
+            src: 'src/assets/avatar.png',
+            sizes: '512x512',
+            type: 'image/png',
+            purpose: 'maskable',
+          },
+        ],
       },
     },
-    `gatsby-plugin-typescript`,
     `gatsby-plugin-offline`,
     `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-typescript`,
     `gatsby-plugin-styled-components`,
     {
       resolve: `gatsby-plugin-csp`,
@@ -143,12 +151,11 @@ module.exports = {
         mergeScriptHashes: false,
         mergeStyleHashes: false,
         directives: {
-          'script-src':
-            "'self' 'unsafe-inline' data: www.google-analytics.com c.disquscdn.com disqus.com browniebroke.disqus.com",
-          'style-src': `'self' 'unsafe-inline' c.disquscdn.com`,
-          'img-src': `'self' data: www.google-analytics.com c.disquscdn.com referrer.disqus.com`,
-          'default-src': `'self' c.disquscdn.com disqus.com`,
-          'connect-src': `'self' links.services.disqus.com browniebroke.disqus.com`,
+          'script-src': "'self' 'unsafe-inline' data: www.google-analytics.com",
+          'style-src': `'self' 'unsafe-inline'`,
+          'img-src': `'self' data: www.google-analytics.com`,
+          // 'default-src': `'self'`,
+          'connect-src': `'self' www.google-analytics.com`,
         },
       },
     },
