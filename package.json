@@ -17,7 +17,7 @@
   "dependencies": {
     "@browniebroke/react-ui-components": "1.6.0",
     "@fontsource/cabin-condensed": "4.2.1",
-    "@fontsource/patua-one": "4.1.0",
+    "@fontsource/patua-one": "4.2.1",
     "babel-plugin-styled-components": "1.12.0",
     "gatsby": "2.31.1",
     "gatsby-image": "2.10.0",
