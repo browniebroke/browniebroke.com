@@ -2,7 +2,6 @@ import React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 import Img, { FluidObject } from 'gatsby-image'
 import styled, { ThemeProvider } from 'styled-components'
-// @ts-ignore
 import { ExternalLink } from '@browniebroke/react-ui-components'
 
 import Header from './header'

@@ -959,10 +959,10 @@
     lodash "^4.17.19"
     to-fast-properties "^2.0.0"
 
-"@browniebroke/react-ui-components@1.6.0":
-  version "1.6.0"
-  resolved "https://registry.yarnpkg.com/@browniebroke/react-ui-components/-/react-ui-components-1.6.0.tgz#3d0d6b22a5a923943422561f9a591fa72bbc815b"
-  integrity sha512-XuLGA/GY477VFDyk285ATlW51teEnpelJQXtEm6bfjLJZmevI6sCr82uDGbMYQC6p9NfExcz4FE1/72rl4FJng==
+"@browniebroke/react-ui-components@1.7.1":
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/@browniebroke/react-ui-components/-/react-ui-components-1.7.1.tgz#bf83ae65899d6e984436a06493cbeb22f7923fe5"
+  integrity sha512-eEJwK/oZKcm/0w6ByGjEf5mpWw+MhyORBR2gHnlHEN3wB60GN0ZM6wiOLdBpvtTwYCx53sqzPR6uC7e6Bf3XgA==
   dependencies:
     color "^3.1.3"
     gray-percentage "^2.0.0"

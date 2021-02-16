@@ -2,7 +2,6 @@ import React from 'react'
 import { FaTwitter, FaRegEnvelope } from 'react-icons/fa'
 import { graphql, useStaticQuery } from 'gatsby'
 import styled from 'styled-components'
-// @ts-ignore
 import { ExternalLink, ListInline } from '@browniebroke/react-ui-components'
 
 const SharingStyles = styled.div`
