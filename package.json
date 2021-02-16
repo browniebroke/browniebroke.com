@@ -15,7 +15,7 @@
   "license": "MIT",
   "private": false,
   "dependencies": {
-    "@browniebroke/react-ui-components": "1.6.0",
+    "@browniebroke/react-ui-components": "1.7.1",
     "@fontsource/cabin-condensed": "4.2.1",
     "@fontsource/patua-one": "4.2.1",
     "babel-plugin-styled-components": "1.12.0",

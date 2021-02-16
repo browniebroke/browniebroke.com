@@ -1,7 +1,6 @@
 import { Link } from 'gatsby'
 import React from 'react'
 import styled from 'styled-components'
-// @ts-ignore
 import { ListInline } from '@browniebroke/react-ui-components'
 
 const HeaderWrapperStyles = styled.header`

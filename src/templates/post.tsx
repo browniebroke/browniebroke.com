@@ -2,7 +2,6 @@ import React from 'react'
 import { graphql } from 'gatsby'
 import { PageContext } from 'gatsby/internal'
 import styled from 'styled-components'
-// @ts-ignore
 import { ExternalLink, ListInline } from '@browniebroke/react-ui-components'
 
 import Layout from '../components/layout'
