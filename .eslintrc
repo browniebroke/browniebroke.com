@@ -1,5 +1,5 @@
 {
-  "extends": ["prettier", "prettier/react"],
+  "extends": ["prettier"],
   "plugins": ["react", "prettier"],
   "parserOptions": {
     "ecmaVersion": 9,
