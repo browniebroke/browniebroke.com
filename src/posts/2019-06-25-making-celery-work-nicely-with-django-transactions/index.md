@@ -15,7 +15,7 @@ tags:
 
 I've been using Celery in my Django projects for about 5 years now. Along the way, I made some mistakes, learned from them and picked up a few best practices. I will try to share a few of them here.
 
-## Avoid to serialise complex objects
+## Avoid serialising complex objects
 
 This is a pretty simple best practice, but was easy to miss as the default serialization was pickle in before v4 of Celery, the default is now JSON and enforces this. Failing that may cause hard to catch issues like when the pickle protocol changes. This happened when we migrated from Python 2 to 3 for instance. It's pretty much impossible to catch by your test suite, but will happen for sure in production.
 
