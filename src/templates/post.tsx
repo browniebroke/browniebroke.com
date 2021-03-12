@@ -1,7 +1,9 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import { PageContext } from 'gatsby/internal'
+import { getImage, IGatsbyImageData } from 'gatsby-plugin-image'
 import styled from 'styled-components'
+import { FaGithub } from 'react-icons/fa'
 import { ExternalLink, ListInline } from '@browniebroke/react-ui-components'
 
 import Layout from '../components/layout'
@@ -11,8 +13,6 @@ import Sharing from '../components/sharing'
 import Tag from '../components/tag'
 // @ts-ignore
 import { makeTagUrl } from '../utils/routes'
-import { FaGithub } from 'react-icons/fa'
-import { FixedObject, FluidObject } from 'gatsby-image'
 
 const PostMetaData = styled.div`
   display: flex;
@@ -45,21 +45,9 @@ interface PostTemplateData {
         date: string
         description: string
         tags: string[]
-        header_image: {
-          childImageSharp: {
-            fluid: FluidObject
-          }
-        }
-        headerOgImage: {
-          childImageSharp: {
-            fixed: FixedObject
-          }
-        }
-        og_image: {
-          childImageSharp: {
-            fluid: FluidObject
-          }
-        }
+        header_image: IGatsbyImageData
+        headerOgImage: IGatsbyImageData
+        og_image: IGatsbyImageData
       }
     }
   }
@@ -72,23 +60,22 @@ const BlogPostTemplate = ({
   pageContext,
 }: PostTemplateData) => {
   const post = data.markdownRemark
-  const headerImage = post.frontmatter.header_image
-  const ogImage = post.frontmatter.og_image
-  const headerOgImage = post.frontmatter.headerOgImage
+  const headerImage = getImage(post.frontmatter.header_image)
+  const ogImage = getImage(post.frontmatter.og_image)
+  const headerOgImage = getImage(post.frontmatter.headerOgImage)
   const { previous, next } = pageContext
   const editURL = `https://github.com/browniebroke/browniebroke.com/blob/master/src/${
     post.fileAbsolutePath.split('/src/')[1]
   }`
+  console.log(ogImage)
+  console.log(headerOgImage)
 
   return (
     <Layout headerImage={headerImage}>
       <SEO
         title={post.frontmatter.title}
         description={post.frontmatter.description || post.excerpt}
-        image={
-          (ogImage && ogImage.childImageSharp.fluid.src) ||
-          (headerOgImage && headerOgImage.childImageSharp.fixed.src)
-        }
+        image={ogImage || headerOgImage}
       />
       <h1>{post.frontmatter.title}</h1>
 
@@ -137,23 +124,23 @@ export const pageQuery = graphql`
         tags
         header_image {
           childImageSharp {
-            fluid(maxWidth: 1200) {
-              ...GatsbyImageSharpFluid
-            }
+            gatsbyImageData(width: 1200, layout: FULL_WIDTH)
           }
         }
         headerOgImage: header_image {
           childImageSharp {
-            fixed(fit: COVER, width: 1200, height: 600, cropFocus: CENTER) {
-              ...GatsbyImageSharpFixed
-            }
+            gatsbyImageData(
+              width: 1200
+              height: 600
+              layout: FIXED
+              transformOptions: { fit: COVER, cropFocus: CENTER }
+              formats: [PNG]
+            )
           }
         }
         og_image {
           childImageSharp {
-            fluid(maxWidth: 800) {
-              ...GatsbyImageSharpFluid
-            }
+            gatsbyImageData(width: 800)
           }
         }
       }

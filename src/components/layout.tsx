@@ -1,6 +1,6 @@
 import React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
-import Img, { FluidObject } from 'gatsby-image'
+import { GatsbyImage, IGatsbyImageData } from 'gatsby-plugin-image'
 import styled, { ThemeProvider } from 'styled-components'
 import { ExternalLink } from '@browniebroke/react-ui-components'
 
@@ -23,22 +23,16 @@ const SmallText = styled.span`
   font-size: 0.7em;
 `
 
-interface HeaderImage {
-  childImageSharp: {
-    fluid: FluidObject
-  }
-}
-
 interface LayoutProps {
   children?: React.ReactNode
-  headerImage?: HeaderImage
+  headerImage?: IGatsbyImageData
 }
 
-const getHeroImage = (fluidImage?: HeaderImage) => {
-  if (fluidImage) {
+const getHeroImage = (heroImage?: IGatsbyImageData) => {
+  if (heroImage) {
     return (
       <HeroImageWrapper>
-        <Img fluid={fluidImage.childImageSharp.fluid} />
+        <GatsbyImage image={heroImage} alt="" />
       </HeroImageWrapper>
     )
   }

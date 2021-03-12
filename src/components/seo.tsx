@@ -8,15 +8,39 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
 import { useStaticQuery, graphql } from 'gatsby'
+import { getImage, IGatsbyImageData } from 'gatsby-plugin-image'
 
 type MetaProps = JSX.IntrinsicElements['meta']
 
 interface SEOProps {
   title: string
   description?: string
-  image?: string
+  image?: IGatsbyImageData
   lang?: string
   meta?: MetaProps[]
+}
+
+const getImageMeta = (
+  baseURL: string,
+  pageImage?: IGatsbyImageData,
+  defaultImage?: IGatsbyImageData
+) => {
+  const imgPath =
+    pageImage?.images?.fallback?.src || defaultImage?.images?.fallback?.src
+  if (!imgPath) {
+    return []
+  }
+  const fullImgURL = baseURL + imgPath
+  return [
+    {
+      name: `twitter:image`,
+      content: fullImgURL,
+    },
+    {
+      property: `og:image`,
+      content: fullImgURL,
+    },
+  ]
 }
 
 const SEO: React.FC<SEOProps> = ({
@@ -26,7 +50,7 @@ const SEO: React.FC<SEOProps> = ({
   meta = [],
   lang = 'en',
 }) => {
-  const { site } = useStaticQuery(
+  const { site, defaultImage } = useStaticQuery(
     graphql`
       query {
         site {
@@ -37,25 +61,27 @@ const SEO: React.FC<SEOProps> = ({
             siteUrl
           }
         }
+        defaultImage: file(relativePath: { eq: "avatar.jpg" }) {
+          childImageSharp {
+            gatsbyImageData(
+              width: 1200
+              height: 600
+              layout: FIXED
+              transformOptions: { fit: COVER, cropFocus: CENTER }
+              formats: [PNG]
+            )
+          }
+        }
       }
     `
   )
 
   const metaDescription = description || site.siteMetadata.description
-  let metaImage: Iterable<MetaProps> = []
-  if (image) {
-    const fullUrl = `${site.siteMetadata.siteUrl}${image}`
-    metaImage = [
-      {
-        name: `twitter:image`,
-        content: fullUrl,
-      },
-      {
-        property: `og:image`,
-        content: fullUrl,
-      },
-    ]
-  }
+  const imgMeta = getImageMeta(
+    site.siteMetadata.siteUrl,
+    image,
+    getImage(defaultImage)
+  )
 
   return (
     <Helmet
@@ -98,7 +124,7 @@ const SEO: React.FC<SEOProps> = ({
           content: metaDescription,
         },
         ...meta,
-        ...metaImage,
+        ...imgMeta,
       ]}
     />
   )
