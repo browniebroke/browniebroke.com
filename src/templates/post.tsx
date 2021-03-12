@@ -67,9 +67,6 @@ const BlogPostTemplate = ({
   const editURL = `https://github.com/browniebroke/browniebroke.com/blob/master/src/${
     post.fileAbsolutePath.split('/src/')[1]
   }`
-  console.log(ogImage)
-  console.log(headerOgImage)
-
   return (
     <Layout headerImage={headerImage}>
       <SEO
