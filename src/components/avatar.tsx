@@ -1,6 +1,6 @@
-import Img, { FixedObject } from 'gatsby-image'
 import React from 'react'
 import styled from 'styled-components'
+import { StaticImage } from 'gatsby-plugin-image'
 
 const AvatarStyles = styled.div`
   padding: 1rem;
@@ -12,15 +12,16 @@ const AvatarStyles = styled.div`
   }
 `
 
-interface AvatarProps {
-  sharpImage: {
-    fixed: FixedObject
-  }
-}
-
-const Avatar: React.FC<AvatarProps> = ({ sharpImage }) => (
+const Avatar: React.FC = () => (
   <AvatarStyles>
-    <Img fixed={sharpImage.fixed} />
+    <StaticImage
+      src="../assets/avatar.jpg"
+      alt="Picture of Bruno"
+      placeholder="blurred"
+      layout="fixed"
+      width={160}
+      height={160}
+    />
   </AvatarStyles>
 )
 

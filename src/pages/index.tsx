@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link, graphql } from 'gatsby'
-import { FixedObject } from 'gatsby-image'
 import styled from 'styled-components'
 
 import Avatar from '../components/avatar'
@@ -28,11 +27,6 @@ interface IndexPageData {
     allMarkdownRemark: {
       edges: PostPreviewEdge[]
     }
-    avatarImage: {
-      childImageSharp: {
-        fixed: FixedObject
-      }
-    }
   }
 }
 
@@ -43,7 +37,7 @@ const IndexPage = ({ data }: IndexPageData) => {
       <SEO title="Home" />
       <HeroSectionStyles>
         <h1>Bruno Alla</h1>
-        <Avatar sharpImage={data.avatarImage.childImageSharp} />
+        <Avatar />
         <BioStyles>
           Hi! I'm a web developer based in London, I work mostly with Python &
           Django, but I also do a bit of Javascript on the side, mainly with
@@ -75,13 +69,6 @@ export const pageQuery = graphql`
       edges {
         node {
           ...PostPreview
-        }
-      }
-    }
-    avatarImage: file(relativePath: { eq: "avatar.jpg" }) {
-      childImageSharp {
-        fixed(width: 160) {
-          ...GatsbyImageSharpFixed
         }
       }
     }
