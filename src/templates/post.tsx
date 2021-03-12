@@ -124,7 +124,11 @@ export const pageQuery = graphql`
         tags
         header_image {
           childImageSharp {
-            gatsbyImageData(width: 1200, layout: FULL_WIDTH)
+            gatsbyImageData(
+              width: 1200
+              layout: FULL_WIDTH
+              placeholder: BLURRED
+            )
           }
         }
         headerOgImage: header_image {
