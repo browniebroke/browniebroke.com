@@ -71,9 +71,49 @@
   "scripts": {
     "build": "gatsby build && node ./csp-util.js",
     "develop": "gatsby develop",
-    "lint:eslint": "eslint --ext .js,.jsx --ignore-pattern public .",
-    "lint:prettier": "prettier --check \"**/*.+(js|jsx|json|css|scss|md|mdx|ts|tsx|yml)\"",
-    "format": "prettier --write \"**/*.+(js|jsx|json|css|scss|md|mdx|ts|tsx|yml)\"",
-    "type-check": "tsc"
+    "lint:eslint": "eslint --ext .js,.jsx,.ts,.tsx .",
+    "lint:prettier": "prettier --check .",
+    "lint:tsc": "tsc",
+    "format": "prettier --write ."
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "eslintConfig": {
+    "extends": [
+      "prettier"
+    ],
+    "plugins": [
+      "react",
+      "prettier"
+    ],
+    "parserOptions": {
+      "ecmaVersion": 9,
+      "sourceType": "module",
+      "ecmaFeatures": {
+        "jsx": true
+      }
+    },
+    "env": {
+      "es6": true,
+      "node": true
+    },
+    "rules": {
+      "prettier/prettier": [
+        "error",
+        {
+          "semi": false,
+          "singleQuote": true,
+          "trailingComma": "es5"
+        }
+      ]
+    }
+  },
+  "renovate": {
+    "extends": [
+      "github>browniebroke/renovate-configs:js-app"
+    ]
   }
 }
