@@ -2,18 +2,10 @@
   "name": "blog-perso",
   "version": "1.0.0",
   "description": "Code for my personal Blog",
-  "main": "index.js",
-  "repository": "https://github.com/browniebroke/browniebroke.com.git",
-  "homepage": "https://browniebroke.com",
-  "keywords": [
-    "developement",
-    "django",
-    "python",
-    "gatsby"
-  ],
   "author": "Bruno Alla <alla.brunoo@gmail.com>",
   "license": "MIT",
-  "private": false,
+  "repository": "https://github.com/browniebroke/browniebroke.com.git",
+  "homepage": "https://browniebroke.com",
   "dependencies": {
     "@browniebroke/react-ui-components": "1.7.1",
     "@fontsource/cabin-condensed": "4.2.1",
