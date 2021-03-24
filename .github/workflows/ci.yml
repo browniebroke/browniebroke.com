@@ -10,11 +10,12 @@ jobs:
     runs-on: ubuntu-latest
 
     strategy:
+      fail-fast: false
       matrix:
         action:
-          - lint:eslint
-          - lint:prettier
-          - type-check
+          - eslint
+          - prettier
+          - tsc
 
     steps:
       - uses: actions/checkout@v2
@@ -30,7 +31,7 @@ jobs:
 
       - run: yarn
       - run: |
-          yarn ${{ matrix.action }}
+          yarn lint:${{ matrix.action }}
 
   lighthouse:
     runs-on: ubuntu-latest

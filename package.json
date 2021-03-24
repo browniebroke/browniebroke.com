@@ -2,18 +2,10 @@
   "name": "blog-perso",
   "version": "1.0.0",
   "description": "Code for my personal Blog",
-  "main": "index.js",
-  "repository": "https://github.com/browniebroke/browniebroke.com.git",
-  "homepage": "https://browniebroke.com",
-  "keywords": [
-    "developement",
-    "django",
-    "python",
-    "gatsby"
-  ],
   "author": "Bruno Alla <alla.brunoo@gmail.com>",
   "license": "MIT",
-  "private": false,
+  "repository": "https://github.com/browniebroke/browniebroke.com.git",
+  "homepage": "https://browniebroke.com",
   "dependencies": {
     "@browniebroke/react-ui-components": "1.7.1",
     "@fontsource/cabin-condensed": "4.2.1",
@@ -62,6 +54,7 @@
     "@types/react-dom": "17.0.1",
     "@types/react-helmet": "6.1.0",
     "@types/styled-components": "5.1.7",
+    "@typescript-eslint/parser": "4.19.0",
     "eslint": "7.21.0",
     "eslint-config-prettier": "8.1.0",
     "eslint-plugin-prettier": "3.3.1",
@@ -71,9 +64,50 @@
   "scripts": {
     "build": "gatsby build && node ./csp-util.js",
     "develop": "gatsby develop",
-    "lint:eslint": "eslint --ext .js,.jsx --ignore-pattern public .",
-    "lint:prettier": "prettier --check \"**/*.+(js|jsx|json|css|scss|md|mdx|ts|tsx|yml)\"",
-    "format": "prettier --write \"**/*.+(js|jsx|json|css|scss|md|mdx|ts|tsx|yml)\"",
-    "type-check": "tsc"
+    "lint:eslint": "eslint --ext .js,.jsx,.ts,.tsx .",
+    "lint:prettier": "prettier --check .",
+    "lint:tsc": "tsc",
+    "format": "prettier --write ."
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "eslintConfig": {
+    "parser": "@typescript-eslint/parser",
+    "extends": [
+      "prettier"
+    ],
+    "plugins": [
+      "react",
+      "prettier"
+    ],
+    "parserOptions": {
+      "ecmaVersion": 9,
+      "sourceType": "module",
+      "ecmaFeatures": {
+        "jsx": true
+      }
+    },
+    "env": {
+      "es6": true,
+      "node": true
+    },
+    "rules": {
+      "prettier/prettier": [
+        "error",
+        {
+          "semi": false,
+          "singleQuote": true,
+          "trailingComma": "es5"
+        }
+      ]
+    }
+  },
+  "renovate": {
+    "extends": [
+      "github>browniebroke/renovate-configs:js-app"
+    ]
   }
 }
