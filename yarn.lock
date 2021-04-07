@@ -1059,10 +1059,10 @@
   resolved "https://registry.yarnpkg.com/@fontsource/cabin-condensed/-/cabin-condensed-4.2.2.tgz#a28964b40dedab071d5f20963586beb441bc6eda"
   integrity sha512-tY8NB1jszDvgze6aEnerk13P5GfZAayIgVOdmiYk8ZOEE6kEpl3x3tjYuNpuwuSUU3oMmXJf6AbsUXiyViM/lg==
 
-"@fontsource/patua-one@4.2.1":
-  version "4.2.1"
-  resolved "https://registry.yarnpkg.com/@fontsource/patua-one/-/patua-one-4.2.1.tgz#702e9dc6a02a215a51802c3a24ee8259db1c04a3"
-  integrity sha512-vVZJt31/GBZoYI8WXi83LMFtm8QPV3XwN48yfQvW0S0XjJdlH3+G7+pY4KBVWYr5DvvhP/QUa3YCR3ZAehxQZQ==
+"@fontsource/patua-one@4.2.2":
+  version "4.2.2"
+  resolved "https://registry.yarnpkg.com/@fontsource/patua-one/-/patua-one-4.2.2.tgz#19c5566c6121fda5374bc329b6c2d345e2134c82"
+  integrity sha512-+sIZY8cZ04hgKN9gA8o0Rr5GlcdI6dT3AmFGHVK6Z48V1ivVGGPW6Mj9yngFpGLM34Jnyy3hUuKsW41zPqXHiA==
 
 "@gatsbyjs/reach-router@^1.3.6":
   version "1.3.6"
