@@ -1054,10 +1054,10 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@fontsource/cabin-condensed@4.2.1":
-  version "4.2.1"
-  resolved "https://registry.yarnpkg.com/@fontsource/cabin-condensed/-/cabin-condensed-4.2.1.tgz#dcbd3e2f3cb27189bd0ac60a8365760c92ca8ec9"
-  integrity sha512-3i3E8EE/FzPfhgEPmrhQOhtNcVZFNXUu7GbmQTt7tWlnFw8F2sMxinpBAXLq8JY6VJ1nuYaXR3Qt8eRLPWaA+A==
+"@fontsource/cabin-condensed@4.2.2":
+  version "4.2.2"
+  resolved "https://registry.yarnpkg.com/@fontsource/cabin-condensed/-/cabin-condensed-4.2.2.tgz#a28964b40dedab071d5f20963586beb441bc6eda"
+  integrity sha512-tY8NB1jszDvgze6aEnerk13P5GfZAayIgVOdmiYk8ZOEE6kEpl3x3tjYuNpuwuSUU3oMmXJf6AbsUXiyViM/lg==
 
 "@fontsource/patua-one@4.2.1":
   version "4.2.1"
