@@ -10,7 +10,7 @@
 [[plugins]]
   package = "netlify-plugin-gatsby-cache"
 
-# Redirect added when moving paosts under /blog/
+# Redirect added when moving posts under /blog/
 [[redirects]]
   from = "/add-cache-control-header-entire-s3-bucket-with-boto3?"
   to = "/blog/add-cache-control-header-entire-s3-bucket-with-boto3?"
