@@ -167,7 +167,8 @@ module.exports = {
         mergeScriptHashes: false,
         mergeStyleHashes: false,
         directives: {
-          'script-src': "'self' 'unsafe-inline' data: www.google-analytics.com",
+          'script-src':
+            "'self' 'unsafe-inline' data: www.google-analytics.com www.googletagmanager.com",
           'style-src': `'self' 'unsafe-inline'`,
           'img-src': `'self' data: www.google-analytics.com`,
           // 'default-src': `'self'`,
