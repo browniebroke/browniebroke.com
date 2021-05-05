@@ -36,7 +36,6 @@ jobs:
   lighthouse:
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'pull_request' }}
-
     steps:
       - uses: actions/checkout@v2
       - name: Wait for the Netlify Preview
@@ -45,6 +44,7 @@ jobs:
         id: netlify
         with:
           site_name: 'browniebroke'
+          max_timeout: 360
       - name: Audit URLs using Lighthouse
         uses: treosh/lighthouse-ci-action@v7
         with:
