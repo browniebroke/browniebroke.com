@@ -39,7 +39,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Wait for the Netlify Preview
-        if: ${{ github.event_name == 'pull_request' }}
         uses: jakepartusch/wait-for-netlify-action@v1
         id: netlify
         with:
@@ -55,3 +54,5 @@ jobs:
           # budgetPath: ./budget.json
           # configPath: ./lighthouserc.json
           uploadArtifacts: true
+          serverBaseUrl: ${{ secrets.LHCI_SERVER_URL }}
+          serverToken: ${{ secrets.LHCI_SERVER_TOKEN }}
