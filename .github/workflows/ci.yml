@@ -35,22 +35,41 @@ jobs:
 
   lighthouse:
     runs-on: ubuntu-latest
-    if: ${{ github.event_name == 'pull_request' }}
     steps:
       - uses: actions/checkout@v2
+
+      # PR: check deploy preview
       - name: Wait for the Netlify Preview
+        if: ${{ github.event_name == 'pull_request' }}
         uses: jakepartusch/wait-for-netlify-action@v1
         id: netlify
         with:
           site_name: 'browniebroke'
           max_timeout: 360
       - name: Audit URLs using Lighthouse
+        if: ${{ github.event_name == 'pull_request' }}
         uses: treosh/lighthouse-ci-action@v7
         with:
           urls: |
             ${{ steps.netlify.outputs.url }}
             ${{ steps.netlify.outputs.url }}/blog/
             ${{ steps.netlify.outputs.url }}/blog/migrating-project-to-poetry/
+          # budgetPath: ./budget.json
+          # configPath: ./lighthouserc.json
+          uploadArtifacts: true
+
+      # Push: check production
+      - name: Wait for prod deploy
+        if: ${{ github.event_name == 'push' }}
+        run: sleep 360 # 6 mins in seconds
+      - name: Audit URLs using Lighthouse
+        if: ${{ github.event_name == 'push' }}
+        uses: treosh/lighthouse-ci-action@v7
+        with:
+          urls: |
+            https://browniebroke.com/
+            https://browniebroke.com/blog/
+            https://browniebroke.com/blog/migrating-project-to-poetry/
           # budgetPath: ./budget.json
           # configPath: ./lighthouserc.json
           uploadArtifacts: true
