@@ -42,7 +42,7 @@
     "remark-external-links": "8.0.0",
     "replace-in-file": "6.2.0",
     "slugify": "1.5.1",
-    "styled-components": "5.3.0",
+    "styled-components": "5.2.3",
     "toml": "github:GalAster/vscode-toml",
     "typescript": "4.2.4",
     "typography": "0.16.19",
