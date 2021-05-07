@@ -3,7 +3,7 @@ name: Lighthouse
 on:
   workflow_dispatch:
   schedule:
-    - cron: '34 8 * * *'
+    - cron: '46 9 * * *'
 
 jobs:
   lighthouse:
