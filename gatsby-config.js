@@ -176,7 +176,30 @@ module.exports = {
         },
       },
     },
-    `gatsby-plugin-sitemap`,
+    {
+      resolve: `gatsby-plugin-sitemap`,
+      options: {
+        // https://github.com/gatsbyjs/gatsby/issues/31167
+        output: '/',
+        resolveSiteUrl: () => baseUrl,
+        serialize: (page, tools) => {
+          const getPriority = (pagePath) => {
+            if (pagePath === '/') {
+              return 1
+            }
+            if (pagePath.includes('/blog/tags/')) {
+              return 0.5
+            }
+            return 0.8
+          }
+          return {
+            url: `${baseUrl}${page.path}`,
+            changefreq: `monthly`,
+            priority: getPriority(tools.resolvePagePath(page)),
+          }
+        },
+      },
+    },
     `gatsby-plugin-robots-txt`,
     {
       resolve: `gatsby-plugin-typography`,
