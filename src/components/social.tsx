@@ -26,13 +26,8 @@ const SocialLinks: React.FC = () => {
     }
   `)
 
-  const {
-    github,
-    gitlab,
-    medium,
-    twitter,
-    stackoverflow,
-  } = site.siteMetadata.social
+  const { github, gitlab, medium, twitter, stackoverflow } =
+    site.siteMetadata.social
 
   return (
     <ListInline>
