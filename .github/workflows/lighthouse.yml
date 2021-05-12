@@ -12,6 +12,8 @@ jobs:
       - uses: actions/checkout@v2
       - name: Audit URLs using Lighthouse
         uses: treosh/lighthouse-ci-action@v7
+        env:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
         with:
           urls: |
             https://browniebroke.com/
