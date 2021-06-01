@@ -1097,15 +1097,15 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@fontsource/cabin-condensed@4.3.0":
-  version "4.3.0"
-  resolved "https://registry.yarnpkg.com/@fontsource/cabin-condensed/-/cabin-condensed-4.3.0.tgz#e3551ccc8251c1c2369eacf8aa967a7a1d512a36"
-  integrity sha512-Ap9gubV6frG1aAR7dOLv5bG/C3cbLB2A1A/2DVT+AE2dkGx/pLEridcP4I386FOJpinrRjV78paRBKOk2E33Qg==
+"@fontsource/cabin-condensed@4.4.2":
+  version "4.4.2"
+  resolved "https://registry.yarnpkg.com/@fontsource/cabin-condensed/-/cabin-condensed-4.4.2.tgz#06dde910424803c1d326546f967c006cd0f7c04c"
+  integrity sha512-aU8OE9tFpa5IwawNkh+ixyFoh3kXaRVr97CtLXxOuG77LCFJPrkqP2mz36Nuiyf2XNAYx87XSkzEMTvIJaq8jA==
 
-"@fontsource/patua-one@4.3.0":
-  version "4.3.0"
-  resolved "https://registry.yarnpkg.com/@fontsource/patua-one/-/patua-one-4.3.0.tgz#3bc4856e95ef3329ec1cbc77b01df0ff860a74d5"
-  integrity sha512-NBdiv1tg+g3GqM6douCTq0SX5Xexb3ACKVCjOHEt7/05/xvqTSVEk09b8JWAUXZJ05+i/9HVq9FSyptcti2i7w==
+"@fontsource/patua-one@4.4.2":
+  version "4.4.2"
+  resolved "https://registry.yarnpkg.com/@fontsource/patua-one/-/patua-one-4.4.2.tgz#3602ebb8dd066b885a04b300fc5f5c6cb3adc6c6"
+  integrity sha512-yqFQNH2utWB2QHlRhNG9DKZyMAVd/EpvUlfO1Eur+Iyxc6YjAgle+WfPacJgwjaHwKE+jnb8G78IjE8x4VS/WA==
 
 "@gatsbyjs/reach-router@^1.3.6":
   version "1.3.6"
