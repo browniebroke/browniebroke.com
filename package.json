@@ -8,8 +8,8 @@
   "homepage": "https://browniebroke.com",
   "dependencies": {
     "@browniebroke/react-ui-components": "1.7.3",
-    "@fontsource/cabin-condensed": "4.4.2",
-    "@fontsource/patua-one": "4.4.2",
+    "@fontsource/cabin-condensed": "4.4.5",
+    "@fontsource/patua-one": "4.4.5",
     "babel-plugin-styled-components": "1.12.0",
     "gatsby": "3.6.1",
     "gatsby-link": "3.6.0",
@@ -49,17 +49,17 @@
     "typography-theme-funston": "0.16.19"
   },
   "devDependencies": {
-    "@types/node": "14.17.1",
-    "@types/react": "17.0.8",
-    "@types/react-dom": "17.0.5",
+    "@types/node": "14.17.3",
+    "@types/react": "17.0.11",
+    "@types/react-dom": "17.0.7",
     "@types/react-helmet": "6.1.1",
     "@types/styled-components": "5.1.10",
-    "@typescript-eslint/parser": "4.26.0",
+    "@typescript-eslint/parser": "4.26.1",
     "eslint": "7.27.0",
     "eslint-config-prettier": "8.3.0",
     "eslint-plugin-prettier": "3.4.0",
     "eslint-plugin-react": "7.24.0",
-    "prettier": "2.3.0"
+    "prettier": "2.3.1"
   },
   "scripts": {
     "build": "gatsby build && node ./csp-util.js",
