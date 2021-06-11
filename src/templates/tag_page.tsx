@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link, graphql } from 'gatsby'
-import { PageContext } from 'gatsby/internal'
 
 import Layout from '../components/layout'
 import PostsList from '../components/posts'
@@ -14,7 +13,9 @@ interface TagPageData {
       edges: PostPreviewEdge[]
     }
   }
-  pageContext: PageContext
+  pageContext: {
+    tag: string
+  }
 }
 
 const TagPageTemplate = ({ data, pageContext }: TagPageData) => {
