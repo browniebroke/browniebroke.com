@@ -12,7 +12,7 @@ const PaginationStyles = styled.ul`
   margin: 0;
 `
 
-interface Page {
+export interface Page {
   fields: {
     slug: string
   }

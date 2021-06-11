@@ -1,13 +1,12 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import { PageContext } from 'gatsby/internal'
 import { getImage, IGatsbyImageData } from 'gatsby-plugin-image'
 import styled from 'styled-components'
 import { FaGithub } from 'react-icons/fa'
 import { ExternalLink, ListInline } from '@browniebroke/react-ui-components'
 
 import Layout from '../components/layout'
-import Pagination from '../components/pagination'
+import Pagination, { Page } from '../components/pagination'
 import SEO from '../components/seo'
 import Sharing from '../components/sharing'
 import Tag from '../components/tag'
@@ -51,7 +50,10 @@ interface PostTemplateData {
       }
     }
   }
-  pageContext: PageContext
+  pageContext: {
+    previous: Page
+    next: Page
+  }
 }
 
 const BlogPostTemplate = ({
