@@ -8,8 +8,8 @@
   "homepage": "https://browniebroke.com",
   "dependencies": {
     "@browniebroke/react-ui-components": "1.8.0",
-    "@fontsource/cabin-condensed": "4.4.5",
-    "@fontsource/patua-one": "4.4.5",
+    "@fontsource/cabin-condensed": "4.5.0",
+    "@fontsource/patua-one": "4.5.0",
     "babel-plugin-styled-components": "1.13.2",
     "gatsby": "3.8.1",
     "gatsby-link": "3.8.0",
