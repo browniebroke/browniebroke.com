@@ -1,4 +1,4 @@
-const externalLinks = require('remark-external-links')
+import externalLinks from 'remark-external-links'
 
 module.exports = (
   { markdownAST },
