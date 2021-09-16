@@ -29,6 +29,6 @@ jobs:
         with:
           node-version: '${{ steps.nvm.outputs.NVMRC }}'
 
-      - run: yarn
+      - run: npm i
       - run: |
-          yarn lint:${{ matrix.action }}
+          npm run lint:${{ matrix.action }}
