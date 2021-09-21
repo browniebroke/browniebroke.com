@@ -49,17 +49,17 @@
     "typography-theme-funston": "0.16.19"
   },
   "devDependencies": {
-    "@types/node": "14.17.15",
-    "@types/react": "17.0.20",
+    "@types/node": "14.17.17",
+    "@types/react": "17.0.22",
     "@types/react-dom": "17.0.9",
     "@types/react-helmet": "6.1.2",
     "@types/styled-components": "5.1.14",
-    "@typescript-eslint/parser": "4.31.0",
+    "@typescript-eslint/parser": "4.31.2",
     "eslint": "7.32.0",
     "eslint-config-prettier": "8.3.0",
     "eslint-plugin-prettier": "4.0.0",
-    "eslint-plugin-react": "7.25.1",
-    "prettier": "2.4.0"
+    "eslint-plugin-react": "7.25.3",
+    "prettier": "2.4.1"
   },
   "scripts": {
     "build": "gatsby build && node ./csp-util.js",
