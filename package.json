@@ -7,7 +7,7 @@
   "repository": "https://github.com/browniebroke/browniebroke.com.git",
   "homepage": "https://browniebroke.com",
   "dependencies": {
-    "@browniebroke/react-ui-components": "1.8.1",
+    "@browniebroke/react-ui-components": "1.8.2",
     "@fontsource/cabin-condensed": "4.5.0",
     "@fontsource/patua-one": "4.5.0",
     "babel-plugin-styled-components": "1.13.2",
