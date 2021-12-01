@@ -6,29 +6,5 @@ on:
   pull_request:
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
-
-    strategy:
-      fail-fast: false
-      matrix:
-        action:
-          - eslint
-          - prettier
-          - tsc
-
-    steps:
-      - uses: actions/checkout@v2
-
-      # Setup node based on .nvmrc
-      # https://github.com/actions/setup-node/issues/32#issuecomment-539794249
-      - name: Read .nvmrc
-        run: echo ::set-output name=NVMRC::$(cat .nvmrc)
-        id: nvm
-      - uses: actions/setup-node@v2
-        with:
-          node-version: '${{ steps.nvm.outputs.NVMRC }}'
-
-      - run: npm i
-      - run: |
-          npm run lint:${{ matrix.action }}
+  lint:
+    uses: browniebroke/github-actions/.github/workflows/ts-lint.yml@v1
