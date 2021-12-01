@@ -41,7 +41,7 @@
     "react-typography": "0.16.20",
     "remark-external-links": "8.0.0",
     "replace-in-file": "6.3.2",
-    "slugify": "1.6.2",
+    "slugify": "1.6.3",
     "styled-components": "5.3.3",
     "toml": "github:GalAster/vscode-toml",
     "typescript": "4.5.2",
@@ -49,8 +49,8 @@
     "typography-theme-funston": "0.16.19"
   },
   "devDependencies": {
-    "@types/node": "16.11.9",
-    "@types/react": "17.0.36",
+    "@types/node": "16.11.11",
+    "@types/react": "17.0.37",
     "@types/react-dom": "17.0.11",
     "@types/react-helmet": "6.1.4",
     "@types/styled-components": "5.1.15",
