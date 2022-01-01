@@ -49,12 +49,12 @@
     "typography-theme-funston": "0.16.19"
   },
   "devDependencies": {
-    "@types/node": "16.11.15",
-    "@types/react": "17.0.37",
+    "@types/node": "16.11.17",
+    "@types/react": "17.0.38",
     "@types/react-dom": "17.0.11",
-    "@types/react-helmet": "6.1.4",
+    "@types/react-helmet": "6.1.5",
     "@types/styled-components": "5.1.18",
-    "@typescript-eslint/parser": "5.8.0",
+    "@typescript-eslint/parser": "5.8.1",
     "eslint": "8.5.0",
     "eslint-config-prettier": "8.3.0",
     "eslint-plugin-prettier": "4.0.0",
