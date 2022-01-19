@@ -48,30 +48,34 @@ Here are the steps I followed to convert to `src/` layout, without changing the 
 2. Move `my_package` into `src/`.
 3. Change you `packages` section in your `pyproject.toml`:
 
-    ```diff
-      packages = [
-    -     { include = "my_package" },
-    +     { include = "my_package", from = "src" },
-      ]
-    ```
+   ```diff
+     packages = [
+   -     { include = "my_package" },
+   +     { include = "my_package", from = "src" },
+     ]
+   ```
+
 4. Add `pythonpath` to your pytest option as follows:
 
-    ```diff
-      [tool.pytest.ini_options]
-    + pythonpath = ["src"]
-    ```
+   ```diff
+     [tool.pytest.ini_options]
+   + pythonpath = ["src"]
+   ```
+
    If using pytest <7, you'll also need to install `pytest-srcpaths`:
 
-    ```sh
-    poetry add -D pytest-srcpaths
-    ```
+   ```sh
+   poetry add -D pytest-srcpaths
+   ```
+
 5. If your `pyproject.toml` references some paths, make sure to update them, e.g python-semantic-release:
 
-    ```diff
-      [tool.semantic_release]
-      branch = "main"
-    - version_variable = "my_package/__init__.py:__version__"
-    + version_variable = "src/my_package/__init__.py:__version__"
+   ```diff
+     [tool.semantic_release]
+     branch = "main"
+   - version_variable = "my_package/__init__.py:__version__"
+   + version_variable = "src/my_package/__init__.py:__version__"
+   ```
 
 If everything went well, you should have the following layount and running `pytest` should work:
 
