@@ -44,7 +44,7 @@ my-package
 
 Here are the steps I followed to convert to `src/` layout, without changing the imports in my tests:
 
-1. Create a `src/` **folder**. And I really mean folder, not package. That is do not create a `__init__.py` in that folder.
+1. Create a `src/` **folder**. And I really mean folder, not package: do not create a `__init__.py` in that folder.
 2. Move `my_package` into `src/`.
 3. Change you `packages` section in your `pyproject.toml`:
 
