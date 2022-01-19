@@ -10,9 +10,9 @@ tags:
   - packaging
 ---
 
-The `src` layout is commonly used in Python ecosystem nowadays, but I'm not really using it on my projects. Partly because I was not doing, partly because I never hit the pain points it solves, and last time I tried it was making my development workflow more difficult.
+The `src` layout is commonly used in Python ecosystem nowadays (even [the pytest docs](https://docs.pytest.org/en/6.2.x/goodpractices.html#tests-outside-application-code) recommend it), but I'm not really using it on my projects. I think I've never hit the pain points it solves, and last time I tried, it made my development workflow more complicated.
 
-I'm not going into the whys, it's detailed in [the pytest docs](https://docs.pytest.org/en/6.2.x/goodpractices.html#tests-outside-application-code) and they link to [this excellent blog](https://blog.ionelmc.ro/2014/05/25/python-packaging/) explaining its rationale in detail, probably the first time I read about it a while ago.
+I'm not going into the whys, they are detailed in [this excellent blog](https://blog.ionelmc.ro/2014/05/25/python-packaging/) explaining its rationale in detail, where I read about it the first time.
 
 In the recent years, as it became more popular, the tooling has caught up, and I wanted to try it again to see if the situation improved.
 
