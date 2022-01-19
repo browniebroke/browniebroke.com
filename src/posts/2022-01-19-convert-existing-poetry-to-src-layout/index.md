@@ -20,7 +20,7 @@ In the recent years, as it became more popular, the tooling has caught up, and I
 
 If you start a new project, Poetry supports it out of the box in [their `poetry new` command](https://python-poetry.org/docs/cli/#new):
 
-```shell
+```sh
 poetry new --src my-package
 ```
 
@@ -30,7 +30,7 @@ Although you might want to use a full blown template with other tools also confi
 
 I found it a bit less well documented how to convert a project, so here you go. Assuming the project uses Poetry, pytest and a layout as follows:
 
-```
+```sh
 my-package
 ├── poetry.lock
 ├── pyproject.toml
@@ -79,7 +79,7 @@ Here are the steps I followed to convert to `src/` layout, without changing the 
 
 If everything went well, you should have the following layount and running `pytest` should work:
 
-```
+```sh
 my-package
 ├── poetry.lock
 ├── pyproject.toml
