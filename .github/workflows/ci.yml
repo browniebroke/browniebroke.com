@@ -12,3 +12,19 @@ concurrency:
 jobs:
   lint:
     uses: browniebroke/github-actions/.github/workflows/ts-lint.yml@v1
+
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          cache: "npm"
+          node-version-file: ".nvmrc"
+      - run: npm i
+      - run: netlify link --id ${{ secrets.NETLIFY_SIDE_ID }}
+      - run: netlify deploy --build --auth ${{ secrets.NETLIFY_AUTH_TOKEN }} --prod
+        if: ${{ github.event_name == 'push' && github.ref_name == 'main' }}
+      - run: netlify deploy --build --auth ${{ secrets.NETLIFY_AUTH_TOKEN }} --context deploy-preview --alias ${{ github.event.number }}
+        if: ${{ github.event_name == 'pull_request' }}
+
