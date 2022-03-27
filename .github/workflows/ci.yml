@@ -18,4 +18,4 @@ jobs:
     with:
       netlify_site_name: browniebroke
     secrets:
-      netlify_auth: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+      netlify_auth_token: ${{ secrets.NETLIFY_AUTH_TOKEN }}
