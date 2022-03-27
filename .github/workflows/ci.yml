@@ -32,6 +32,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           netlify-config-path: ./netlify.toml
           alias: deploy-preview-${{ github.event.number }}
+          enable-commit-comment: false
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: 2d3f146f-3ca0-4651-afa1-4fe16612de76
