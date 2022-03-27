@@ -15,9 +15,6 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
-    env:
-      NETLIFY_SIDE_ID: ${{ secrets.NETLIFY_SIDE_ID }}
-      NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -25,11 +22,14 @@ jobs:
           cache: "npm"
           node-version-file: ".nvmrc"
       - run: npm i
-      - run: netlify deploy --build --prod
-        if: ${{ github.event_name == 'push' && github.ref_name == 'main' }}
-      - run: netlify deploy --build --context deploy-preview --alias ${{ github.event.pull_request.number }}
-        if: ${{ github.event_name == 'pull_request' }}
 
+      # Deploy prod
+      - run: netlify deploy --build --site ${{ secrets.NETLIFY_SITE_ID }} --auth ${{ secrets.NETLIFY_AUTH_TOKEN }} --prod
+        if: ${{ github.event_name == 'push' && github.ref_name == 'main' }}
+
+      # Deploy preview and add a comment
+      - run: netlify deploy --build --site ${{ secrets.NETLIFY_SITE_ID }} --auth ${{ secrets.NETLIFY_AUTH_TOKEN }} --context deploy-preview --alias deploy-preview-${{ github.event.pull_request.number }}
+        if: ${{ github.event_name == 'pull_request' }}
       - name: Find existing comment
         if: ${{ github.event_name == 'pull_request' }}
         uses: peter-evans/find-comment@v2
@@ -47,6 +47,6 @@ jobs:
           issue-number: ${{ github.event.pull_request.number }}
           body: |
             Netlify Preview Deployment Information
-            - Preview URL: https://${{ github.event.pull_request.number }}--${{ secrets.NETLIFY_SIDE_NAME }}.netlify.app
+            - Preview URL: https://deploy-prev-${{ github.event.pull_request.number }}--${{ secrets.NETLIFY_SITE_NAME }}.netlify.app
           edit-mode: replace
 
