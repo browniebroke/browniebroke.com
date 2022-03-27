@@ -15,6 +15,9 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
+    env:
+      NETLIFY_SIDE_ID: ${{ secrets.NETLIFY_SIDE_ID }}
+      NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -22,9 +25,28 @@ jobs:
           cache: "npm"
           node-version-file: ".nvmrc"
       - run: npm i
-      - run: netlify link --id ${{ secrets.NETLIFY_SIDE_ID }}
-      - run: netlify deploy --build --auth ${{ secrets.NETLIFY_AUTH_TOKEN }} --prod
+      - run: netlify deploy --build --prod
         if: ${{ github.event_name == 'push' && github.ref_name == 'main' }}
-      - run: netlify deploy --build --auth ${{ secrets.NETLIFY_AUTH_TOKEN }} --context deploy-preview --alias ${{ github.event.number }}
+      - run: netlify deploy --build --context deploy-preview --alias ${{ github.event.pull_request.number }}
         if: ${{ github.event_name == 'pull_request' }}
+
+      - name: Find existing comment
+        if: ${{ github.event_name == 'pull_request' }}
+        uses: peter-evans/find-comment@v2
+        id: fc
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          comment-author: 'github-actions[bot]'
+          body-includes: Netlify Preview Deployment Information
+
+      - name: Create or update comment
+        if: ${{ github.event_name == 'pull_request' }}
+        uses: peter-evans/create-or-update-comment@v2
+        with:
+          comment-id: ${{ steps.fc.outputs.comment-id }}
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            Netlify Preview Deployment Information
+            - Preview URL: https://${{ github.event.pull_request.number }}--${{ secrets.NETLIFY_SIDE_NAME }}.netlify.app
+          edit-mode: replace
 
