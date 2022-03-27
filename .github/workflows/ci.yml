@@ -28,7 +28,7 @@ jobs:
         if: ${{ github.event_name == 'push' && github.ref_name == 'main' }}
 
       # Deploy preview and add a comment
-      - run: netlify deploy --build --site ${{ secrets.NETLIFY_SITE_ID }} --auth ${{ secrets.NETLIFY_AUTH_TOKEN }} --context deploy-preview --alias deploy-preview-${{ github.event.pull_request.number }}
+      - run: netlify deploy --build --site ${{ secrets.NETLIFY_SITE_ID }} --auth ${{ secrets.NETLIFY_AUTH_TOKEN }} --context deploy-preview --alias deploy-prev-${{ github.event.pull_request.number }}
         if: ${{ github.event_name == 'pull_request' }}
       - name: Find existing comment
         if: ${{ github.event_name == 'pull_request' }}
