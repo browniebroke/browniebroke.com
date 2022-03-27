@@ -14,38 +14,9 @@ jobs:
     uses: browniebroke/github-actions/.github/workflows/ts-lint.yml@v1
 
   deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          cache: 'npm'
-          node-version-file: '.nvmrc'
-      - run: npm i
-
-      # Deploy prod
-      - run: netlify deploy --build --site ${{ secrets.NETLIFY_SITE_ID }} --auth ${{ secrets.NETLIFY_AUTH_TOKEN }} --prod
-        if: ${{ github.event_name == 'push' && github.ref_name == 'main' }}
-
-      # Deploy preview and add a comment
-      - run: netlify deploy --build --site ${{ secrets.NETLIFY_SITE_ID }} --auth ${{ secrets.NETLIFY_AUTH_TOKEN }} --context deploy-preview --alias deploy-prev-${{ github.event.pull_request.number }}
-        if: ${{ github.event_name == 'pull_request' }}
-      - name: Find existing comment
-        if: ${{ github.event_name == 'pull_request' }}
-        uses: peter-evans/find-comment@v2
-        id: fc
-        with:
-          issue-number: ${{ github.event.pull_request.number }}
-          comment-author: 'github-actions[bot]'
-          body-includes: Netlify Preview Deployment Information
-
-      - name: Create or update comment
-        if: ${{ github.event_name == 'pull_request' }}
-        uses: peter-evans/create-or-update-comment@v2
-        with:
-          comment-id: ${{ steps.fc.outputs.comment-id }}
-          issue-number: ${{ github.event.pull_request.number }}
-          body: |
-            Netlify Preview Deployment Information
-            - Preview URL: https://deploy-prev-${{ github.event.pull_request.number }}--${{ secrets.NETLIFY_SITE_NAME }}.netlify.app
-          edit-mode: replace
+    uses: browniebroke/github-actions/.github/workflows/netlify-deploy.yml@v1
+    with:
+      netlify_site_name: browniebroke
+      netlify_site_id: 2d3f146f-3ca0-4651-afa1-4fe16612de76
+    secrets:
+      netlify_auth_token: ${{ secrets.NETLIFY_AUTH_TOKEN }}
