@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@browniebroke/react-ui-components": "1.8.2",
-    "@fontsource/cabin-condensed": "4.5.5",
+    "@fontsource/cabin-condensed": "4.5.6",
     "@fontsource/patua-one": "4.5.5",
     "babel-plugin-styled-components": "2.0.6",
     "gatsby": "4.10.3",
