@@ -2,10 +2,6 @@
   base    = ""
   publish = "public"
   command = "npm run build"
-  environment = { GATSBY_CPU_COUNT = "1" }
-
-[context.production]
-  environment = { GA_TRACKING_ID = "G-DLGHEH0LX2" }
 
 [[plugins]]
   package = "netlify-plugin-gatsby-cache"
