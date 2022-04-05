@@ -8,12 +8,7 @@ const baseUrl =
     : `https://browniebroke.com`
 
 const gaTrackingId =
-  process.env.NODE_ENV === 'development' || process.env.REVIEW_ID
-    ? 'G-xxx'
-    : 'G-DLGHEH0LX2'
-
-console.log('==== process.env ====')
-console.table(process.env)
+  process.env.GITHUB_REF_NAME === 'main' ? 'G-DLGHEH0LX2' : 'G-xxx'
 
 module.exports = {
   siteMetadata: {
