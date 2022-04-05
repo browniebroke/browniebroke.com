@@ -14,7 +14,7 @@ jobs:
     uses: browniebroke/github-actions/.github/workflows/ts-lint.yml@v1
 
   deploy:
-    uses: browniebroke/github-actions/.github/workflows/netlify-deploy.yml@v1
+    uses: browniebroke/github-actions/.github/workflows/netlify-deploy.yml@main
     with:
       netlify_site_id: '2d3f146f-3ca0-4651-afa1-4fe16612de76'
     secrets:
