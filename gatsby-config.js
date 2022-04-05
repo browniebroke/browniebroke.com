@@ -1,5 +1,9 @@
 const { makePostUrl } = require('./src/utils/routes')
 
+console.log(`REVIEW_ID=${process.env.REVIEW_ID}`)
+console.log(`NODE_ENV=${process.env.NODE_ENV}`)
+console.log(`PRODUCTION_DEPLOY=${process.env.PRODUCTION_DEPLOY}`)
+
 const baseUrl =
   process.env.NODE_ENV === 'development'
     ? 'http://localhost:8000'
@@ -8,7 +12,7 @@ const baseUrl =
     : `https://browniebroke.com`
 
 const gaTrackingId =
-  process.env.GITHUB_REF_NAME === 'main' ? 'G-DLGHEH0LX2' : 'G-xxx'
+  process.env.PRODUCTION_DEPLOY === 'true' ? 'G-DLGHEH0LX2' : 'G-xxx'
 
 module.exports = {
   siteMetadata: {
