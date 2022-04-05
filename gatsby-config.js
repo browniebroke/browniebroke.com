@@ -12,8 +12,8 @@ const gaTrackingId =
     ? 'G-xxx'
     : 'G-DLGHEH0LX2'
 
-console.log('==== env ====')
-console.table(env)
+console.log('==== process.env ====')
+console.table(process.env)
 
 module.exports = {
   siteMetadata: {
