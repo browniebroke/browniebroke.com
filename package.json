@@ -52,7 +52,7 @@
     "typography-theme-funston": "0.16.19"
   },
   "devDependencies": {
-    "@types/node": "16.11.29",
+    "@types/node": "16.11.30",
     "@types/react": "17.0.44",
     "@types/react-dom": "17.0.16",
     "@types/react-helmet": "6.1.5",
