@@ -15,6 +15,10 @@ const ContentWrapper = styled.div`
   min-height: 100vh;
 `
 
+const Main = styled.main`
+  min-height: 70vh;
+`
+
 const HeroImageWrapper = styled.div`
   padding: 0;
 `
@@ -55,7 +59,7 @@ const Layout: React.FC<LayoutProps> = ({ headerImage, children }) => {
         <Header siteTitle={data.site.siteMetadata.title} />
         {getHeroImage(headerImage)}
         <ContentWrapper>
-          <main>{children}</main>
+          <Main>{children}</Main>
           <footer>
             <SmallText>
               © {new Date().getFullYear()}, Built with{` `}
