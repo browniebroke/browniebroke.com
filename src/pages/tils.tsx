@@ -33,10 +33,10 @@ const TILIndexPage = ({ data }: TILIndexPageData) => {
   const tils = data.allMarkdownRemark.edges.map((edge) => edge.node)
   return (
     <Layout>
-      <SEO title="Today I Learned" />
+      <SEO title="TIL" />
       <section>
-        <SectionTitleStyles>All TILs</SectionTitleStyles>
-
+        <SectionTitleStyles>TIL</SectionTitleStyles>
+        <p>Things I've learned.</p>
         {tils.map((til) => (
           <div>
             <Link to={makeTILUrl(til.fields.slug)}>
