@@ -1,7 +1,7 @@
 const path = require('path')
 const { createFilePath } = require(`gatsby-source-filesystem`)
 
-const { makePostUrl, makeTagUrl } = require('./src/utils/routes')
+const { makePostUrl, makeTagUrl, makeTILUrl } = require('./src/utils/routes')
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
   // Run query to get data
@@ -10,6 +10,40 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       posts: allMarkdownRemark(
         sort: { fields: [frontmatter___date], order: DESC }
         limit: 1000
+        filter: { fileAbsolutePath: { regex: "/.*/src/posts/.*/g" } }
+      ) {
+        edges {
+          node {
+            fields {
+              slug
+            }
+            frontmatter {
+              title
+              description
+            }
+          }
+          next {
+            fields {
+              slug
+            }
+            frontmatter {
+              title
+            }
+          }
+          previous {
+            fields {
+              slug
+            }
+            frontmatter {
+              title
+            }
+          }
+        }
+      }
+      tils: allMarkdownRemark(
+        sort: { fields: [frontmatter___date], order: DESC }
+        limit: 1000
+        filter: { fileAbsolutePath: { regex: "/.*/src/tils/.*/g" } }
       ) {
         edges {
           node {
@@ -54,7 +88,6 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
   // Create blog posts pages.
   const posts = result.data.posts.edges
-
   posts.forEach((post) => {
     actions.createPage({
       path: makePostUrl(post.node.fields.slug),
@@ -67,9 +100,22 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     })
   })
 
+  // Create TIL pages
+  const tilsArray = result.data.tils.edges
+  tilsArray.forEach((tilObj) => {
+    actions.createPage({
+      path: makeTILUrl(tilObj.node.fields.slug),
+      component: path.resolve(`./src/templates/til.tsx`),
+      context: {
+        slug: tilObj.node.fields.slug,
+        previous: tilObj.previous,
+        next: tilObj.next,
+      },
+    })
+  })
+
   // Create tag pages
   const tagsArray = result.data.tags.group
-
   tagsArray.forEach((tagObj) => {
     actions.createPage({
       path: makeTagUrl(tagObj.tag),

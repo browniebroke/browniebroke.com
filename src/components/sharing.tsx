@@ -14,7 +14,7 @@ const SharingStyles = styled.div`
 interface Post {
   frontmatter: {
     title: string
-    tags: string[]
+    tags?: string[]
   }
 }
 
@@ -42,7 +42,9 @@ const Sharing: React.FC<SharingProps> = ({ post, path }) => {
   `)
 
   // Twitter sharing
-  const hashtags = post.frontmatter.tags.filter((tag) => !tag.includes(' '))
+  const hashtags = post.frontmatter.tags
+    ? post.frontmatter.tags.filter((tag) => !tag.includes(' '))
+    : []
   const twitterParams = new URLSearchParams({
     text: `${post.frontmatter.title} by Bruno Alla`,
     url: `${siteUrl}${path}`,

@@ -40,6 +40,7 @@ const Header: React.FC<HeaderProps> = ({ siteTitle }) => (
         <Link to="/">{siteTitle}</Link>
       </TitleStyles>
       <ListInline>
+        <Link to="/tils/">TILs</Link>
         <Link to="/blog/">Blog</Link>
       </ListInline>
     </HeaderStyles>

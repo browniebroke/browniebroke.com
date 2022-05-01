@@ -1,9 +1,5 @@
 const { makePostUrl } = require('./src/utils/routes')
 
-console.log(`REVIEW_ID=${process.env.REVIEW_ID}`)
-console.log(`NODE_ENV=${process.env.NODE_ENV}`)
-console.log(`PRODUCTION_DEPLOY=${process.env.PRODUCTION_DEPLOY}`)
-
 const baseUrl =
   process.env.NODE_ENV === 'development'
     ? 'http://localhost:8000'
@@ -34,6 +30,13 @@ module.exports = {
       options: {
         path: `${__dirname}/src/posts`,
         name: `posts`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/src/tils`,
+        name: `tils`,
       },
     },
     {
@@ -120,7 +123,8 @@ module.exports = {
             query: `
               {
                 allMarkdownRemark(
-                  sort: { fields: [frontmatter___date], order: DESC },
+                  sort: { fields: [frontmatter___date], order: DESC }
+                  filter: { fileAbsolutePath: { regex: "/.*/src/posts/.*/g" } }
                 ) {
                   edges {
                     node {
