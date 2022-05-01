@@ -1,15 +1,13 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import { FaGithub } from 'react-icons/fa'
-import { ExternalLink, ListInline } from '@browniebroke/react-ui-components'
+import { ExternalLink } from '@browniebroke/react-ui-components'
 
 import Layout from '../components/layout'
 import Pagination, { Page } from '../components/pagination'
 import PostMetaData from '../components/post-metadata'
 import SEO from '../components/seo'
 import Sharing from '../components/sharing'
-// @ts-ignore
-import { makeTagUrl } from '../utils/routes'
 
 interface TILTemplateData {
   location: {
