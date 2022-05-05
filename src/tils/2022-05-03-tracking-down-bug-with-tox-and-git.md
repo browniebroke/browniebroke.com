@@ -9,10 +9,9 @@ The build was passing recently, but broke a few days ago. I needed to run someth
 
 The project is tested with [tox](https://tox.wiki/en/latest/), which I used to run an isolated environment to install a version of Django from an archive based on a git commit, which GitHub exposes:
 
-```
+```ini
 [testenv]
 deps =
-    ...
     djangorev: https://github.com/django/django/archive/dcebc5d.tar.gz
 ```
 
