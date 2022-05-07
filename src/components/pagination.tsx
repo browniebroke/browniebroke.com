@@ -24,14 +24,16 @@ export interface Page {
 interface PageLinkProps {
   pageObj: Page | null
   rel: 'prev' | 'next'
+  makeUrlFunc: Function | null
 }
 
 interface PaginationProps {
   previous: Page | null
   next: Page | null
+  makeUrlFunc?: (slug: string) => string
 }
 
-const PageLink: React.FC<PageLinkProps> = ({ pageObj, rel }) => {
+const PageLink: React.FC<PageLinkProps> = ({ pageObj, rel, makeUrlFunc }) => {
   let label = ''
   switch (rel) {
     case 'prev':
@@ -43,11 +45,12 @@ const PageLink: React.FC<PageLinkProps> = ({ pageObj, rel }) => {
     default:
       label = ''
   }
+  const makeUrl = makeUrlFunc !== null ? makeUrlFunc : makePostUrl
   return (
     <li>
       {pageObj && (
         <Link
-          to={makePostUrl(pageObj.fields.slug)}
+          to={makeUrl(pageObj.fields.slug)}
           rel={rel}
           title={pageObj.frontmatter.title}
         >
@@ -61,11 +64,12 @@ const PageLink: React.FC<PageLinkProps> = ({ pageObj, rel }) => {
 const Pagination: React.FC<PaginationProps> = ({
   previous = null,
   next = null,
+  makeUrlFunc = null,
 }) => {
   return (
     <PaginationStyles>
-      <PageLink pageObj={previous} rel="prev" />
-      <PageLink pageObj={next} rel="next" />
+      <PageLink pageObj={previous} rel="prev" makeUrlFunc={makeUrlFunc} />
+      <PageLink pageObj={next} rel="next" makeUrlFunc={makeUrlFunc} />
     </PaginationStyles>
   )
 }

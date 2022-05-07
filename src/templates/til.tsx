@@ -8,6 +8,8 @@ import Pagination, { Page } from '../components/pagination'
 import PostMetaData from '../components/post-metadata'
 import SEO from '../components/seo'
 import Sharing from '../components/sharing'
+// @ts-ignore
+import { makeTILUrl } from '../utils/routes'
 
 interface TILTemplateData {
   location: {
@@ -54,7 +56,7 @@ const TILTemplate = ({ location, data, pageContext }: TILTemplateData) => {
       <div dangerouslySetInnerHTML={{ __html: post.html }} />
 
       <Sharing post={post} path={location.pathname} />
-      <Pagination previous={previous} next={next} />
+      <Pagination previous={previous} next={next} makeUrlFunc={makeTILUrl} />
     </Layout>
   )
 }
