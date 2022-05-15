@@ -13,7 +13,7 @@
   "dependencies": {
     "@browniebroke/react-ui-components": "1.8.3",
     "@fontsource/cabin-condensed": "4.5.7",
-    "@fontsource/patua-one": "4.5.5",
+    "@fontsource/patua-one": "4.5.7",
     "babel-plugin-styled-components": "2.0.7",
     "gatsby": "4.14.0",
     "gatsby-plugin-csp": "1.1.3",
