@@ -1,4 +1,4 @@
-import PostPreview, { PostPreviewData } from './post'
+import { PostPreview, PostPreviewData } from './post'
 import React from 'react'
 import styled from 'styled-components'
 
@@ -10,7 +10,7 @@ interface PostsListProps {
   posts: PostPreviewData[]
 }
 
-const PostsList: React.FC<PostsListProps> = ({ posts }) => {
+export const PostsList: React.FC<PostsListProps> = ({ posts }) => {
   return (
     <>
       {posts.map((post) => (
@@ -21,5 +21,3 @@ const PostsList: React.FC<PostsListProps> = ({ posts }) => {
     </>
   )
 }
-
-export default PostsList

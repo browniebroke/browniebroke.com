@@ -33,7 +33,7 @@ interface HeaderProps {
   siteTitle: String
 }
 
-const Header: React.FC<HeaderProps> = ({ siteTitle }) => (
+export const Header: React.FC<HeaderProps> = ({ siteTitle }) => (
   <HeaderWrapperStyles>
     <HeaderStyles>
       <TitleStyles>
@@ -46,5 +46,3 @@ const Header: React.FC<HeaderProps> = ({ siteTitle }) => (
     </HeaderStyles>
   </HeaderWrapperStyles>
 )
-
-export default Header

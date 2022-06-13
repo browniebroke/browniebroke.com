@@ -2,14 +2,14 @@ import React from 'react'
 import { Link, graphql } from 'gatsby'
 import styled from 'styled-components'
 
-import Avatar from '../components/avatar'
-import Layout from '../components/layout'
+import { Avatar } from '../components/avatar'
+import { Layout } from '../components/layout'
 import { PostPreviewEdge } from '../components/post'
-import PostsList from '../components/posts'
-import SectionTitleStyles from '../components/section-title'
-import SeeMoreStyles from '../components/see-more'
-import SEO from '../components/seo'
-import SocialLinks from '../components/social'
+import { PostsList } from '../components/posts'
+import { SectionTitleStyles } from '../components/section-title'
+import { SeeMoreStyles } from '../components/see-more'
+import { SEO } from '../components/seo'
+import { SocialLinks } from '../components/social'
 
 const HeroSectionStyles = styled.section`
   display: flex;

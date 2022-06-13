@@ -9,7 +9,7 @@ import React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 import { ExternalLink, ListInline } from '@browniebroke/react-ui-components'
 
-const SocialLinks: React.FC = () => {
+export const SocialLinks: React.FC = () => {
   const { site } = useStaticQuery(graphql`
     query {
       site {
@@ -55,5 +55,3 @@ const SocialLinks: React.FC = () => {
     </ListInline>
   )
 }
-
-export default SocialLinks

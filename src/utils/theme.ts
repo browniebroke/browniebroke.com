@@ -1,6 +1,6 @@
 import typography from './typography'
 
-const theme = {
+export const theme = {
   spacings: [
     typography.rhythm(1 / 6),
     typography.rhythm(1 / 3),
@@ -9,5 +9,3 @@ const theme = {
     typography.rhythm(2),
   ],
 }
-
-export default theme

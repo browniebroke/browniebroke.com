@@ -1,9 +1,9 @@
 import React from 'react'
 import { graphql, Link, Page } from 'gatsby'
 
-import Layout from '../components/layout'
-import SectionTitleStyles from '../components/section-title'
-import SEO from '../components/seo'
+import { Layout } from '../components/layout'
+import { SectionTitleStyles } from '../components/section-title'
+import { SEO } from '../components/seo'
 // @ts-ignore
 import { makeTILUrl } from '../utils/routes'
 

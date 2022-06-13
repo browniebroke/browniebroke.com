@@ -6,10 +6,6 @@
   "license": "MIT",
   "repository": "https://github.com/browniebroke/browniebroke.com.git",
   "homepage": "https://browniebroke.com",
-  "engines": {
-    "node": "16.x",
-    "npm": "8.x"
-  },
   "dependencies": {
     "@browniebroke/react-ui-components": "1.8.3",
     "@fontsource/cabin-condensed": "4.5.7",

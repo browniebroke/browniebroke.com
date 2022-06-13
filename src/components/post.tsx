@@ -24,7 +24,7 @@ interface PostPreviewProp {
   post: PostPreviewData
 }
 
-const PostPreview: React.FC<PostPreviewProp> = ({ post }) => {
+export const PostPreview: React.FC<PostPreviewProp> = ({ post }) => {
   return (
     <div>
       <h3>
@@ -41,8 +41,6 @@ const PostPreview: React.FC<PostPreviewProp> = ({ post }) => {
     </div>
   )
 }
-
-export default PostPreview
 
 export const postPreviewFragment = graphql`
   fragment FormattedDate on MarkdownRemarkFrontmatter {

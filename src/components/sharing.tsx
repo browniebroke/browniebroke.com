@@ -23,7 +23,7 @@ interface SharingProps {
   path: string
 }
 
-const Sharing: React.FC<SharingProps> = ({ post, path }) => {
+export const Sharing: React.FC<SharingProps> = ({ post, path }) => {
   const {
     site: {
       siteMetadata: { siteUrl, social },
@@ -74,5 +74,3 @@ const Sharing: React.FC<SharingProps> = ({ post, path }) => {
     </SharingStyles>
   )
 }
-
-export default Sharing

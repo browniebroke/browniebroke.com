@@ -61,7 +61,7 @@ const PageLink: React.FC<PageLinkProps> = ({ pageObj, rel, makeUrlFunc }) => {
   )
 }
 
-const Pagination: React.FC<PaginationProps> = ({
+export const Pagination: React.FC<PaginationProps> = ({
   previous = null,
   next = null,
   makeUrlFunc = null,
@@ -73,5 +73,3 @@ const Pagination: React.FC<PaginationProps> = ({
     </PaginationStyles>
   )
 }
-
-export default Pagination

@@ -4,8 +4,8 @@ import { GatsbyImage, IGatsbyImageData } from 'gatsby-plugin-image'
 import styled, { ThemeProvider } from 'styled-components'
 import { ExternalLink } from '@browniebroke/react-ui-components'
 
-import Header from './header'
-import theme from '../utils/theme'
+import { Header } from './header'
+import { theme } from '../utils/theme'
 
 const ContentWrapper = styled.div`
   margin: 0 auto;
@@ -42,7 +42,7 @@ const getHeroImage = (heroImage?: IGatsbyImageData) => {
   }
 }
 
-const Layout: React.FC<LayoutProps> = ({ headerImage, children }) => {
+export const Layout: React.FC<LayoutProps> = ({ headerImage, children }) => {
   const data = useStaticQuery(graphql`
     query {
       site {
@@ -73,5 +73,3 @@ const Layout: React.FC<LayoutProps> = ({ headerImage, children }) => {
     </>
   )
 }
-
-export default Layout

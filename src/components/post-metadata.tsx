@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-const PostMetaData = styled.div`
+export const PostMetaData = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -15,5 +15,3 @@ const PostMetaData = styled.div`
     margin-bottom: 0.5rem;
   }
 `
-
-export default PostMetaData
