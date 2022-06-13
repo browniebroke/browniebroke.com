@@ -1,10 +1,10 @@
 import React from 'react'
 import { Link, graphql } from 'gatsby'
 
-import Layout from '../components/layout'
-import PostsList from '../components/posts'
-import SeeMoreStyles from '../components/see-more'
-import SEO from '../components/seo'
+import { Layout } from '../components/layout'
+import { PostsList } from '../components/posts'
+import { SeeMoreStyles } from '../components/see-more'
+import { SEO } from '../components/seo'
 import { PostPreviewEdge } from '../components/post'
 
 interface TagPageData {

@@ -12,7 +12,7 @@ const AvatarStyles = styled.div`
   }
 `
 
-const Avatar: React.FC = () => (
+export const Avatar: React.FC = () => (
   <AvatarStyles>
     <StaticImage
       src="../assets/avatar.jpg"
@@ -24,5 +24,3 @@ const Avatar: React.FC = () => (
     />
   </AvatarStyles>
 )
-
-export default Avatar

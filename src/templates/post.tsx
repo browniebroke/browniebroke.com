@@ -4,12 +4,12 @@ import { getImage, IGatsbyImageData } from 'gatsby-plugin-image'
 import { FaGithub } from 'react-icons/fa'
 import { ExternalLink, ListInline } from '@browniebroke/react-ui-components'
 
-import Layout from '../components/layout'
-import Pagination, { Page } from '../components/pagination'
-import PostMetaData from '../components/post-metadata'
-import SEO from '../components/seo'
-import Sharing from '../components/sharing'
-import Tag from '../components/tag'
+import { Layout } from '../components/layout'
+import { Pagination, Page } from '../components/pagination'
+import { PostMetaData } from '../components/post-metadata'
+import { SEO } from '../components/seo'
+import { Sharing } from '../components/sharing'
+import { Tag } from '../components/tag'
 // @ts-ignore
 import { makeTagUrl } from '../utils/routes'
 

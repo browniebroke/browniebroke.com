@@ -1,7 +1,7 @@
 import { Link } from 'gatsby'
 import styled from 'styled-components'
 
-const Tag = styled(Link)`
+export const Tag = styled(Link)`
   font-size: 0.8em;
   display: inline-block;
   border-radius: 5px;
@@ -16,5 +16,3 @@ const Tag = styled(Link)`
     background: #000;
   }
 `
-
-export default Tag

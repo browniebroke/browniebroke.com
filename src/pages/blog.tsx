@@ -1,11 +1,11 @@
 import React from 'react'
 import { graphql, Page } from 'gatsby'
 
-import Layout from '../components/layout'
+import { Layout } from '../components/layout'
 import { PostPreviewEdge } from '../components/post'
-import PostsList from '../components/posts'
-import SectionTitleStyles from '../components/section-title'
-import SEO from '../components/seo'
+import { PostsList } from '../components/posts'
+import { SectionTitleStyles } from '../components/section-title'
+import { SEO } from '../components/seo'
 
 interface BlogPageData extends Page {
   data: {

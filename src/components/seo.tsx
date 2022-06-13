@@ -43,7 +43,7 @@ const getImageMeta = (
   ]
 }
 
-const SEO: React.FC<SEOProps> = ({
+export const SEO: React.FC<SEOProps> = ({
   title,
   description,
   image,
@@ -129,5 +129,3 @@ const SEO: React.FC<SEOProps> = ({
     />
   )
 }
-
-export default SEO
