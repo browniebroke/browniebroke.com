@@ -5,6 +5,7 @@ import styled, { ThemeProvider } from 'styled-components'
 import { ExternalLink } from '@browniebroke/react-ui-components'
 
 import { Header } from './header'
+import { GlobalStyle } from './global-style'
 import { theme } from '../utils/theme'
 
 const ContentWrapper = styled.div`
@@ -57,6 +58,7 @@ export const Layout: React.FC<LayoutProps> = ({ headerImage, children }) => {
     <>
       <ThemeProvider theme={theme}>
         <Header siteTitle={data.site.siteMetadata.title} />
+        <GlobalStyle />
         {getHeroImage(headerImage)}
         <ContentWrapper>
           <Main>{children}</Main>

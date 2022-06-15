@@ -8,6 +8,7 @@ import {
 import React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 import { ExternalLink, ListInline } from '@browniebroke/react-ui-components'
+import { theme } from '../utils/theme'
 
 export const SocialLinks: React.FC = () => {
   const { site } = useStaticQuery(graphql`
@@ -30,7 +31,7 @@ export const SocialLinks: React.FC = () => {
     site.siteMetadata.social
 
   return (
-    <ListInline>
+    <ListInline padding={theme.spacings[2]}>
       <ExternalLink
         to={`https://www.twitter.com/${twitter}`}
         title="Twitter profile"

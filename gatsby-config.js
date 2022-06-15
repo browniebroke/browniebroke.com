@@ -213,13 +213,6 @@ module.exports = {
     },
     `gatsby-plugin-robots-txt`,
     {
-      resolve: `gatsby-plugin-typography`,
-      options: {
-        pathToConfigModule: `src/utils/typography`,
-        omitGoogleFont: true,
-      },
-    },
-    {
       resolve: `gatsby-plugin-netlify`,
       options: {
         headers: {
