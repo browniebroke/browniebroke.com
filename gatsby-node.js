@@ -102,7 +102,8 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
       value,
     })
 
-    // Add sourceName field
+    // Add sourceName field - adapted from:
+    // https://github.com/elboman/gatsby-remark-source-name
     const fileNode = getNode(node.parent)
     createNodeField({
       node,
