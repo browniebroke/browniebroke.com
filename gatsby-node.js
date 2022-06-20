@@ -7,48 +7,12 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   // Run query to get data
   const result = await graphql(`
     {
-      posts: allMarkdownRemark(
-        sort: { fields: [frontmatter___date], order: DESC }
-        limit: 1000
-        filter: { fileAbsolutePath: { regex: "/.*/src/posts/.*/g" } }
-      ) {
+      allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
         edges {
           node {
             fields {
               slug
-            }
-            frontmatter {
-              title
-              description
-            }
-          }
-          next {
-            fields {
-              slug
-            }
-            frontmatter {
-              title
-            }
-          }
-          previous {
-            fields {
-              slug
-            }
-            frontmatter {
-              title
-            }
-          }
-        }
-      }
-      tils: allMarkdownRemark(
-        sort: { fields: [frontmatter___date], order: DESC }
-        limit: 1000
-        filter: { fileAbsolutePath: { regex: "/.*/src/tils/.*/g" } }
-      ) {
-        edges {
-          node {
-            fields {
-              slug
+              sourceName
             }
             frontmatter {
               title
@@ -86,32 +50,31 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     return
   }
 
-  // Create blog posts pages.
-  const posts = result.data.posts.edges
-  posts.forEach((post) => {
-    actions.createPage({
-      path: makePostUrl(post.node.fields.slug),
-      component: path.resolve(`./src/templates/post.tsx`),
-      context: {
-        slug: post.node.fields.slug,
-        previous: post.previous,
-        next: post.next,
-      },
-    })
-  })
-
-  // Create TIL pages
-  const tilsArray = result.data.tils.edges
-  tilsArray.forEach((tilObj) => {
-    actions.createPage({
-      path: makeTILUrl(tilObj.node.fields.slug),
-      component: path.resolve(`./src/templates/til.tsx`),
-      context: {
-        slug: tilObj.node.fields.slug,
-        previous: tilObj.previous,
-        next: tilObj.next,
-      },
-    })
+  const mdFiles = result.data.allMarkdownRemark.edges
+  mdFiles.forEach((mdFile) => {
+    if (mdFile.node.fields.sourceName === 'posts') {
+      // Create blog post page
+      actions.createPage({
+        path: makePostUrl(mdFile.node.fields.slug),
+        component: path.resolve(`./src/templates/post.tsx`),
+        context: {
+          slug: mdFile.node.fields.slug,
+          previous: mdFile.previous,
+          next: mdFile.next,
+        },
+      })
+    } else if (mdFile.node.fields.sourceName === 'tils') {
+      // Create TIL page
+      actions.createPage({
+        path: makeTILUrl(mdFile.node.fields.slug),
+        component: path.resolve(`./src/templates/til.tsx`),
+        context: {
+          slug: mdFile.node.fields.slug,
+          previous: mdFile.previous,
+          next: mdFile.next,
+        },
+      })
+    }
   })
 
   // Create tag pages
@@ -131,11 +94,20 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions
 
   if (node.internal.type === `MarkdownRemark`) {
+    // Add slug field
     const value = createFilePath({ node, getNode })
     createNodeField({
       name: `slug`,
       node,
       value,
+    })
+
+    // Add sourceName field
+    const fileNode = getNode(node.parent)
+    createNodeField({
+      node,
+      name: 'sourceName',
+      value: fileNode.sourceInstanceName,
     })
   }
 }
