@@ -55,7 +55,7 @@ export const pageQuery = graphql`
   query {
     allMarkdownRemark(
       sort: { fields: [frontmatter___date], order: DESC }
-      filter: { fileAbsolutePath: { regex: "/.*/src/tils/.*/g" } }
+      filter: { fields: { sourceName: { eq: "tils" } } }
     ) {
       edges {
         node {
