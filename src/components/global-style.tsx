@@ -11,7 +11,8 @@ export const GlobalStyle = createGlobalStyle<SiteThemeProps>`
     --black: ${(props) => props.theme.black};
     --blue: ${(props) => props.theme.blue};
     
-    font: 125%/1.4em Cabin Condensed, georgia, sans-serif;
+    font: ${({ theme }) => theme.fontSizes.base} ${({ theme }) =>
+  theme.baseFont};
     letter-spacing: .03em;
     overflow-y: scroll;
     
@@ -21,7 +22,7 @@ export const GlobalStyle = createGlobalStyle<SiteThemeProps>`
     h4,
     h5,
     h6 {
-      font-family: Patua One;
+      font-family: ${({ theme }) => theme.headersFont};
       color: var(--black);
       font-weight: 400;
       margin: 0 0 1.4rem 0;
@@ -43,21 +44,21 @@ export const GlobalStyle = createGlobalStyle<SiteThemeProps>`
     color: var(--blue);
   }
   h1 {
-    font-size: 2rem;
+    font-size: ${({ theme }) => theme.fontSizes.h1};
   }
   h2 {
-    font-size: 1.51572rem;
+    font-size: ${({ theme }) => theme.fontSizes.h2};
   }
   h3 {
-    font-size: 1.31951rem;
+    font-size: ${({ theme }) => theme.fontSizes.h3};
   }
   h4 {
-    font-size: 1rem;
+    font-size: ${({ theme }) => theme.fontSizes.h4};
   }
   h5 {
-    font-size: 0.85028rem;
+    font-size: ${({ theme }) => theme.fontSizes.h5};
   }
   h6 {
-    font-size: 0.78405rem;
+    font-size: ${({ theme }) => theme.fontSizes.h6};
   }
 `
