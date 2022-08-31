@@ -2,7 +2,7 @@
 
 const fs = require('fs')
 const slugify = require('slugify')
-const usage = `usage: init-til.js [til|post] '<title>'`
+const usage = `usage: init-content.js [til|post] '<title>'`
 
 const scriptArgs = process.argv.slice(2)
 if (scriptArgs.length < 2) {
@@ -30,7 +30,7 @@ function getDateStr() {
 
 function initTIL(title) {
   const dateStr = getDateStr()
-  const slug = slugify(title)
+  const slug = slugify(title.toLowerCase())
   const data = `---
 date: ${dateStr}
 title: '${title}'
