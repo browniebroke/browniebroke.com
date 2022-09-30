@@ -11,7 +11,7 @@
     "@fontsource/cabin-condensed": "4.5.8",
     "@fontsource/patua-one": "4.5.8",
     "babel-plugin-styled-components": "2.0.7",
-    "gatsby": "4.24.0",
+    "gatsby": "4.24.1",
     "gatsby-plugin-csp": "1.1.3",
     "gatsby-plugin-feed": "4.24.0",
     "gatsby-plugin-google-gtag": "4.24.0",
