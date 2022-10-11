@@ -45,7 +45,7 @@
     "typescript": "4.8.4"
   },
   "devDependencies": {
-    "@types/node": "16.11.64",
+    "@types/node": "16.11.65",
     "@types/react": "18.0.21",
     "@types/react-dom": "18.0.6",
     "@types/react-helmet": "6.1.5",
@@ -54,7 +54,7 @@
     "eslint": "8.25.0",
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-prettier": "4.2.1",
-    "eslint-plugin-react": "7.31.9",
+    "eslint-plugin-react": "7.31.10",
     "prettier": "2.7.1"
   },
   "scripts": {
