@@ -1,6 +1,7 @@
 import {
   FaGithub,
   FaGitlab,
+  FaMastodon,
   FaMedium,
   FaStackOverflow,
   FaTwitter,
@@ -32,6 +33,13 @@ export const SocialLinks: React.FC = () => {
 
   return (
     <ListInline padding={theme.spacings[2]}>
+      <ExternalLink
+        to="https://fosstodon.org/@browniebroke"
+        title="Mastondon profile"
+        rel="me"
+      >
+        <FaMastodon />
+      </ExternalLink>
       <ExternalLink
         to={`https://www.twitter.com/${twitter}`}
         title="Twitter profile"
