@@ -23,7 +23,7 @@
     "gatsby-plugin-robots-txt": "1.7.1",
     "gatsby-plugin-sharp": "5.0.0",
     "gatsby-plugin-sitemap": "6.0.0",
-    "gatsby-plugin-styled-components": "5.24.0",
+    "gatsby-plugin-styled-components": "6.0.0",
     "gatsby-plugin-typescript": "5.0.0",
     "gatsby-remark-images": "7.0.0",
     "gatsby-remark-smartypants": "6.0.0",
