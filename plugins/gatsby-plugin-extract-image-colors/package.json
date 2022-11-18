@@ -1,0 +1,27 @@
+{
+  "name": "gatsby-plugin-extract-image-colors",
+  "version": "0.0.15",
+  "description": "Plugin to extract image colors using vibrantjs",
+  "main": "gatsby-node.js",
+  "scripts": {
+    "build": "babel src --out-dir . --ignore **/__tests__",
+    "prepare": "cross-env NODE_ENV=production npm run build",
+    "watch": "babel -w src --out-dir . --ignore **/__tests__"
+  },
+  "author": "Mike Patterson",
+  "homepage": "https://github.com/mittnavnermike/gatsby-plugins/tree/master/packages/gatsby-plugin-extract-image-colors#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mittnavnermike/gatsby-plugins.git",
+    "directory": "packages/gatsby-plugin-extract-image-colors"
+  },
+  "license": "ISC",
+  "keywords": [
+    "gatsby",
+    "gatsby-plugin",
+    "image",
+    "color",
+    "vibrantjs",
+    "extract"
+  ]
+}
