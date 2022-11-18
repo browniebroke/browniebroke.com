@@ -16,12 +16,7 @@ import { makeTagUrl } from '../utils/routes'
 interface GatsbyImageColors extends IGatsbyImageData {
   colors: {
     vibrant: string
-    darkVibrant: string
-    lightVibrant: string
-    lighterVibrant: string
-    muted: string
-    darkMuted: string
-    lightMuted: string
+    vibrantAlpha10: string
   }
 }
 
@@ -59,7 +54,7 @@ const BlogPostTemplate = ({
 }: PostTemplateData) => {
   const post = data.markdownRemark
   const headerImage = getImage(post.frontmatter.header_image)
-  const headerColors = post.frontmatter.header_image.colors
+  const headerColor = post.frontmatter.header_image.colors.vibrantAlpha10
   const ogImage = getImage(post.frontmatter.og_image)
   const headerOgImage = getImage(post.frontmatter.headerOgImage)
   const { previous, next } = pageContext
@@ -67,48 +62,12 @@ const BlogPostTemplate = ({
     post.fileAbsolutePath.split('/src/')[1]
   }`
   return (
-    <Layout headerImage={headerImage}>
+    <Layout headerImage={headerImage} headerBgColor={headerColor}>
       <SEO
         title={post.frontmatter.title}
         description={post.frontmatter.description || post.excerpt}
         image={ogImage || headerOgImage}
       />
-      <div
-        className="test-div"
-        style={{
-          padding: '1rem',
-          backgroundColor: headerColors.vibrant,
-        }}
-      >
-        vibrant: {headerColors.vibrant}
-      </div>
-      <div
-        className="test-div"
-        style={{
-          padding: '1rem',
-          backgroundColor: headerColors.lightVibrant,
-        }}
-      >
-        lightVibrant: {headerColors.lightVibrant}
-      </div>
-      <div
-        className="test-div"
-        style={{
-          padding: '1rem',
-          backgroundColor: headerColors.lighterVibrant,
-        }}
-      >
-        lighterVibrant: {headerColors.lighterVibrant}
-      </div>
-      <div
-        className="test-div"
-        style={{
-          padding: '1rem',
-          backgroundColor: headerColors.lightMuted,
-        }}
-      >
-        lightMuted: {headerColors.lightMuted}
-      </div>
       <h1>{post.frontmatter.title}</h1>
 
       <PostMetaData>
@@ -160,8 +119,8 @@ export const pageQuery = graphql`
           }
           childImageSharp {
             gatsbyImageData(
-              width: 1200
-              layout: FULL_WIDTH
+              height: 300
+              layout: CONSTRAINED
               placeholder: BLURRED
             )
           }

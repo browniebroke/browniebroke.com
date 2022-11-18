@@ -7,14 +7,6 @@ const defaultOptions = {
   exclude: [],
 }
 
-const getHex = (rgb) => {
-  return Color({
-    r: rgb[0],
-    g: rgb[1],
-    b: rgb[2],
-  }).hex()
-}
-
 const getHexAlpha = (rgb, valpha) => {
   return Color({
     r: rgb[0],
@@ -38,13 +30,8 @@ exports.onCreateNode = async ({ node, actions }, pluginOptions) => {
     // create a new node field.
     await Vibrant.from(node.absolutePath).getPalette((err, palette) => {
       node.colors = {
-        vibrant: getHex(palette.Vibrant._rgb),
-        darkVibrant: getHex(palette.DarkVibrant._rgb),
-        lightVibrant: getHex(palette.LightVibrant._rgb),
-        lighterVibrant: getHexAlpha(palette.Vibrant._rgb, 0.1),
-        muted: getHex(palette.Muted._rgb),
-        darkMuted: getHex(palette.DarkMuted._rgb),
-        lightMuted: getHex(palette.LightMuted._rgb),
+        vibrant: getHexAlpha(palette.Vibrant._rgb, 1),
+        vibrantAlpha10: getHexAlpha(palette.Vibrant._rgb, 0.1),
       }
     })
   }

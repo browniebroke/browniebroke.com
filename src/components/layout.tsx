@@ -1,7 +1,7 @@
 import React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 import { GatsbyImage, IGatsbyImageData } from 'gatsby-plugin-image'
-import styled, { ThemeProvider } from 'styled-components'
+import styled, { ThemeProvider, css } from 'styled-components'
 import { ExternalLink } from '@browniebroke/react-ui-components'
 
 import { Header } from './header'
@@ -20,8 +20,15 @@ const Main = styled.main`
   min-height: 70vh;
 `
 
-const HeroImageWrapper = styled.div`
-  padding: 0;
+const HeroImageWrapper = styled.div<{ headerColor?: string }>`
+  padding: 3rem;
+  text-align: center;
+  max-height: 50vh;
+  ${(props) =>
+    props.headerColor &&
+    css`
+      background-color: ${props.headerColor};
+    `};
 `
 
 const SmallText = styled.span`
@@ -31,19 +38,24 @@ const SmallText = styled.span`
 interface LayoutProps {
   children?: React.ReactNode
   headerImage?: IGatsbyImageData
+  headerBgColor?: string
 }
 
-const getHeroImage = (heroImage?: IGatsbyImageData) => {
+const getHeroImage = (heroImage?: IGatsbyImageData, headerColor?: string) => {
   if (heroImage) {
     return (
-      <HeroImageWrapper>
+      <HeroImageWrapper headerColor={headerColor}>
         <GatsbyImage image={heroImage} alt="" />
       </HeroImageWrapper>
     )
   }
 }
 
-export const Layout: React.FC<LayoutProps> = ({ headerImage, children }) => {
+export const Layout: React.FC<LayoutProps> = ({
+  headerImage,
+  headerBgColor,
+  children,
+}) => {
   const data = useStaticQuery(graphql`
     query {
       site {
@@ -59,7 +71,7 @@ export const Layout: React.FC<LayoutProps> = ({ headerImage, children }) => {
       <ThemeProvider theme={theme}>
         <Header siteTitle={data.site.siteMetadata.title} />
         <GlobalStyle />
-        {getHeroImage(headerImage)}
+        {getHeroImage(headerImage, headerBgColor)}
         <ContentWrapper>
           <Main>{children}</Main>
           <footer>
