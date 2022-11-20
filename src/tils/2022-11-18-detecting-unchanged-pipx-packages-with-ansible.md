@@ -19,6 +19,6 @@ I [solved this](https://github.com/browniebroke/mac-ansible/commit/3c24278079def
   - pipx
 ```
 
-Now my packages appear as "ok" instead of "changed" when running the playbook. 
+Now my packages appear as "ok" instead of "changed" when running the playbook.
 
 Victory 🎉
