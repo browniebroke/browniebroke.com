@@ -1,4 +1,5 @@
-const { makePostUrl } = require('./src/utils/routes')
+const { makePostUrl, makeTILUrl } = require('./src/utils/routes')
+const { serializeToFeed, makeQueryFor } = require('./src/utils/feeds')
 
 const baseUrl =
   process.env.NODE_ENV === 'development'
@@ -108,42 +109,18 @@ module.exports = {
         `,
         feeds: [
           {
-            serialize: ({ query: { site, allMarkdownRemark } }) => {
-              return allMarkdownRemark.edges.map((edge) => {
-                const postPath = makePostUrl(edge.node.fields.slug)
-                return Object.assign({}, edge.node.frontmatter, {
-                  description: edge.node.excerpt,
-                  date: edge.node.frontmatter.date,
-                  url: `${site.siteMetadata.siteUrl}${postPath}`,
-                  guid: `${site.siteMetadata.siteUrl}${postPath}`,
-                  custom_elements: [{ 'content:encoded': edge.node.html }],
-                })
-              })
-            },
-            query: `
-              {
-                allMarkdownRemark(
-                  sort: { fields: [frontmatter___date], order: DESC }
-                  filter: { fields: { sourceName: { eq: "posts" } } }
-                ) {
-                  edges {
-                    node {
-                      fields { 
-                        slug 
-                      }
-                      excerpt
-                      html
-                      frontmatter {
-                        title
-                        date
-                      }
-                    }
-                  }
-                }
-              }
-            `,
+            serialize: ({ query: { site, allMarkdownRemark } }) =>
+              serializeToFeed(site, allMarkdownRemark, makePostUrl),
+            query: makeQueryFor('posts'),
             output: '/rss.xml',
             title: "Bruno Alla's blog RSS feed",
+          },
+          {
+            serialize: ({ query: { site, allMarkdownRemark } }) =>
+              serializeToFeed(site, allMarkdownRemark, makeTILUrl),
+            query: makeQueryFor('tils'),
+            output: '/tils.xml',
+            title: "Bruno Alla's TIL feed",
           },
         ],
       },
