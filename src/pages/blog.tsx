@@ -1,5 +1,6 @@
 import React from 'react'
-import { graphql, Page } from 'gatsby'
+import { graphql, Link, Page } from 'gatsby'
+import { FaRssSquare } from 'react-icons/fa'
 
 import { Layout } from '../components/layout'
 import { PostPreviewEdge } from '../components/post'
@@ -21,7 +22,12 @@ const BlogPage = ({ data }: BlogPageData) => {
     <Layout>
       <SEO title="My Blog" />
       <section>
-        <SectionTitleStyles>All posts</SectionTitleStyles>
+        <SectionTitleStyles>
+          All posts
+          <Link to="rss.xml">
+            <FaRssSquare />
+          </Link>
+        </SectionTitleStyles>
 
         <PostsList posts={posts} />
       </section>
