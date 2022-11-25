@@ -38,7 +38,7 @@ const TILIndexPage = ({ data }: TILIndexPageData) => {
       <section>
         <SectionTitleStyles>
           TIL
-          <Link to="tils.xml">
+          <Link to="/tils.xml">
             <FaRssSquare />
           </Link>
         </SectionTitleStyles>

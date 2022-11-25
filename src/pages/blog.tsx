@@ -24,7 +24,7 @@ const BlogPage = ({ data }: BlogPageData) => {
       <section>
         <SectionTitleStyles>
           All posts
-          <Link to="rss.xml">
+          <Link to="/rss.xml">
             <FaRssSquare />
           </Link>
         </SectionTitleStyles>
