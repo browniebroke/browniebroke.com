@@ -60,6 +60,7 @@
   "scripts": {
     "build": "gatsby build && node ./csp-util.js",
     "develop": "gatsby develop",
+    "serve": "gatsby serve",
     "lint:eslint": "eslint --ext .js,.jsx,.ts,.tsx .",
     "lint:prettier": "prettier --check .",
     "lint:tsc": "tsc",

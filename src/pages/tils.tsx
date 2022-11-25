@@ -6,6 +6,7 @@ import { SectionTitleStyles } from '../components/section-title'
 import { SEO } from '../components/seo'
 // @ts-ignore
 import { makeTILUrl } from '../utils/routes'
+import { FaRssSquare } from 'react-icons/fa'
 
 interface TIL {
   fields: {
@@ -35,7 +36,12 @@ const TILIndexPage = ({ data }: TILIndexPageData) => {
     <Layout>
       <SEO title="TIL" />
       <section>
-        <SectionTitleStyles>TIL</SectionTitleStyles>
+        <SectionTitleStyles>
+          TIL
+          <Link to="/tils.xml">
+            <FaRssSquare />
+          </Link>
+        </SectionTitleStyles>
         <p>Things I've learned.</p>
         {tils.map((til) => (
           <div>
