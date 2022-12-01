@@ -14,6 +14,7 @@ export const GlobalStyle = createGlobalStyle<SiteThemeProps>`
     font: ${({ theme }) => theme.fontSizes.base} ${({ theme }) =>
   theme.baseFont};
     letter-spacing: .03em;
+    line-height: 1.5;
     overflow-y: scroll;
     
     h1,
@@ -60,5 +61,10 @@ export const GlobalStyle = createGlobalStyle<SiteThemeProps>`
   }
   h6 {
     font-size: ${({ theme }) => theme.fontSizes.h6};
+  }
+  code {
+    background: #f6f8fa;
+    padding: .25em .5em;
+    font-size: 0.85rem;
   }
 `
