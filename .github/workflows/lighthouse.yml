@@ -18,7 +18,7 @@ jobs:
           urls: |
             https://browniebroke.com/
             https://browniebroke.com/blog/
-            https://browniebroke.com/blog/migrating-project-to-poetry/
+            https://browniebroke.com/tils/
           # budgetPath: ./budget.json
           # configPath: ./lighthouserc.json
           uploadArtifacts: true
