@@ -47,7 +47,7 @@ export const pageQuery = graphql`
   query TagBySlug($tag: String!) {
     allMarkdownRemark(
       filter: { frontmatter: { tags: { eq: $tag } } }
-      sort: { fields: frontmatter___date, order: DESC }
+      sort: { frontmatter: { date: DESC } }
     ) {
       edges {
         node {
