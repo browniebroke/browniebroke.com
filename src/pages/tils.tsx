@@ -24,14 +24,14 @@ interface TILEdge {
 
 interface TILIndexPageData extends Page {
   data: {
-    allMarkdownRemark: {
+    allMdx: {
       edges: TILEdge[]
     }
   }
 }
 
 const TILIndexPage = ({ data }: TILIndexPageData) => {
-  const tils = data.allMarkdownRemark.edges.map((edge) => edge.node)
+  const tils = data.allMdx.edges.map((edge) => edge.node)
   return (
     <Layout>
       <SEO title="TIL" />
@@ -59,7 +59,7 @@ export default TILIndexPage
 
 export const pageQuery = graphql`
   query {
-    allMarkdownRemark(
+    allMdx(
       sort: { fields: [frontmatter___date], order: DESC }
       filter: { fields: { sourceName: { eq: "tils" } } }
     ) {

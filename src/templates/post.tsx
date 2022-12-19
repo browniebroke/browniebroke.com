@@ -18,7 +18,7 @@ interface PostTemplateData {
     pathname: string
   }
   data: {
-    markdownRemark: {
+    mdx: {
       excerpt: string
       html: string
       timeToRead: number
@@ -45,7 +45,7 @@ const BlogPostTemplate = ({
   data,
   pageContext,
 }: PostTemplateData) => {
-  const post = data.markdownRemark
+  const post = data.mdx
   const headerImage = getImage(post.frontmatter.header_image)
   const ogImage = getImage(post.frontmatter.og_image)
   const headerOgImage = getImage(post.frontmatter.headerOgImage)
@@ -94,7 +94,7 @@ export default BlogPostTemplate
 
 export const pageQuery = graphql`
   query BlogPostBySlug($slug: String!) {
-    markdownRemark(fields: { slug: { eq: $slug } }) {
+    mdx(fields: { slug: { eq: $slug } }) {
       id
       excerpt(pruneLength: 160)
       html

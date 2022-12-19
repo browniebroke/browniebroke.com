@@ -1,5 +1,6 @@
 const path = require('path')
 const { createFilePath } = require(`gatsby-source-filesystem`)
+const readingTime = require(`reading-time`)
 
 const { makePostUrl, makeTagUrl, makeTILUrl } = require('./src/utils/routes')
 
@@ -7,7 +8,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   // Run query to get data
   const result = await graphql(`
     {
-      allMdx(sort: {frontmatter: {date: DESC}}) {
+      allMdx(sort: { frontmatter: { date: DESC } }) {
         edges {
           node {
             fields {
@@ -38,7 +39,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         }
       }
       tags: allMdx {
-        group(field: {frontmatter: {tags: SELECT}}) {
+        group(field: { frontmatter: { tags: SELECT } }) {
           tag: fieldValue
         }
       }
@@ -94,6 +95,13 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions
 
   if (node.internal.type === `Mdx`) {
+    // Add timeToRead field
+    createNodeField({
+      node,
+      name: `timeToRead`,
+      value: readingTime(node.body),
+    })
+
     // Add slug field
     const value = createFilePath({ node, getNode })
     createNodeField({

@@ -1,11 +1,12 @@
 import { graphql, Link } from 'gatsby'
 import React from 'react'
+import {ReadTimeResults} from 'reading-time'
 
 // @ts-ignore
 import { makePostUrl } from '../utils/routes'
 
 export interface PostPreviewData {
-  timeToRead: number
+  timeToRead: ReadTimeResults
   excerpt: string
   fields: {
     slug: string
@@ -31,7 +32,7 @@ export const PostPreview: React.FC<PostPreviewProp> = ({ post }) => {
         <Link to={makePostUrl(post.fields.slug)}>{post.frontmatter.title}</Link>
       </h3>
       <small>
-        {post.frontmatter.date} • {post.timeToRead} min read
+        {post.frontmatter.date} • {post.timeToRead.minutes} min read
       </small>
       <p
         dangerouslySetInnerHTML={{
@@ -43,12 +44,17 @@ export const PostPreview: React.FC<PostPreviewProp> = ({ post }) => {
 }
 
 export const postPreviewFragment = graphql`
-  fragment FormattedDate on MarkdownRemarkFrontmatter {
+  fragment FormattedDate on MdxFrontmatter {
     date(formatString: "MMMM DD, YYYY")
   }
 
-  fragment PostPreview on MarkdownRemark {
-    timeToRead
+  fragment PostPreview on Mdx {
+    timeToRead {
+      minutes
+      text
+      time
+      words
+    }
     excerpt
     fields {
       slug

@@ -9,7 +9,7 @@ import { PostPreviewEdge } from '../components/post'
 
 interface TagPageData {
   data: {
-    allMarkdownRemark: {
+    allMdx: {
       edges: PostPreviewEdge[]
     }
   }
@@ -19,7 +19,7 @@ interface TagPageData {
 }
 
 const TagPageTemplate = ({ data, pageContext }: TagPageData) => {
-  const posts = data.allMarkdownRemark.edges.map((edge) => edge.node)
+  const posts = data.allMdx.edges.map((edge) => edge.node)
   const title = `Tag "${pageContext.tag}"`
 
   return (
@@ -45,7 +45,7 @@ export default TagPageTemplate
 
 export const pageQuery = graphql`
   query TagBySlug($tag: String!) {
-    allMarkdownRemark(
+    allMdx(
       filter: { frontmatter: { tags: { eq: $tag } } }
       sort: { fields: frontmatter___date, order: DESC }
     ) {

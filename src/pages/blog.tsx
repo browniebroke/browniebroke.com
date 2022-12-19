@@ -10,14 +10,14 @@ import { SEO } from '../components/seo'
 
 interface BlogPageData extends Page {
   data: {
-    allMarkdownRemark: {
+    allMdx: {
       edges: PostPreviewEdge[]
     }
   }
 }
 
 const BlogPage = ({ data }: BlogPageData) => {
-  const posts = data.allMarkdownRemark.edges.map((edge) => edge.node)
+  const posts = data.allMdx.edges.map((edge) => edge.node)
   return (
     <Layout>
       <SEO title="My Blog" />
@@ -39,7 +39,7 @@ export default BlogPage
 
 export const pageQuery = graphql`
   query {
-    allMarkdownRemark(
+    allMdx(
       sort: { fields: [frontmatter___date], order: DESC }
       filter: { fields: { sourceName: { eq: "posts" } } }
     ) {

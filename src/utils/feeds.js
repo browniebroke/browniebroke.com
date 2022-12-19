@@ -1,5 +1,5 @@
-function serializeToFeed(site, allMarkdownRemark, makeUrl) {
-  return allMarkdownRemark.edges.map((edge) => {
+function serializeToFeed(site, allMdx, makeUrl) {
+  return allMdx.edges.map((edge) => {
     const pageUrl = makeUrl(edge.node.fields.slug)
     return Object.assign({}, edge.node.frontmatter, {
       description: edge.node.excerpt,
@@ -14,7 +14,7 @@ function serializeToFeed(site, allMarkdownRemark, makeUrl) {
 function makeQueryFor(sourceName) {
   return `
     {
-      allMarkdownRemark(
+      allMdx(
         sort: { fields: [frontmatter___date], order: DESC }
         filter: { fields: { sourceName: { eq: "${sourceName}" } } }
       ) {
