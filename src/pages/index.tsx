@@ -64,7 +64,7 @@ export const pageQuery = graphql`
   query {
     allMarkdownRemark(
       limit: 3
-      sort: { fields: [frontmatter___date], order: DESC }
+      sort: { frontmatter: { date: DESC } }
       filter: { fields: { sourceName: { eq: "posts" } } }
     ) {
       edges {
