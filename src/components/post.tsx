@@ -1,6 +1,6 @@
 import { graphql, Link } from 'gatsby'
 import React from 'react'
-import {ReadTimeResults} from 'reading-time'
+import { ReadTimeResults } from 'reading-time'
 
 // @ts-ignore
 import { makePostUrl } from '../utils/routes'
@@ -44,10 +44,6 @@ export const PostPreview: React.FC<PostPreviewProp> = ({ post }) => {
 }
 
 export const postPreviewFragment = graphql`
-  fragment FormattedDate on MdxFrontmatter {
-    date(formatString: "MMMM DD, YYYY")
-  }
-
   fragment PostPreview on Mdx {
     timeToRead {
       minutes
@@ -60,7 +56,7 @@ export const postPreviewFragment = graphql`
       slug
     }
     frontmatter {
-      ...FormattedDate
+      date(formatString: "MMMM DD, YYYY")
       title
     }
   }

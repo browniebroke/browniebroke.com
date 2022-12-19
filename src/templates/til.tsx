@@ -65,14 +65,12 @@ export default TILTemplate
 
 export const pageQuery = graphql`
   query TILBySlug($slug: String!) {
-    markdownRemark(fields: { slug: { eq: $slug } }) {
+    mdx(fields: { slug: { eq: $slug } }) {
       id
       excerpt(pruneLength: 160)
-      html
-      fileAbsolutePath
       frontmatter {
         title
-        ...FormattedDate
+        date(formatString: "MMMM DD, YYYY")
         tags
       }
     }

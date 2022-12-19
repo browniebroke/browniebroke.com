@@ -20,9 +20,14 @@ interface PostTemplateData {
   data: {
     mdx: {
       excerpt: string
-      html: string
-      timeToRead: number
-      fileAbsolutePath: string
+      fields: {
+        timeToRead: {
+          minutes: number
+        }
+      }
+      internal: {
+        contentFilePath: string
+      }
       frontmatter: {
         title: string
         date: string
@@ -38,12 +43,14 @@ interface PostTemplateData {
     previous: Page
     next: Page
   }
+  children?: React.ReactNode
 }
 
 const BlogPostTemplate = ({
   location,
   data,
   pageContext,
+  children,
 }: PostTemplateData) => {
   const post = data.mdx
   const headerImage = getImage(post.frontmatter.header_image)
@@ -51,7 +58,7 @@ const BlogPostTemplate = ({
   const headerOgImage = getImage(post.frontmatter.headerOgImage)
   const { previous, next } = pageContext
   const editURL = `https://github.com/browniebroke/browniebroke.com/blob/master/src/${
-    post.fileAbsolutePath.split('/src/')[1]
+    post.internal.contentFilePath.split('/src/')[1]
   }`
   return (
     <Layout headerImage={headerImage}>
@@ -64,7 +71,7 @@ const BlogPostTemplate = ({
 
       <PostMetaData>
         <div>
-          {post.frontmatter.date} • {post.timeToRead} min read
+          {post.frontmatter.date} • {post.fields.timeToRead.minutes} min read
         </div>
         <div>
           <ExternalLink to={editURL} title="Edit on Github">
@@ -74,7 +81,7 @@ const BlogPostTemplate = ({
         </div>
       </PostMetaData>
 
-      <div dangerouslySetInnerHTML={{ __html: post.html }} />
+      <div>{children}</div>
 
       <ListInline padding="0">
         {post.frontmatter.tags.map((tag, index) => (
@@ -97,12 +104,17 @@ export const pageQuery = graphql`
     mdx(fields: { slug: { eq: $slug } }) {
       id
       excerpt(pruneLength: 160)
-      html
-      timeToRead
-      fileAbsolutePath
+      fields {
+        timeToRead {
+          minutes
+        }
+      }
+      internal {
+        contentFilePath
+      }
       frontmatter {
         title
-        ...FormattedDate
+        date(formatString: "MMMM DD, YYYY")
         description
         tags
         header_image {
