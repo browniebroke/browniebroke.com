@@ -15,7 +15,7 @@ function makeQueryFor(sourceName) {
   return `
     {
       allMarkdownRemark(
-        sort: { fields: [frontmatter___date], order: DESC }
+        sort: { frontmatter: { date: DESC } }
         filter: { fields: { sourceName: { eq: "${sourceName}" } } }
       ) {
         edges {
