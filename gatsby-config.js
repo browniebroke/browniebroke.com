@@ -48,26 +48,38 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-transformer-remark`,
+      resolve: `gatsby-plugin-mdx`,
       options: {
-        plugins: [
-          {
-            resolve: `gatsby-remark-images`,
-            options: {
-              maxWidth: 700,
-            },
-          },
-          {
-            resolve: `gatsby-remark-vscode`,
-            options: {
-              theme: 'Quiet Light',
-              extensions: ['toml'],
-            },
-          },
-          `gatsby-remark-smartypants`,
-          `gatsby-remark-external-links`,
+        extensions: [`.mdx`, `.md`],
+      },
+      mdxOptions: {
+        rehypePlugins: [
+          // Add rel (and target) to external links.
+          import('rehype-external-links'),
+          // Generate heading ids for rehype-autolink-headings
+          import(`rehype-slug`),
+          // To pass options, use a 2-element array with the
+          // configuration in an object in the second element
+          [import(`rehype-autolink-headings`), { behavior: `wrap` }],
         ],
       },
+      gatsbyRemarkPlugins: [
+        {
+          resolve: `gatsby-remark-images`,
+          options: {
+            maxWidth: 700,
+          },
+        },
+        {
+          resolve: `gatsby-remark-vscode`,
+          options: {
+            theme: 'Quiet Light',
+            extensions: ['toml'],
+          },
+        },
+        `gatsby-remark-smartypants`,
+        `gatsby-remark-external-links`,
+      ],
     },
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
