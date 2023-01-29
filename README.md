@@ -4,7 +4,7 @@
   <a href="https://app.netlify.com/sites/browniebroke/deploys">
     <img alt="Netlify" src="https://img.shields.io/netlify/2d3f146f-3ca0-4651-afa1-4fe16612de76?label=Netlify&logo=netlify&logoColor=white&style=flat-square">
   </a>
-  <a href="https://github.com/browniebroke/browniebroke.com/actions?query=workflow%3ACI">
+  <a href="https://github.com/browniebroke/browniebroke.com/actions/workflows/ci.yml?query=branch%3Amain">
     <img alt="CI status" src="https://img.shields.io/github/actions/workflow/status/browniebroke/browniebroke.com/ci.yml?branch=main&label=CI&logo=github&logoColor=white&style=flat-square">
   </a>
 </p>
