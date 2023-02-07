@@ -8,31 +8,33 @@ I only learned today about a neat Python feature: descriptors. I came across tha
 From the article, I dived a bit deeper and landed on the amazing ["Descriptor How To Guide"](https://docs.python.org/3/howto/descriptor.html) from the Python documentation. The example of logging is a simple, yet practical one, that helped me "get" it:
 
 ```python
-import logging
-
-logging.basicConfig(level=logging.INFO)
-
-
 class LoggedAgeAccess:
+    """Descriptor class."""
+
     def __get__(self, obj, objtype=None):
         value = obj._age
-        logging.info('Accessing %r giving %r', 'age', value)
+        print(f'Accessing age={value}')
         return value
 
     def __set__(self, obj, value):
-        logging.info('Updating %r to %r', 'age', value)
+        print(f'Updating age to {value=}')
         obj._age = value
 
 
 class Person:
-    age = LoggedAgeAccess()             # Descriptor instance
+    """Class using the descriptor."""
+
+    # Descriptor instance
+    age = LoggedAgeAccess()
 
     def __init__(self, name, age):
-        self.name = name                # Regular instance attribute
-        self.age = age                  # Calls __set__()
+        self.name = name
+        # Calls __set__()
+        self.age = age
 
     def birthday(self):
-        self.age += 1                   # Calls both __get__() and __set__()
+        # Calls __get__() then __set__()
+        self.age += 1
 ```
 
 The guide expands on more advanced usages. I love how it starts simple, gets more complicated as you go, before expanding on the more formal definitions. A great resource from Raymond Hettinger.
