@@ -7,7 +7,7 @@ const AvatarStyles = styled.div`
 
   img {
     padding: 5px;
-    border: 1px solid #51555d;
+    border: 1px solid ${(props) => props.theme.grey};
     border-radius: 50%;
   }
 `

@@ -7,7 +7,7 @@ export const Tag = styled(Link)`
   border-radius: 5px;
   padding: 5px 10px;
   margin: 10px 10px 0 0;
-  background: #5f5f5f;
+  background: ${(props) => props.theme.grey};
   color: #fff;
   text-decoration: none;
 
