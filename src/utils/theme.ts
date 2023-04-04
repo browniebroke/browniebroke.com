@@ -2,9 +2,21 @@ export interface SiteTheme {
   white: string
   black: string
   blue: string
+  grey: string
   spacings: string[]
-  mdBreakpoint: string
-  containerMaxWidth: string
+  gridBreakpoints: {
+    xs: string
+    sm: string
+    md: string
+    lg: string
+    xl: string
+  }
+  containersMaxWidth: {
+    sm: string
+    md: string
+    lg: string
+    xl: string
+  }
   fontSizes: {
     base: string
     h1: string
@@ -38,9 +50,22 @@ export const theme: SiteTheme = {
   white: '#fffaff',
   black: '#0c2340',
   blue: '#3498DB',
+  grey: '#5f5f5f',
   spacings: spacers.map((s) => `${s}rem`),
-  mdBreakpoint: '768px',
-  containerMaxWidth: `900px`,
+  gridBreakpoints: {
+    xs: '0',
+    sm: '576px',
+    md: '768px',
+    lg: '992px',
+    xl: '1200px',
+  },
+  // Note: all the keys in the below object should exist above
+  containersMaxWidth: {
+    sm: '540px',
+    md: '720px',
+    lg: '960px',
+    xl: '1140px',
+  },
   fontSizes: {
     base: `${baseFontSize}rem`,
     h1: `${baseFontSize * 1.7}rem`,
