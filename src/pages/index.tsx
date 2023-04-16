@@ -10,6 +10,7 @@ import { SectionTitleStyles } from '../components/section-title'
 import { SeeMoreStyles } from '../components/see-more'
 import { SEO } from '../components/seo'
 import { SocialLinks } from '../components/social'
+import { Box } from '@chakra-ui/react'
 
 const HeroSectionStyles = styled.section`
   display: flex;

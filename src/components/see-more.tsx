@@ -1,6 +1,10 @@
-import styled from 'styled-components'
+import { Box } from '@chakra-ui/react'
+import React from 'react'
 
-export const SeeMoreStyles = styled.p`
-  text-align: center;
-  margin: 3rem;
-`
+export const SeeMoreStyles: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => (
+  <Box as="p" m={12} textAlign={['center']}>
+    {children}
+  </Box>
+)

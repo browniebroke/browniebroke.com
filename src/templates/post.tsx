@@ -1,15 +1,15 @@
 import React from 'react'
-import { graphql } from 'gatsby'
+import { graphql, Link } from 'gatsby'
 import { getImage, IGatsbyImageData } from 'gatsby-plugin-image'
 import { FaGithub } from 'react-icons/fa'
-import { ExternalLink, ListInline } from '@browniebroke/react-ui-components'
+import { ExternalLink } from '@browniebroke/react-ui-components'
+import { Stack, Tag } from '@chakra-ui/react'
 
 import { Layout } from '../components/layout'
 import { Pagination, Page } from '../components/pagination'
 import { PostMetaData } from '../components/post-metadata'
 import { SEO } from '../components/seo'
 import { Sharing } from '../components/sharing'
-import { Tag } from '../components/tag'
 // @ts-ignore
 import { makeTagUrl } from '../utils/routes'
 
@@ -76,14 +76,15 @@ const BlogPostTemplate = ({
 
       <div dangerouslySetInnerHTML={{ __html: post.html }} />
 
-      <ListInline padding="0">
+      <Stack direction="row">
         {post.frontmatter.tags.map((tag, index) => (
-          <Tag to={makeTagUrl(tag)} key={index}>
-            {tag}
-          </Tag>
+          <Link to={makeTagUrl(tag)}>
+            <Tag size="md" variant="solid">
+              {tag}
+            </Tag>
+          </Link>
         ))}
-      </ListInline>
-
+      </Stack>
       <Sharing post={post} path={location.pathname} />
       <Pagination previous={previous} next={next} />
     </Layout>

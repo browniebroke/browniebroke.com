@@ -8,8 +8,8 @@ import {
 } from 'react-icons/fa'
 import React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
-import { ExternalLink, ListInline } from '@browniebroke/react-ui-components'
-import { theme } from '../utils/theme'
+import { ExternalLink } from '@browniebroke/react-ui-components'
+import { Stack } from '@chakra-ui/react'
 
 export const SocialLinks: React.FC = () => {
   const { site } = useStaticQuery(graphql`
@@ -32,7 +32,7 @@ export const SocialLinks: React.FC = () => {
     site.siteMetadata.social
 
   return (
-    <ListInline padding={theme.spacings[2]}>
+    <Stack direction="row">
       <ExternalLink
         to="https://fosstodon.org/@browniebroke"
         title="Mastondon profile"
@@ -61,6 +61,6 @@ export const SocialLinks: React.FC = () => {
       <ExternalLink to={`https://medium.com/@${medium}`} title="Medium Profile">
         <FaMedium />
       </ExternalLink>
-    </ListInline>
+    </Stack>
   )
 }

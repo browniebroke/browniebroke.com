@@ -2,7 +2,8 @@ import React from 'react'
 import { FaTwitter, FaRegEnvelope } from 'react-icons/fa'
 import { graphql, useStaticQuery } from 'gatsby'
 import styled from 'styled-components'
-import { ExternalLink, ListInline } from '@browniebroke/react-ui-components'
+import { ExternalLink } from '@browniebroke/react-ui-components'
+import { Stack } from '@chakra-ui/react'
 
 const SharingStyles = styled.div`
   margin: 3rem 0;
@@ -63,14 +64,14 @@ export const Sharing: React.FC<SharingProps> = ({ post, path }) => {
   return (
     <SharingStyles>
       <h4>Liked it? Please share it!</h4>
-      <ListInline>
+      <Stack direction="row">
         <ExternalLink to={emailUrl} title="Share via email">
           <FaRegEnvelope />
         </ExternalLink>
         <ExternalLink to={twitterUrl} title="Share on Twitter">
           <FaTwitter />
         </ExternalLink>
-      </ListInline>
+      </Stack>
     </SharingStyles>
   )
 }
