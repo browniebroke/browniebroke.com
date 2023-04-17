@@ -1,19 +1,19 @@
 import React from 'react'
-import styled from 'styled-components'
+import { Box } from '@chakra-ui/react'
 import { StaticImage } from 'gatsby-plugin-image'
 
-const AvatarStyles = styled.div`
-  padding: 1rem;
-
-  img {
-    padding: 5px;
-    border: 1px solid ${(props) => props.theme.grey};
-    border-radius: 50%;
-  }
-`
-
 export const Avatar: React.FC = () => (
-  <AvatarStyles>
+  <Box
+    padding={4}
+    sx={{
+      img: {
+        borderRadius: '50%',
+        padding: 'var(--chakra-space-1)',
+        border: '1px solid',
+        borderColor: 'gray.500',
+      },
+    }}
+  >
     <StaticImage
       src="../assets/avatar.jpg"
       alt="Picture of Bruno"
@@ -22,5 +22,5 @@ export const Avatar: React.FC = () => (
       width={160}
       height={160}
     />
-  </AvatarStyles>
+  </Box>
 )
