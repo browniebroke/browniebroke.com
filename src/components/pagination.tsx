@@ -1,16 +1,9 @@
 import React from 'react'
 import { Link } from 'gatsby'
-import styled from 'styled-components'
+import { Stack } from '@chakra-ui/react'
+
 // @ts-ignore
 import { makePostUrl } from '../utils/routes'
-
-const PaginationStyles = styled.ul`
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  list-style: none;
-  margin: 0;
-`
 
 export interface Page {
   fields: {
@@ -47,7 +40,7 @@ const PageLink: React.FC<PageLinkProps> = ({ pageObj, rel, makeUrlFunc }) => {
   }
   const makeUrl = makeUrlFunc !== null ? makeUrlFunc : makePostUrl
   return (
-    <li>
+    <>
       {pageObj && (
         <Link
           to={makeUrl(pageObj.fields.slug)}
@@ -57,7 +50,7 @@ const PageLink: React.FC<PageLinkProps> = ({ pageObj, rel, makeUrlFunc }) => {
           {label}
         </Link>
       )}
-    </li>
+    </>
   )
 }
 
@@ -67,9 +60,14 @@ export const Pagination: React.FC<PaginationProps> = ({
   makeUrlFunc = null,
 }) => {
   return (
-    <PaginationStyles>
+    <Stack
+      direction="row"
+      justifyContent="space-between"
+      flexWrap="wrap"
+      marginY={6}
+    >
       <PageLink pageObj={previous} rel="prev" makeUrlFunc={makeUrlFunc} />
       <PageLink pageObj={next} rel="next" makeUrlFunc={makeUrlFunc} />
-    </PaginationStyles>
+    </Stack>
   )
 }
