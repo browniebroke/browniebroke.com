@@ -5,7 +5,7 @@ import { FaRssSquare } from 'react-icons/fa'
 import { Layout } from '../components/layout'
 import { PostPreviewEdge } from '../components/post'
 import { PostsList } from '../components/posts'
-import { SectionTitleStyles } from '../components/section-title'
+import { SectionTitle } from '../components/section-title'
 import { SEO } from '../components/seo'
 
 interface BlogPageData extends Page {
@@ -22,12 +22,12 @@ const BlogPage = ({ data }: BlogPageData) => {
     <Layout>
       <SEO title="My Blog" />
       <section>
-        <SectionTitleStyles>
+        <SectionTitle>
           All posts
           <Link to="/rss.xml">
             <FaRssSquare />
           </Link>
-        </SectionTitleStyles>
+        </SectionTitle>
 
         <PostsList posts={posts} />
       </section>

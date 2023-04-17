@@ -2,7 +2,7 @@ import React from 'react'
 import { graphql, Link, Page } from 'gatsby'
 
 import { Layout } from '../components/layout'
-import { SectionTitleStyles } from '../components/section-title'
+import { SectionTitle } from '../components/section-title'
 import { SEO } from '../components/seo'
 // @ts-ignore
 import { makeTILUrl } from '../utils/routes'
@@ -36,12 +36,12 @@ const TILIndexPage = ({ data }: TILIndexPageData) => {
     <Layout>
       <SEO title="TIL" />
       <section>
-        <SectionTitleStyles>
+        <SectionTitle>
           TIL
           <Link to="/tils.xml">
             <FaRssSquare />
           </Link>
-        </SectionTitleStyles>
+        </SectionTitle>
         <p>Things I've learned.</p>
         {tils.map((til) => (
           <div>

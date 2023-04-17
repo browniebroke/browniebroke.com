@@ -6,7 +6,7 @@ import { Avatar } from '../components/avatar'
 import { Layout } from '../components/layout'
 import { PostPreviewEdge } from '../components/post'
 import { PostsList } from '../components/posts'
-import { SectionTitleStyles } from '../components/section-title'
+import { SectionTitle } from '../components/section-title'
 import { SeeMoreStyles } from '../components/see-more'
 import { SEO } from '../components/seo'
 import { SocialLinks } from '../components/social'
@@ -47,7 +47,7 @@ const IndexPage = ({ data }: IndexPageData) => {
         <SocialLinks />
       </HeroSectionStyles>
       <section>
-        <SectionTitleStyles>Most recent posts</SectionTitleStyles>
+        <SectionTitle>Most recent posts</SectionTitle>
 
         <PostsList posts={posts} />
 
