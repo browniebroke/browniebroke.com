@@ -1,8 +1,7 @@
 import React from 'react'
 import { graphql, Link } from 'gatsby'
 import { getImage, IGatsbyImageData } from 'gatsby-plugin-image'
-import { FaGithub } from 'react-icons/fa'
-import { ExternalLink } from '@browniebroke/react-ui-components'
+import { Box } from '@chakra-ui/react'
 import { Stack, Tag } from '@chakra-ui/react'
 
 import { Layout } from '../components/layout'
@@ -62,19 +61,12 @@ const BlogPostTemplate = ({
       />
       <h1>{post.frontmatter.title}</h1>
 
-      <PostMetaData>
-        <div>
-          {post.frontmatter.date} • {post.timeToRead} min read
-        </div>
-        <div>
-          <ExternalLink to={editURL} title="Edit on Github">
-            <FaGithub />
-            {` `}Edit on Github
-          </ExternalLink>
-        </div>
-      </PostMetaData>
+      <PostMetaData
+        dateTimeToRead={`${post.frontmatter.date} • ${post.timeToRead} min read`}
+        editUrl={editURL}
+      />
 
-      <div dangerouslySetInnerHTML={{ __html: post.html }} />
+      <Box dangerouslySetInnerHTML={{ __html: post.html }} />
 
       <Stack direction="row">
         {post.frontmatter.tags.map((tag, index) => (
