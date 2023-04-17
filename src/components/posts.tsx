@@ -1,6 +1,7 @@
-import { PostPreview, PostPreviewData } from './post'
 import React from 'react'
 import { Box } from '@chakra-ui/react'
+
+import { PostPreview, PostPreviewData } from './post'
 
 interface PostsListProps {
   posts: PostPreviewData[]

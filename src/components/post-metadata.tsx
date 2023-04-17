@@ -1,5 +1,5 @@
-import { Box, useBreakpointValue, Link as ChakraLink } from '@chakra-ui/react'
 import React from 'react'
+import { Box, useBreakpointValue, Link as ChakraLink } from '@chakra-ui/react'
 import { FaGithub } from 'react-icons/fa'
 
 interface PostMetaDataProps {
