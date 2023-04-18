@@ -5,9 +5,9 @@ import { Box, ChakraProvider, Link, Text } from '@chakra-ui/react'
 
 import { Header } from './header'
 import { theme } from '../utils/theme'
+import { AcceptsChildren } from './types'
 
-interface LayoutProps {
-  children?: React.ReactNode
+interface LayoutProps extends AcceptsChildren {
   headerImage?: IGatsbyImageData
 }
 
@@ -21,7 +21,7 @@ const getHeroImage = (heroImage?: IGatsbyImageData) => {
   }
 }
 
-export const Layout: React.FC<LayoutProps> = ({ headerImage, children }) => {
+export const Layout = ({ headerImage, children }: LayoutProps) => {
   const data = useStaticQuery(graphql`
     query {
       site {
