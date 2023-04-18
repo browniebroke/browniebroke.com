@@ -7,6 +7,7 @@ import { SEO } from '../components/seo'
 // @ts-ignore
 import { makeTILUrl } from '../utils/routes'
 import { FaRssSquare } from 'react-icons/fa'
+import { Heading } from '@chakra-ui/react'
 
 interface TIL {
   fields: {
@@ -46,7 +47,9 @@ const TILIndexPage = ({ data }: TILIndexPageData) => {
         {tils.map((til) => (
           <div>
             <Link to={makeTILUrl(til.fields.slug)}>
-              <h3>{til.frontmatter.title}</h3>
+              <Heading as="h3" size="md">
+                {til.frontmatter.title}
+              </Heading>
             </Link>
           </div>
         ))}

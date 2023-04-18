@@ -1,12 +1,10 @@
 import React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 import { GatsbyImage, IGatsbyImageData } from 'gatsby-plugin-image'
-import { ThemeProvider } from 'styled-components'
-import { Box, Link, Text } from '@chakra-ui/react'
+import { Box, ChakraProvider, Link, Text } from '@chakra-ui/react'
 
 import { Header } from './header'
-import { GlobalStyle } from './global-style'
-import { theme } from '../utils/theme'
+import { theme } from '../utils/theme2'
 
 interface LayoutProps {
   children?: React.ReactNode
@@ -36,9 +34,8 @@ export const Layout: React.FC<LayoutProps> = ({ headerImage, children }) => {
 
   return (
     <>
-      <ThemeProvider theme={theme}>
+      <ChakraProvider theme={theme}>
         <Header siteTitle={data.site.siteMetadata.title} />
-        <GlobalStyle />
         {getHeroImage(headerImage)}
         <Box
           marginY="0"
@@ -61,7 +58,7 @@ export const Layout: React.FC<LayoutProps> = ({ headerImage, children }) => {
             </Text>
           </footer>
         </Box>
-      </ThemeProvider>
+      </ChakraProvider>
     </>
   )
 }

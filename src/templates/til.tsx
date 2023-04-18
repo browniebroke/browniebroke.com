@@ -8,6 +8,7 @@ import { SEO } from '../components/seo'
 import { Sharing } from '../components/sharing'
 // @ts-ignore
 import { makeTILUrl } from '../utils/routes'
+import { Heading } from '@chakra-ui/react'
 
 interface TILTemplateData {
   location: {
@@ -39,7 +40,9 @@ const TILTemplate = ({ location, data, pageContext }: TILTemplateData) => {
   return (
     <Layout>
       <SEO title={post.frontmatter.title} description={post.excerpt} />
-      <h1>{post.frontmatter.title}</h1>
+      <Heading as="h1" size="lg">
+        {post.frontmatter.title}
+      </Heading>
 
       <PostMetaData dateTimeToRead={post.frontmatter.date} editUrl={editURL} />
 

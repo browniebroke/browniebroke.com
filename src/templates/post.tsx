@@ -1,7 +1,7 @@
 import React from 'react'
 import { graphql, Link } from 'gatsby'
 import { getImage, IGatsbyImageData } from 'gatsby-plugin-image'
-import { Box } from '@chakra-ui/react'
+import { Box, Heading } from '@chakra-ui/react'
 import { Stack, Tag } from '@chakra-ui/react'
 
 import { Layout } from '../components/layout'
@@ -59,7 +59,9 @@ const BlogPostTemplate = ({
         description={post.frontmatter.description || post.excerpt}
         image={ogImage || headerOgImage}
       />
-      <h1>{post.frontmatter.title}</h1>
+      <Heading as="h1" size="lg">
+        {post.frontmatter.title}
+      </Heading>
 
       <PostMetaData
         dateTimeToRead={`${post.frontmatter.date} • ${post.timeToRead} min read`}

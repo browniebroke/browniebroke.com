@@ -3,6 +3,7 @@ import React from 'react'
 
 // @ts-ignore
 import { makePostUrl } from '../utils/routes'
+import { Box, Heading, Text } from '@chakra-ui/react'
 
 export interface PostPreviewData {
   timeToRead: number
@@ -26,19 +27,19 @@ interface PostPreviewProp {
 
 export const PostPreview: React.FC<PostPreviewProp> = ({ post }) => {
   return (
-    <div>
-      <h3>
+    <Box marginBottom={8}>
+      <Heading as="h3" size="md">
         <Link to={makePostUrl(post.fields.slug)}>{post.frontmatter.title}</Link>
-      </h3>
+      </Heading>
       <small>
         {post.frontmatter.date} • {post.timeToRead} min read
       </small>
-      <p
+      <Text
         dangerouslySetInnerHTML={{
           __html: post.excerpt,
         }}
       />
-    </div>
+    </Box>
   )
 }
 
