@@ -4,7 +4,7 @@ import { GatsbyImage, IGatsbyImageData } from 'gatsby-plugin-image'
 import { Box, ChakraProvider, Link, Text } from '@chakra-ui/react'
 
 import { Header } from './header'
-import { theme } from '../utils/theme2'
+import { theme } from '../utils/theme'
 
 interface LayoutProps {
   children?: React.ReactNode
