@@ -7,8 +7,8 @@ const customTheme = {
   styles: {
     global: {
       html: {
-        fontFamily: 'Cabin Condensed, georgia, sans-serif',
         fontSize: '1.25rem',
+        letterSpacing: '.03em',
         lineHeight: '1.5',
         overflowY: 'scroll',
       },
