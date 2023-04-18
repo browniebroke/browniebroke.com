@@ -1,8 +1,13 @@
 import { extendTheme } from '@chakra-ui/react'
 const customTheme = {
+  fonts: {
+    body: 'Cabin Condensed, georgia, sans-serif',
+    heading: 'Patua One',
+  },
   styles: {
     global: {
       html: {
+        fontFamily: 'Cabin Condensed, georgia, sans-serif',
         fontSize: '1.25rem',
         lineHeight: '1.5',
         overflowY: 'scroll',
@@ -11,7 +16,7 @@ const customTheme = {
         flex: '1 0 auto',
       },
       p: {
-        margin: '0 0 1.4rem 0',
+        marginBottom: 4,
       },
       a: {
         color: 'inherit',
@@ -19,9 +24,13 @@ const customTheme = {
           color: 'blue.400',
         },
       },
-      'h1, h2, h3, h4, h5, h6': {
+    },
+  },
+  components: {
+    Heading: {
+      baseStyle: {
+        marginBottom: 4,
         lineHeight: '1.2',
-        marginBottom: '1.4rem',
       },
     },
   },
