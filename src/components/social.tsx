@@ -31,7 +31,7 @@ export const SocialLinks: React.FC = () => {
     site.siteMetadata.social
 
   return (
-    <Stack direction="row">
+    <Stack direction="row" spacing={4} marginTop={2}>
       <Link
         href="https://fosstodon.org/@browniebroke"
         title="Mastondon profile"
