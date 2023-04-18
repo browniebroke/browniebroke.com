@@ -6,6 +6,7 @@ import { AcceptsChildren } from './types'
 export const SectionTitle = ({ children }: AcceptsChildren) => (
   <Heading
     as="h2"
+    size="lg"
     textAlign="center"
     margin="3rem 0"
     sx={{

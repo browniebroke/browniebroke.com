@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link, graphql } from 'gatsby'
-import styled from 'styled-components'
+import { Box, Heading, Text } from '@chakra-ui/react'
 
 import { Avatar } from '../components/avatar'
 import { Layout } from '../components/layout'
@@ -10,18 +10,6 @@ import { SectionTitle } from '../components/section-title'
 import { SeeMoreStyles } from '../components/see-more'
 import { SEO } from '../components/seo'
 import { SocialLinks } from '../components/social'
-import { Box } from '@chakra-ui/react'
-
-const HeroSectionStyles = styled.section`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`
-
-const BioStyles = styled.p`
-  text-align: center;
-  max-width: 400px;
-`
 
 interface IndexPageData {
   data: {
@@ -36,16 +24,21 @@ const IndexPage = ({ data }: IndexPageData) => {
   return (
     <Layout>
       <SEO title="Home" />
-      <HeroSectionStyles>
-        <h1>Bruno Alla</h1>
+      <Box
+        as="section"
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+      >
+        <Heading as="h1">Bruno Alla</Heading>
         <Avatar />
-        <BioStyles>
+        <Text textAlign="center" maxWidth="400px">
           Hi! I'm a web developer based in London, I work mostly with Python &
           Django, but I also do a bit of Javascript on the side, mainly with
           Gatsby.
-        </BioStyles>
+        </Text>
         <SocialLinks />
-      </HeroSectionStyles>
+      </Box>
       <section>
         <SectionTitle>Most recent posts</SectionTitle>
 
