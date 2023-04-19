@@ -28,6 +28,7 @@ const customTheme = {
       baseStyle: {
         marginBottom: 4,
         lineHeight: '1.2',
+        fontWeight: 'bold',
       },
     },
   },
