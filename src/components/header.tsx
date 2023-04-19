@@ -1,48 +1,35 @@
-import { Link } from 'gatsby'
 import React from 'react'
-import styled from 'styled-components'
-import { ListInline } from '@browniebroke/react-ui-components'
+import { Link } from 'gatsby'
+import { Box, Heading, Stack } from '@chakra-ui/react'
 
-const HeaderWrapperStyles = styled.header`
-  box-shadow: rgba(29, 33, 41, 0.15) 0px 30px 20px -32px;
+import { AcceptsChildren } from './types'
 
-  a {
-    text-decoration: none;
-  }
+export const HeaderWrapper = ({ children }: AcceptsChildren) => (
+  <Box as="header" boxShadow="rgba(29, 33, 41, 0.15) 0px 30px 20px -32px">
+    {children}
+  </Box>
+)
 
-  li {
-    padding-left: 2rem;
-  }
-`
-
-const HeaderStyles = styled.div`
-  padding: 1.5rem 1.5rem;
-  max-width: 1300px;
-  margin: 0 auto;
-  display: flex;
-`
-
-const TitleStyles = styled.h2`
-  margin: 0;
-  flex-grow: 1;
-  font-size: 18px;
-  line-height: inherit;
-`
+export const HeaderContainer = ({ children }: AcceptsChildren) => (
+  <Box padding={6} maxWidth="1300px" margin="0 auto" display="flex">
+    {children}
+  </Box>
+)
 
 interface HeaderProps {
   siteTitle: String
 }
 
 export const Header: React.FC<HeaderProps> = ({ siteTitle }) => (
-  <HeaderWrapperStyles>
-    <HeaderStyles>
-      <TitleStyles>
+  <HeaderWrapper>
+    <HeaderContainer>
+      <Heading margin={0} flexGrow={1} fontSize="18px" lineHeight="inherit">
         <Link to="/">{siteTitle}</Link>
-      </TitleStyles>
-      <ListInline>
+      </Heading>
+      <Stack direction="row" spacing="2rem">
         <Link to="/tils/">TILs</Link>
         <Link to="/blog/">Blog</Link>
-      </ListInline>
-    </HeaderStyles>
-  </HeaderWrapperStyles>
+      </Stack>
+    </HeaderContainer>
+  </HeaderWrapper>
 )

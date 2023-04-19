@@ -2,11 +2,12 @@ import React from 'react'
 import { graphql, Link, Page } from 'gatsby'
 
 import { Layout } from '../components/layout'
-import { SectionTitleStyles } from '../components/section-title'
+import { SectionTitle } from '../components/section-title'
 import { SEO } from '../components/seo'
 // @ts-ignore
 import { makeTILUrl } from '../utils/routes'
 import { FaRssSquare } from 'react-icons/fa'
+import { Heading } from '@chakra-ui/react'
 
 interface TIL {
   fields: {
@@ -36,17 +37,19 @@ const TILIndexPage = ({ data }: TILIndexPageData) => {
     <Layout>
       <SEO title="TIL" />
       <section>
-        <SectionTitleStyles>
+        <SectionTitle>
           TIL
           <Link to="/tils.xml">
             <FaRssSquare />
           </Link>
-        </SectionTitleStyles>
+        </SectionTitle>
         <p>Things I've learned.</p>
         {tils.map((til) => (
           <div>
             <Link to={makeTILUrl(til.fields.slug)}>
-              <h3>{til.frontmatter.title}</h3>
+              <Heading as="h3" size="md">
+                {til.frontmatter.title}
+              </Heading>
             </Link>
           </div>
         ))}

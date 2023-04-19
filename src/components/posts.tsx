@@ -1,10 +1,7 @@
-import { PostPreview, PostPreviewData } from './post'
 import React from 'react'
-import styled from 'styled-components'
+import { Box } from '@chakra-ui/react'
 
-const PostWrapper = styled.div`
-  padding-bottom: 1rem;
-`
+import { PostPreview, PostPreviewData } from './post'
 
 interface PostsListProps {
   posts: PostPreviewData[]
@@ -14,9 +11,9 @@ export const PostsList: React.FC<PostsListProps> = ({ posts }) => {
   return (
     <>
       {posts.map((post) => (
-        <PostWrapper key={post.fields.slug}>
+        <Box paddingBottom={4} key={post.fields.slug}>
           <PostPreview post={post} />
-        </PostWrapper>
+        </Box>
       ))}
     </>
   )

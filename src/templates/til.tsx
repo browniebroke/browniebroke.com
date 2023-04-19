@@ -1,7 +1,5 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import { FaGithub } from 'react-icons/fa'
-import { ExternalLink } from '@browniebroke/react-ui-components'
 
 import { Layout } from '../components/layout'
 import { Pagination, Page } from '../components/pagination'
@@ -10,6 +8,7 @@ import { SEO } from '../components/seo'
 import { Sharing } from '../components/sharing'
 // @ts-ignore
 import { makeTILUrl } from '../utils/routes'
+import { Heading } from '@chakra-ui/react'
 
 interface TILTemplateData {
   location: {
@@ -41,17 +40,11 @@ const TILTemplate = ({ location, data, pageContext }: TILTemplateData) => {
   return (
     <Layout>
       <SEO title={post.frontmatter.title} description={post.excerpt} />
-      <h1>{post.frontmatter.title}</h1>
+      <Heading as="h1" size="lg">
+        {post.frontmatter.title}
+      </Heading>
 
-      <PostMetaData>
-        <div>{post.frontmatter.date}</div>
-        <div>
-          <ExternalLink to={editURL} title="Edit on Github">
-            <FaGithub />
-            {` `}Edit on Github
-          </ExternalLink>
-        </div>
-      </PostMetaData>
+      <PostMetaData dateTimeToRead={post.frontmatter.date} editUrl={editURL} />
 
       <div dangerouslySetInnerHTML={{ __html: post.html }} />
 

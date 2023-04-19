@@ -1,15 +1,7 @@
 import React from 'react'
-import { FaTwitter, FaRegEnvelope } from 'react-icons/fa'
 import { graphql, useStaticQuery } from 'gatsby'
-import styled from 'styled-components'
-import { ExternalLink, ListInline } from '@browniebroke/react-ui-components'
-
-const SharingStyles = styled.div`
-  margin: 3rem 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`
+import { Heading, Stack, Link } from '@chakra-ui/react'
+import { FaTwitter, FaRegEnvelope } from 'react-icons/fa'
 
 interface Post {
   frontmatter: {
@@ -23,7 +15,7 @@ interface SharingProps {
   path: string
 }
 
-export const Sharing: React.FC<SharingProps> = ({ post, path }) => {
+export const Sharing = ({ post, path }: SharingProps) => {
   const {
     site: {
       siteMetadata: { siteUrl, social },
@@ -61,16 +53,18 @@ export const Sharing: React.FC<SharingProps> = ({ post, path }) => {
   const emailUrl = `mailto:?${mailtoParams}`
 
   return (
-    <SharingStyles>
-      <h4>Liked it? Please share it!</h4>
-      <ListInline>
-        <ExternalLink to={emailUrl} title="Share via email">
+    <Stack direction="column" alignItems="center" marginY={12}>
+      <Heading as="h4" size="md">
+        Liked it? Please share it!
+      </Heading>
+      <Stack direction="row">
+        <Link href={emailUrl} title="Share via email" isExternal>
           <FaRegEnvelope />
-        </ExternalLink>
-        <ExternalLink to={twitterUrl} title="Share on Twitter">
+        </Link>
+        <Link href={twitterUrl} title="Share on Twitter" isExternal>
           <FaTwitter />
-        </ExternalLink>
-      </ListInline>
-    </SharingStyles>
+        </Link>
+      </Stack>
+    </Stack>
   )
 }

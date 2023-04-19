@@ -1,17 +1,35 @@
-import styled from 'styled-components'
+import React from 'react'
+import { Box, useBreakpointValue, Link as ChakraLink } from '@chakra-ui/react'
+import { FaGithub } from 'react-icons/fa'
 
-export const PostMetaData = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
+interface PostMetaDataProps {
+  dateTimeToRead: string
+  editUrl: string
+}
 
-  @media (min-width: 400px) {
-    flex-direction: row;
-  }
+export const PostMetaData = ({
+  dateTimeToRead,
+  editUrl,
+}: PostMetaDataProps) => {
+  const flexDirection = useBreakpointValue({ base: 'column', md: 'row' }) as
+    | 'row'
+    | 'column'
 
-  div {
-    margin-bottom: 0.5rem;
-  }
-`
+  return (
+    <Box
+      display="flex"
+      flexDirection={flexDirection}
+      justifyContent="space-between"
+      alignItems="center"
+      marginBottom="1rem"
+    >
+      <Box>{dateTimeToRead}</Box>
+      <Box>
+        <ChakraLink href={editUrl} title="Edit on Github" isExternal>
+          <FaGithub />
+          Edit on Github
+        </ChakraLink>
+      </Box>
+    </Box>
+  )
+}

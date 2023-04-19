@@ -1,11 +1,23 @@
-import styled from 'styled-components'
+import React from 'react'
+import { Heading } from '@chakra-ui/react'
 
-export const SectionTitleStyles = styled.h2`
-  text-align: center;
-  margin: 3rem 0;
-  svg {
-    align: left;
-    vertical-align: top;
-    height: 0.5em;
-  }
-`
+import { AcceptsChildren } from './types'
+
+export const SectionTitle = ({ children }: AcceptsChildren) => (
+  <Heading
+    as="h2"
+    size="lg"
+    textAlign="center"
+    margin="3rem 0"
+    sx={{
+      svg: {
+        display: 'inline',
+        align: 'left',
+        verticalAlign: 'top',
+        height: '0.5em',
+      },
+    }}
+  >
+    {children}
+  </Heading>
+)

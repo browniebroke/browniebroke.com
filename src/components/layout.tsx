@@ -1,49 +1,27 @@
 import React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 import { GatsbyImage, IGatsbyImageData } from 'gatsby-plugin-image'
-import styled, { ThemeProvider } from 'styled-components'
-import { ExternalLink } from '@browniebroke/react-ui-components'
+import { Box, ChakraProvider, Link, Text } from '@chakra-ui/react'
 
 import { Header } from './header'
-import { GlobalStyle } from './global-style'
 import { theme } from '../utils/theme'
+import { AcceptsChildren } from './types'
 
-const ContentWrapper = styled.div`
-  margin: 0 auto;
-  max-width: 700px;
-  padding: 0px 1rem 1.5rem;
-  padding-top: 3rem;
-  min-height: 100vh;
-`
-
-const Main = styled.main`
-  min-height: 70vh;
-`
-
-const HeroImageWrapper = styled.div`
-  padding: 0;
-`
-
-const SmallText = styled.span`
-  font-size: 0.7em;
-`
-
-interface LayoutProps {
-  children?: React.ReactNode
+interface LayoutProps extends AcceptsChildren {
   headerImage?: IGatsbyImageData
 }
 
 const getHeroImage = (heroImage?: IGatsbyImageData) => {
   if (heroImage) {
     return (
-      <HeroImageWrapper>
+      <Box padding={0}>
         <GatsbyImage image={heroImage} alt="" />
-      </HeroImageWrapper>
+      </Box>
     )
   }
 }
 
-export const Layout: React.FC<LayoutProps> = ({ headerImage, children }) => {
+export const Layout = ({ headerImage, children }: LayoutProps) => {
   const data = useStaticQuery(graphql`
     query {
       site {
@@ -56,22 +34,31 @@ export const Layout: React.FC<LayoutProps> = ({ headerImage, children }) => {
 
   return (
     <>
-      <ThemeProvider theme={theme}>
+      <ChakraProvider theme={theme}>
         <Header siteTitle={data.site.siteMetadata.title} />
-        <GlobalStyle />
         {getHeroImage(headerImage)}
-        <ContentWrapper>
-          <Main>{children}</Main>
+        <Box
+          marginY="0"
+          marginX="auto"
+          paddingTop="3rem"
+          paddingBottom="1.5rem"
+          paddingX="1rem"
+          maxWidth="700px"
+          minHeight="100vh"
+        >
+          <Box as="main" minHeight="70vh">
+            {children}
+          </Box>
           <footer>
-            <SmallText>
+            <Text as="span" fontSize="0.7em">
               © {new Date().getFullYear()}, Built with{` `}
-              <ExternalLink to="https://www.gatsbyjs.org" title="GatsbyJS">
+              <Link href="https://www.gatsbyjs.org" title="GatsbyJS" isExternal>
                 Gatsby
-              </ExternalLink>
-            </SmallText>
+              </Link>
+            </Text>
           </footer>
-        </ContentWrapper>
-      </ThemeProvider>
+        </Box>
+      </ChakraProvider>
     </>
   )
 }
