@@ -12,9 +12,6 @@ const customTheme = {
         lineHeight: '1.5',
         overflowY: 'scroll',
       },
-      main: {
-        flex: '1 0 auto',
-      },
       p: {
         marginBottom: 4,
       },
