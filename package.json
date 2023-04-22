@@ -44,7 +44,6 @@
     "replace-in-file": "6.3.5",
     "sanitize.css": "13.0.0",
     "slugify": "1.6.6",
-    "toml": "github:GalAster/vscode-toml",
     "typescript": "5.0.4"
   },
   "devDependencies": {
