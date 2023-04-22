@@ -58,19 +58,7 @@ module.exports = {
               maxWidth: 700,
             },
           },
-          // {
-          //   resolve: `gatsby-remark-vscode`,
-          //   options: {
-          //     theme: 'Quiet Light',
-          //     extensions: ['toml'],
-          //   },
-          // },
-          {
-            resolve: 'gatsby-remark-prismjs',
-            // options: {
-            //   // Customize your prismjs theme here
-            // },
-          },
+          `gatsby-remark-prismjs`,
           `gatsby-remark-smartypants`,
           `gatsby-remark-external-links`,
         ],
