@@ -21,6 +21,9 @@ const customTheme = {
           color: 'blue.400',
         },
       },
+      'code[class*="language-"], pre[class*="language-"]': {
+        fontSize: '0.85em !important',
+      },
     },
   },
   components: {
