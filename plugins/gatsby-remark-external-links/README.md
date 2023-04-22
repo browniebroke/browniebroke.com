@@ -4,7 +4,7 @@ Adds the target and rel attributes to external links in markdown.
 
 This is a vendored version of [the npm package ``](https://www.npmjs.com/package/gatsby-remark-external-links) which is has a few open issues at the moment due to dependencies not being updated.
 
-The plugin itself is pretty small, the core of the functionality is in the dependecy, so it makes sense to vendor.
+The plugin itself is pretty small, the core of the functionality is in the dependency, so it makes sense to vendor.
 
 ## Usage
 

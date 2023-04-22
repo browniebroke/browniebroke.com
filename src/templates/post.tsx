@@ -17,11 +17,17 @@ interface PostTemplateData {
     pathname: string
   }
   data: {
-    markdownRemark: {
+    mdx: {
       excerpt: string
-      html: string
-      timeToRead: number
-      fileAbsolutePath: string
+      body: string
+      fields: {
+        timeToRead: {
+          text: string
+        }
+      }
+      parent: {
+        absolutePath: string
+      }
       frontmatter: {
         title: string
         date: string
@@ -37,20 +43,22 @@ interface PostTemplateData {
     previous: Page
     next: Page
   }
+  children: React.ReactNode
 }
 
 const BlogPostTemplate = ({
   location,
   data,
   pageContext,
+  children,
 }: PostTemplateData) => {
-  const post = data.markdownRemark
+  const post = data.mdx
   const headerImage = getImage(post.frontmatter.header_image)
   const ogImage = getImage(post.frontmatter.og_image)
   const headerOgImage = getImage(post.frontmatter.headerOgImage)
   const { previous, next } = pageContext
   const editURL = `https://github.com/browniebroke/browniebroke.com/blob/master/src/${
-    post.fileAbsolutePath.split('/src/')[1]
+    post.parent.absolutePath.split('/src/')[1]
   }`
   return (
     <Layout headerImage={headerImage}>
@@ -64,11 +72,11 @@ const BlogPostTemplate = ({
       </Heading>
 
       <PostMetaData
-        dateTimeToRead={`${post.frontmatter.date} • ${post.timeToRead} min read`}
+        dateTimeToRead={`${post.frontmatter.date} • ${post.fields.timeToRead.text}`}
         editUrl={editURL}
       />
 
-      <Box dangerouslySetInnerHTML={{ __html: post.html }} />
+      <Box dangerouslySetInnerHTML={{ __html: post.body }} />
 
       <Stack direction="row">
         {post.frontmatter.tags.map((tag, index) => (
@@ -89,12 +97,20 @@ export default BlogPostTemplate
 
 export const pageQuery = graphql`
   query BlogPostBySlug($slug: String!) {
-    markdownRemark(fields: { slug: { eq: $slug } }) {
+    mdx(fields: { slug: { eq: $slug } }) {
       id
       excerpt(pruneLength: 160)
-      html
-      timeToRead
-      fileAbsolutePath
+      body
+      fields {
+        timeToRead {
+          text
+        }
+      }
+      parent {
+        ... on File {
+          absolutePath
+        }
+      }
       frontmatter {
         title
         ...FormattedDate

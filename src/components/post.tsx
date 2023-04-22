@@ -6,10 +6,12 @@ import { makePostUrl } from '../utils/routes'
 import { Box, Heading, Text } from '@chakra-ui/react'
 
 export interface PostPreviewData {
-  timeToRead: number
   excerpt: string
   fields: {
     slug: string
+    timeToRead: {
+      text: string
+    }
   }
   frontmatter: {
     date: string
@@ -32,7 +34,7 @@ export const PostPreview: React.FC<PostPreviewProp> = ({ post }) => {
         <Link to={makePostUrl(post.fields.slug)}>{post.frontmatter.title}</Link>
       </Heading>
       <small>
-        {post.frontmatter.date} • {post.timeToRead} min read
+        {post.frontmatter.date} • {post.fields.timeToRead.text}
       </small>
       <Text
         dangerouslySetInnerHTML={{
@@ -44,15 +46,17 @@ export const PostPreview: React.FC<PostPreviewProp> = ({ post }) => {
 }
 
 export const postPreviewFragment = graphql`
-  fragment FormattedDate on MarkdownRemarkFrontmatter {
+  fragment FormattedDate on MdxFrontmatter {
     date(formatString: "MMMM DD, YYYY")
   }
 
-  fragment PostPreview on MarkdownRemark {
-    timeToRead
+  fragment PostPreview on Mdx {
     excerpt
     fields {
       slug
+      timeToRead {
+        text
+      }
     }
     frontmatter {
       ...FormattedDate

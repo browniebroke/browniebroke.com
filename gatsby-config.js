@@ -48,21 +48,28 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-transformer-remark`,
+      resolve: 'gatsby-plugin-mdx',
       options: {
-        plugins: [
+        extensions: ['.mdx', '.md'],
+        gatsbyRemarkPlugins: [
           {
             resolve: `gatsby-remark-images`,
             options: {
               maxWidth: 700,
             },
           },
+          // {
+          //   resolve: `gatsby-remark-vscode`,
+          //   options: {
+          //     theme: 'Quiet Light',
+          //     extensions: ['toml'],
+          //   },
+          // },
           {
-            resolve: `gatsby-remark-vscode`,
-            options: {
-              theme: 'Quiet Light',
-              extensions: ['toml'],
-            },
+            resolve: 'gatsby-remark-prismjs',
+            // options: {
+            //   // Customize your prismjs theme here
+            // },
           },
           `gatsby-remark-smartypants`,
           `gatsby-remark-external-links`,
@@ -109,15 +116,15 @@ module.exports = {
         `,
         feeds: [
           {
-            serialize: ({ query: { site, allMarkdownRemark } }) =>
-              serializeToFeed(site, allMarkdownRemark, makePostUrl),
+            serialize: ({ query: { site, allMdx } }) =>
+              serializeToFeed(site, allMdx, makePostUrl),
             query: makeQueryFor('posts'),
             output: '/rss.xml',
             title: "Bruno Alla's blog RSS feed",
           },
           {
-            serialize: ({ query: { site, allMarkdownRemark } }) =>
-              serializeToFeed(site, allMarkdownRemark, makeTILUrl),
+            serialize: ({ query: { site, allMdx } }) =>
+              serializeToFeed(site, allMdx, makeTILUrl),
             query: makeQueryFor('tils'),
             output: '/tils.xml',
             title: "Bruno Alla's TIL feed",

@@ -13,14 +13,14 @@ import { SocialLinks } from '../components/social'
 
 interface IndexPageData {
   data: {
-    allMarkdownRemark: {
+    allMdx: {
       edges: PostPreviewEdge[]
     }
   }
 }
 
 const IndexPage = ({ data }: IndexPageData) => {
-  const posts = data.allMarkdownRemark.edges.map((edge) => edge.node)
+  const posts = data.allMdx.edges.map((edge) => edge.node)
   return (
     <Layout>
       <SEO title="Home" />
@@ -56,7 +56,7 @@ export default IndexPage
 
 export const pageQuery = graphql`
   query {
-    allMarkdownRemark(
+    allMdx(
       limit: 3
       sort: { frontmatter: { date: DESC } }
       filter: { fields: { sourceName: { eq: "posts" } } }

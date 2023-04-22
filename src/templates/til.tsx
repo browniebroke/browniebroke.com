@@ -8,20 +8,22 @@ import { SEO } from '../components/seo'
 import { Sharing } from '../components/sharing'
 // @ts-ignore
 import { makeTILUrl } from '../utils/routes'
-import { Heading } from '@chakra-ui/react'
+import { Box, Heading } from '@chakra-ui/react'
 
 interface TILTemplateData {
   location: {
     pathname: string
   }
   data: {
-    markdownRemark: {
+    mdx: {
+      body: string
       excerpt: string
-      html: string
-      fileAbsolutePath: string
       frontmatter: {
         title: string
         date: string
+      }
+      parent: {
+        absolutePath: string
       }
     }
   }
@@ -29,13 +31,19 @@ interface TILTemplateData {
     previous: Page
     next: Page
   }
+  children: React.ReactNode
 }
 
-const TILTemplate = ({ location, data, pageContext }: TILTemplateData) => {
-  const post = data.markdownRemark
+const TILTemplate = ({
+  location,
+  data,
+  pageContext,
+  children,
+}: TILTemplateData) => {
+  const post = data.mdx
   const { previous, next } = pageContext
   const editURL = `https://github.com/browniebroke/browniebroke.com/blob/master/src/${
-    post.fileAbsolutePath.split('/src/')[1]
+    post.parent.absolutePath.split('/src/')[1]
   }`
   return (
     <Layout>
@@ -46,7 +54,7 @@ const TILTemplate = ({ location, data, pageContext }: TILTemplateData) => {
 
       <PostMetaData dateTimeToRead={post.frontmatter.date} editUrl={editURL} />
 
-      <div dangerouslySetInnerHTML={{ __html: post.html }} />
+      <Box dangerouslySetInnerHTML={{ __html: post.body }} />
 
       <Sharing post={post} path={location.pathname} />
       <Pagination previous={previous} next={next} makeUrlFunc={makeTILUrl} />
@@ -58,15 +66,19 @@ export default TILTemplate
 
 export const pageQuery = graphql`
   query TILBySlug($slug: String!) {
-    markdownRemark(fields: { slug: { eq: $slug } }) {
+    mdx(fields: { slug: { eq: $slug } }) {
       id
+      body
       excerpt(pruneLength: 160)
-      html
-      fileAbsolutePath
       frontmatter {
         title
         ...FormattedDate
         tags
+      }
+      parent {
+        ... on File {
+          absolutePath
+        }
       }
     }
   }
