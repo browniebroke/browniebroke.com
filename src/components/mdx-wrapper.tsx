@@ -1,7 +1,7 @@
 import React from 'react'
 import { MDXProvider } from '@mdx-js/react'
 import { AcceptsChildren } from './types'
-import { Heading, UnorderedList, ListItem } from '@chakra-ui/react'
+import { Heading, UnorderedList, ListItem, Text } from '@chakra-ui/react'
 
 const MyH1 = ({ children }: AcceptsChildren) => (
   <Heading as="h1" size="lg">
@@ -34,6 +34,7 @@ const components = {
   h4: MyH4,
   ul: UnorderedList,
   li: ListItem,
+  p: Text,
 }
 
 export const MDXWrapper = ({ children }: AcceptsChildren) => (
