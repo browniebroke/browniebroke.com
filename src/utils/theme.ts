@@ -24,6 +24,9 @@ const customTheme = {
       'code[class*="language-"], pre[class*="language-"]': {
         fontSize: '0.85em !important',
       },
+      '.gatsby-highlight': {
+        marginBottom: 4,
+      },
     },
   },
   components: {
