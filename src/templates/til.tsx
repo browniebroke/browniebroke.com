@@ -9,6 +9,7 @@ import { Sharing } from '../components/sharing'
 // @ts-ignore
 import { makeTILUrl } from '../utils/routes'
 import { Box, Heading } from '@chakra-ui/react'
+import { MDXWrapper } from '../components/mdx-wrapper'
 
 interface TILTemplateData {
   location: {
@@ -54,7 +55,9 @@ const TILTemplate = ({
 
       <PostMetaData dateTimeToRead={post.frontmatter.date} editUrl={editURL} />
 
-      <Box>{children}</Box>
+      <MDXWrapper>
+        <Box>{children}</Box>
+      </MDXWrapper>
 
       <Sharing post={post} path={location.pathname} />
       <Pagination previous={previous} next={next} makeUrlFunc={makeTILUrl} />

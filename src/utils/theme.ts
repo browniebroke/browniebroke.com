@@ -26,6 +26,7 @@ const customTheme = {
   components: {
     Heading: {
       baseStyle: {
+        marginTop: 8,
         marginBottom: 4,
         lineHeight: '1.2',
         fontWeight: 'bold',

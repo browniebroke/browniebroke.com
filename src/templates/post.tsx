@@ -5,6 +5,7 @@ import { Box, Heading } from '@chakra-ui/react'
 import { Stack, Tag } from '@chakra-ui/react'
 
 import { Layout } from '../components/layout'
+import { MDXWrapper } from '../components/mdx-wrapper'
 import { Pagination, Page } from '../components/pagination'
 import { PostMetaData } from '../components/post-metadata'
 import { SEO } from '../components/seo'
@@ -76,7 +77,9 @@ const BlogPostTemplate = ({
         editUrl={editURL}
       />
 
-      <Box>{children}</Box>
+      <MDXWrapper>
+        <Box>{children}</Box>
+      </MDXWrapper>
 
       <Stack direction="row">
         {post.frontmatter.tags.map((tag) => (
