@@ -62,7 +62,7 @@ Here are the steps I followed to convert to `src/` layout, without changing the 
    + pythonpath = ["src"]
    ```
 
-   If using pytest <7, you'll also need to install `pytest-srcpaths`:
+   If using pytest version lower than 7, you'll also need to install `pytest-srcpaths`:
 
    ```sh
    poetry add -D pytest-srcpaths
@@ -77,7 +77,7 @@ Here are the steps I followed to convert to `src/` layout, without changing the 
    + version_variable = "src/my_package/__init__.py:__version__"
    ```
 
-If everything went well, you should have the following layount and running `pytest` should work:
+If everything went well, you should have the following layout and running `pytest` should work:
 
 ```sh
 my-package

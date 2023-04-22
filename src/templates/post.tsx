@@ -76,11 +76,11 @@ const BlogPostTemplate = ({
         editUrl={editURL}
       />
 
-      <Box dangerouslySetInnerHTML={{ __html: post.body }} />
+      <Box>{children}</Box>
 
       <Stack direction="row">
-        {post.frontmatter.tags.map((tag, index) => (
-          <Link to={makeTagUrl(tag)}>
+        {post.frontmatter.tags.map((tag) => (
+          <Link to={makeTagUrl(tag)} key={tag}>
             <Tag size="md" variant="solid">
               {tag}
             </Tag>

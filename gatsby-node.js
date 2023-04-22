@@ -63,7 +63,8 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       // Create blog post page
       actions.createPage({
         path: makePostUrl(mdFile.node.fields.slug),
-        component: postTemplate,
+        component: `${postTemplate}?__contentFilePath=${mdFile.node.internal.contentFilePath}`,
+        // component: `${postTemplate}`,
         context: {
           slug: mdFile.node.fields.slug,
           previous: mdFile.previous,
@@ -74,7 +75,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       // Create TIL page
       actions.createPage({
         path: makeTILUrl(mdFile.node.fields.slug),
-        component: tilTemplate,
+        component: `${tilTemplate}?__contentFilePath=${mdFile.node.internal.contentFilePath}`,
         context: {
           slug: mdFile.node.fields.slug,
           previous: mdFile.previous,

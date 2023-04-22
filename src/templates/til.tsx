@@ -54,7 +54,7 @@ const TILTemplate = ({
 
       <PostMetaData dateTimeToRead={post.frontmatter.date} editUrl={editURL} />
 
-      <Box dangerouslySetInnerHTML={{ __html: post.body }} />
+      <Box>{children}</Box>
 
       <Sharing post={post} path={location.pathname} />
       <Pagination previous={previous} next={next} makeUrlFunc={makeTILUrl} />
