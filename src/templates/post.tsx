@@ -5,23 +5,30 @@ import { Box, Heading } from '@chakra-ui/react'
 import { Stack, Tag } from '@chakra-ui/react'
 
 import { Layout } from '../components/layout'
+import { MDXWrapper } from '../components/mdx-wrapper'
 import { Pagination, Page } from '../components/pagination'
 import { PostMetaData } from '../components/post-metadata'
 import { SEO } from '../components/seo'
 import { Sharing } from '../components/sharing'
 // @ts-ignore
-import { makeTagUrl } from '../utils/routes'
+import { makePostUrl, makeTagUrl } from '../utils/routes'
 
 interface PostTemplateData {
   location: {
     pathname: string
   }
   data: {
-    markdownRemark: {
+    mdx: {
       excerpt: string
-      html: string
-      timeToRead: number
-      fileAbsolutePath: string
+      fields: {
+        slug: string
+        timeToRead: {
+          text: string
+        }
+      }
+      parent: {
+        absolutePath: string
+      }
       frontmatter: {
         title: string
         date: string
@@ -37,20 +44,21 @@ interface PostTemplateData {
     previous: Page
     next: Page
   }
+  children: React.ReactNode
 }
 
 const BlogPostTemplate = ({
-  location,
   data,
   pageContext,
+  children,
 }: PostTemplateData) => {
-  const post = data.markdownRemark
+  const post = data.mdx
   const headerImage = getImage(post.frontmatter.header_image)
   const ogImage = getImage(post.frontmatter.og_image)
   const headerOgImage = getImage(post.frontmatter.headerOgImage)
   const { previous, next } = pageContext
   const editURL = `https://github.com/browniebroke/browniebroke.com/blob/master/src/${
-    post.fileAbsolutePath.split('/src/')[1]
+    post.parent.absolutePath.split('/src/')[1]
   }`
   return (
     <Layout headerImage={headerImage}>
@@ -64,22 +72,24 @@ const BlogPostTemplate = ({
       </Heading>
 
       <PostMetaData
-        dateTimeToRead={`${post.frontmatter.date} • ${post.timeToRead} min read`}
+        dateTimeToRead={`${post.frontmatter.date} • ${post.fields.timeToRead.text}`}
         editUrl={editURL}
       />
 
-      <Box dangerouslySetInnerHTML={{ __html: post.html }} />
+      <MDXWrapper>
+        <Box>{children}</Box>
+      </MDXWrapper>
 
       <Stack direction="row">
-        {post.frontmatter.tags.map((tag, index) => (
-          <Link to={makeTagUrl(tag)}>
+        {post.frontmatter.tags.map((tag) => (
+          <Link to={makeTagUrl(tag)} key={tag}>
             <Tag size="md" variant="solid">
               {tag}
             </Tag>
           </Link>
         ))}
       </Stack>
-      <Sharing post={post} path={location.pathname} />
+      <Sharing post={post} path={makePostUrl(post.fields.slug)} />
       <Pagination previous={previous} next={next} />
     </Layout>
   )
@@ -89,12 +99,20 @@ export default BlogPostTemplate
 
 export const pageQuery = graphql`
   query BlogPostBySlug($slug: String!) {
-    markdownRemark(fields: { slug: { eq: $slug } }) {
+    mdx(fields: { slug: { eq: $slug } }) {
       id
       excerpt(pruneLength: 160)
-      html
-      timeToRead
-      fileAbsolutePath
+      fields {
+        slug
+        timeToRead {
+          text
+        }
+      }
+      parent {
+        ... on File {
+          absolutePath
+        }
+      }
       frontmatter {
         title
         ...FormattedDate

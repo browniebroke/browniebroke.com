@@ -8,20 +8,25 @@ import { SEO } from '../components/seo'
 import { Sharing } from '../components/sharing'
 // @ts-ignore
 import { makeTILUrl } from '../utils/routes'
-import { Heading } from '@chakra-ui/react'
+import { Box, Heading } from '@chakra-ui/react'
+import { MDXWrapper } from '../components/mdx-wrapper'
 
 interface TILTemplateData {
   location: {
     pathname: string
   }
   data: {
-    markdownRemark: {
+    mdx: {
       excerpt: string
-      html: string
-      fileAbsolutePath: string
+      fields: {
+        slug: string
+      }
       frontmatter: {
         title: string
         date: string
+      }
+      parent: {
+        absolutePath: string
       }
     }
   }
@@ -29,13 +34,14 @@ interface TILTemplateData {
     previous: Page
     next: Page
   }
+  children: React.ReactNode
 }
 
-const TILTemplate = ({ location, data, pageContext }: TILTemplateData) => {
-  const post = data.markdownRemark
+const TILTemplate = ({ data, pageContext, children }: TILTemplateData) => {
+  const post = data.mdx
   const { previous, next } = pageContext
   const editURL = `https://github.com/browniebroke/browniebroke.com/blob/master/src/${
-    post.fileAbsolutePath.split('/src/')[1]
+    post.parent.absolutePath.split('/src/')[1]
   }`
   return (
     <Layout>
@@ -46,9 +52,11 @@ const TILTemplate = ({ location, data, pageContext }: TILTemplateData) => {
 
       <PostMetaData dateTimeToRead={post.frontmatter.date} editUrl={editURL} />
 
-      <div dangerouslySetInnerHTML={{ __html: post.html }} />
+      <MDXWrapper>
+        <Box>{children}</Box>
+      </MDXWrapper>
 
-      <Sharing post={post} path={location.pathname} />
+      <Sharing post={post} path={makeTILUrl(post.fields.slug)} />
       <Pagination previous={previous} next={next} makeUrlFunc={makeTILUrl} />
     </Layout>
   )
@@ -58,15 +66,21 @@ export default TILTemplate
 
 export const pageQuery = graphql`
   query TILBySlug($slug: String!) {
-    markdownRemark(fields: { slug: { eq: $slug } }) {
+    mdx(fields: { slug: { eq: $slug } }) {
       id
       excerpt(pruneLength: 160)
-      html
-      fileAbsolutePath
+      fields {
+        slug
+      }
       frontmatter {
         title
         ...FormattedDate
         tags
+      }
+      parent {
+        ... on File {
+          absolutePath
+        }
       }
     }
   }

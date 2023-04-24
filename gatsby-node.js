@@ -1,5 +1,6 @@
 const path = require('path')
 const { createFilePath } = require(`gatsby-source-filesystem`)
+const readingTime = require(`reading-time`)
 
 const { makePostUrl, makeTagUrl, makeTILUrl } = require('./src/utils/routes')
 
@@ -7,7 +8,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   // Run query to get data
   const result = await graphql(`
     {
-      allMarkdownRemark(sort: { frontmatter: { date: DESC } }) {
+      posts: allMdx(sort: { frontmatter: { date: DESC } }) {
         edges {
           node {
             fields {
@@ -17,6 +18,9 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
             frontmatter {
               title
               description
+            }
+            internal {
+              contentFilePath
             }
           }
           next {
@@ -37,7 +41,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
           }
         }
       }
-      tags: allMarkdownRemark {
+      tags: allMdx {
         group(field: { frontmatter: { tags: SELECT } }) {
           tag: fieldValue
         }
@@ -50,13 +54,17 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     return
   }
 
-  const mdFiles = result.data.allMarkdownRemark.edges
+  const postTemplate = path.resolve(`./src/templates/post.tsx`)
+  const tilTemplate = path.resolve(`./src/templates/til.tsx`)
+
+  const mdFiles = result.data.posts.edges
   mdFiles.forEach((mdFile) => {
     if (mdFile.node.fields.sourceName === 'posts') {
       // Create blog post page
       actions.createPage({
         path: makePostUrl(mdFile.node.fields.slug),
-        component: path.resolve(`./src/templates/post.tsx`),
+        component: `${postTemplate}?__contentFilePath=${mdFile.node.internal.contentFilePath}`,
+        // component: `${postTemplate}`,
         context: {
           slug: mdFile.node.fields.slug,
           previous: mdFile.previous,
@@ -67,7 +75,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       // Create TIL page
       actions.createPage({
         path: makeTILUrl(mdFile.node.fields.slug),
-        component: path.resolve(`./src/templates/til.tsx`),
+        component: `${tilTemplate}?__contentFilePath=${mdFile.node.internal.contentFilePath}`,
         context: {
           slug: mdFile.node.fields.slug,
           previous: mdFile.previous,
@@ -93,7 +101,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions
 
-  if (node.internal.type === `MarkdownRemark`) {
+  if (node.internal.type === `Mdx`) {
     // Add slug field
     const value = createFilePath({ node, getNode })
     createNodeField({
@@ -109,6 +117,13 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
       node,
       name: 'sourceName',
       value: fileNode.sourceInstanceName,
+    })
+
+    // Add reading time
+    createNodeField({
+      node,
+      name: `timeToRead`,
+      value: readingTime(node.body),
     })
   }
 }

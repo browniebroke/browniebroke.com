@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, useBreakpointValue, Link as ChakraLink } from '@chakra-ui/react'
+import { useBreakpointValue, Box, Icon, Button } from '@chakra-ui/react'
 import { FaGithub } from 'react-icons/fa'
 
 interface PostMetaDataProps {
@@ -21,15 +21,22 @@ export const PostMetaData = ({
       flexDirection={flexDirection}
       justifyContent="space-between"
       alignItems="center"
-      marginBottom="1rem"
+      marginBottom={8}
     >
-      <Box>{dateTimeToRead}</Box>
-      <Box>
-        <ChakraLink href={editUrl} title="Edit on Github" isExternal>
-          <FaGithub />
-          Edit on Github
-        </ChakraLink>
-      </Box>
+      <Box marginBottom={{ base: 4, md: '0' }}>{dateTimeToRead}</Box>
+      <Button
+        as="a"
+        variant="outline"
+        leftIcon={<Icon as={FaGithub} />}
+        href={editUrl}
+        size="sm"
+        width={{ base: '100%', md: 'auto' }}
+        title="Edit on Github"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        Edit on Github
+      </Button>
     </Box>
   )
 }

@@ -12,6 +12,10 @@ const gaTrackingId =
   process.env.PRODUCTION_DEPLOY === 'true' ? 'G-DLGHEH0LX2' : 'G-xxx'
 
 module.exports = {
+  // To debug SSR issues, uncomment the following lines:
+  // flags: {
+  //   DEV_SSR: true,
+  // },
   siteMetadata: {
     title: `browniebroke.com`,
     description: `Bruno Alla's blog - about programming, and other random things that interest me.`,
@@ -48,22 +52,17 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-transformer-remark`,
+      resolve: 'gatsby-plugin-mdx',
       options: {
-        plugins: [
+        extensions: ['.mdx', '.md'],
+        gatsbyRemarkPlugins: [
           {
             resolve: `gatsby-remark-images`,
             options: {
               maxWidth: 700,
             },
           },
-          {
-            resolve: `gatsby-remark-vscode`,
-            options: {
-              theme: 'Quiet Light',
-              extensions: ['toml'],
-            },
-          },
+          `gatsby-remark-prismjs`,
           `gatsby-remark-smartypants`,
           `gatsby-remark-external-links`,
         ],
@@ -109,15 +108,15 @@ module.exports = {
         `,
         feeds: [
           {
-            serialize: ({ query: { site, allMarkdownRemark } }) =>
-              serializeToFeed(site, allMarkdownRemark, makePostUrl),
+            serialize: ({ query: { site, allMdx } }) =>
+              serializeToFeed(site, allMdx, makePostUrl),
             query: makeQueryFor('posts'),
             output: '/rss.xml',
             title: "Bruno Alla's blog RSS feed",
           },
           {
-            serialize: ({ query: { site, allMarkdownRemark } }) =>
-              serializeToFeed(site, allMarkdownRemark, makeTILUrl),
+            serialize: ({ query: { site, allMdx } }) =>
+              serializeToFeed(site, allMdx, makeTILUrl),
             query: makeQueryFor('tils'),
             output: '/tils.xml',
             title: "Bruno Alla's TIL feed",
