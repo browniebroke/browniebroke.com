@@ -6,7 +6,6 @@ function serializeToFeed(site, allMdx, makeUrl) {
       date: edge.node.frontmatter.date,
       url: `${site.siteMetadata.siteUrl}${pageUrl}`,
       guid: `${site.siteMetadata.siteUrl}${pageUrl}`,
-      custom_elements: [{ 'content:encoded': edge.node.html }],
     })
   })
 }
@@ -24,7 +23,6 @@ function makeQueryFor(sourceName) {
               slug 
             }
             excerpt
-            html
             frontmatter {
               title
               date
