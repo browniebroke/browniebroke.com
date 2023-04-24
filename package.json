@@ -42,7 +42,6 @@
     "reading-time": "^1.5.0",
     "remark-external-links": "8.0.0",
     "replace-in-file": "6.3.5",
-    "sanitize.css": "13.0.0",
     "slugify": "1.6.6",
     "typescript": "5.0.4"
   },
