@@ -3,10 +3,10 @@ import { MDXProvider } from '@mdx-js/react'
 import { AcceptsChildren } from './types'
 import {
   Heading,
-  UnorderedList,
-  ListItem,
   Text,
   OrderedList,
+  UnorderedList,
+  ListItem,
 } from '@chakra-ui/react'
 
 const MyH1 = ({ children }: AcceptsChildren) => (
