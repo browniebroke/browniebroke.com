@@ -48,7 +48,7 @@ Here are the steps I followed to convert to `src/` layout, without changing the 
 2. Move `my_package` into `src/`.
 3. Change you `packages` section in your `pyproject.toml`:
 
-   ```diff
+   ```diff-toml
      packages = [
    -     { include = "my_package" },
    +     { include = "my_package", from = "src" },
@@ -57,7 +57,7 @@ Here are the steps I followed to convert to `src/` layout, without changing the 
 
 4. Add `pythonpath` to your pytest option as follows:
 
-   ```diff
+   ```diff-toml
      [tool.pytest.ini_options]
    + pythonpath = ["src"]
    ```
@@ -70,7 +70,7 @@ Here are the steps I followed to convert to `src/` layout, without changing the 
 
 5. If your `pyproject.toml` references some paths, make sure to update them, e.g python-semantic-release:
 
-   ```diff
+   ```diff-toml
      [tool.semantic_release]
      branch = "main"
    - version_variable = "my_package/__init__.py:__version__"
