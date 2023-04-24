@@ -12,6 +12,10 @@ const gaTrackingId =
   process.env.PRODUCTION_DEPLOY === 'true' ? 'G-DLGHEH0LX2' : 'G-xxx'
 
 module.exports = {
+  // To debug SSR issues, uncomment the following lines:
+  // flags: {
+  //   DEV_SSR: true,
+  // },
   siteMetadata: {
     title: `browniebroke.com`,
     description: `Bruno Alla's blog - about programming, and other random things that interest me.`,
