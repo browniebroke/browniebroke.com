@@ -18,7 +18,7 @@ I looked at a few options, and rejected them for the following reasons:
 
 I ended up on [django-modeltrans](https://django-modeltrans.readthedocs.io), which is using a single JSONField for all translations, is well integrated into the admin and supports modern versions of Django. Adding a model with translated fields is as simple as:
 
-```python{6}
+```python{8}
 from django.db import models
 from modeltrans.fields import TranslationField
 
