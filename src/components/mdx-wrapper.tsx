@@ -32,8 +32,8 @@ const components = {
   h2: MyH2,
   h3: MyH3,
   h4: MyH4,
-  ul: UnorderedList,
-  li: ListItem,
+  // ul: UnorderedList,
+  // li: ListItem,
   p: Text,
 }
 
