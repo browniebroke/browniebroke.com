@@ -17,8 +17,10 @@ interface TILTemplateData {
   }
   data: {
     mdx: {
-      body: string
       excerpt: string
+      fields: {
+        slug: string
+      }
       frontmatter: {
         title: string
         date: string
@@ -35,12 +37,7 @@ interface TILTemplateData {
   children: React.ReactNode
 }
 
-const TILTemplate = ({
-  location,
-  data,
-  pageContext,
-  children,
-}: TILTemplateData) => {
+const TILTemplate = ({ data, pageContext, children }: TILTemplateData) => {
   const post = data.mdx
   const { previous, next } = pageContext
   const editURL = `https://github.com/browniebroke/browniebroke.com/blob/master/src/${
@@ -59,7 +56,7 @@ const TILTemplate = ({
         <Box>{children}</Box>
       </MDXWrapper>
 
-      <Sharing post={post} path={location.pathname} />
+      <Sharing post={post} path={makeTILUrl(post.fields.slug)} />
       <Pagination previous={previous} next={next} makeUrlFunc={makeTILUrl} />
     </Layout>
   )
@@ -71,8 +68,10 @@ export const pageQuery = graphql`
   query TILBySlug($slug: String!) {
     mdx(fields: { slug: { eq: $slug } }) {
       id
-      body
       excerpt(pruneLength: 160)
+      fields {
+        slug
+      }
       frontmatter {
         title
         ...FormattedDate

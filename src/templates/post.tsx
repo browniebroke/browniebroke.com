@@ -11,7 +11,7 @@ import { PostMetaData } from '../components/post-metadata'
 import { SEO } from '../components/seo'
 import { Sharing } from '../components/sharing'
 // @ts-ignore
-import { makeTagUrl } from '../utils/routes'
+import { makePostUrl, makeTagUrl } from '../utils/routes'
 
 interface PostTemplateData {
   location: {
@@ -20,8 +20,8 @@ interface PostTemplateData {
   data: {
     mdx: {
       excerpt: string
-      body: string
       fields: {
+        slug: string
         timeToRead: {
           text: string
         }
@@ -48,7 +48,6 @@ interface PostTemplateData {
 }
 
 const BlogPostTemplate = ({
-  location,
   data,
   pageContext,
   children,
@@ -90,7 +89,7 @@ const BlogPostTemplate = ({
           </Link>
         ))}
       </Stack>
-      <Sharing post={post} path={location.pathname} />
+      <Sharing post={post} path={makePostUrl(post.fields.slug)} />
       <Pagination previous={previous} next={next} />
     </Layout>
   )
@@ -103,8 +102,8 @@ export const pageQuery = graphql`
     mdx(fields: { slug: { eq: $slug } }) {
       id
       excerpt(pruneLength: 160)
-      body
       fields {
+        slug
         timeToRead {
           text
         }
