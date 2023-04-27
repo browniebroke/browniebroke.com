@@ -1,0 +1,192 @@
+---
+date: 2023-04-27
+author: browniebroke
+title: 'Migrate my site design system to Chakra UI with ChatGPT'
+description: 'How I used Chat GPT to take on this endeavour and how it went'
+header_image: header.png
+tags:
+  - gatsby
+  - css
+  - chakra-ui
+  - chatgpt
+---
+
+A short story on how I migrated this site from a custom design system to Chakra UI with the help of ChatGPT. Wasn't a complicated migration, but AI was a great help to get it done quicker and discover their great documentation.
+
+# Initial state
+
+Before I started, this site was using a custom design system based on [styled-components](https://styled-components.com). It was a small library of components that I had created for a few projects almost 3 years ago, in 2020. Back then, the world was in lockdown, and I had lots of time at home to toy around some fun little projects. I also wanted to work on my CSS skills and didn't need many components, but I needed them on a few projects. Instead of copying them around, I decided to created my own mini design system with [a small React component library](https://www.npmjs.com/package/@browniebroke/react-ui-components). This site was one of the first to use it.
+
+# Problems
+
+Creating a design system requires to have some basic knowledge in design theory and typography to get spacing right while giving flexibility to the consumers of the library. I didn't have that knowledge back then, and I still don't have it now. I did some research and learnt by taking some inspirations in other projects to learn, but it was and remain a very basic design system. It looked ok, but I'm sure someone more proficient in design would spot a lot of problems.
+
+I migrated the 3 or 4 sites I had to use that library and didn't touch it since then. Recently (~2 years later), I wanted to add a new section to this site, with a different layout. Shortly after I started, I realised that I didn't remember the syntax my own self created a few years back, and it was barely documented in my design system. Sure, I could work it out by looking at the code, but it didn't work when I tried: this site wasn't configured exactly how the library was expecting. Basically, it was as if I was using someone else's broken library, and it wasn't fun anymore!
+
+# Solution
+
+Writing my own design system was a fun exercise, but it was time to move on. I wanted to use a mature library, with good documentation, widely used in the React community and which worked with my toolchain (Gatsby.js). I heard a few times of [Chakra UI](https://chakra-ui.com), and it seemed to tick all the boxes, and a lot more. I used to see "doing too much" as a drawback, but today it's no longer the case, I just want something that works.
+
+On top of the requirements I needed, I also got sold on these features specifically:
+
+- Themeable design system
+- CSS in JS
+- Provides Atomic components as well as complex ones
+
+## Challenges
+
+However, migrating came with its own set of challenges. The New syntax, different from styled-components, would take some time to get used to. The library, with all its component was a bit overwhelming at first, it looked like there was a component for everything, and like many components could be used to do the same thing.
+
+## How AI can help
+
+That challenge seemed like a perfect job for ChatGPT: lots of data to crunch though, lots of content online to back it up. Let's go!
+
+# Migration
+
+## Component level
+
+I decided to start with some self-contained components that I wrote myself. Just asked to convert from styled-components to Chakra UI with the code below and it spitted out pretty quickly a first version.
+
+### Input:
+
+```js
+import styled from 'styled-components'
+
+export const PostMetaData = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+
+  @media (min-width: 400px) {
+    flex-direction: row;
+  }
+
+  div {
+    margin-bottom: 0.5rem;
+  }
+`
+```
+
+### Output:
+
+```js
+import { Box, useBreakpointValue } from '@chakra-ui/react'
+
+export const PostMetaData = (props) => {
+  const flexDirection = useBreakpointValue({ base: 'column', md: 'row' })
+
+  return (
+    <Box
+      display="flex"
+      flexDirection={flexDirection}
+      justifyContent="space-between"
+      alignItems="center"
+      marginBottom="1rem"
+      {...props}
+    >
+      {React.Children.map(props.children, (child) => (
+        <Box marginBottom="0.5rem">{child}</Box>
+      ))}
+    </Box>
+  )
+}
+```
+
+It didn't produce totally equivalent code, it actually looked better with the breakpoints it gave me. I didn't really need to deal with children, but by handling this case that, it showed me some flaws in my original design. Off to a great start! I tweaked a bit its output and moved on to more transformations. Some were pretty trivial and barely needed any changes.
+
+When a new Chakra component showed up, I looked in their documentation to learn about it and how it could be used. I also looked at the code it produced to see how it was used. Repeating this, I quickly discovered the main components I needed and after a few migrations I felt like I could write them myself, but it was still faster to ask the AI.
+
+## Limitation
+
+One migration didn't work too well, it was the `Avatar` component of this site. Here is the original version:
+
+```js
+const AvatarStyles = styled.div`
+  padding: 1rem;
+
+  img {
+    padding: 5px;
+    border: 1px solid ${(props) => props.theme.grey};
+    border-radius: 50%;
+  }
+`
+
+export const Avatar: React.FC = () => (
+  <AvatarStyles>
+    <StaticImage
+      src="../assets/avatar.jpg"
+      alt="Picture of Bruno"
+      placeholder="blurred"
+      layout="fixed"
+      width={160}
+      height={160}
+    />
+  </AvatarStyles>
+)
+```
+
+The `AvatarStyles` was using a nested rule for an `img` tag which is inside the `StaticImage` component. The CSS rule was targeting a non-direct descendant, which ChatGTP initially wrote using an underscore-prefixed prop `_img`:
+
+```js{4-9}
+export const Avatar: React.FC = () => (
+  <Box
+    padding="1rem"
+    _img={{
+      padding: '5px',
+      border: '1px solid',
+      borderColor: 'gray.500', // Adjust the color according to your theme
+      borderRadius: '50%',
+    }}
+  >
+    <StaticImage
+      src="../assets/avatar.jpg"
+      alt="Picture of Bruno"
+      placeholder="blurred"
+      layout="fixed"
+      width={160}
+      height={160}
+    />
+  </Box>
+);
+```
+
+After telling it that it doesn't work, it tried something else, but just failed to produce an output that worked. It seems that this might be an old syntax and the AI didn't know the newer syntax from the version I used. I eventually landed on this:
+
+```js{4-11}
+export const Avatar: React.FC = () => (
+  <Box
+    padding={4}
+    sx={{
+      img: {
+        borderRadius: '50%',
+        padding: 'var(--chakra-space-1)',
+        border: '1px solid',
+        borderColor: 'gray.500',
+      },
+    }}
+  >
+    <StaticImage
+      src="../assets/avatar.jpg"
+      alt="Picture of Bruno"
+      placeholder="blurred"
+      layout="fixed"
+      width={160}
+      height={160}
+    />
+  </Box>
+)
+```
+
+## Theme / global styles
+
+The theme is done via a Javascript object, passed to the `ChakraProvider` component wrapping the whole app. The global styles are included automatically from there. Pretty straightforward to use. The thing I really liked is that everything is in one place, in my theme object, while before, I had things split between my theme and global styles, and they were 2 separate files.
+
+What took me a bit of time to figure out what keys/values are available. Once I understood that keys are mapped to CSS variables, it clicked and I could find what to customise by looking at the CSS variables in the browser.
+
+# Results
+
+The resulting [pull request](https://github.com/browniebroke/browniebroke.com/pull/1125) is huge, but ChatGPT helped my and it was actually pretty painless. I think the design looks very close, but is overall improved. If/when I need something new, I have plenty of battle-tested components to choose from. I also ran Lighthouse to make sure there wasn't any performance regression, and it actually improved a bit.
+
+So overall, really happy with that migration, and I'm looking forward to using Chakra UI in my next projects.
