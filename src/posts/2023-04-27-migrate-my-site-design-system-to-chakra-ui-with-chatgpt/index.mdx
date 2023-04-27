@@ -52,30 +52,30 @@ I decided to start with some self-contained components that I wrote myself. Just
 ```js
 import styled from 'styled-components'
 
- export const PostMetaData = styled.div`
-   display: flex;
-   flex-direction: column;
-   justify-content: space-between;
-   align-items: center;
-   margin-bottom: 1rem;
+export const PostMetaData = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
 
-   @media (min-width: 400px) {
-     flex-direction: row;
-   }
+  @media (min-width: 400px) {
+    flex-direction: row;
+  }
 
-   div {
-     margin-bottom: 0.5rem;
-   }
- `
+  div {
+    margin-bottom: 0.5rem;
+  }
+`
 ```
 
 ### Output:
 
 ```js
-import { Box, useBreakpointValue } from '@chakra-ui/react';
+import { Box, useBreakpointValue } from '@chakra-ui/react'
 
 export const PostMetaData = (props) => {
-  const flexDirection = useBreakpointValue({ base: 'column', md: 'row' });
+  const flexDirection = useBreakpointValue({ base: 'column', md: 'row' })
 
   return (
     <Box
@@ -90,8 +90,8 @@ export const PostMetaData = (props) => {
         <Box marginBottom="0.5rem">{child}</Box>
       ))}
     </Box>
-  );
-};
+  )
+}
 ```
 
 It didn't produce totally equivalent code, it actually looked better with the breakpoints it gave me. I didn't really need to deal with children, but by handling this case that, it showed me some flaws in my original design. Off to a great start! I tweaked a bit its output and moved on to more transformations. Some were pretty trivial and barely needed any changes.
