@@ -37,7 +37,7 @@ date: ${dateStr}
 title: '${title}'
 ---
 `
-  fs.writeFileSync(`src/tils/${dateStr}-${slug}.md`, data, { flag: 'w' })
+  fs.writeFileSync(`src/tils/${dateStr}-${slug}.mdx`, data, { flag: 'w' })
 }
 
 function initPost(title) {
@@ -55,5 +55,5 @@ tags:
 `
   const dir = `src/posts/${dateStr}-${slug}`
   fs.mkdirSync(dir, { recursive: true })
-  fs.writeFileSync(`${dir}/index.md`, data, { flag: 'w' })
+  fs.writeFileSync(`${dir}/index.mdx`, data, { flag: 'w' })
 }
