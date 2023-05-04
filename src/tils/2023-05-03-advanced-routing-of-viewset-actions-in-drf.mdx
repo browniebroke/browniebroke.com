@@ -1,0 +1,73 @@
+---
+date: 2023-05-03
+title: 'Advanced routing of ViewSet actions in DRF'
+---
+
+In a project, I needed to add multiple HTTP verbs to a nested resource in a ViewSet. In other words, assuming the models look like this:
+
+```python
+class BlogPost(models.Model):
+    ...
+
+
+class PostComment(models.Model):
+    blog_post = models.ForeignKey(BlogPost, on_delete=models.CASCADE)
+```
+
+I needed the following API endpoints:
+
+```http
+GET    /blog-posts/
+POST   /blog-posts/
+GET    /blog-posts/:id/
+GET    /blog-posts/:id/comments/
+POST   /blog-posts/:id/comments/
+GET    /blog-posts/:id/comments/:commentId/
+PATCH  /blog-posts/:id/comments/:commentId/
+DELETE /blog-posts/:id/comments/:commentId/
+```
+
+I already had a `ViewSet` for the blog posts, and I needed to add the comments to it. I tried to look for a solution with nested `ViewSet`s but I couldn't find anything supported out of the box. I knew about the `@action` decorator, but while looking closer at the DRF docs, I found out about how to route multiple HTTP verbs to an existing action, which I didn't before. So I ended up with the following:
+
+```python
+class BlogPostViewSet(viewsets.ModelViewSet):
+    queryset = BlogPost.objects.all()
+    serializer_class = BlogPostSerializer
+
+    @action(
+        detail=True,
+        methods=['get'],
+        url_path='comments',
+        url_name='comments-list',
+        serializer_class=PostCommentSerializer
+    )
+    def list_comments(self, request):
+        post = self.get_object()
+        comments = post.comments.all()
+        serializer = self.get_serializer(comments, many=True)
+        return Response(serializer.data)
+
+    @list_comments.mapping.post
+    def create_comment(self, request):
+        ...
+
+    @action(
+        detail=True,
+        methods=['get'],
+        url_path='comments/(?P<comment_id>[^/.]+)',
+        url_name='comments-detail',
+        serializer_class=PostCommentSerializer
+    )
+    def get_comment(self, request, pk=None):
+        ...
+
+    @get_comment.mapping.patch
+    def update_comment(self, request, pk=None):
+        ...
+
+    @get_comment.mapping.delete
+    def delete_comment(self, request, pk=None):
+        ...
+```
+
+I like how it's declarative and how each HTTP verb is separated into its own method. However, it's quite a lot of code, with some bits duplicated (e.g. `serializer_class=PostCommentSerializer` + in the method bodies), and I'm not sure if it's the best way to do it. I'm open to suggestions if you have any!
