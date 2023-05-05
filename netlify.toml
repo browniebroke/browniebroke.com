@@ -42,3 +42,7 @@
 [[redirects]]
   from = "/static-vs-media-in-django/"
   to = "/blog/static-vs-media-in-django/"
+
+[[redirects]]
+  from = "/tils/advanced-routing-of-viewset-actions-in-drf/"
+  to = "/blog/nested-viewsets-with-django-rest-framework/"
