@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'gatsby'
-import { Spacer, Stack } from '@chakra-ui/react'
+import { Button, Spacer, Stack } from '@chakra-ui/react'
 
 // @ts-ignore
 import { makePostUrl } from '../utils/routes'
@@ -42,13 +42,15 @@ const PageLink: React.FC<PageLinkProps> = ({ pageObj, rel, makeUrlFunc }) => {
   return (
     <>
       {pageObj ? (
-        <Link
-          to={makeUrl(pageObj.fields.slug)}
-          rel={rel}
-          title={pageObj.frontmatter.title}
-        >
-          {label}
-        </Link>
+        <Button as="div" variant="outline" size="sm">
+          <Link
+            to={makeUrl(pageObj.fields.slug)}
+            rel={rel}
+            title={pageObj.frontmatter.title}
+          >
+            {label}
+          </Link>
+        </Button>
       ) : (
         <Spacer />
       )}
