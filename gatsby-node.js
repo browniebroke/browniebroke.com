@@ -23,22 +23,6 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
               contentFilePath
             }
           }
-          next {
-            fields {
-              slug
-            }
-            frontmatter {
-              title
-            }
-          }
-          previous {
-            fields {
-              slug
-            }
-            frontmatter {
-              title
-            }
-          }
         }
       }
       tags: allMdx {
@@ -54,36 +38,21 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     return
   }
 
-  const postTemplate = path.resolve(`./src/templates/post.tsx`)
-  const tilTemplate = path.resolve(`./src/templates/til.tsx`)
+  createAllPages(
+    actions,
+    result.data.posts.edges,
+    'posts',
+    `./src/templates/post.tsx`,
+    makePostUrl
+  )
 
-  const mdFiles = result.data.posts.edges
-  mdFiles.forEach((mdFile) => {
-    if (mdFile.node.fields.sourceName === 'posts') {
-      // Create blog post page
-      actions.createPage({
-        path: makePostUrl(mdFile.node.fields.slug),
-        component: `${postTemplate}?__contentFilePath=${mdFile.node.internal.contentFilePath}`,
-        // component: `${postTemplate}`,
-        context: {
-          slug: mdFile.node.fields.slug,
-          previous: mdFile.previous,
-          next: mdFile.next,
-        },
-      })
-    } else if (mdFile.node.fields.sourceName === 'tils') {
-      // Create TIL page
-      actions.createPage({
-        path: makeTILUrl(mdFile.node.fields.slug),
-        component: `${tilTemplate}?__contentFilePath=${mdFile.node.internal.contentFilePath}`,
-        context: {
-          slug: mdFile.node.fields.slug,
-          previous: mdFile.previous,
-          next: mdFile.next,
-        },
-      })
-    }
-  })
+  createAllPages(
+    actions,
+    result.data.posts.edges,
+    'tils',
+    `./src/templates/til.tsx`,
+    makeTILUrl
+  )
 
   // Create tag pages
   const tagsArray = result.data.tags.group
@@ -93,6 +62,41 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       component: path.resolve(`./src/templates/tag_page.tsx`),
       context: {
         tag: tagObj.tag,
+      },
+    })
+  })
+}
+
+// Create all pages of a given kind
+const createAllPages = (
+  actions,
+  allMdFiles,
+  sourceName,
+  templatePath,
+  urlMaker
+) => {
+  const templateFile = path.resolve(templatePath)
+  const relevantMdFiles = allMdFiles.filter(
+    (mdFile) => mdFile.node.fields.sourceName === sourceName
+  )
+  relevantMdFiles.forEach((mdFile, index) => {
+    // Get all the relevant data
+    const previous = index === 0 ? null : relevantMdFiles[index - 1].node
+    const next =
+      index === relevantMdFiles.length - 1
+        ? null
+        : relevantMdFiles[index + 1].node
+    const postPath = urlMaker(mdFile.node.fields.slug)
+    const component = `${templateFile}?__contentFilePath=${mdFile.node.internal.contentFilePath}`
+
+    // Create a single page
+    actions.createPage({
+      path: postPath,
+      component: component,
+      context: {
+        slug: mdFile.node.fields.slug,
+        previous: previous,
+        next: next,
       },
     })
   })
