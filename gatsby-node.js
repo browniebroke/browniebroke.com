@@ -81,11 +81,15 @@ const createAllPages = (
   )
   relevantMdFiles.forEach((mdFile, index) => {
     // Get all the relevant data
-    const previous = index === 0 ? null : relevantMdFiles[index - 1].node
-    const next =
+    // files are sorted by most recent first, so:
+    // - index 0 has no "next"
+    const next = index === 0 ? null : relevantMdFiles[index - 1].node
+    // - last post has no "previous"
+    const previous =
       index === relevantMdFiles.length - 1
         ? null
         : relevantMdFiles[index + 1].node
+    // Create URL path from slug
     const postPath = urlMaker(mdFile.node.fields.slug)
     const component = `${templateFile}?__contentFilePath=${mdFile.node.internal.contentFilePath}`
 
