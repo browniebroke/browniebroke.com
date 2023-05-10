@@ -33,7 +33,7 @@
     "gatsby-remark-smartypants": "6.9.0",
     "gatsby-source-filesystem": "5.9.0",
     "gatsby-transformer-sharp": "5.9.0",
-    "htmlparser2": "8.0.2",
+    "htmlparser2": "9.0.0",
     "prismjs": "1.29.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
