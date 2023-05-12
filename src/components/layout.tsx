@@ -1,7 +1,7 @@
 import React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 import { GatsbyImage, IGatsbyImageData } from 'gatsby-plugin-image'
-import { Box, ChakraProvider, Link, Text } from '@chakra-ui/react'
+import { Box, ChakraProvider, Container, Link, Text } from '@chakra-ui/react'
 
 import { Header } from './header'
 import { theme } from '../utils/theme'
@@ -37,13 +37,11 @@ export const Layout = ({ headerImage, children }: LayoutProps) => {
       <ChakraProvider theme={theme}>
         <Header siteTitle={data.site.siteMetadata.title} />
         {getHeroImage(headerImage)}
-        <Box
-          marginY="0"
-          marginX="auto"
-          paddingTop="3rem"
-          paddingBottom="1.5rem"
-          paddingX="1rem"
-          maxWidth="700px"
+        <Container
+          paddingTop={12}
+          paddingBottom={6}
+          paddingX={4}
+          maxW="xl"
           minHeight="100vh"
         >
           <Box as="main" minHeight="70vh">
@@ -57,7 +55,7 @@ export const Layout = ({ headerImage, children }: LayoutProps) => {
               </Link>
             </Text>
           </footer>
-        </Box>
+        </Container>
       </ChakraProvider>
     </>
   )
