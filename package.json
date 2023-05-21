@@ -12,7 +12,7 @@
     "@emotion/react": "11.11.0",
     "@emotion/styled": "11.11.0",
     "@fontsource/cabin-condensed": "5.0.0",
-    "@fontsource/patua-one": "4.5.9",
+    "@fontsource/patua-one": "5.0.0",
     "framer-motion": "10.12.12",
     "gatsby": "5.10.0",
     "gatsby-plugin-csp": "1.1.4",
