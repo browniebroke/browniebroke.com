@@ -1,0 +1,169 @@
+---
+date: 2023-07-10
+author: browniebroke
+title: 'Bulk updating multiple repos with all-repos'
+description: 'A walkthrough of my setup that allows me to maintain many GitHub repos at once'
+header_image: header.png
+tags:
+  - github
+  - all-repos
+  - automation
+  - python
+---
+
+I like the open source communities and all the developments that they enable. As a developer, I like to have the ability to solve my own problems, but when someone else already solved the problem, it's even better. However, when nobody did, I like to share my solution with others, if possible and practical. I've done it enough times that I'm beginning to have a decent setup with a project template that gives me the boilerplate I need to get started quickly, and not waste too much time packaging and publishing my solution.
+
+## The problem
+
+However, after a while, maintaining all these projects can become overwhelming. And when external things change, like adding support for a new version of a language/framework, dropping an old one, or adapting to how a tool works, it can be tedious to do bulk updates. Of course, in this case, I'm not the first one to hit this problem, and there are a number of solutions out there.
+
+## The solution
+
+I've been using [all-repos](https://github.com/asottile/all-repos) for about a year and a half, and I'm quite happy with it. It's a tool that allows you to run a command on all or some of your GitHub repositories. It's a command line tool written in Python, that's overall quite easy to use, with an API that has a bit of a learning curve, but is very powerful. In this post, I'll show you how I use it to update my projects.
+
+## Repository setup
+
+I like to keep all my code in git and save it in GitHub, so I've created a [repo](https://github.com/browniebroke/all-my-repos) for using it. So, here we are, one more repo... to manage all my repos. One step back to move forward, I guess.
+
+### Splitting the config
+
+The [recommended usage](https://github.com/asottile/all-repos#configuring) is to create a config file, `all-repos.json`, that contains some config controlling behaviour, as well as your credentials.
+
+However, often switch machine, and I wanted to store the config in source control to be able to share it more easily and only keep the credentials outside. This isn't supported by all-repos, and it seems to be an intentional design decision, and the author showed no intention to support it, so I created a package to do it: [all-repos-envvar](https://github.com/browniebroke/all-repos-envvar). That's now 2 more repos to maintain... I hope that's worth it!
+
+### Learning the library
+
+The library ships several separate CLI tools, but I must be missing their point, and actually I don't even use them.
+
+What I really find useful is the [autofixer](https://github.com/asottile/all-repos/tree/main#writing-an-autofixer), which is documented at the bottom of the README. The documentation describes the API, and then finally gives [an example autofixer](https://github.com/asottile/all-repos/tree/main#example-autofixer), which has the boilerplate you need. The documentation then links to the built-in autofixers which are great examples on what you can do.
+
+## My usage
+
+So in my project, I have:
+
+- A `pyproject.toml` file with the dependencies I need, managed by Poetry.
+- A `all-repos.json` file that contains the config for all-repos, in git. It controls how I fetch the repos, how changes are submitted (pull request), the organisations I want to include, and some repos I want to exclude.
+- My GitHub credentials, in a `.env` file that I keep outside of source control.
+- Finally, I copied the given boilerplate and wrote a `run_fix.py` file which I keep changing for my need of the day.
+
+## Example
+
+Python 3.7 recently reached EOL, so that was a good opportunity to use the tool to update all my projects in bulk. Here is how the script looked like:
+
+```python
+from pathlib import Path
+
+from all_repos import autofix_lib
+from all_repos.grep import repos_matching
+
+# Find repos that have this file...
+FILE_NAME = "pyproject.toml"
+# ... and which content contains this string.
+FILE_CONTAINS = "tool.poetry"
+# Git stuff
+GIT_COMMIT_MSG = "feat: drop support for Python 3.7"
+GIT_BRANCH_NAME = "feat/drop-python-3.7"
+
+
+def apply_fix():
+    """Apply fix to a matching repo."""
+    pyproject_toml = Path("pyproject.toml")
+    content = pyproject_toml.read_text()
+
+    # Be idempotent
+    if 'python = "^3.8"' in content:
+        return
+
+    new_content = content.replace(
+        'python = "^3.7"',
+        'python = "^3.8"',
+    )
+    pyproject_toml.write_text(new_content)
+
+    ci_yml = Path(".github/workflows/ci.yml")
+    if ci_yml.exists():
+        content = ci_yml.read_text()
+        content = content.replace(
+            'python-version:\n          - "3.7"\n',
+            "python-version:\n",
+        )
+        ci_yml.write_text(content)
+
+    pc_yml = Path(".pre-commit-config.yaml")
+    if pc_yml.exists():
+        content = pc_yml.read_text()
+        content = content.replace(
+            '--py37-plus',
+            '--py38-plus',
+        )
+        pc_yml.write_text(content)
+
+
+# You shouldn't need to change anything below this line
+
+
+def find_repos(config) -> set[str]:
+    """Find matching repos using git grep."""
+    repos = repos_matching(
+        config,
+        (FILE_CONTAINS, "--", FILE_NAME),
+    )
+    return repos
+
+
+def main():
+    """Entry point."""
+    repos, cfg, commit, stg = autofix_lib.from_cli(
+        None,
+        find_repos=find_repos,
+        msg=GIT_COMMIT_MSG,
+        branch_name=GIT_BRANCH_NAME,
+    )
+    autofix_lib.fix(
+        repos,
+        apply_fix=apply_fix,
+        config=cfg,
+        commit=commit,
+        autofix_settings=stg,
+    )
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
+```
+
+Ok that's a lot of code, so let's break it down.
+
+### Constants
+
+Fist off, I defined a few constants at the top of the file, which I always need to change:
+
+1. The `FILE_...` ones are used to detect whether the repository is suitable for this change: in this example, a node project would be filtered out with this mechanism, in the `find_repos()` function.
+2. the `GIT_...` ones are for the git commit message and branch. If anything changes, the tool opens a pull request which I can review before merging.
+
+### `apply_fix()`
+
+This is where the actual code change happens. This function runs in the context of a matching repo, and the current directory is the top of the repo. You can read and write file as you please or run commands with `autofix_lib.run(...)`. It's a good idea to start with a check to verify that the fix hasn't run yet, just in case.
+
+### `find_repos()`
+
+This is mainly boilerplate, it's essentially a wrapper around `git grep` and uses 2 of the constants I explained earlier. If you want to learn more, I suggest to go [read the source code of `repos_matching`](https://github.com/asottile/all-repos/blob/24911de91215a214adfe2e0ea3d4d1eb5e67a42a/all_repos/grep.py#L19-L44).
+
+### Entry point
+
+Finally, the `main()` function is the entry point. It's called when running `python run_fix.py`, and it mostly calls the autofix API with our parameters. This is a simplified version from the boilerplate, without argument parser, since I never use that feature.
+
+## Lifetime of the script
+
+I keep this script around and just change it in place, committing each time I change it to make a bulk changes. It's usually some one off operations, but it's quite useful to have some history in git in case I need to something similar again, like when I'll need to drop Python 3.8. You can check [its history on GitHub](https://github.com/browniebroke/all-my-repos/commits/main/run_fix.py) to see how it evolved.
+
+## Trade-offs
+
+On the downside, one might argue that the code is a bit verbose, but in my opinion it's a good thing. I'm comfortable with Python, it does the job and let me use all of its power to do the changes I need, and step into a debugger when I need to.
+
+I came across other approaches, for example, [Adam Johnson described](https://adamj.eu/tech/2020/04/02/maintaining-multiple-python-projects-with-myrepos/) how he uses a tool called [`myrepos`](https://myrepos.branchable.com/) to do something similar. It didn't fit my way of doing thing, but it might work for you.
+
+## Conclusion
+
+I think that's it! I hope this was useful, and will help make the all-repos tool more accessible. It's quite powerful, although I found that it had lots of things I didn't need.
