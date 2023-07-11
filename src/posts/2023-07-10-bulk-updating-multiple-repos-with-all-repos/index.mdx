@@ -51,6 +51,7 @@ So in my project, I have:
 Python 3.7 recently reached EOL, so that was a good opportunity to use the tool to update all my projects in bulk. Here is how the script looked like:
 
 ```python
+import argparse
 from pathlib import Path
 
 from all_repos import autofix_lib
@@ -113,8 +114,14 @@ def find_repos(config) -> set[str]:
 
 def main():
     """Entry point."""
+    # Needed to add all-repos command line options
+    # and ability to parse config
+    parser = argparse.ArgumentParser()
+    autofix_lib.add_fixer_args(parser)
+    args = parser.parse_args(None)
+
     repos, cfg, commit, stg = autofix_lib.from_cli(
-        None,
+        args,
         find_repos=find_repos,
         msg=GIT_COMMIT_MSG,
         branch_name=GIT_BRANCH_NAME,
@@ -152,7 +159,7 @@ This is mainly boilerplate, it's essentially a wrapper around `git grep` and use
 
 ### Entry point
 
-Finally, the `main()` function is the entry point. It's called when running `python run_fix.py`, and it mostly calls the autofix API with our parameters. This is a simplified version from the boilerplate, without argument parser, since I never use that feature.
+Finally, the `main()` function is the entry point. It's called when running `python run_fix.py`, and it mostly calls the autofix API with our parameters. This is a slightly simplified version from the boilerplate.
 
 ## Lifetime of the script
 
