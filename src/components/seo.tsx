@@ -50,31 +50,29 @@ export const SEO: React.FC<SEOProps> = ({
   meta = [],
   lang = 'en',
 }) => {
-  const { site, defaultImage } = useStaticQuery(
-    graphql`
-      query {
-        site {
-          siteMetadata {
-            title
-            description
-            author
-            siteUrl
-          }
-        }
-        defaultImage: file(relativePath: { eq: "avatar.jpg" }) {
-          childImageSharp {
-            gatsbyImageData(
-              width: 1200
-              height: 600
-              layout: FIXED
-              transformOptions: { fit: COVER, cropFocus: CENTER }
-              formats: [PNG]
-            )
-          }
+  const { site, defaultImage } = useStaticQuery(graphql`
+    query {
+      site {
+        siteMetadata {
+          title
+          description
+          author
+          siteUrl
         }
       }
-    `
-  )
+      defaultImage: file(relativePath: { eq: "avatar.jpg" }) {
+        childImageSharp {
+          gatsbyImageData(
+            width: 1200
+            height: 600
+            layout: FIXED
+            transformOptions: { fit: COVER, cropFocus: CENTER }
+            formats: [PNG]
+          )
+        }
+      }
+    }
+  `)
 
   const metaDescription = description || site.siteMetadata.description
   const imgMeta = getImageMeta(
