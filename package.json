@@ -55,7 +55,7 @@
     "eslint-config-prettier": "8.9.0",
     "eslint-plugin-prettier": "5.0.0",
     "eslint-plugin-react": "7.33.1",
-    "prettier": "3.0.0"
+    "prettier": "3.0.1"
   },
   "scripts": {
     "build": "gatsby build && node ./csp-util.js",
