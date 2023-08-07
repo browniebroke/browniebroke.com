@@ -77,4 +77,4 @@ def load_json(
     }
 ```
 
-This solution has some limitations, but it works fine for my use case, and I can now reuse it across my codebase.
+This solution has some limitations (the caller must be the Python module adjacent to the test data, doesn't work with a top level array, ...), but it works fine for my use case. I can now reuse it across my codebase and improve it as my need evolve.
