@@ -5,16 +5,17 @@ title: "Using Python's inspect module to load test data"
 
 ## The problem
 
-In one of my Django project, a pattern started to emerge in my tests, where I needed mock data coming out a 3rd party API. Often the API docs shows an example, which is great to get a basic payload to use in tests. However, I couldn't paste it directly on my test code:
+In one of my Django project, a pattern started to emerge in my tests, where I needed mock data coming out a 3rd party API. The 3rd party API docs often shows an example, which is great to get a basic payload to use in tests. However, I couldn't paste it directly on my test code:
 
-- It is in JSON format, which isn't necessarily valid Python, for example if the example contains some `null` or boolean values.
-- It might be a few 100 lines long: it's distracting from the test code and may contain a lot of data irrelevant to the test.
+- It is in JSON format, which isn't necessarily valid Python. For example if the example contains some `null` or boolean values (`false` in JSON vs `False` in Python).
+- It might be a few 100 lines long, distracting from the test code
+- May contain a lot of data irrelevant to the test.
 
-Still, I like to have a snapshot of the example, in my code. Some fields might be useful for in the future, and having it in git enables me see if some fields are being added or removed by the 3rd party.
+Still, I like to have a snapshot of the example, in my code: some fields might be useful in the future, and having the full payload in git enables me see if some fields are being added or removed by the 3rd party.
 
 ## Initial solution
 
-My solution is to paste the example in a `json` file, and write a small utility function to load the json from the file. To separate it from my test, while leaving it adjacent, I started to put it in a `data` directory directly adjacent to my test file:
+My solution is to paste the example in a JSON file, and write a small utility function to load the json from the file. To separate it from my test, while leaving it close, I started to put it in a `data` directory directly adjacent to my test file:
 
 ```
 tests/
@@ -44,7 +45,7 @@ def load_data(filename, **overrides):
     return {**base_data, **overrides}
 ```
 
-After a while, as I added more integration, a few versions popped up in my codebase. They were all similar, but because of the `**file**`` magic, I couldn't just reuse my function: the fixture would be loaded from directory adjacent to my utility function, not from the test module. However, I knew that Python introspection would probably let me do what I wanted.
+After a while, as I added more integrations, a few versions popped up in my codebase. They were all similar, but because of the `__file__` magic, I couldn't easily reuse my function: the fixture would be loaded from directory adjacent to my utility function, not from the test module. However, I knew that Python introspection would probably let me do what I wanted.
 
 ## The reusable solution
 
