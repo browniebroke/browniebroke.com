@@ -5,8 +5,8 @@ const baseUrl =
   process.env.NODE_ENV === 'development'
     ? 'http://localhost:8000'
     : process.env.REVIEW_ID
-    ? `https://deploy-preview-${process.env.REVIEW_ID}--browniebroke.netlify.app`
-    : `https://browniebroke.com`
+      ? `https://deploy-preview-${process.env.REVIEW_ID}--browniebroke.netlify.app`
+      : `https://browniebroke.com`
 
 const gaTrackingId =
   process.env.PRODUCTION_DEPLOY === 'true' ? 'G-DLGHEH0LX2' : 'G-xxx'
