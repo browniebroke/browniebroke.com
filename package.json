@@ -14,7 +14,7 @@
     "@fontsource/cabin-condensed": "5.0.18",
     "@fontsource/patua-one": "5.0.18",
     "framer-motion": "10.16.16",
-    "gatsby": "5.13.0",
+    "gatsby": "5.13.1",
     "gatsby-plugin-csp": "1.1.4",
     "gatsby-plugin-feed": "5.13.0",
     "gatsby-plugin-google-gtag": "5.13.0",
