@@ -13,7 +13,7 @@
     "@emotion/styled": "11.11.0",
     "@fontsource/cabin-condensed": "5.0.18",
     "@fontsource/patua-one": "5.0.18",
-    "framer-motion": "11.0.2",
+    "framer-motion": "11.0.3",
     "gatsby": "5.13.2",
     "gatsby-plugin-csp": "1.1.4",
     "gatsby-plugin-feed": "5.13.1",
@@ -46,7 +46,7 @@
     "typescript": "5.3.3"
   },
   "devDependencies": {
-    "@types/node": "20.11.5",
+    "@types/node": "20.11.6",
     "@types/react": "18.2.48",
     "@types/react-dom": "18.2.18",
     "@types/react-helmet": "6.1.11",
