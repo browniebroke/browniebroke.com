@@ -13,8 +13,8 @@
     "@emotion/styled": "11.11.5",
     "@fontsource/cabin-condensed": "5.0.19",
     "@fontsource/patua-one": "5.0.18",
-    "framer-motion": "11.0.25",
-    "gatsby": "5.13.3",
+    "framer-motion": "11.0.27",
+    "gatsby": "5.13.4",
     "gatsby-plugin-csp": "1.1.4",
     "gatsby-plugin-feed": "5.13.1",
     "gatsby-plugin-google-gtag": "5.13.1",
@@ -22,7 +22,7 @@
     "gatsby-plugin-manifest": "5.13.1",
     "gatsby-plugin-mdx": "5.13.1",
     "gatsby-plugin-netlify": "5.1.1",
-    "gatsby-plugin-offline": "6.13.1",
+    "gatsby-plugin-offline": "6.13.2",
     "gatsby-plugin-react-helmet": "6.13.1",
     "gatsby-plugin-robots-txt": "1.8.0",
     "gatsby-plugin-sharp": "5.13.1",
@@ -43,7 +43,7 @@
     "remark-external-links": "8.0.0",
     "replace-in-file": "7.1.0",
     "slugify": "1.6.6",
-    "typescript": "5.4.4"
+    "typescript": "5.4.5"
   },
   "devDependencies": {
     "@types/node": "20.12.7",
