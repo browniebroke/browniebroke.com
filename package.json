@@ -13,7 +13,7 @@
     "@emotion/styled": "11.11.5",
     "@fontsource/cabin-condensed": "5.0.20",
     "@fontsource/patua-one": "5.0.19",
-    "framer-motion": "11.2.10",
+    "framer-motion": "11.2.11",
     "gatsby": "5.13.6",
     "gatsby-plugin-csp": "1.1.4",
     "gatsby-plugin-feed": "5.13.1",
