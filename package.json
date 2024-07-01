@@ -43,7 +43,7 @@
     "remark-external-links": "8.0.0",
     "replace-in-file": "7.2.0",
     "slugify": "1.6.6",
-    "typescript": "5.5.2"
+    "typescript": "5.5.3"
   },
   "devDependencies": {
     "@types/node": "20.14.9",
