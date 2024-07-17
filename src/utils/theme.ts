@@ -13,7 +13,14 @@ const customTheme = {
         overflowY: 'scroll',
       },
       p: {
+        marginTop: 4,
         marginBottom: 4,
+      },
+      li: {
+        p: {
+          marginTop: 1,
+          marginBottom: 1,
+        },
       },
       a: {
         color: 'inherit',
