@@ -1,0 +1,133 @@
+---
+date: 2024-08-31
+author: browniebroke
+title: 'Narrow state of a Django model using Python TypeGuard'
+description: ''
+tags:
+  - python
+  - django
+  - typeguard
+  - mypy
+---
+
+Today, I came across a problem with type checking in a Django project which led me to use `TypeGuard` for the first time. I've heard about them in TypeScript on the [Syntax podcast](https://syntax.fm/), so I was aware of the concept, but never had a practical situation where I needed to use them in Python.
+
+## The problem
+
+So I was doing some refactoring to eliminate a bit of code duplication between 3 functions. As features were added, I copy-pasted the first into the second, and then later in the 3rd. I wasn't sure at the time if they were going to stay exactly the same, so copying made sense at the time. The [DRY principle](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) is well known, but optimising too early isn't good either, and I've heard some folks say that DRY should be applied when you repeat yourself 3 times, so here we are.
+
+The code is in a Django codebase, dealing with Django models which can be in different states. As a simplified example, there was an `Order` model, with what the customer purchased. When the order is being prepared, a lot of fields are empty, which get filled as it's being fulfilled and shipped:
+
+```python
+from django.db import models
+
+class Order(models.Model):
+    received_at = models.DateTimeField(null=True)
+    shipped_at = models.DateTimeField(null=True)
+    delivery_address = models.ForeignKey(
+        Address,
+        on_delete=models.PROTECT,
+        related_name="orders",
+        blank=True,
+        null=True,
+    )
+```
+
+My duplicated piece of code was checking for these empty fields before moving on to the main logic where the fields are needed:
+
+```python
+def send_order_shipped_email(order: Order) -> None:
+    if not (
+        order.received_at
+        and order.shipped_at
+        and order.delivery_address
+    ):
+        return
+
+    context = {
+        "order_id": order.id,
+        "received_date": format_date(order.received_at),
+        "received_time": format_time(order.received_at),
+        "shipped_date": format_date(order.shipped_at),
+        "shipped_time": format_time(order.shipped_at),
+        "delivery_address": order.delivery_address.short_address(),
+    }
+
+    send_template_email("emails/order_shipped.html", context)
+```
+
+The last line differed depending on the shipping status, but you get the idea. So I was trying to extract the pre-conditions and the building of the context. This was my initial solution:
+
+```python
+def is_order_shipping(order: Order) -> bool:
+    return bool(
+        order.received_at
+        and order.shipped_at
+        and order.delivery_address
+    )
+
+
+def build_context(order: Order) -> dict[str, str]:
+    if not is_order_shipping(order):
+        return {}
+
+    return {
+        "order_id": order.id,
+        "received_date": format_date(order.received_at),
+        "received_time": format_time(order.received_at),
+        "shipped_date": format_date(order.shipped_at),
+        "shipped_time": format_time(order.shipped_at),
+        "delivery_address": order.delivery_address.short_address(),
+    }
+
+
+def send_order_shipped_email(order: Order) -> None:
+    context = build_context(order)
+    if not context:
+        return
+
+    send_template_email("emails/order_shipped.html", context)
+```
+
+The tests passed, but mypy wasn't happy! In my `build_context` function, it complained that `received_at`, `shipped_at` and `delivery_address` may be `None`, which could happen, but I was checking for this case before using them. However, because it's done in a separate function that simply returned a `bool`, mypy wasn't able to infer that types were checked properly.
+
+## The solution
+
+This is where I remembered hearing about the concept of type guards. I found the [mypy docs](https://mypy.readthedocs.io/en/stable/type_narrowing.html#user-defined-type-guards) for it, which gives a few good examples.
+
+However, in my case, I needed to declare that the `Order` type had some fields checked and ensured that they were not nullable. I ended up defining a specialised order type and using it as type guard argument:
+
+```python{7-10,13}
+from __future__ import annotations
+
+import datetime as dt
+from typing import TYPE_CHECKING, TypeGuard
+
+if TYPE_CHECKING:
+    class ShippedOrder(Order):
+        received_at: dt.datetime
+        shipped_at: dt.datetime
+        delivery_address: Address
+
+
+def is_order_shipping(order: Order) -> TypeGuard[ShippedOrder]:
+    return bool(
+        order.received_at
+        and order.shipped_at
+        and order.delivery_address
+    )
+```
+
+However, that didn't fully work, mypy complained that the Django fields were incompatible with the types of my specialised class:
+
+```
+error: Incompatible types in assignment (expression has type "Address", base class "Order" defined the type as "ForeignKey[Address | Combinable | None, Address | None]")  [assignment]
+error: Incompatible types in assignment (expression has type "datetime", base class "Order" defined the type as "DateTimeField[str | datetime | date | Combinable | None, datetime | None]")  [assignment]
+error: Incompatible types in assignment (expression has type "datetime", base class "Order" defined the type as "DateTimeField[str | datetime | date | Combinable | None, datetime | None]")  [assignment]
+```
+
+I'm not sure how to properly resolve these yet, so I marked the fields of my `ShippedOrder` with `# type: ignore[assignment]`.
+
+## Conclusion
+
+The solution isn't perfect, and it can be a bit cumbersome to define these types, I'm glad there was a solution for it. I'm glad I could take the knowledge I got from a podcast mostly focused on another language and apply it to Python.
