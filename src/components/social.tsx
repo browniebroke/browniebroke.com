@@ -6,6 +6,7 @@ import {
   FaStackOverflow,
   FaTwitter,
 } from 'react-icons/fa'
+import { FaBluesky, FaThreads } from 'react-icons/fa6'
 import React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 import { Link, Stack } from '@chakra-ui/react'
@@ -31,7 +32,7 @@ export const SocialLinks: React.FC = () => {
     site.siteMetadata.social
 
   return (
-    <Stack direction="row" spacing={4} marginTop={2}>
+    <Stack direction="row" spacing={2} marginTop={2}>
       <Link
         href="https://fosstodon.org/@browniebroke"
         title="Mastondon profile"
@@ -39,6 +40,20 @@ export const SocialLinks: React.FC = () => {
         isExternal
       >
         <FaMastodon />
+      </Link>
+      <Link
+        href={`https://bsky.app/profile/browniebroke.com}`}
+        title="Bluesky profile"
+        isExternal
+      >
+        <FaBluesky />
+      </Link>
+      <Link
+        href={`https://www.threads.net/@browniebroke}`}
+        title="Threads profile"
+        isExternal
+      >
+        <FaThreads />
       </Link>
       <Link
         href={`https://www.twitter.com/${twitter}`}
