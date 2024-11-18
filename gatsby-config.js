@@ -26,6 +26,7 @@ module.exports = {
       gitlab: `browniebroke`,
       medium: `brunoalla`,
       stackoverflow: `2261637`,
+      bsky: `browniebroke.com`,
       twitter: `_BrunoAlla`,
     },
   },

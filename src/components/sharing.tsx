@@ -2,6 +2,7 @@ import React from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
 import { Heading, Stack, Link } from '@chakra-ui/react'
 import { FaTwitter, FaRegEnvelope } from 'react-icons/fa'
+import { FaBluesky } from 'react-icons/fa6'
 
 interface Post {
   frontmatter: {
@@ -26,12 +27,22 @@ export const Sharing = ({ post, path }: SharingProps) => {
         siteMetadata {
           siteUrl
           social {
+            bsky
             twitter
           }
         }
       }
     }
   `)
+
+  // Blusky sharing
+  const hashtagsStr = post.frontmatter.tags
+    ? post.frontmatter.tags.map((ht) => `#${ht.replace(' ', '')}`).join(' ')
+    : ''
+  const bskyParams = new URLSearchParams({
+    text: `${post.frontmatter.title} by @${social.bsky} ${siteUrl}${path} ${hashtagsStr}`,
+  }).toString()
+  const bskyUrl = `https://bsky.app/intent/compose?${bskyParams}`
 
   // Twitter sharing
   const hashtags = post.frontmatter.tags
@@ -60,6 +71,9 @@ export const Sharing = ({ post, path }: SharingProps) => {
       <Stack direction="row">
         <Link href={emailUrl} title="Share via email" isExternal>
           <FaRegEnvelope />
+        </Link>
+        <Link href={bskyUrl} title="Share on Bluesky" isExternal>
+          <FaBluesky />
         </Link>
         <Link href={twitterUrl} title="Share on Twitter" isExternal>
           <FaTwitter />
