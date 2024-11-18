@@ -17,6 +17,7 @@ export const SocialLinks: React.FC = () => {
       site {
         siteMetadata {
           social {
+            bsky
             github
             gitlab
             medium
@@ -28,7 +29,7 @@ export const SocialLinks: React.FC = () => {
     }
   `)
 
-  const { github, gitlab, medium, twitter, stackoverflow } =
+  const { bsky, github, gitlab, medium, twitter, stackoverflow } =
     site.siteMetadata.social
 
   return (
@@ -42,7 +43,7 @@ export const SocialLinks: React.FC = () => {
         <FaMastodon />
       </Link>
       <Link
-        href={`https://bsky.app/profile/browniebroke.com}`}
+        href={`https://bsky.app/profile/${bsky}`}
         title="Bluesky profile"
         isExternal
       >
