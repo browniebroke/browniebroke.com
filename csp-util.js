@@ -2,7 +2,7 @@
 
 import fs from 'fs'
 import path from 'path'
-import htmlparser from 'htmlparser2'
+import * as htmlparser2 from 'htmlparser2'
 import { replaceInFileSync } from 'replace-in-file'
 
 const TARGET_FOLDER = path.join(process.cwd(), 'public')
@@ -25,7 +25,7 @@ function getCspContentFrom(inputFile) {
     let found = false
     let retVal = ''
 
-    const parser = new htmlparser.Parser({
+    const parser = new htmlparser2.Parser({
       onopentag: (name, attributes) => {
         if (name === 'meta') {
           if (
