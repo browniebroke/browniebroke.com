@@ -1,7 +1,7 @@
 import React from 'react'
 import { graphql, Link } from 'gatsby'
 import { getImage, IGatsbyImageData } from 'gatsby-plugin-image'
-import { Box, Heading, Stack, Tag } from '@chakra-ui/react'
+import { Box, Heading, Stack } from '@chakra-ui/react'
 
 import { Layout } from '../components/layout'
 import { MDXWrapper } from '../components/mdx-wrapper'
@@ -11,6 +11,7 @@ import { SEO } from '../components/seo'
 import { Sharing } from '../components/sharing'
 // @ts-ignore
 import { makePostUrl, makeTagUrl } from '../utils/routes'
+import { Tag } from '../components/ui/tag'
 
 interface PostTemplateData {
   location: {
