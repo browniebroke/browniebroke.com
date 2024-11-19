@@ -9,8 +9,8 @@ export const SectionTitle = ({ children }: AcceptsChildren) => (
     size="lg"
     textAlign="center"
     margin="3rem 0"
-    sx={{
-      svg: {
+    css={{
+      '& svg': {
         display: 'inline',
         align: 'left',
         verticalAlign: 'top',
