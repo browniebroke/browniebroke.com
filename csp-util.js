@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 
-const fs = require('fs')
-const path = require('path')
-const htmlparser = require('htmlparser2')
-const replaceInFile = require('replace-in-file')
+import fs from 'fs'
+import path from 'path'
+import * as htmlparser2 from 'htmlparser2'
+import { replaceInFileSync } from 'replace-in-file'
 
-const TARGET_FOLDER = path.join(__dirname, 'public')
+const TARGET_FOLDER = path.join(process.cwd(), 'public')
 
 const INPUT_FILE = path.join(TARGET_FOLDER, 'index.html')
 const OUTPUT_FILE = path.join(TARGET_FOLDER, '_headers')
@@ -25,7 +25,7 @@ function getCspContentFrom(inputFile) {
     let found = false
     let retVal = ''
 
-    const parser = new htmlparser.Parser({
+    const parser = new htmlparser2.Parser({
       onopentag: (name, attributes) => {
         if (name === 'meta') {
           if (
@@ -65,7 +65,7 @@ function updateNetlifyHeaderFile(cspText, outputFile) {
 
   try {
     console.log(`Modifying Netlify's header file`)
-    const changes = replaceInFile.sync(replacementOptions)
+    const changes = replaceInFileSync(replacementOptions)
     if (changes && changes.length && changes.length > 0) {
       console.log(`Modified Netlify's headers file successfully`)
     } else {
