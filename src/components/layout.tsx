@@ -4,7 +4,7 @@ import { GatsbyImage, IGatsbyImageData } from 'gatsby-plugin-image'
 import { Box, ChakraProvider, Container, Link, Text } from '@chakra-ui/react'
 
 import { Header } from './header'
-import { theme } from '../utils/theme'
+import { system } from '../utils/theme'
 import { AcceptsChildren } from './types'
 
 interface LayoutProps extends AcceptsChildren {
@@ -34,7 +34,7 @@ export const Layout = ({ headerImage, children }: LayoutProps) => {
 
   return (
     <>
-      <ChakraProvider theme={theme}>
+      <ChakraProvider value={system}>
         <Header siteTitle={data.site.siteMetadata.title} />
         {getHeroImage(headerImage)}
         <Container
@@ -50,7 +50,12 @@ export const Layout = ({ headerImage, children }: LayoutProps) => {
           <footer>
             <Text as="span" fontSize="0.7em">
               © {new Date().getFullYear()}, Built with{` `}
-              <Link href="https://www.gatsbyjs.org" title="GatsbyJS" isExternal>
+              <Link
+                href="https://www.gatsbyjs.org"
+                title="GatsbyJS"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 Gatsby
               </Link>
             </Text>

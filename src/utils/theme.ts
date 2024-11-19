@@ -1,9 +1,6 @@
-import { extendTheme } from '@chakra-ui/react'
+import { createSystem, defaultConfig } from '@chakra-ui/react'
+
 const customTheme = {
-  fonts: {
-    body: 'Cabin Condensed, georgia, sans-serif',
-    heading: 'Patua One',
-  },
   styles: {
     global: {
       html: {
@@ -59,4 +56,13 @@ const customTheme = {
   },
 }
 
-export const theme = extendTheme(customTheme)
+export const system = createSystem(defaultConfig, {
+  theme: {
+    tokens: {
+      fonts: {
+        body: { value: 'Cabin Condensed, georgia, sans-serif' },
+        heading: { value: 'Patua One' },
+      },
+    },
+  },
+})

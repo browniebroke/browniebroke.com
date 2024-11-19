@@ -5,8 +5,8 @@ import { StaticImage } from 'gatsby-plugin-image'
 export const Avatar: React.FC = () => (
   <Box
     padding={4}
-    sx={{
-      img: {
+    css={{
+      '& img': {
         borderRadius: '50%',
         padding: 'var(--chakra-space-1)',
         border: '1px solid',

@@ -69,13 +69,28 @@ export const Sharing = ({ post, path }: SharingProps) => {
         Liked it? Please share it!
       </Heading>
       <Stack direction="row">
-        <Link href={emailUrl} title="Share via email" isExternal>
+        <Link
+          href={emailUrl}
+          title="Share via email"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <FaRegEnvelope />
         </Link>
-        <Link href={bskyUrl} title="Share on Bluesky" isExternal>
+        <Link
+          href={bskyUrl}
+          title="Share on Bluesky"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <FaBluesky />
         </Link>
-        <Link href={twitterUrl} title="Share on Twitter" isExternal>
+        <Link
+          href={twitterUrl}
+          title="Share on Twitter"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <FaTwitter />
         </Link>
       </Stack>
