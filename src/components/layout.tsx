@@ -50,7 +50,12 @@ export const Layout = ({ headerImage, children }: LayoutProps) => {
           <footer>
             <Text as="span" fontSize="0.7em">
               © {new Date().getFullYear()}, Built with{` `}
-              <Link href="https://www.gatsbyjs.org" title="GatsbyJS" isExternal>
+              <Link
+                href="https://www.gatsbyjs.org"
+                title="GatsbyJS"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 Gatsby
               </Link>
             </Text>

@@ -37,57 +37,64 @@ export const SocialLinks: React.FC = () => {
       <Link
         href="https://fosstodon.org/@browniebroke"
         title="Mastondon profile"
-        rel="me"
-        isExternal
+        target="_blank"
+        rel="me noopener noreferrer"
       >
         <FaMastodon />
       </Link>
       <Link
         href={`https://bsky.app/profile/${bsky}`}
         title="Bluesky profile"
-        isExternal
+        target="_blank"
+        rel="noopener noreferrer"
       >
         <FaBluesky />
       </Link>
       <Link
         href={`https://www.threads.net/@browniebroke}`}
         title="Threads profile"
-        isExternal
+        target="_blank"
+        rel="noopener noreferrer"
       >
         <FaThreads />
       </Link>
       <Link
         href={`https://www.twitter.com/${twitter}`}
         title="Twitter profile"
-        isExternal
+        target="_blank"
+        rel="noopener noreferrer"
       >
         <FaTwitter />
       </Link>
       <Link
         href={`https://stackoverflow.com/users/${stackoverflow}`}
         title="Stackoverflow profile"
-        isExternal
+        target="_blank"
+        rel="noopener noreferrer"
       >
         <FaStackOverflow />
       </Link>
       <Link
         href={`https://github.com/${github}`}
         title="Github profile"
-        isExternal
+        target="_blank"
+        rel="noopener noreferrer"
       >
         <FaGithub title="Github Profile" />
       </Link>
       <Link
         href={`https://gitlab.com/${gitlab}`}
         title="Gitlab Profile"
-        isExternal
+        target="_blank"
+        rel="noopener noreferrer"
       >
         <FaGitlab />
       </Link>
       <Link
         href={`https://medium.com/@${medium}`}
         title="Medium Profile"
-        isExternal
+        target="_blank"
+        rel="noopener noreferrer"
       >
         <FaMedium />
       </Link>
