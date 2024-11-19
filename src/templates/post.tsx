@@ -1,8 +1,7 @@
 import React from 'react'
 import { graphql, Link } from 'gatsby'
 import { getImage, IGatsbyImageData } from 'gatsby-plugin-image'
-import { Box, Heading } from '@chakra-ui/react'
-import { Stack, Tag } from '@chakra-ui/react'
+import { Box, Heading, Stack, Tag } from '@chakra-ui/react'
 
 import { Layout } from '../components/layout'
 import { MDXWrapper } from '../components/mdx-wrapper'
