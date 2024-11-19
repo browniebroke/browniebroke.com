@@ -61,7 +61,7 @@
     "build": "gatsby build && node ./csp-util.js",
     "develop": "gatsby develop",
     "serve": "gatsby serve",
-    "lint:eslint": "eslint --ext .js,.jsx,.ts,.tsx .",
+    "lint:eslint": "eslint .",
     "lint:prettier": "prettier --check .",
     "lint:tsc": "tsc",
     "format": "prettier --write ."
@@ -70,37 +70,6 @@
     "semi": false,
     "singleQuote": true,
     "trailingComma": "es5"
-  },
-  "eslintConfig": {
-    "parser": "@typescript-eslint/parser",
-    "extends": [
-      "prettier"
-    ],
-    "plugins": [
-      "react",
-      "prettier"
-    ],
-    "parserOptions": {
-      "ecmaVersion": 9,
-      "sourceType": "module",
-      "ecmaFeatures": {
-        "jsx": true
-      }
-    },
-    "env": {
-      "es6": true,
-      "node": true
-    },
-    "rules": {
-      "prettier/prettier": [
-        "error",
-        {
-          "semi": false,
-          "singleQuote": true,
-          "trailingComma": "es5"
-        }
-      ]
-    }
   },
   "renovate": {
     "extends": [
