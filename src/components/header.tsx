@@ -26,7 +26,7 @@ export const Header: React.FC<HeaderProps> = ({ siteTitle }) => (
       <Heading margin={0} flexGrow={1} fontSize="18px" lineHeight="inherit">
         <Link to="/">{siteTitle}</Link>
       </Heading>
-      <Stack direction="row" spacing="2rem">
+      <Stack direction="row" gap="2rem">
         <Link to="/tils/">TILs</Link>
         <Link to="/blog/">Blog</Link>
       </Stack>
