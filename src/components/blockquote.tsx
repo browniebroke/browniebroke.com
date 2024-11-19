@@ -1,6 +1,5 @@
 import React from 'react'
-import { Box } from '@chakra-ui/react'
-import { BoxProps } from '@chakra-ui/layout/dist/box'
+import { Box, BoxProps } from '@chakra-ui/react'
 
 export const BlockQuote = (props: BoxProps) => (
   <Box
