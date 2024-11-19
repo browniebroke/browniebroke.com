@@ -46,12 +46,14 @@
     "typescript": "5.6.3"
   },
   "devDependencies": {
+    "@eslint/eslintrc": "3.2.0",
+    "@eslint/js": "9.15.0",
     "@types/node": "22.9.1",
     "@types/react": "18.3.12",
     "@types/react-dom": "18.3.1",
     "@types/react-helmet": "6.1.11",
-    "@typescript-eslint/parser": "7.18.0",
-    "eslint": "8.57.1",
+    "@typescript-eslint/parser": "8.15.0",
+    "eslint": "9.15.0",
     "eslint-config-prettier": "9.1.0",
     "eslint-plugin-prettier": "5.2.1",
     "eslint-plugin-react": "7.37.2",
@@ -61,7 +63,7 @@
     "build": "gatsby build && node ./csp-util.js",
     "develop": "gatsby develop",
     "serve": "gatsby serve",
-    "lint:eslint": "eslint --ext .js,.jsx,.ts,.tsx .",
+    "lint:eslint": "eslint .",
     "lint:prettier": "prettier --check .",
     "lint:tsc": "tsc",
     "format": "prettier --write ."
@@ -70,37 +72,6 @@
     "semi": false,
     "singleQuote": true,
     "trailingComma": "es5"
-  },
-  "eslintConfig": {
-    "parser": "@typescript-eslint/parser",
-    "extends": [
-      "prettier"
-    ],
-    "plugins": [
-      "react",
-      "prettier"
-    ],
-    "parserOptions": {
-      "ecmaVersion": 9,
-      "sourceType": "module",
-      "ecmaFeatures": {
-        "jsx": true
-      }
-    },
-    "env": {
-      "es6": true,
-      "node": true
-    },
-    "rules": {
-      "prettier/prettier": [
-        "error",
-        {
-          "semi": false,
-          "singleQuote": true,
-          "trailingComma": "es5"
-        }
-      ]
-    }
   },
   "renovate": {
     "extends": [
