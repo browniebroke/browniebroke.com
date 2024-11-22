@@ -47,6 +47,7 @@ const PageLink: React.FC<PageLinkProps> = ({ pageObj, rel, makeUrlFunc }) => {
             to={makeUrl(pageObj.fields.slug)}
             rel={rel}
             title={pageObj.frontmatter.title}
+            className="inherit-color"
           >
             {label}
           </Link>

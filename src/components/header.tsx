@@ -24,11 +24,17 @@ export const Header: React.FC<HeaderProps> = ({ siteTitle }) => (
   <HeaderWrapper>
     <HeaderContainer>
       <Heading margin={0} flexGrow={1} fontSize="18px" lineHeight="inherit">
-        <Link to="/">{siteTitle}</Link>
+        <Link to="/" className="inherit-color">
+          {siteTitle}
+        </Link>
       </Heading>
       <Stack direction="row" spacing="2rem">
-        <Link to="/tils/">TILs</Link>
-        <Link to="/blog/">Blog</Link>
+        <Link to="/tils/" className="inherit-color">
+          TILs
+        </Link>
+        <Link to="/blog/" className="inherit-color">
+          Blog
+        </Link>
       </Stack>
     </HeaderContainer>
   </HeaderWrapper>

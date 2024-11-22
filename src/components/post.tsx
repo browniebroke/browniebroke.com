@@ -31,7 +31,9 @@ export const PostPreview: React.FC<PostPreviewProp> = ({ post }) => {
   return (
     <Box marginBottom={8}>
       <Heading as="h3" size="md">
-        <Link to={makePostUrl(post.fields.slug)}>{post.frontmatter.title}</Link>
+        <Link to={makePostUrl(post.fields.slug)} className="inherit-color">
+          {post.frontmatter.title}
+        </Link>
       </Heading>
       <small>
         {post.frontmatter.date} • {post.fields.timeToRead.text}

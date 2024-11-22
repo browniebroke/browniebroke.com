@@ -23,9 +23,15 @@ const customTheme = {
         },
       },
       a: {
-        color: 'inherit',
+        color: 'blue.600',
         '&:hover, &:active': {
-          color: 'blue.400',
+          color: 'blue.300',
+        },
+        '&.inherit-color': {
+          color: 'inherit',
+          '&:hover, &:active': {
+            color: 'blue.300',
+          },
         },
       },
       // Syntax highlighting for code snippets w/ prismjs
