@@ -10,6 +10,7 @@ import { Sharing } from '../components/sharing'
 import { makeTILUrl } from '../utils/routes'
 import { Box, Heading } from '@chakra-ui/react'
 import { MDXWrapper } from '../components/mdx-wrapper'
+import { IGatsbyImageData } from 'gatsby-plugin-image'
 
 interface TILTemplateData {
   location: {
@@ -24,6 +25,7 @@ interface TILTemplateData {
       frontmatter: {
         title: string
         date: string
+        og_image: IGatsbyImageData
       }
       parent: {
         absolutePath: string
@@ -45,7 +47,11 @@ const TILTemplate = ({ data, pageContext, children }: TILTemplateData) => {
   }`
   return (
     <Layout>
-      <SEO title={post.frontmatter.title} description={post.excerpt} />
+      <SEO
+        title={post.frontmatter.title}
+        description={post.excerpt}
+        image={post.frontmatter.og_image}
+      />
       <Heading as="h1" size="lg">
         {post.frontmatter.title}
       </Heading>
@@ -76,6 +82,11 @@ export const pageQuery = graphql`
         title
         ...FormattedDate
         tags
+        og_image {
+          childImageSharp {
+            gatsbyImageData(width: 800)
+          }
+        }
       }
       parent {
         ... on File {
