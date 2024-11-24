@@ -8,7 +8,7 @@ on:
         required: true
       body:
         description: 'Body of the `TIL'
-        required: true
+        required: false
 
 jobs:
   write:
