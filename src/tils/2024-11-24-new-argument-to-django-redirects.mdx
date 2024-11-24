@@ -9,6 +9,14 @@ It took me an embarrassingly long time in my career to learn that the most commo
 
 With this new change, it will make these status code easier to learn, remember and use them. This higher level API is a much welcome addition in my opinion, replacing this:
 
-```python 
+```python
 def my_old_vew(request):
     return HttpResponseRedirect(status_code=307)
+```
+
+By:
+
+```python
+def my_old_vew(request):
+    return HttpResponseRedirect(preserve_method=True)
+```
