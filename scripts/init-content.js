@@ -13,7 +13,7 @@ if (scriptArgs.length < 2) {
 switch (scriptArgs[0]) {
   case 'til':
     console.log('Initiating TIL...')
-    initTIL(scriptArgs[1])
+    initTIL(scriptArgs[1], scriptArgs[2])
     break
   case 'post':
     console.log('Initiating Post...')
@@ -29,13 +29,16 @@ function getDateStr() {
   return now.toISOString().split('T')[0]
 }
 
-function initTIL(title) {
+function initTIL(title, body) {
   const dateStr = getDateStr()
   const slug = slugify(title.toLowerCase())
+  const bodyStr = body === undefined ? '' : body
   const data = `---
 date: ${dateStr}
 title: '${title}'
 ---
+
+${bodyStr}
 `
   fs.writeFileSync(`src/tils/${dateStr}-${slug}.mdx`, data, { flag: 'w' })
 }

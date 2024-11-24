@@ -1,0 +1,33 @@
+name: TIL drafter
+
+on:
+  workflow_dispatch:
+    inputs:
+      title:
+        description: 'Title of TIL'
+        required: true
+      body:
+        description: 'Body of the `TIL'
+        required: true
+
+jobs:
+  write:
+    permissions:
+      contents: write # for peter-evans/create-pull-request to create branch
+      pull-requests: write # for peter-evans/create-pull-request to create a PR
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          cache: 'npm'
+          node-version-file: '.nvmrc'
+      - run: npm i
+      - run: ./scripts/init-content.js "${{ github.event.inputs.title }}" "${{ github.event.inputs.body }}"
+      - run: npm run format
+      - uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
+          branch: draft-new-til
+          title: 'TIL about ${{ github.event.inputs.title }}'
+          commit-message: 'TIL about ${{ github.event.inputs.title }}'
