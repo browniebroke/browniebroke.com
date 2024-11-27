@@ -29,9 +29,16 @@ function getDateStr() {
   return now.toISOString().split('T')[0]
 }
 
+function slugifyLower(title) {
+  return slugify(title, {
+    remove: /[*+~.()'"!:@]/g,
+    lower: true,
+  })
+}
+
 function initTIL(title, body) {
   const dateStr = getDateStr()
-  const slug = slugify(title.toLowerCase())
+  const slug = slugifyLower(title)
   const bodyStr = body === undefined ? '' : body
   const data = `---
 date: ${dateStr}
@@ -45,7 +52,7 @@ ${bodyStr}
 
 function initPost(title) {
   const dateStr = getDateStr()
-  const slug = slugify(title.toLowerCase())
+  const slug = slugifyLower(title)
   const data = `---
 date: ${dateStr}
 author: browniebroke
