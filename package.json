@@ -60,7 +60,7 @@
     "prettier": "3.4.1"
   },
   "scripts": {
-    "build": "gatsby build && node ./csp-util.js",
+    "build": "gatsby build && node ./csp-util.mjs",
     "develop": "gatsby develop",
     "serve": "gatsby serve",
     "lint:eslint": "eslint .",
