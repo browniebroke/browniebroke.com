@@ -2,7 +2,7 @@ import React from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
 import { Heading, Stack, Link } from '@chakra-ui/react'
 import { FaTwitter, FaRegEnvelope } from 'react-icons/fa'
-import { FaBluesky } from 'react-icons/fa6'
+import { FaBluesky, FaMastodon } from 'react-icons/fa6'
 
 interface Post {
   frontmatter: {
@@ -28,6 +28,7 @@ export const Sharing = ({ post, path }: SharingProps) => {
           siteUrl
           social {
             bsky
+            mastodon
             twitter
           }
         }
@@ -43,6 +44,13 @@ export const Sharing = ({ post, path }: SharingProps) => {
     text: `${post.frontmatter.title} by @${social.bsky} ${siteUrl}${path} ${hashtagsStr}`,
   }).toString()
   const bskyUrl = `https://bsky.app/intent/compose?${bskyParams}`
+
+  // Mastodon sharing
+  const mastodonHashtagsStr = post.frontmatter.tags
+    ? post.frontmatter.tags.map((ht) => `%23${ht.replace(' ', '')}`).join(' ')
+    : ''
+  const mastodonText = `${post.frontmatter.title} by ${social.mastodon} ${siteUrl}${path} ${mastodonHashtagsStr}`
+  const mastodonUrl = `https://toot.kytta.dev/?text=${mastodonText}`
 
   // Twitter sharing
   const hashtags = post.frontmatter.tags
@@ -74,6 +82,9 @@ export const Sharing = ({ post, path }: SharingProps) => {
         </Link>
         <Link href={bskyUrl} title="Share on Bluesky" isExternal>
           <FaBluesky />
+        </Link>
+        <Link href={mastodonUrl} title="Share on Mastodon" isExternal>
+          <FaMastodon />
         </Link>
         <Link href={twitterUrl} title="Share on Twitter" isExternal>
           <FaTwitter />

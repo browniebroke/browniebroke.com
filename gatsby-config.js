@@ -22,11 +22,12 @@ module.exports = {
     author: `Bruno Alla`,
     siteUrl: baseUrl,
     social: {
+      bsky: `browniebroke.com`,
       github: `browniebroke`,
       gitlab: `browniebroke`,
+      mastodon: `@browniebroke@fosstodon.org`,
       medium: `brunoalla`,
       stackoverflow: `2261637`,
-      bsky: `browniebroke.com`,
       twitter: `_BrunoAlla`,
     },
   },

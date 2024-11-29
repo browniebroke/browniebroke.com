@@ -20,6 +20,7 @@ export const SocialLinks: React.FC = () => {
             bsky
             github
             gitlab
+            mastodon
             medium
             stackoverflow
             twitter
@@ -29,13 +30,13 @@ export const SocialLinks: React.FC = () => {
     }
   `)
 
-  const { bsky, github, gitlab, medium, twitter, stackoverflow } =
+  const { bsky, github, gitlab, mastodon, medium, twitter, stackoverflow } =
     site.siteMetadata.social
 
   return (
     <Stack direction="row" spacing={2} marginTop={2}>
       <Link
-        href="https://fosstodon.org/@browniebroke"
+        href={`https://fosstodon.org/${mastodon}`}
         title="Mastondon profile"
         rel="me"
         isExternal
