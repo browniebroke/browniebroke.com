@@ -15,6 +15,7 @@ interface TIL {
   }
   frontmatter: {
     date: string
+    rawDate: string
     title: string
   }
 }
@@ -48,7 +49,7 @@ const TILIndexPage = ({ data }: TILIndexPageData) => {
           <div>
             <Link to={makeTILUrl(til.fields.slug)} className="inherit-color">
               <Heading as="h3" size="md">
-                {til.frontmatter.date} {til.frontmatter.title}
+                {til.frontmatter.rawDate} {til.frontmatter.title}
               </Heading>
             </Link>
           </div>
@@ -73,6 +74,7 @@ export const pageQuery = graphql`
           }
           frontmatter {
             ...FormattedDate
+            rawDate: date
             title
           }
         }
