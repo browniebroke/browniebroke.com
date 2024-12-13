@@ -61,6 +61,7 @@
   },
   "scripts": {
     "build": "gatsby build && node ./csp-util.mjs",
+    "clean": "rm -rf .cache public node_modules",
     "develop": "gatsby develop",
     "serve": "gatsby serve",
     "lint:eslint": "eslint .",
