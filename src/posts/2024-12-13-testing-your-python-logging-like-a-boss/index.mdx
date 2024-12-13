@@ -1,0 +1,93 @@
+---
+date: 2024-12-13
+author: browniebroke
+title: 'Testing your Python logging like a boss'
+description: 'How to properly test that your Python code logs what you expect.'
+header_image: header.png
+tags:
+  - python
+  - logging
+  - testing
+  - pytest
+---
+
+## The problem
+
+I recently wanted to add a test to some piece of my code to make sure I would be properly notified in case of certain problem occurred. The system in question uses Sentry, so I was planning to use `logger.error()` from the standard library, which would create an issue for me.
+
+I wanted to make sure I had the relevant details in my message, hence why I wanted a test for it.
+
+## The naive solution
+
+The initial solution I reached for was to mock the logger and assert calls matched what I needed:
+
+```python
+# script.py
+import logging
+
+logger = logging.getLogger(__name__)
+
+def run(group):
+    if missing_fields := group.has_missing_fields():
+        logger.error(
+            "Missing data for group %s: %r",
+            group,
+            missing_fields
+        )
+        return
+
+    # ... Proceed
+```
+
+And here is how my test looked like:
+
+```python
+# test_script.py
+def test_error_logging(mocker):
+    group_with_missing_data = Group()
+    logger = mocker.patch("script.logger", autospec=True)
+
+    run(group_with_missing_data)
+
+    logger.exception.assert_called_once_with(
+        "Missing data for group %s: %r",
+        group_with_missing_data,
+        ["name"],
+    )
+```
+
+The problem was that the test was not very meaningful:
+
+- it was very close from the implementation, almost mirroring it, and felt a bit like writing "2+2 == 2+2" instead of "2+2 == 4".
+- it didn't convey how the final formatted message would look like, I wanted to make sure that the structure were readable
+
+Another alternative was to format the message using an f-string, but that's [a discouraged practice](https://docs.astral.sh/ruff/rules/logging-f-string/), mainly because it's eagerly formatting the string. I also noticed that monitoring tools like Sentry tend have a harder time at grouping multiple instances of the same error when the message is formatted as f-string, as opposed to passing parameters separately.
+
+## The better solution
+
+I wasn't happy with my solution, and kept thinking that there's got to be a better way of doing this. I had a bit of spare time to explore so I researched a bit and found a much better solution: pytest provides a [`caplog` fixture](https://docs.pytest.org/en/stable/how-to/logging.html#caplog-fixture). This is exactly the right tool for the job here, which enabled me to change my test to:
+
+```python
+# test_script.py
+def test_error_logging(caplog):
+    caplog.set_level(logging.ERROR)
+    group_with_missing_data = Group()
+
+    run(group_with_missing_data)
+
+    assert len(caplog.records) == 1
+    assert caplog.records[0].levelname == "ERROR"
+    assert caplog.records[0].message == (
+        "Missing data for group <Group >: 'name'"
+    )
+```
+
+This enables to set the level of logging you're interested in capturing, and make assertions on each log record. Each log record has the final formatted message, the unformatted messages, its parameters, the log level as well as a number of other things.
+
+## Without pytest
+
+The standard library `TestCase` class from the `unittests` module has [an `assertLogs` method](https://docs.python.org/3/library/unittest.html#unittest.TestCase.assertLogs) which offers a similar functionality.
+
+## Closing words
+
+It was a nice discovery and I felt more confident that the alert from my monitoring will be useful when something fails. It's something I'll definitely use again next time I need it.
