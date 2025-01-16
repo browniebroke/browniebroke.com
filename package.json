@@ -1,14 +1,20 @@
 {
   "name": "blog-perso",
-  "version": "1.0.0",
+  "type": "module",
+  "version": "2.0.0",
   "description": "Code for my personal Blog",
   "author": "Bruno Alla <bruno@browniebroke.com>",
   "license": "MIT",
   "repository": "https://github.com/browniebroke/browniebroke.com.git",
   "homepage": "https://browniebroke.com",
   "dependencies": {
+    "astro": "^5.1.7"
   },
   "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
   },
   "renovate": {
     "extends": [
