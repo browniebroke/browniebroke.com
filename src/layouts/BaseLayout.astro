@@ -1,25 +1,47 @@
 ---
+import React from "react";
+import { Header } from "../components/header";
 const { pageTitle } = Astro.props;
+import { Box, ChakraProvider, Container, Link, Text } from "@chakra-ui/react";
+import { theme } from "../utils/theme";
 ---
+
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{pageTitle}</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{pageTitle}</title>
+  </head>
+  <body>
+    <ChakraProvider theme={theme}>
+      <Header siteTitle="browniebroke.com" />
+      <Container
+        paddingTop={12}
+        paddingBottom={6}
+        paddingX={4}
+        maxW="xl"
+        minHeight="100vh"
+      >
+        <Box as="main" minHeight="70vh">
+          <slot />
+        </Box>
+        <footer>
+          <Text as="span" fontSize="0.7em">
+            © {new Date().getFullYear()}, Built with{` `}
+            <a
+              href="https://astro.build"
+              title="Astro"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              Astro
+            </a>
+          </Text>
+        </footer>
+      </Container>
+    </ChakraProvider>
+  </body>
 </html>
-
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>

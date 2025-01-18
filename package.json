@@ -26,13 +26,16 @@
     "@types/node": "22.10.7",
     "@types/react": "18.3.18",
     "@types/react-dom": "18.3.5",
-    "@types/react-helmet": "6.1.11"
+    "@types/react-helmet": "6.1.11",
+    "prettier": "^3.4.2",
+    "prettier-plugin-astro": "^0.14.1"
   },
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "format": "prettier --write ."
   },
   "renovate": {
     "extends": [
