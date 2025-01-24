@@ -38,6 +38,7 @@ export const PostPreview: React.FC<PostPreviewProp> = ({ post }) => {
         {post.frontmatter.date} • {post.fields.timeToRead.text}
       </small>
       <div
+        className="mt-4"
         dangerouslySetInnerHTML={{
           __html: post.excerpt,
         }}
