@@ -35,7 +35,7 @@ export const Layout = ({ headerImage, children }: LayoutProps) => {
     <>
       <Header siteTitle={data.site.siteMetadata.title} />
       {getHeroImage(headerImage)}
-      <div className="container mx-auto pt-12 pb-6 px-4 max-w-4xl min-h-screen">
+      <div className="container mx-auto pt-12 pb-6 px-4 max-w-xl min-h-screen">
         <main className="min-h-[70vh]">{children}</main>
         <footer>
           <span className="text-[0.7em]">
