@@ -24,7 +24,7 @@ const IndexPage = ({ data }: IndexPageData) => {
     <Layout>
       <SEO title="Home" />
       <section className="flex flex-col items-center">
-        <h1 className="text-3xl font-bold mt-8 mb-4">Bruno Alla</h1>
+        <h1 className="text-4xl font-bold mt-8 mb-4">Bruno Alla</h1>
         <Avatar />
         <p className="text-center max-w-[400px]">
           Hi! I'm a web developer based in London, I work mostly with Python &
