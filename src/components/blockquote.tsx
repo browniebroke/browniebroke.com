@@ -1,14 +1,8 @@
 import React from 'react'
-import { Box, BoxProps } from '@chakra-ui/react'
+import { AcceptsChildren } from './types'
 
-export const BlockQuote = (props: BoxProps) => (
-  <Box
-    as="blockquote"
-    pl={4}
-    mb={4}
-    borderLeftWidth={5}
-    borderLeftColor="gray.200"
-    fontStyle="italic"
-    {...props}
-  />
+export const BlockQuote = ({ children }: AcceptsChildren) => (
+  <blockquote className="pl-4 mb-4 border-l-[5px] border-l-gray-200 italic">
+    {children}
+  </blockquote>
 )

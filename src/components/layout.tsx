@@ -1,10 +1,9 @@
 import React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 import { GatsbyImage, IGatsbyImageData } from 'gatsby-plugin-image'
-import { Box, ChakraProvider, Container, Link, Text } from '@chakra-ui/react'
+import '../styles/global.css'
 
 import { Header } from './header'
-import { theme } from '../utils/theme'
 import { AcceptsChildren } from './types'
 
 interface LayoutProps extends AcceptsChildren {
@@ -14,9 +13,9 @@ interface LayoutProps extends AcceptsChildren {
 const getHeroImage = (heroImage?: IGatsbyImageData) => {
   if (heroImage) {
     return (
-      <Box padding={0}>
+      <div className="p-0">
         <GatsbyImage image={heroImage} alt="" />
-      </Box>
+      </div>
     )
   }
 }
@@ -34,29 +33,25 @@ export const Layout = ({ headerImage, children }: LayoutProps) => {
 
   return (
     <>
-      <ChakraProvider theme={theme}>
-        <Header siteTitle={data.site.siteMetadata.title} />
-        {getHeroImage(headerImage)}
-        <Container
-          paddingTop={12}
-          paddingBottom={6}
-          paddingX={4}
-          maxW="xl"
-          minHeight="100vh"
-        >
-          <Box as="main" minHeight="70vh">
-            {children}
-          </Box>
-          <footer>
-            <Text as="span" fontSize="0.7em">
-              © {new Date().getFullYear()}, Built with{` `}
-              <Link href="https://www.gatsbyjs.org" title="GatsbyJS" isExternal>
-                Gatsby
-              </Link>
-            </Text>
-          </footer>
-        </Container>
-      </ChakraProvider>
+      <Header siteTitle={data.site.siteMetadata.title} />
+      {getHeroImage(headerImage)}
+      <div className="container mx-auto pt-12 pb-6 px-4 max-w-xl min-h-screen">
+        <main className="min-h-[70vh]">{children}</main>
+        <footer>
+          <span className="text-[0.7em]">
+            © {new Date().getFullYear()}, Built with{` `}
+            <a
+              href="https://www.gatsbyjs.org"
+              title="GatsbyJS"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inherit-color"
+            >
+              Gatsby
+            </a>
+          </span>
+        </footer>
+      </div>
     </>
   )
 }

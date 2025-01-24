@@ -1,8 +1,6 @@
 import React from 'react'
 import { graphql, Link } from 'gatsby'
 import { getImage, IGatsbyImageData } from 'gatsby-plugin-image'
-import { Box, Heading } from '@chakra-ui/react'
-import { Stack, Tag } from '@chakra-ui/react'
 
 import { Layout } from '../components/layout'
 import { MDXWrapper } from '../components/mdx-wrapper'
@@ -10,6 +8,7 @@ import { Pagination, Page } from '../components/pagination'
 import { PostMetaData } from '../components/post-metadata'
 import { SEO } from '../components/seo'
 import { Sharing } from '../components/sharing'
+import { Tag } from '../components/tag'
 // @ts-ignore
 import { makePostUrl, makeTagUrl } from '../utils/routes'
 
@@ -67,9 +66,7 @@ const BlogPostTemplate = ({
         description={post.frontmatter.description || post.excerpt}
         image={ogImage || headerOgImage}
       />
-      <Heading as="h1" size="lg">
-        {post.frontmatter.title}
-      </Heading>
+      <h1 className="text-3xl font-bold mt-8 mb-4">{post.frontmatter.title}</h1>
 
       <PostMetaData
         dateTimeToRead={`${post.frontmatter.date} • ${post.fields.timeToRead.text}`}
@@ -77,18 +74,16 @@ const BlogPostTemplate = ({
       />
 
       <MDXWrapper>
-        <Box>{children}</Box>
+        <div>{children}</div>
       </MDXWrapper>
 
-      <Stack direction="row">
+      <div className="flex flex-row gap-2">
         {post.frontmatter.tags.map((tag) => (
-          <Link to={makeTagUrl(tag)} key={tag}>
-            <Tag size="md" variant="solid">
-              {tag}
-            </Tag>
-          </Link>
+          <Tag to={makeTagUrl(tag)} key={tag}>
+            {tag}
+          </Tag>
         ))}
-      </Stack>
+      </div>
       <Sharing post={post} path={makePostUrl(post.fields.slug)} />
       <Pagination previous={previous} next={next} />
     </Layout>

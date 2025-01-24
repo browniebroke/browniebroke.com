@@ -7,7 +7,6 @@ import { SEO } from '../components/seo'
 // @ts-ignore
 import { makeTILUrl } from '../utils/routes'
 import { FaRssSquare } from 'react-icons/fa'
-import { Heading } from '@chakra-ui/react'
 
 interface TIL {
   fields: {
@@ -48,9 +47,9 @@ const TILIndexPage = ({ data }: TILIndexPageData) => {
         {tils.map((til) => (
           <div>
             <Link to={makeTILUrl(til.fields.slug)} className="inherit-color">
-              <Heading as="h3" size="sm" mt={4}>
+              <h3 className="text font-bold mt-4">
                 {til.frontmatter.simpleDate} {til.frontmatter.title}
-              </Heading>
+              </h3>
             </Link>
           </div>
         ))}

@@ -149,14 +149,7 @@ module.exports = {
     `gatsby-plugin-offline`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-typescript`,
-    {
-      resolve: '@chakra-ui/gatsby-plugin',
-      options: {
-        resetCSS: true,
-        isUsingColorMode: true,
-        isBaseProvider: false,
-      },
-    },
+    `gatsby-plugin-postcss`,
     {
       resolve: `gatsby-plugin-csp`,
       options: {

@@ -1,0 +1,50 @@
+@import '@fontsource/cabin-condensed';
+@import '@fontsource/patua-one';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply text-base tracking-wide leading-relaxed overflow-y-scroll;
+  }
+
+  p {
+    @apply my-4;
+  }
+
+  li p {
+    @apply my-1;
+  }
+
+  a {
+    @apply text-blue-600 hover:text-blue-300;
+  }
+
+  a.inherit-color {
+    @apply text-inherit hover:text-blue-300;
+  }
+
+  code[class*='language-'],
+  pre[class*='language-'] {
+    @apply text-[0.85em] !important;
+  }
+
+  .gatsby-highlight {
+    @apply mb-4;
+  }
+
+  .gatsby-highlight-code-line {
+    @apply bg-orange-100 block -mr-[1em] -ml-[1em] pr-[1em] pl-[0.75em] border-l-[0.25em] border-orange-300;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply mt-8 mb-4 leading-tight font-bold font-heading;
+  }
+}

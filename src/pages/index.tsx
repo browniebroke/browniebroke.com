@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link, graphql } from 'gatsby'
-import { Box, Heading, Text } from '@chakra-ui/react'
 
 import { Avatar } from '../components/avatar'
 import { Layout } from '../components/layout'
@@ -24,21 +23,16 @@ const IndexPage = ({ data }: IndexPageData) => {
   return (
     <Layout>
       <SEO title="Home" />
-      <Box
-        as="section"
-        display="flex"
-        flexDirection="column"
-        alignItems="center"
-      >
-        <Heading as="h1">Bruno Alla</Heading>
+      <section className="flex flex-col items-center">
+        <h1 className="text-4xl font-bold mt-8 mb-4">Bruno Alla</h1>
         <Avatar />
-        <Text textAlign="center" maxWidth="400px">
+        <p className="text-center max-w-[400px]">
           Hi! I'm a web developer based in London, I work mostly with Python &
           Django, but I also do a bit of Javascript on the side, mainly with
           Gatsby.
-        </Text>
+        </p>
         <SocialLinks />
-      </Box>
+      </section>
       <section>
         <SectionTitle>Most recent posts</SectionTitle>
 

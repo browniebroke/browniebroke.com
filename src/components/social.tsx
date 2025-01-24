@@ -9,7 +9,6 @@ import {
 import { FaBluesky, FaThreads } from 'react-icons/fa6'
 import React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
-import { Link, Stack } from '@chakra-ui/react'
 
 export const SocialLinks: React.FC = () => {
   const { site } = useStaticQuery(graphql`
@@ -34,64 +33,72 @@ export const SocialLinks: React.FC = () => {
     site.siteMetadata.social
 
   return (
-    <Stack direction="row" spacing={2} marginTop={2}>
-      <Link
+    <div className="flex flex-row gap-2 mt-2">
+      <a
         href={`https://fosstodon.org/${mastodon}`}
         title="Mastondon profile"
         rel="me"
-        isExternal
+        target="_blank"
+        className="inherit-color"
       >
         <FaMastodon />
-      </Link>
-      <Link
+      </a>
+      <a
         href={`https://bsky.app/profile/${bsky}`}
         title="Bluesky profile"
-        isExternal
+        target="_blank"
+        className="inherit-color"
       >
         <FaBluesky />
-      </Link>
-      <Link
+      </a>
+      <a
         href={`https://www.threads.net/@browniebroke}`}
         title="Threads profile"
-        isExternal
+        target="_blank"
+        className="inherit-color"
       >
         <FaThreads />
-      </Link>
-      <Link
+      </a>
+      <a
         href={`https://www.twitter.com/${twitter}`}
         title="Twitter profile"
-        isExternal
+        target="_blank"
+        className="inherit-color"
       >
         <FaTwitter />
-      </Link>
-      <Link
+      </a>
+      <a
         href={`https://stackoverflow.com/users/${stackoverflow}`}
         title="Stackoverflow profile"
-        isExternal
+        target="_blank"
+        className="inherit-color"
       >
         <FaStackOverflow />
-      </Link>
-      <Link
+      </a>
+      <a
         href={`https://github.com/${github}`}
         title="Github profile"
-        isExternal
+        target="_blank"
+        className="inherit-color"
       >
         <FaGithub title="Github Profile" />
-      </Link>
-      <Link
+      </a>
+      <a
         href={`https://gitlab.com/${gitlab}`}
         title="Gitlab Profile"
-        isExternal
+        target="_blank"
+        className="inherit-color"
       >
         <FaGitlab />
-      </Link>
-      <Link
+      </a>
+      <a
         href={`https://medium.com/@${medium}`}
         title="Medium Profile"
-        isExternal
+        target="_blank"
+        className="inherit-color"
       >
         <FaMedium />
-      </Link>
-    </Stack>
+      </a>
+    </div>
   )
 }
