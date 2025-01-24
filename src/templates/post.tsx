@@ -8,6 +8,7 @@ import { Pagination, Page } from '../components/pagination'
 import { PostMetaData } from '../components/post-metadata'
 import { SEO } from '../components/seo'
 import { Sharing } from '../components/sharing'
+import { Tag } from '../components/tag'
 // @ts-ignore
 import { makePostUrl, makeTagUrl } from '../utils/routes'
 
@@ -65,9 +66,7 @@ const BlogPostTemplate = ({
         description={post.frontmatter.description || post.excerpt}
         image={ogImage || headerOgImage}
       />
-      <h1 className="text-3xl font-bold mt-8 mb-4">
-        {post.frontmatter.title}
-      </h1>
+      <h1 className="text-3xl font-bold mt-8 mb-4">{post.frontmatter.title}</h1>
 
       <PostMetaData
         dateTimeToRead={`${post.frontmatter.date} • ${post.fields.timeToRead.text}`}
@@ -80,11 +79,9 @@ const BlogPostTemplate = ({
 
       <div className="flex flex-row gap-2">
         {post.frontmatter.tags.map((tag) => (
-          <Link to={makeTagUrl(tag)} key={tag}>
-            <span className="inline-block px-2 py-1 text-sm font-medium bg-gray-100 rounded hover:bg-gray-200">
-              {tag}
-            </span>
-          </Link>
+          <Tag to={makeTagUrl(tag)} key={tag}>
+            {tag}
+          </Tag>
         ))}
       </div>
       <Sharing post={post} path={makePostUrl(post.fields.slug)} />
