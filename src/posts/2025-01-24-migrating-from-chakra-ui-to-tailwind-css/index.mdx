@@ -12,11 +12,11 @@ tags:
   - agent
 ---
 
-I wrote before how [I migrated to ChakraUI](/blog/migrate-my-site-design-system-to-chakra-ui-with-chatgpt/) using AI and how that sped up the task. Less than a year later, I migrated again my style system but this time it was even more impressive, and even faster.
+I wrote before how [I migrated to ChakraUI](/blog/migrate-my-site-design-system-to-chakra-ui-with-chatgpt/) using ChatGPT to guide me and how that sped up the task. Less than a year later, I migrated again my style system but this time it was even more impressive, and even faster.
 
 ## The migration
 
-Having heard about it a lot, and having seen in action with some colleagues at work, I decided to give [Cursor](https://www.cursor.com/) a proper go and was really impressed by it. I opened the "composer" tool in "agent" mode. I basically opened my codebase and asked it to "Replace ChakraUI by Tailwind CSS with the minimum amount of visual differences possible".
+Having heard about [Cursor](https://www.cursor.com/) a lot lately, and having seen it in action with some colleagues at work, I decided to give it a proper go and was really impressed. I opened the "composer" tool in "agent" mode, opened my codebase and asked to "Replace ChakraUI by Tailwind CSS with the minimum amount of visual differences possible".
 
 The agent went off and started looking at the structure of the repo, and my dependencies, detected that I was running Gatsby and suggested a plan. Then it suggested running `npm install ...` command which sadly failed with permissions issues. I ran them myself in another terminal, and told it that to proceed. I sat and watch him make modifications to the codebase, going through my components and migrating them one by one. It then it claimed to have completed it and ended by uninstalling the old dependency (I had to run this manually again due to permissions issues).
 
