@@ -47,7 +47,7 @@ const TILIndexPage = ({ data }: TILIndexPageData) => {
         {tils.map((til) => (
           <div>
             <Link to={makeTILUrl(til.fields.slug)} className="inherit-color">
-              <h3 className="text-lg font-bold mt-4">
+              <h3 className="text font-bold mt-4">
                 {til.frontmatter.simpleDate} {til.frontmatter.title}
               </h3>
             </Link>
