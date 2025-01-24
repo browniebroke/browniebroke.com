@@ -8,7 +8,6 @@ import { SEO } from '../components/seo'
 import { Sharing } from '../components/sharing'
 // @ts-ignore
 import { makeTILUrl } from '../utils/routes'
-import { Box, Heading } from '@chakra-ui/react'
 import { MDXWrapper } from '../components/mdx-wrapper'
 import { IGatsbyImageData } from 'gatsby-plugin-image'
 
@@ -52,14 +51,14 @@ const TILTemplate = ({ data, pageContext, children }: TILTemplateData) => {
         description={post.excerpt}
         image={post.frontmatter.og_image}
       />
-      <Heading as="h1" size="lg">
+      <h1 className="text-3xl font-bold mt-8 mb-4">
         {post.frontmatter.title}
-      </Heading>
+      </h1>
 
       <PostMetaData dateTimeToRead={post.frontmatter.date} editUrl={editURL} />
 
       <MDXWrapper>
-        <Box>{children}</Box>
+        <div>{children}</div>
       </MDXWrapper>
 
       <Sharing post={post} path={makeTILUrl(post.fields.slug)} />

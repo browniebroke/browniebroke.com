@@ -1,19 +1,15 @@
 import React from 'react'
 import { Link } from 'gatsby'
-import { Box, Heading, Stack } from '@chakra-ui/react'
-
 import { AcceptsChildren } from './types'
 
 export const HeaderWrapper = ({ children }: AcceptsChildren) => (
-  <Box as="header" boxShadow="rgba(29, 33, 41, 0.15) 0px 30px 20px -32px">
+  <header className="shadow-[0_30px_20px_-32px_rgba(29,33,41,0.15)]">
     {children}
-  </Box>
+  </header>
 )
 
 export const HeaderContainer = ({ children }: AcceptsChildren) => (
-  <Box padding={6} maxWidth="1300px" margin="0 auto" display="flex">
-    {children}
-  </Box>
+  <div className="p-6 max-w-[1300px] mx-auto flex">{children}</div>
 )
 
 interface HeaderProps {
@@ -23,19 +19,19 @@ interface HeaderProps {
 export const Header: React.FC<HeaderProps> = ({ siteTitle }) => (
   <HeaderWrapper>
     <HeaderContainer>
-      <Heading margin={0} flexGrow={1} fontSize="18px" lineHeight="inherit">
+      <h1 className="m-0 flex-grow text-lg leading-inherit">
         <Link to="/" className="inherit-color">
           {siteTitle}
         </Link>
-      </Heading>
-      <Stack direction="row" spacing="2rem">
+      </h1>
+      <div className="flex flex-row gap-8">
         <Link to="/tils/" className="inherit-color">
           TILs
         </Link>
         <Link to="/blog/" className="inherit-color">
           Blog
         </Link>
-      </Stack>
+      </div>
     </HeaderContainer>
   </HeaderWrapper>
 )

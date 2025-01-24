@@ -3,7 +3,6 @@ import React from 'react'
 
 // @ts-ignore
 import { makePostUrl } from '../utils/routes'
-import { Box, Heading, Text } from '@chakra-ui/react'
 
 export interface PostPreviewData {
   excerpt: string
@@ -29,21 +28,21 @@ interface PostPreviewProp {
 
 export const PostPreview: React.FC<PostPreviewProp> = ({ post }) => {
   return (
-    <Box marginBottom={8}>
-      <Heading as="h3" size="md">
+    <article className="mb-8">
+      <h3 className="text-xl font-bold">
         <Link to={makePostUrl(post.fields.slug)} className="inherit-color">
           {post.frontmatter.title}
         </Link>
-      </Heading>
+      </h3>
       <small>
         {post.frontmatter.date} • {post.fields.timeToRead.text}
       </small>
-      <Text
+      <div
         dangerouslySetInnerHTML={{
           __html: post.excerpt,
         }}
       />
-    </Box>
+    </article>
   )
 }
 

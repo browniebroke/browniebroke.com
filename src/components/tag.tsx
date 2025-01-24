@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link } from 'gatsby'
-import { Badge } from '@chakra-ui/react'
 
 interface TagProps {
   to: string
@@ -10,7 +9,9 @@ interface TagProps {
 export const Tag = ({ to, children }: TagProps) => {
   return (
     <Link to={to}>
-      <Badge>{children}</Badge>
+      <span className="inline-block px-2 py-1 text-sm font-medium bg-gray-100 rounded hover:bg-gray-200">
+        {children}
+      </span>
     </Link>
   )
 }

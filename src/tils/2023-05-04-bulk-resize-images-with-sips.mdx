@@ -23,32 +23,30 @@ done
 
 And here are the explanations:
 
-import { ListItem, OrderedList, Text } from '@chakra-ui/react'
-
 <BlockQuote>
-  <Text>This command does the following:</Text>
-  <OrderedList>
-    <ListItem>
+  <p>This command does the following:</p>
+  <ol className="list-decimal pl-8 my-4">
+    <li className="my-1">
       Loops through all JPEG files in the folder with the `*.jpg` file
       extension.
-    </ListItem>
-    <ListItem>
+    </li>
+    <li className="my-1">
       Resizes the images to fit within a 1000x1000 pixel bounding box,
       maintaining their aspect ratio (`-Z 1000`).
-    </ListItem>
-    <ListItem>
+    </li>
+    <li className="my-1">
       Sets the output format to JPEG and the quality to approximately 65%
       (average quality) using the `--setProperty` flags.
-    </ListItem>
-    <ListItem>
+    </li>
+    <li className="my-1">
       Saves the resized images in a new folder named "Resized" within the
       current folder (`--out "Resized/$img"`).
-    </ListItem>
-    <ListItem>
+    </li>
+    <li className="my-1">
       After the command has completed, you should see a new folder named
       "Resized" in your original folder, containing all the resized JPEG images.
-    </ListItem>
-  </OrderedList>
+    </li>
+  </ol>
 </BlockQuote>
 
 I initially got an error, because the `Resized` folder didn't exist, so I just created it. After that, it worked like a charm.

@@ -1,8 +1,6 @@
 import React from 'react'
 import { graphql, Link } from 'gatsby'
 import { getImage, IGatsbyImageData } from 'gatsby-plugin-image'
-import { Box, Heading } from '@chakra-ui/react'
-import { Stack, Tag } from '@chakra-ui/react'
 
 import { Layout } from '../components/layout'
 import { MDXWrapper } from '../components/mdx-wrapper'
@@ -67,9 +65,9 @@ const BlogPostTemplate = ({
         description={post.frontmatter.description || post.excerpt}
         image={ogImage || headerOgImage}
       />
-      <Heading as="h1" size="lg">
+      <h1 className="text-3xl font-bold mt-8 mb-4">
         {post.frontmatter.title}
-      </Heading>
+      </h1>
 
       <PostMetaData
         dateTimeToRead={`${post.frontmatter.date} • ${post.fields.timeToRead.text}`}
@@ -77,18 +75,18 @@ const BlogPostTemplate = ({
       />
 
       <MDXWrapper>
-        <Box>{children}</Box>
+        <div>{children}</div>
       </MDXWrapper>
 
-      <Stack direction="row">
+      <div className="flex flex-row gap-2">
         {post.frontmatter.tags.map((tag) => (
           <Link to={makeTagUrl(tag)} key={tag}>
-            <Tag size="md" variant="solid">
+            <span className="inline-block px-2 py-1 text-sm font-medium bg-gray-100 rounded hover:bg-gray-200">
               {tag}
-            </Tag>
+            </span>
           </Link>
         ))}
-      </Stack>
+      </div>
       <Sharing post={post} path={makePostUrl(post.fields.slug)} />
       <Pagination previous={previous} next={next} />
     </Layout>

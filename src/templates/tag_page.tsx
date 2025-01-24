@@ -6,7 +6,6 @@ import { PostsList } from '../components/posts'
 import { SeeMoreStyles } from '../components/see-more'
 import { SEO } from '../components/seo'
 import { PostPreviewEdge } from '../components/post'
-import { Heading } from '@chakra-ui/react'
 
 interface TagPageData {
   data: {
@@ -30,10 +29,9 @@ const TagPageTemplate = ({ data, pageContext }: TagPageData) => {
         description={`List of all posts tagged as "${pageContext.tag}"`}
       />
       <section>
-        <Heading
-          as="h1"
-          size="lg"
-        >{`Posts tagged as "${pageContext.tag}"`}</Heading>
+        <h1 className="text-3xl font-bold mt-8 mb-4">
+          {`Posts tagged as "${pageContext.tag}"`}
+        </h1>
 
         <PostsList posts={posts} />
 

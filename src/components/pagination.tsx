@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link } from 'gatsby'
-import { Button, Spacer, Stack } from '@chakra-ui/react'
 
 // @ts-ignore
 import { makePostUrl } from '../utils/routes'
@@ -42,7 +41,7 @@ const PageLink: React.FC<PageLinkProps> = ({ pageObj, rel, makeUrlFunc }) => {
   return (
     <>
       {pageObj ? (
-        <Button as="div" variant="outline" size="sm">
+        <div className="border border-gray-200 rounded-md px-4 py-2 text-sm hover:bg-gray-50">
           <Link
             to={makeUrl(pageObj.fields.slug)}
             rel={rel}
@@ -51,9 +50,9 @@ const PageLink: React.FC<PageLinkProps> = ({ pageObj, rel, makeUrlFunc }) => {
           >
             {label}
           </Link>
-        </Button>
+        </div>
       ) : (
-        <Spacer />
+        <div className="flex-1" />
       )}
     </>
   )
@@ -65,14 +64,9 @@ export const Pagination: React.FC<PaginationProps> = ({
   makeUrlFunc = null,
 }) => {
   return (
-    <Stack
-      direction="row"
-      justifyContent="space-between"
-      flexWrap="wrap"
-      marginY={6}
-    >
+    <div className="flex flex-row justify-between flex-wrap my-6">
       <PageLink pageObj={previous} rel="prev" makeUrlFunc={makeUrlFunc} />
       <PageLink pageObj={next} rel="next" makeUrlFunc={makeUrlFunc} />
-    </Stack>
+    </div>
   )
 }

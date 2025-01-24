@@ -1,6 +1,5 @@
 import React from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
-import { Heading, Stack, Link } from '@chakra-ui/react'
 import { FaTwitter, FaRegEnvelope } from 'react-icons/fa'
 import { FaBluesky, FaMastodon } from 'react-icons/fa6'
 
@@ -72,24 +71,24 @@ export const Sharing = ({ post, path }: SharingProps) => {
   const emailUrl = `mailto:?${mailtoParams}`
 
   return (
-    <Stack direction="column" alignItems="center" marginY={12}>
-      <Heading as="h4" size="md">
+    <div className="flex flex-col items-center my-12">
+      <h4 className="text-xl font-bold mb-4">
         Liked it? Please share it!
-      </Heading>
-      <Stack direction="row">
-        <Link href={emailUrl} title="Share via email" isExternal>
+      </h4>
+      <div className="flex flex-row gap-2">
+        <a href={emailUrl} title="Share via email" target="_blank" rel="noopener noreferrer" className="hover:text-blue-300">
           <FaRegEnvelope />
-        </Link>
-        <Link href={bskyUrl} title="Share on Bluesky" isExternal>
+        </a>
+        <a href={bskyUrl} title="Share on Bluesky" target="_blank" rel="noopener noreferrer" className="hover:text-blue-300">
           <FaBluesky />
-        </Link>
-        <Link href={mastodonUrl} title="Share on Mastodon" isExternal>
+        </a>
+        <a href={mastodonUrl} title="Share on Mastodon" target="_blank" rel="noopener noreferrer" className="hover:text-blue-300">
           <FaMastodon />
-        </Link>
-        <Link href={twitterUrl} title="Share on Twitter" isExternal>
+        </a>
+        <a href={twitterUrl} title="Share on Twitter" target="_blank" rel="noopener noreferrer" className="hover:text-blue-300">
           <FaTwitter />
-        </Link>
-      </Stack>
-    </Stack>
+        </a>
+      </div>
+    </div>
   )
 }
