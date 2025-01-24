@@ -51,9 +51,7 @@ const TILTemplate = ({ data, pageContext, children }: TILTemplateData) => {
         description={post.excerpt}
         image={post.frontmatter.og_image}
       />
-      <h1 className="text-3xl font-bold mt-8 mb-4">
-        {post.frontmatter.title}
-      </h1>
+      <h1 className="text-3xl font-bold mt-8 mb-4">{post.frontmatter.title}</h1>
 
       <PostMetaData dateTimeToRead={post.frontmatter.date} editUrl={editURL} />
 
