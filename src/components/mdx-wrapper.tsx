@@ -1,6 +1,7 @@
 import React from 'react'
 import { MDXProvider } from '@mdx-js/react'
 import { AcceptsChildren } from './types'
+import { BlockQuote } from './blockquote'
 
 const MyH1 = ({ children }: AcceptsChildren) => (
   <h1 className="text-3xl font-bold mt-8 mb-4">{children}</h1>
@@ -43,6 +44,7 @@ const components = {
   ul: MyUnorderedList,
   li: MyListItem,
   p: MyParagraph,
+  blockquote: BlockQuote,
 }
 
 export const MDXWrapper = ({ children }: AcceptsChildren) => (
