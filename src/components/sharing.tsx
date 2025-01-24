@@ -72,20 +72,42 @@ export const Sharing = ({ post, path }: SharingProps) => {
 
   return (
     <div className="flex flex-col items-center my-12">
-      <h4 className="text-xl font-bold mb-4">
-        Liked it? Please share it!
-      </h4>
+      <h4 className="text-xl font-bold mb-4">Liked it? Please share it!</h4>
       <div className="flex flex-row gap-2">
-        <a href={emailUrl} title="Share via email" target="_blank" rel="noopener noreferrer" className="hover:text-blue-300">
+        <a
+          href={emailUrl}
+          title="Share via email"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inherit-color"
+        >
           <FaRegEnvelope />
         </a>
-        <a href={bskyUrl} title="Share on Bluesky" target="_blank" rel="noopener noreferrer" className="hover:text-blue-300">
+        <a
+          href={bskyUrl}
+          title="Share on Bluesky"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inherit-color"
+        >
           <FaBluesky />
         </a>
-        <a href={mastodonUrl} title="Share on Mastodon" target="_blank" rel="noopener noreferrer" className="hover:text-blue-300">
+        <a
+          href={mastodonUrl}
+          title="Share on Mastodon"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inherit-color"
+        >
           <FaMastodon />
         </a>
-        <a href={twitterUrl} title="Share on Twitter" target="_blank" rel="noopener noreferrer" className="hover:text-blue-300">
+        <a
+          href={twitterUrl}
+          title="Share on Twitter"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inherit-color"
+        >
           <FaTwitter />
         </a>
       </div>

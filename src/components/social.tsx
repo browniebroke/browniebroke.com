@@ -39,7 +39,7 @@ export const SocialLinks: React.FC = () => {
         title="Mastondon profile"
         rel="me"
         target="_blank"
-        className="hover:text-blue-300"
+        className="inherit-color"
       >
         <FaMastodon />
       </a>
@@ -47,7 +47,7 @@ export const SocialLinks: React.FC = () => {
         href={`https://bsky.app/profile/${bsky}`}
         title="Bluesky profile"
         target="_blank"
-        className="hover:text-blue-300"
+        className="inherit-color"
       >
         <FaBluesky />
       </a>
@@ -55,7 +55,7 @@ export const SocialLinks: React.FC = () => {
         href={`https://www.threads.net/@browniebroke}`}
         title="Threads profile"
         target="_blank"
-        className="hover:text-blue-300"
+        className="inherit-color"
       >
         <FaThreads />
       </a>
@@ -63,7 +63,7 @@ export const SocialLinks: React.FC = () => {
         href={`https://www.twitter.com/${twitter}`}
         title="Twitter profile"
         target="_blank"
-        className="hover:text-blue-300"
+        className="inherit-color"
       >
         <FaTwitter />
       </a>
@@ -71,7 +71,7 @@ export const SocialLinks: React.FC = () => {
         href={`https://stackoverflow.com/users/${stackoverflow}`}
         title="Stackoverflow profile"
         target="_blank"
-        className="hover:text-blue-300"
+        className="inherit-color"
       >
         <FaStackOverflow />
       </a>
@@ -79,7 +79,7 @@ export const SocialLinks: React.FC = () => {
         href={`https://github.com/${github}`}
         title="Github profile"
         target="_blank"
-        className="hover:text-blue-300"
+        className="inherit-color"
       >
         <FaGithub title="Github Profile" />
       </a>
@@ -87,7 +87,7 @@ export const SocialLinks: React.FC = () => {
         href={`https://gitlab.com/${gitlab}`}
         title="Gitlab Profile"
         target="_blank"
-        className="hover:text-blue-300"
+        className="inherit-color"
       >
         <FaGitlab />
       </a>
@@ -95,7 +95,7 @@ export const SocialLinks: React.FC = () => {
         href={`https://medium.com/@${medium}`}
         title="Medium Profile"
         target="_blank"
-        className="hover:text-blue-300"
+        className="inherit-color"
       >
         <FaMedium />
       </a>

@@ -45,6 +45,7 @@ export const Layout = ({ headerImage, children }: LayoutProps) => {
               title="GatsbyJS"
               target="_blank"
               rel="noopener noreferrer"
+              className="inherit-color"
             >
               Gatsby
             </a>
