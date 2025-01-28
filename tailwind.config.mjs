@@ -1,9 +1,5 @@
-module.exports = {
-  content: [
-    './src/pages/**/*.{js,jsx,ts,tsx}',
-    './src/components/**/*.{js,jsx,ts,tsx}',
-    './src/templates/**/*.{js,jsx,ts,tsx}',
-  ],
+export default {
+  content: ['./src/**/*.{astro,html,js,jsx,md,mdx,ts,tsx}'],
   theme: {
     extend: {
       fontFamily: {
