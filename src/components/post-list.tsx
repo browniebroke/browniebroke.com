@@ -1,15 +1,15 @@
 import React from 'react'
-import { PostPreview } from './post'
+import { PostPreview, type PostPreviewData } from './post-preview'
 
 interface PostsListProps {
-  posts: Object[]
+  posts: PostPreviewData[]
 }
 
 export const PostsList: React.FC<PostsListProps> = ({ posts }) => {
   return (
     <>
       {posts.map((post) => (
-        <div className="pb-4" key={post.fields.slug}>
+        <div className="pb-4" key={post.slug}>
           <PostPreview post={post} />
         </div>
       ))}

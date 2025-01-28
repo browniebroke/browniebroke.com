@@ -7,6 +7,18 @@ import { Avatar } from '../components/avatar'
 import { SocialLinks } from '../components/social'
 import { SectionTitle } from '../components/section-title'
 import { SeeMoreStyles } from '../components/see-more'
+import { PostsList } from '../components/post-list'
+
+const allBlogPosts = await getCollection('blog');
+const mostRecent3Posts = allBlogPosts.reverse().slice(0, 3);
+const mostRecent3PostsPreview = mostRecent3Posts.map(
+  (post) => ({
+    title: post.data.title,
+    description: "",
+    date: "",
+    slug: post.filePath || "",
+  }
+));
 ---
 
 <BaseLayout>
@@ -22,6 +34,8 @@ import { SeeMoreStyles } from '../components/see-more'
   </section>
   <section>
     <SectionTitle>Most recent posts</SectionTitle>
+
+    <PostsList posts={mostRecent3PostsPreview}></PostsList>
 
     <SeeMoreStyles>
       <a href='/blog/'>See more...</a>
