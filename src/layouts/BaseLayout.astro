@@ -1,0 +1,38 @@
+---
+import React from 'react'
+
+import { Header } from '../components/header'
+import '../styles/global.css';
+import avatarPng from '../assets/avatar.png'
+import { site } from '../data/siteMetadata';
+---
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href={avatarPng.src} />
+    <meta name="viewport" content="width=device-width" />
+    <title>Home | browniebroke.com</title>
+  </head>
+  <body>
+    <Header siteTitle={site.title} />
+    <div class="container mx-auto pt-12 pb-6 px-4 max-w-xl min-h-screen">
+      <main class="min-h-[70vh]">
+        <slot />
+      </main>
+      <footer>
+        <span class="text-[0.7em]">
+          © {new Date().getFullYear()}, Built with{` `}
+          <a
+            href="https://astro.build"
+            title="Astro"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inherit-color"
+          >
+            Astro
+          </a>
+        </span>
+      </footer>
+    </div>
+  </body>
+</html>

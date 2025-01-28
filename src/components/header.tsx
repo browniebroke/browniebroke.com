@@ -1,6 +1,5 @@
 import React from 'react'
-import { Link } from 'gatsby'
-import { AcceptsChildren } from './types'
+import type { AcceptsChildren } from './types'
 
 export const HeaderWrapper = ({ children }: AcceptsChildren) => (
   <header className="shadow-[0_30px_20px_-32px_rgba(29,33,41,0.15)]">
@@ -20,17 +19,17 @@ export const Header: React.FC<HeaderProps> = ({ siteTitle }) => (
   <HeaderWrapper>
     <HeaderContainer>
       <h1 className="m-0 flex-grow text-lg leading-inherit">
-        <Link to="/" className="inherit-color">
+        <a href="/" className="inherit-color">
           {siteTitle}
-        </Link>
+        </a>
       </h1>
       <div className="flex flex-row gap-8">
-        <Link to="/tils/" className="inherit-color">
+        <a href="/tils/" className="inherit-color">
           TILs
-        </Link>
-        <Link to="/blog/" className="inherit-color">
+        </a>
+        <a href="/blog/" className="inherit-color">
           Blog
-        </Link>
+        </a>
       </div>
     </HeaderContainer>
   </HeaderWrapper>

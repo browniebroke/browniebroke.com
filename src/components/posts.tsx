@@ -1,8 +1,8 @@
 import React from 'react'
-import { PostPreview, PostPreviewData } from './post'
+import { PostPreview } from './post'
 
 interface PostsListProps {
-  posts: PostPreviewData[]
+  posts: Object[]
 }
 
 export const PostsList: React.FC<PostsListProps> = ({ posts }) => {
