@@ -1,0 +1,39 @@
+---
+import { getCollection } from 'astro:content'
+
+import React from 'react'
+import { FaRssSquare } from 'react-icons/fa'
+
+import BaseLayout from '../layouts/BaseLayout.astro'
+import { SectionTitle } from '../components/section-title'
+import { makeTILUrl } from '../utils/routes'
+
+const allTILs = await getCollection('tils');
+const allTILsByMostRecent = allTILs.toReversed().map(
+  (til) => ({
+    title: til.data.title,
+    slug: til.filePath,
+  })
+);
+---
+
+<BaseLayout>
+  <section>
+  <SectionTitle>
+    TIL
+    <a href="/tils.xml">
+      <FaRssSquare />
+    </a>
+  </SectionTitle>
+  <p>Things I've learned.</p>
+  {allTILsByMostRecent.map((til) => (
+    <div>
+      <a href={til.slug} class="inherit-color">
+        <h3 class="text font-bold mt-4">
+          {til.title}
+        </h3>
+      </a>
+    </div>
+  ))}
+</section>
+</BaseLayout>
