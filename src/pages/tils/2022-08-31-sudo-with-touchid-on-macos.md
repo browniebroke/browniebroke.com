@@ -1,6 +1,6 @@
 ---
 date: 2022-08-31
-title: 'Sudo with TouchID on macOS'
+title: "Sudo with TouchID on macOS"
 ---
 
 A nifty trick learned from [this blog post](https://it.digitaino.com/use-touchid-to-authenticate-sudo-on-macos/). This is mostly writing here for my own future reference:

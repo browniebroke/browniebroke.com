@@ -1,6 +1,6 @@
 ---
 date: 2022-05-03
-title: 'Tracking down a bug with tox and git'
+title: "Tracking down a bug with tox and git"
 ---
 
 Today I wanted to track down what broke the CI of an open source library ([django-coverage-plugin](https://github.com/nedbat/django_coverage_plugin)) which is testing against Django main branch.

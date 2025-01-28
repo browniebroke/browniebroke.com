@@ -1,8 +1,8 @@
 ---
 date: 2019-11-14
 author: browniebroke
-title: 'Setting up a Content Security Policy with Gatsby'
-description: 'My quick story on how I added a content security policy (CSP) on my blog, powered by GatsbyJS.'
+title: "Setting up a Content Security Policy with Gatsby"
+description: "My quick story on how I added a content security policy (CSP) on my blog, powered by GatsbyJS."
 og_image: 05-a-grade-security-headers.png
 tags:
   - gatsby
@@ -23,12 +23,12 @@ Gatsby is relatively young but has already a rich plugin ecosystem. So the first
 // gatsby-config.js
 module.exports = {
   plugins: [`gatsby-plugin-csp`],
-}
+};
 ```
 
 I opened a pull request to check a production-like [deploy preview on Netlify](https://5dc89dea31c71e000832cd5a--browniebroke.netlify.com/), but it looked pretty broken:
 
-![First try](01-first-try.png 'First Try')
+![First try](01-first-try.png "First Try")
 
 Looks like a few things were missing... Let's customise this plugin!
 
@@ -56,7 +56,7 @@ module.exports = {
 
 Pushed to my branch again, waited for the deployment to be updated, but [it was still not looking great](https://5dc8a896ace0c4000847a904--browniebroke.netlify.com/):
 
-![With Options](02-second-with-options.png 'With Options')
+![With Options](02-second-with-options.png "With Options")
 
 Hum, weird it looks even worse! Ok the errors are different, let's keep customising. Looking at the errors, I can see another Google font domain and inlines are missing, let's add them:
 
@@ -80,7 +80,7 @@ module.exports = {
 
 Let's [deploy again](https://5dc8acc45da30f0008c79aa6--browniebroke.netlify.com/)... But now I'm confused:
 
-![Inline disallowed](03-inline-disallowed.png 'Inline disallowed')
+![Inline disallowed](03-inline-disallowed.png "Inline disallowed")
 
 It says some inlines are disallowed, but they are in my directive!
 
@@ -110,26 +110,26 @@ module.exports = {
         mergeScriptHashes: false,
         mergeStyleHashes: false,
         directives: {
-          'script-src': `'self' 'unsafe-inline' data: www.google-analytics.com`,
-          'style-src': `'self' 'unsafe-inline' fonts.googleapis.com fonts.gstatic.com`,
-          'img-src': `'self' data: www.google-analytics.com`,
-          'font-src': `'self' data: fonts.gstatic.com`,
+          "script-src": `'self' 'unsafe-inline' data: www.google-analytics.com`,
+          "style-src": `'self' 'unsafe-inline' fonts.googleapis.com fonts.gstatic.com`,
+          "img-src": `'self' data: www.google-analytics.com`,
+          "font-src": `'self' data: fonts.gstatic.com`,
         },
       },
     },
   ],
-}
+};
 ```
 
 At this point, it all [look good visually](https://5dc9d3e45c60a70008e187a5--browniebroke.netlify.com/), but when checking [security headers](secutiryheaders.com), I still had a B grade:
 
-![B Grade](04-b-grade-security-headers.png 'B Grade')
+![B Grade](04-b-grade-security-headers.png "B Grade")
 
 ## Moving policy to the HTTP header
 
 The plugin implements CSP by using a `<meta>` tag, not a HTTP header. They have [an issue open](https://github.com/bejamas/gatsby-plugin-csp/issues/4) to support HTTP headers, but it looks like it won't be supported soon as it depends on the deployment platform used. The issue links to [a comment](https://github.com/gatsbyjs/gatsby/issues/10890#issuecomment-468982396) with a solution to inject the CSP to the headers with the `gatsby-plugin-netlify` package. [The patch](https://github.com/DeveloPassion/website/commit/c31120ccccefed43c266c8ef862ec696bd36c7a8) is pretty self-contained so I decided to [replicate it on this blog](https://github.com/browniebroke/browniebroke.com/pull/210/commits/f27c05c84b0f4f2785aca0f2b8ef73efddb39a14). Seem to work fine and after deploying, I finally got this A grade I was after:
 
-![A Grade](05-a-grade-security-headers.png 'A Grade')
+![A Grade](05-a-grade-security-headers.png "A Grade")
 
 Success! Press merge and got it deployed.
 

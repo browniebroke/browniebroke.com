@@ -1,9 +1,9 @@
-import React from 'react'
-import { FaGithub } from 'react-icons/fa'
+import React from "react";
+import { FaGithub } from "react-icons/fa";
 
 interface PostMetaDataProps {
-  dateTimeToRead: string
-  editUrl: string
+  dateTimeToRead: string;
+  editUrl: string;
 }
 
 export const PostMetaData = ({
@@ -24,5 +24,5 @@ export const PostMetaData = ({
         Edit on Github
       </a>
     </div>
-  )
-}
+  );
+};

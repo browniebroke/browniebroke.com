@@ -1,6 +1,6 @@
 ---
 date: 2024-11-29
-title: 'Add button to share on Mastodon to my posts'
+title: "Add button to share on Mastodon to my posts"
 ---
 
 Similar to my earlier TIL about [adding "share on Bluesky" to my blog](/tils/2024-11-18-bluesky-action-intent-links), I just added support for sharing my posts on Mastodon from the bottom of my posts and TILs.
@@ -14,10 +14,10 @@ Here is the final snippet:
 ```javascript
 function getMastodonSharingUrl(title, tags, postUrl, handle) {
   const hashtagsStr = tags
-    ? tags.map((ht) => `%23${ht.replace(' ', '')}`).join(' ')
-    : ''
-  const textParam = `${title} by ${handle} ${postUrl} ${hashtagsStr}`
-  return `https://toot.kytta.dev/?text=${textParam}`
+    ? tags.map((ht) => `%23${ht.replace(" ", "")}`).join(" ")
+    : "";
+  const textParam = `${title} by ${handle} ${postUrl} ${hashtagsStr}`;
+  return `https://toot.kytta.dev/?text=${textParam}`;
 }
 ```
 

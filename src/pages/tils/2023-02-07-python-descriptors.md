@@ -1,6 +1,6 @@
 ---
 date: 2023-02-07
-title: 'Python descriptors'
+title: "Python descriptors"
 ---
 
 I only learned today about a neat Python feature: descriptors. I came across that feature twice in the same day: once at work on a custom Django field for translations and a second time in [this great article](https://lukeplant.me.uk/blog/posts/pythons-disappointing-superpowers/).

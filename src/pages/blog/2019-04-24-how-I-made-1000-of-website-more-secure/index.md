@@ -2,7 +2,7 @@
 date: 2019-04-24
 author: browniebroke
 title: "How I made 1000's of websites more secure with one line of code"
-description: 'This is the story of learning about a new security header, added it to Gatsby, and made tons of sites more secure'
+description: "This is the story of learning about a new security header, added it to Gatsby, and made tons of sites more secure"
 og_image: gatbsyjs-security-headers-after.png
 tags:
   - gatsby

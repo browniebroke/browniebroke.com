@@ -1,26 +1,26 @@
-import React from 'react'
-import { Link, graphql } from 'gatsby'
+import React from "react";
+import { Link, graphql } from "gatsby";
 
-import { Layout } from '../components/layout'
-import { PostsList } from '../components/posts'
-import { SeeMoreStyles } from '../components/see-more'
-import { SEO } from '../components/seo'
-import { PostPreviewEdge } from '../components/post'
+import { Layout } from "../components/layout";
+import { PostsList } from "../components/posts";
+import { SeeMoreStyles } from "../components/see-more";
+import { SEO } from "../components/seo";
+import { PostPreviewEdge } from "../components/post";
 
 interface TagPageData {
   data: {
     allMdx: {
-      edges: PostPreviewEdge[]
-    }
-  }
+      edges: PostPreviewEdge[];
+    };
+  };
   pageContext: {
-    tag: string
-  }
+    tag: string;
+  };
 }
 
 const TagPageTemplate = ({ data, pageContext }: TagPageData) => {
-  const posts = data.allMdx.edges.map((edge) => edge.node)
-  const title = `Tag "${pageContext.tag}"`
+  const posts = data.allMdx.edges.map((edge) => edge.node);
+  const title = `Tag "${pageContext.tag}"`;
 
   return (
     <Layout>
@@ -40,10 +40,10 @@ const TagPageTemplate = ({ data, pageContext }: TagPageData) => {
         </SeeMoreStyles>
       </section>
     </Layout>
-  )
-}
+  );
+};
 
-export default TagPageTemplate
+export default TagPageTemplate;
 
 export const pageQuery = graphql`
   query TagBySlug($tag: String!) {
@@ -58,4 +58,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;

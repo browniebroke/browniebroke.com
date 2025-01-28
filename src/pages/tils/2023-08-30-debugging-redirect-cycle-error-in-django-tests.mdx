@@ -1,6 +1,6 @@
 ---
 date: 2023-08-30
-title: 'Debugging redirect cycle error in Django tests'
+title: "Debugging redirect cycle error in Django tests"
 ---
 
 I recently joined a new team with a medium-sized Django project, so naturally I tried to run django-upgrade on it. It modified a lot of URL routes and upgraded the syntax from `re_path` to `path`. However, when I ran the tests, I got some failures with the following message:

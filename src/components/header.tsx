@@ -1,18 +1,18 @@
-import React from 'react'
-import type { AcceptsChildren } from './types'
+import React from "react";
+import type { AcceptsChildren } from "./types";
 
 export const HeaderWrapper = ({ children }: AcceptsChildren) => (
   <header className="shadow-[0_30px_20px_-32px_rgba(29,33,41,0.15)]">
     {children}
   </header>
-)
+);
 
 export const HeaderContainer = ({ children }: AcceptsChildren) => (
   <div className="p-6 max-w-[1300px] mx-auto flex">{children}</div>
-)
+);
 
 interface HeaderProps {
-  siteTitle: String
+  siteTitle: String;
 }
 
 export const Header: React.FC<HeaderProps> = ({ siteTitle }) => (
@@ -33,4 +33,4 @@ export const Header: React.FC<HeaderProps> = ({ siteTitle }) => (
       </div>
     </HeaderContainer>
   </HeaderWrapper>
-)
+);

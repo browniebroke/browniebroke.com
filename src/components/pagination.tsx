@@ -1,43 +1,43 @@
-import React from 'react'
-import { Link } from 'gatsby'
+import React from "react";
+import { Link } from "gatsby";
 
 // @ts-ignore
-import { makePostUrl } from '../utils/routes'
+import { makePostUrl } from "../utils/routes";
 
 export interface Page {
   fields: {
-    slug: string
-  }
+    slug: string;
+  };
   frontmatter: {
-    title: string
-  }
+    title: string;
+  };
 }
 
 interface PageLinkProps {
-  pageObj: Page | null
-  rel: 'prev' | 'next'
-  makeUrlFunc: Function | null
+  pageObj: Page | null;
+  rel: "prev" | "next";
+  makeUrlFunc: Function | null;
 }
 
 interface PaginationProps {
-  previous: Page | null
-  next: Page | null
-  makeUrlFunc?: (slug: string) => string
+  previous: Page | null;
+  next: Page | null;
+  makeUrlFunc?: (slug: string) => string;
 }
 
 const PageLink: React.FC<PageLinkProps> = ({ pageObj, rel, makeUrlFunc }) => {
-  let label = ''
+  let label = "";
   switch (rel) {
-    case 'prev':
-      label = '← Previous'
-      break
-    case 'next':
-      label = 'Next →'
-      break
+    case "prev":
+      label = "← Previous";
+      break;
+    case "next":
+      label = "Next →";
+      break;
     default:
-      label = ''
+      label = "";
   }
-  const makeUrl = makeUrlFunc !== null ? makeUrlFunc : makePostUrl
+  const makeUrl = makeUrlFunc !== null ? makeUrlFunc : makePostUrl;
   return (
     <>
       {pageObj ? (
@@ -55,8 +55,8 @@ const PageLink: React.FC<PageLinkProps> = ({ pageObj, rel, makeUrlFunc }) => {
         <div className="flex-1" />
       )}
     </>
-  )
-}
+  );
+};
 
 export const Pagination: React.FC<PaginationProps> = ({
   previous = null,
@@ -68,5 +68,5 @@ export const Pagination: React.FC<PaginationProps> = ({
       <PageLink pageObj={previous} rel="prev" makeUrlFunc={makeUrlFunc} />
       <PageLink pageObj={next} rel="next" makeUrlFunc={makeUrlFunc} />
     </div>
-  )
-}
+  );
+};

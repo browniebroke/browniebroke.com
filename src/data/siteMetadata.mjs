@@ -1,6 +1,6 @@
 const baseUrl =
-  process.env.NODE_ENV === 'development'
-    ? 'http://localhost:8000'
+  process.env.NODE_ENV === "development"
+    ? "http://localhost:8000"
     : process.env.REVIEW_ID
       ? `https://deploy-preview-${process.env.REVIEW_ID}--browniebroke.netlify.app`
       : `https://browniebroke.com`;
@@ -19,4 +19,4 @@ export const site = {
     stackoverflow: `2261637`,
     twitter: `_BrunoAlla`,
   },
-}
+};

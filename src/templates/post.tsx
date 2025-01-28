@@ -1,49 +1,49 @@
-import React from 'react'
-import { graphql, Link } from 'gatsby'
-import { getImage, IGatsbyImageData } from 'gatsby-plugin-image'
+import React from "react";
+import { graphql, Link } from "gatsby";
+import { getImage, IGatsbyImageData } from "gatsby-plugin-image";
 
-import { Layout } from '../components/layout'
-import { MDXWrapper } from '../components/mdx-wrapper'
-import { Pagination, Page } from '../components/pagination'
-import { PostMetaData } from '../components/post-metadata'
-import { SEO } from '../components/seo'
-import { Sharing } from '../components/sharing'
-import { Tag } from '../components/tag'
+import { Layout } from "../components/layout";
+import { MDXWrapper } from "../components/mdx-wrapper";
+import { Pagination, Page } from "../components/pagination";
+import { PostMetaData } from "../components/post-metadata";
+import { SEO } from "../components/seo";
+import { Sharing } from "../components/sharing";
+import { Tag } from "../components/tag";
 // @ts-ignore
-import { makePostUrl, makeTagUrl } from '../utils/routes'
+import { makePostUrl, makeTagUrl } from "../utils/routes";
 
 interface PostTemplateData {
   location: {
-    pathname: string
-  }
+    pathname: string;
+  };
   data: {
     mdx: {
-      excerpt: string
+      excerpt: string;
       fields: {
-        slug: string
+        slug: string;
         timeToRead: {
-          text: string
-        }
-      }
+          text: string;
+        };
+      };
       parent: {
-        absolutePath: string
-      }
+        absolutePath: string;
+      };
       frontmatter: {
-        title: string
-        date: string
-        description: string
-        tags: string[]
-        header_image: IGatsbyImageData
-        headerOgImage: IGatsbyImageData
-        og_image: IGatsbyImageData
-      }
-    }
-  }
+        title: string;
+        date: string;
+        description: string;
+        tags: string[];
+        header_image: IGatsbyImageData;
+        headerOgImage: IGatsbyImageData;
+        og_image: IGatsbyImageData;
+      };
+    };
+  };
   pageContext: {
-    previous: Page
-    next: Page
-  }
-  children: React.ReactNode
+    previous: Page;
+    next: Page;
+  };
+  children: React.ReactNode;
 }
 
 const BlogPostTemplate = ({
@@ -51,14 +51,14 @@ const BlogPostTemplate = ({
   pageContext,
   children,
 }: PostTemplateData) => {
-  const post = data.mdx
-  const headerImage = getImage(post.frontmatter.header_image)
-  const ogImage = getImage(post.frontmatter.og_image)
-  const headerOgImage = getImage(post.frontmatter.headerOgImage)
-  const { previous, next } = pageContext
+  const post = data.mdx;
+  const headerImage = getImage(post.frontmatter.header_image);
+  const ogImage = getImage(post.frontmatter.og_image);
+  const headerOgImage = getImage(post.frontmatter.headerOgImage);
+  const { previous, next } = pageContext;
   const editURL = `https://github.com/browniebroke/browniebroke.com/blob/master/src/${
-    post.parent.absolutePath.split('/src/')[1]
-  }`
+    post.parent.absolutePath.split("/src/")[1]
+  }`;
   return (
     <Layout headerImage={headerImage}>
       <SEO
@@ -87,10 +87,10 @@ const BlogPostTemplate = ({
       <Sharing post={post} path={makePostUrl(post.fields.slug)} />
       <Pagination previous={previous} next={next} />
     </Layout>
-  )
-}
+  );
+};
 
-export default BlogPostTemplate
+export default BlogPostTemplate;
 
 export const pageQuery = graphql`
   query BlogPostBySlug($slug: String!) {
@@ -141,4 +141,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;

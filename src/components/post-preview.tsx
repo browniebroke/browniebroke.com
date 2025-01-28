@@ -1,17 +1,17 @@
-import React from 'react'
+import React from "react";
 
 // @ts-ignore
-import { makePostUrl } from '../utils/routes'
+import { makePostUrl } from "../utils/routes";
 
 export interface PostPreviewData {
-  title: string
-  description: string
-  date: string
-  slug: string
+  title: string;
+  description: string;
+  date: string;
+  slug: string;
 }
 
 interface PostPreviewProp {
-  post: PostPreviewData
+  post: PostPreviewData;
 }
 
 export const PostPreview: React.FC<PostPreviewProp> = ({ post }) => {
@@ -22,12 +22,8 @@ export const PostPreview: React.FC<PostPreviewProp> = ({ post }) => {
           {post.title}
         </a>
       </h3>
-      <small>
-        {post.date}
-      </small>
-      <div className="mt-4">
-        {post.description}
-      </div>
+      <small>{post.date}</small>
+      <div className="mt-4">{post.description}</div>
     </article>
-  )
-}
+  );
+};

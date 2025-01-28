@@ -1,23 +1,23 @@
-import React from 'react'
-import { graphql, Link, Page } from 'gatsby'
-import { FaRssSquare } from 'react-icons/fa'
+import React from "react";
+import { graphql, Link, Page } from "gatsby";
+import { FaRssSquare } from "react-icons/fa";
 
-import { Layout } from '../components/layout'
-import { PostPreviewEdge } from '../components/post'
-import { PostsList } from '../components/posts'
-import { SectionTitle } from '../components/section-title'
-import { SEO } from '../components/seo'
+import { Layout } from "../components/layout";
+import { PostPreviewEdge } from "../components/post";
+import { PostsList } from "../components/posts";
+import { SectionTitle } from "../components/section-title";
+import { SEO } from "../components/seo";
 
 interface BlogPageData extends Page {
   data: {
     allMdx: {
-      edges: PostPreviewEdge[]
-    }
-  }
+      edges: PostPreviewEdge[];
+    };
+  };
 }
 
 const BlogPage = ({ data }: BlogPageData) => {
-  const posts = data.allMdx.edges.map((edge) => edge.node)
+  const posts = data.allMdx.edges.map((edge) => edge.node);
   return (
     <Layout>
       <SEO title="My Blog" />
@@ -32,10 +32,10 @@ const BlogPage = ({ data }: BlogPageData) => {
         <PostsList posts={posts} />
       </section>
     </Layout>
-  )
-}
+  );
+};
 
-export default BlogPage
+export default BlogPage;
 
 export const pageQuery = graphql`
   query {
@@ -50,4 +50,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;

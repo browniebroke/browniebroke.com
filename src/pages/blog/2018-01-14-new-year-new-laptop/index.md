@@ -1,8 +1,8 @@
 ---
 date: 2018-01-14
 author: browniebroke
-title: 'New year, new laptop'
-description: 'The story of the clean install of my new laptop'
+title: "New year, new laptop"
+description: "The story of the clean install of my new laptop"
 tags:
   - laptop
   - setup

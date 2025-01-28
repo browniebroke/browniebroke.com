@@ -1,8 +1,8 @@
 ---
 date: 2019-05-01
 author: browniebroke
-title: 'Add cache-control header to an entire S3 Bucket using Boto3'
-description: 'How to change cache-control header for multiple objects in a AWS S3 bucket using boto3.'
+title: "Add cache-control header to an entire S3 Bucket using Boto3"
+description: "How to change cache-control header for multiple objects in a AWS S3 bucket using boto3."
 tags:
   - boto3
   - aws

@@ -1,38 +1,38 @@
-import React from 'react'
-import { graphql, Link, Page } from 'gatsby'
+import React from "react";
+import { graphql, Link, Page } from "gatsby";
 
-import { Layout } from '../components/layout'
-import { SectionTitle } from '../components/section-title'
-import { SEO } from '../components/seo'
+import { Layout } from "../components/layout";
+import { SectionTitle } from "../components/section-title";
+import { SEO } from "../components/seo";
 // @ts-ignore
-import { makeTILUrl } from '../utils/routes'
-import { FaRssSquare } from 'react-icons/fa'
+import { makeTILUrl } from "../utils/routes";
+import { FaRssSquare } from "react-icons/fa";
 
 interface TIL {
   fields: {
-    slug: string
-  }
+    slug: string;
+  };
   frontmatter: {
-    date: string
-    simpleDate: string
-    title: string
-  }
+    date: string;
+    simpleDate: string;
+    title: string;
+  };
 }
 
 interface TILEdge {
-  node: TIL
+  node: TIL;
 }
 
 interface TILIndexPageData extends Page {
   data: {
     allMdx: {
-      edges: TILEdge[]
-    }
-  }
+      edges: TILEdge[];
+    };
+  };
 }
 
 const TILIndexPage = ({ data }: TILIndexPageData) => {
-  const tils = data.allMdx.edges.map((edge) => edge.node)
+  const tils = data.allMdx.edges.map((edge) => edge.node);
   return (
     <Layout>
       <SEO title="TIL" />
@@ -55,10 +55,10 @@ const TILIndexPage = ({ data }: TILIndexPageData) => {
         ))}
       </section>
     </Layout>
-  )
-}
+  );
+};
 
-export default TILIndexPage
+export default TILIndexPage;
 
 export const pageQuery = graphql`
   query {
@@ -80,4 +80,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;

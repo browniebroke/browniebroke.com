@@ -1,5 +1,5 @@
-@import '@fontsource/cabin-condensed';
-@import '@fontsource/patua-one';
+@import "@fontsource/cabin-condensed";
+@import "@fontsource/patua-one";
 
 @tailwind base;
 @tailwind components;
@@ -26,8 +26,8 @@
     @apply text-inherit hover:text-blue-300;
   }
 
-  code[class*='language-'],
-  pre[class*='language-'] {
+  code[class*="language-"],
+  pre[class*="language-"] {
     @apply text-[0.85em] !important;
   }
 

@@ -1,6 +1,6 @@
 ---
 date: 2022-05-05
-title: 'Using a temporary directory for media files while running tests in Django'
+title: "Using a temporary directory for media files while running tests in Django"
 ---
 
 Our Django test suite uses [factory-boy](https://factoryboy.readthedocs.io/en/stable/index.html) to simplify generating mocked data for our tests. Some of our models are creating images, and by default they are all called 'example.jpg', and some suffix is added avoid collision. As a result the media folder was being filled with `example_<radom suffix>.jpg`.

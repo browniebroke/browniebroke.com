@@ -1,8 +1,8 @@
 ---
 date: 2020-07-12
 author: browniebroke
-title: 'Auto-update pre-commit hooks with GitHub Actions'
-description: 'A short post to explain how to get pre-hooks to automatically update their version in the config file.'
+title: "Auto-update pre-commit hooks with GitHub Actions"
+description: "A short post to explain how to get pre-hooks to automatically update their version in the config file."
 header_image: header.png
 tags:
   - python
@@ -26,7 +26,7 @@ name: Pre-commit auto-update
 
 on:
   schedule:
-    - cron: '0 0 * * *'
+    - cron: "0 0 * * *"
 
 jobs:
   auto-update:

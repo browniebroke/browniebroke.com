@@ -12,12 +12,12 @@ The main difference is that Tweeter has several parameters to provide your text,
 ```javascript
 function getBskySharingUrl(title, tags, postUrl, bskyUsername) {
   const hashtagsStr = tags
-    ? tags.map((ht) => `#${ht.replace(' ', '')}`).join(' ')
-    : ''
+    ? tags.map((ht) => `#${ht.replace(" ", "")}`).join(" ")
+    : "";
   const bskyParams = new URLSearchParams({
     text: `${title} by @${bskyUsername} ${postUrl} ${hashtagsStr}`,
-  }).toString()
-  return `https://bsky.app/intent/compose?${bskyParams}`
+  }).toString();
+  return `https://bsky.app/intent/compose?${bskyParams}`;
 }
 ```
 

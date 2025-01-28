@@ -1,8 +1,8 @@
 ---
 date: 2020-01-05
 author: browniebroke
-title: 'Self-host your Typography.js fonts with Gasby'
-description: 'How to self-host the fonts used by your Typography.js theme with GatsbyJS.'
+title: "Self-host your Typography.js fonts with Gasby"
+description: "How to self-host the fonts used by your Typography.js theme with GatsbyJS."
 og_image: gatsbyjs-logo.png
 tags:
   - gatsby
@@ -62,9 +62,9 @@ Then add them to the [`onInitialClientRender` browser API](https://www.gatsbyjs.
 ```javascript
 // gatsby-browser.js
 exports.onInitialClientRender = () => {
-  require('typeface-patua-one')
-  require('typeface-cabin-condensed')
-}
+  require("typeface-patua-one");
+  require("typeface-cabin-condensed");
+};
 ```
 
 And that's pretty much it, now the fonts are self-hosted.

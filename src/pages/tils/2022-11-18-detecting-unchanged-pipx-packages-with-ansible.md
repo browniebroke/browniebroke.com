@@ -1,6 +1,6 @@
 ---
 date: 2022-11-18
-title: 'Detecting unchanged pipx packages with Ansible'
+title: "Detecting unchanged pipx packages with Ansible"
 ---
 
 I [recently moved](/tils/provisioning-my-mac-with-ansible/) provisioning of my MacBook to Ansible and one of the task that didn't work perfectly was installation of CLI packages using [pipx](https://pypa.github.io/pipx/): the playbook always detected the packages as changed, even if they were already installed.

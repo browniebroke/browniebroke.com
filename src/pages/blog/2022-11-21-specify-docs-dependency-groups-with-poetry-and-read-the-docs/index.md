@@ -1,7 +1,7 @@
 ---
 date: 2022-11-21
 author: browniebroke
-title: 'Specify docs dependency groups with Poetry and Read the Docs'
+title: "Specify docs dependency groups with Poetry and Read the Docs"
 description: "Guide on how to setup your package on Read the Docs with Poetry's dependency groups."
 header_image: poetry_rtd_header.png
 tags:

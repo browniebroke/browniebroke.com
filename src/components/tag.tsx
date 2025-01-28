@@ -1,9 +1,9 @@
-import React from 'react'
-import { Link } from 'gatsby'
+import React from "react";
+import { Link } from "gatsby";
 
 interface TagProps {
-  to: string
-  children: React.ReactNode
+  to: string;
+  children: React.ReactNode;
 }
 
 export const Tag = ({ to, children }: TagProps) => {
@@ -13,5 +13,5 @@ export const Tag = ({ to, children }: TagProps) => {
         {children}
       </span>
     </Link>
-  )
-}
+  );
+};

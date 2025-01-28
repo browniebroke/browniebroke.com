@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import {
   FaGithub,
   FaGitlab,
@@ -6,15 +6,15 @@ import {
   FaMedium,
   FaStackOverflow,
   FaTwitter,
-} from 'react-icons/fa'
-import { FaBluesky, FaThreads } from 'react-icons/fa6'
+} from "react-icons/fa";
+import { FaBluesky, FaThreads } from "react-icons/fa6";
 
 // @ts-ignore
-import { site } from "../data/siteMetadata"
+import { site } from "../data/siteMetadata";
 
 export const SocialLinks: React.FC = () => {
   const { bsky, github, gitlab, mastodon, medium, twitter, stackoverflow } =
-    site.social
+    site.social;
 
   return (
     <div className="flex flex-row gap-2 mt-2">
@@ -84,5 +84,5 @@ export const SocialLinks: React.FC = () => {
         <FaMedium />
       </a>
     </div>
-  )
-}
+  );
+};

@@ -1,6 +1,6 @@
 ---
 date: 2022-11-17
-title: 'Provisioning my MacBook with Ansible'
+title: "Provisioning my MacBook with Ansible"
 ---
 
 [I wrote before](https://browniebroke.com/blog/new-year-new-laptop/) how I scripted the setup of my Apple MacBook pro. At the time, I used a combination of bash scripts, `Brewfile` and [Mackup](https://github.com/lra/mackup). This was better than nothing, but it was not really runnable over and over.

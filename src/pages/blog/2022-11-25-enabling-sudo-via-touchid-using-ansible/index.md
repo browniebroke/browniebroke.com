@@ -1,8 +1,8 @@
 ---
 date: 2022-11-25
 author: browniebroke
-title: 'Enabling sudo via TouchID using Ansible'
-description: 'A small post explaining how to integrate sudo with Touch ID on Mac.'
+title: "Enabling sudo via TouchID using Ansible"
+description: "A small post explaining how to integrate sudo with Touch ID on Mac."
 header_image: ansible-header.png
 tags:
   - ansible

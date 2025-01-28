@@ -1,6 +1,6 @@
 ---
 date: 2023-04-20
-title: 'Translated database content with Django'
+title: "Translated database content with Django"
 ---
 
 Recently, while working on a Django project, I needed to have content in multiple languages. Django has a good support for [translations](https://docs.djangoproject.com/en/stable/topics/i18n/translation/), but that's only strings which are in the codebase. It's not uncommon to need models with content in the database that will be displayed to end user, getting into CMS territory, and these need to be translated. However, for my use case, I was just modeling a couple of fields, and it's an API backend, with an SPA frontend, so I didn't want to install something too complicated like Wagtail. I just needed a lightweight solution, that can work from the admin.

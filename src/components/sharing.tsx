@@ -1,18 +1,18 @@
-import React from 'react'
-import { graphql, useStaticQuery } from 'gatsby'
-import { FaTwitter, FaRegEnvelope } from 'react-icons/fa'
-import { FaBluesky, FaMastodon } from 'react-icons/fa6'
+import React from "react";
+import { graphql, useStaticQuery } from "gatsby";
+import { FaTwitter, FaRegEnvelope } from "react-icons/fa";
+import { FaBluesky, FaMastodon } from "react-icons/fa6";
 
 interface Post {
   frontmatter: {
-    title: string
-    tags?: string[]
-  }
+    title: string;
+    tags?: string[];
+  };
 }
 
 interface SharingProps {
-  post: Post
-  path: string
+  post: Post;
+  path: string;
 }
 
 export const Sharing = ({ post, path }: SharingProps) => {
@@ -33,42 +33,42 @@ export const Sharing = ({ post, path }: SharingProps) => {
         }
       }
     }
-  `)
+  `);
 
   // Blusky sharing
   const hashtagsStr = post.frontmatter.tags
-    ? post.frontmatter.tags.map((ht) => `#${ht.replace(' ', '')}`).join(' ')
-    : ''
+    ? post.frontmatter.tags.map((ht) => `#${ht.replace(" ", "")}`).join(" ")
+    : "";
   const bskyParams = new URLSearchParams({
     text: `${post.frontmatter.title} by @${social.bsky} ${siteUrl}${path} ${hashtagsStr}`,
-  }).toString()
-  const bskyUrl = `https://bsky.app/intent/compose?${bskyParams}`
+  }).toString();
+  const bskyUrl = `https://bsky.app/intent/compose?${bskyParams}`;
 
   // Mastodon sharing
   const mastodonHashtagsStr = post.frontmatter.tags
-    ? post.frontmatter.tags.map((ht) => `%23${ht.replace(' ', '')}`).join(' ')
-    : ''
-  const mastodonText = `${post.frontmatter.title} by ${social.mastodon} ${siteUrl}${path} ${mastodonHashtagsStr}`
-  const mastodonUrl = `https://toot.kytta.dev/?text=${mastodonText}`
+    ? post.frontmatter.tags.map((ht) => `%23${ht.replace(" ", "")}`).join(" ")
+    : "";
+  const mastodonText = `${post.frontmatter.title} by ${social.mastodon} ${siteUrl}${path} ${mastodonHashtagsStr}`;
+  const mastodonUrl = `https://toot.kytta.dev/?text=${mastodonText}`;
 
   // Twitter sharing
   const hashtags = post.frontmatter.tags
-    ? post.frontmatter.tags.filter((tag) => !tag.includes(' '))
-    : []
+    ? post.frontmatter.tags.filter((tag) => !tag.includes(" "))
+    : [];
   const twitterParams = new URLSearchParams({
     text: `${post.frontmatter.title} by Bruno Alla`,
     url: `${siteUrl}${path}`,
     via: social.twitter,
-    hashtags: hashtags.join(','),
-  }).toString()
-  const twitterUrl = `https://twitter.com/intent/tweet/?${twitterParams}`
+    hashtags: hashtags.join(","),
+  }).toString();
+  const twitterUrl = `https://twitter.com/intent/tweet/?${twitterParams}`;
 
   // email sharing
   const mailtoParams = new URLSearchParams({
     subject: `${post.frontmatter.title} by Bruno Alla`,
     body: `${siteUrl}${path}`,
-  }).toString()
-  const emailUrl = `mailto:?${mailtoParams}`
+  }).toString();
+  const emailUrl = `mailto:?${mailtoParams}`;
 
   return (
     <div className="flex flex-col items-center my-12">
@@ -112,5 +112,5 @@ export const Sharing = ({ post, path }: SharingProps) => {
         </a>
       </div>
     </div>
-  )
-}
+  );
+};

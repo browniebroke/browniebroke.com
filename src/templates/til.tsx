@@ -1,49 +1,49 @@
-import React from 'react'
-import { graphql } from 'gatsby'
+import React from "react";
+import { graphql } from "gatsby";
 
-import { Layout } from '../components/layout'
-import { Pagination, Page } from '../components/pagination'
-import { PostMetaData } from '../components/post-metadata'
-import { SEO } from '../components/seo'
-import { Sharing } from '../components/sharing'
+import { Layout } from "../components/layout";
+import { Pagination, Page } from "../components/pagination";
+import { PostMetaData } from "../components/post-metadata";
+import { SEO } from "../components/seo";
+import { Sharing } from "../components/sharing";
 // @ts-ignore
-import { makeTILUrl } from '../utils/routes'
-import { MDXWrapper } from '../components/mdx-wrapper'
-import { IGatsbyImageData } from 'gatsby-plugin-image'
+import { makeTILUrl } from "../utils/routes";
+import { MDXWrapper } from "../components/mdx-wrapper";
+import { IGatsbyImageData } from "gatsby-plugin-image";
 
 interface TILTemplateData {
   location: {
-    pathname: string
-  }
+    pathname: string;
+  };
   data: {
     mdx: {
-      excerpt: string
+      excerpt: string;
       fields: {
-        slug: string
-      }
+        slug: string;
+      };
       frontmatter: {
-        title: string
-        date: string
-        og_image: IGatsbyImageData
-      }
+        title: string;
+        date: string;
+        og_image: IGatsbyImageData;
+      };
       parent: {
-        absolutePath: string
-      }
-    }
-  }
+        absolutePath: string;
+      };
+    };
+  };
   pageContext: {
-    previous: Page
-    next: Page
-  }
-  children: React.ReactNode
+    previous: Page;
+    next: Page;
+  };
+  children: React.ReactNode;
 }
 
 const TILTemplate = ({ data, pageContext, children }: TILTemplateData) => {
-  const post = data.mdx
-  const { previous, next } = pageContext
+  const post = data.mdx;
+  const { previous, next } = pageContext;
   const editURL = `https://github.com/browniebroke/browniebroke.com/blob/master/src/${
-    post.parent.absolutePath.split('/src/')[1]
-  }`
+    post.parent.absolutePath.split("/src/")[1]
+  }`;
   return (
     <Layout>
       <SEO
@@ -62,10 +62,10 @@ const TILTemplate = ({ data, pageContext, children }: TILTemplateData) => {
       <Sharing post={post} path={makeTILUrl(post.fields.slug)} />
       <Pagination previous={previous} next={next} makeUrlFunc={makeTILUrl} />
     </Layout>
-  )
-}
+  );
+};
 
-export default TILTemplate
+export default TILTemplate;
 
 export const pageQuery = graphql`
   query TILBySlug($slug: String!) {
@@ -92,4 +92,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;
