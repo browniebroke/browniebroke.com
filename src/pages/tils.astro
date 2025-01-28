@@ -9,11 +9,18 @@ import { SectionTitle } from '../components/section-title'
 import { makeTILUrl } from '../utils/routes'
 
 const allTILs = await getCollection('tils');
-const allTILsByMostRecent = allTILs.toReversed().map(
-  (til) => ({
-    title: til.data.title,
-    slug: til.filePath,
-  })
+const allTILsByMostRecent = allTILs
+  .toSorted((t1, t2) => (t2.data.date - t1.data.date))
+  .map(
+    (til) => {
+      const date = til.data.date;
+      const simpleDate = `${date.toISOString().split("T")[0]}`
+      return ({
+        simpleDate: simpleDate,
+        title: til.data.title,
+        slug: til.filePath,
+      })
+    }
 );
 ---
 
@@ -30,7 +37,7 @@ const allTILsByMostRecent = allTILs.toReversed().map(
     <div>
       <a href={til.slug} class="inherit-color">
         <h3 class="text font-bold mt-4">
-          {til.title}
+          {til.simpleDate} {til.title}
         </h3>
       </a>
     </div>
