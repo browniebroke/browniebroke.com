@@ -18,7 +18,7 @@ const allTILsByMostRecent = allTILs
       return ({
         simpleDate: simpleDate,
         title: til.data.title,
-        slug: til.filePath,
+        filePath: til.filePath,
       })
     }
 );
@@ -35,7 +35,7 @@ const allTILsByMostRecent = allTILs
   <p>Things I've learned.</p>
   {allTILsByMostRecent.map((til) => (
     <div>
-      <a href={til.slug} class="inherit-color">
+      <a href={makeTILUrl(til.filePath)} class="inherit-color">
         <h3 class="text font-bold mt-4">
           {til.simpleDate} {til.title}
         </h3>

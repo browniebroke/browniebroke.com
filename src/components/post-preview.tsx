@@ -7,7 +7,7 @@ export interface PostPreviewData {
   title: string;
   description: string;
   date: string;
-  slug: string;
+  filePath: string;
 }
 
 interface PostPreviewProp {
@@ -18,7 +18,7 @@ export const PostPreview: React.FC<PostPreviewProp> = ({ post }) => {
   return (
     <article className="mb-8">
       <h3 className="text-xl font-bold">
-        <a href={makePostUrl(post.slug)} className="inherit-color">
+        <a href={makePostUrl(post.filePath)} className="inherit-color">
           {post.title}
         </a>
       </h3>

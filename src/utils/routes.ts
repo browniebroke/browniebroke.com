@@ -1,15 +1,11 @@
 import slugify from "slugify";
 
-function makeUrlFrom(prefix: string, slug: string): string {
-  // Remove the date prefix from the slug
-  const matches = slug.match(/\/\d{4}-\d{2}-\d{2}-(.*)\//);
-  if (matches === null) {
-    throw new Error(`Invalid slug: ${slug}`);
-  }
-  const dateLessSlug = matches[1];
-  return `/${prefix}/${dateLessSlug}/`;
+function makeUrlFrom(filePath: string): string {
+  return filePath.replace(`src/pages`, "").split(".")[0];
 }
 
-export const makePostUrl = (slug: string) => makeUrlFrom("blog", slug);
+export const makePostUrl = (filePath: string) => {
+  return makeUrlFrom(filePath.replace(`/index.mdx`, "").replace(`/index.md`, ""));
+}
+export const makeTILUrl = (filePath: string) => makeUrlFrom(filePath);
 export const makeTagUrl = (tagName: string) => `/blog/tags/${slugify(tagName)}`;
-export const makeTILUrl = (slug: string) => makeUrlFrom("tils", slug);

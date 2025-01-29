@@ -9,7 +9,7 @@ export const PostsList: React.FC<PostsListProps> = ({ posts }) => {
   return (
     <>
       {posts.map((post) => (
-        <div className="pb-4" key={post.slug}>
+        <div className="pb-4" key={post.filePath}>
           <PostPreview post={post} />
         </div>
       ))}
