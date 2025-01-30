@@ -1,4 +1,5 @@
 ---
+layout: ../../layouts/TilsLayout.astro
 date: 2022-05-01
 title: "Adding TILs to my site"
 ---

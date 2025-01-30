@@ -9,7 +9,6 @@ import {
 } from "react-icons/fa";
 import { FaBluesky, FaThreads } from "react-icons/fa6";
 
-// @ts-ignore
 import { site } from "../data/siteMetadata";
 
 export const SocialLinks: React.FC = () => {
