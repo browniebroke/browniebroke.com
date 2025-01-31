@@ -63,31 +63,14 @@ What would this print on the worker process? The answer is 5 times the number '4
 
 ## A better API
 
-<div class="items-start p-4 rounded-md bg-blue-50 border-l-4 border-blue-500">
-  <div class="flex-shrink-0 mt-0.5">
-    <svg
-      class="h-5 w-5 text-blue-400"
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 20 20"
-      fill="currentColor"
-    >
-      <path
-        fill-rule="evenodd"
-        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
-        clip-rule="evenodd"
-      />
-    </svg>
-  </div>
-  <div class="ml-3">
-    <h3>Note</h3>
-    <div class="mt-2">
-      As of Celery v5.4, released 17th April 2024, this functionality has now
-      been released upstream. See the [Celery
-      docs](https://docs.celeryq.dev/en/stable/django/first-steps-with-django.html#trigger-tasks-at-the-end-of-the-database-transaction)
-      for more information.
-    </div>
-  </div>
-</div>
+import { Callout } from '../../components/callout'
+
+<Callout>
+  As of Celery v5.4, released 17th April 2024, this functionality has now been
+  released upstream. See the [Celery
+  docs](https://docs.celeryq.dev/en/stable/django/first-steps-with-django.html#trigger-tasks-at-the-end-of-the-database-transaction)
+  for more information.
+</Callout>
 
 One idea that may come to mind is to wrap this in a decorator. This was [suggested as an improvement to Django](https://code.djangoproject.com/ticket/29557) but was rejected after some discussion. I agree with the counter points: a decorator would hurt the readability of the code calling the decorated function.
 

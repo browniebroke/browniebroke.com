@@ -51,24 +51,4 @@
   kbd {
     @apply px-2 py-1 text-sm font-mono bg-gray-100 border border-gray-300 rounded;
   }
-
-  .callout-wrapper {
-    @apply flex items-start p-4 rounded-md bg-blue-50 border-l-4 border-blue-500;
-
-    .callout-icon-wrapper {
-      @apply flex-shrink-0 mt-0.5;
-
-      svg {
-        @apply h-5 w-5 text-blue-400;
-      }
-    }
-
-    .callout-text-wrapper {
-      @apply ml-3;
-
-      .callout-text {
-        @apply mt-2;
-      }
-    }
-  }
 }
