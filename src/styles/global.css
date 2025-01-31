@@ -47,4 +47,8 @@
   h6 {
     @apply mt-8 mb-4 leading-tight font-bold font-heading;
   }
+
+  kbd {
+    @apply px-2 py-1 text-sm font-mono bg-gray-100 border border-gray-300 rounded;
+  }
 }
