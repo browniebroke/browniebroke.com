@@ -13,7 +13,7 @@ const tilDefaultLayout = () => {
     const frontMatterKeys = Object.keys(file.data.astro.frontmatter);
     // If 'author' is present in frontmatter, use blog post layout
     // Otherwise, use TIL Layout
-    const defaultLayout = frontMatterKeys.includes("author") ? "../../layouts/BlogPostLayout.astro" : "../../layouts/TilsLayout.astro";
+    const defaultLayout = frontMatterKeys.includes("author") ? "../../../layouts/BlogPostLayout.astro" : "../../layouts/TilsLayout.astro";
     console.log(`Using default layout: '${defaultLayout}'`);
     file.data.astro.frontmatter.layout =
       file.data.astro.frontmatter.layout || defaultLayout;
