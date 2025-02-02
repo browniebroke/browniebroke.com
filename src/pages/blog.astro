@@ -15,10 +15,10 @@ const allBlogPostsByMostRecent = allBlogPosts
   .toSorted((p1, p2) => (p2.data.date - p1.data.date))
   .map(
     (post) => {
-      console.log(post.data);
+      console.log(post);
       return ({
         title: post.data.title,
-        description: "",
+        description: post.data.description,
         date: formatLongDate(post.data.date),
         filePath: post.filePath || "",
       })
