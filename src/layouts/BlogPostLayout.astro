@@ -4,20 +4,24 @@ import type { MarkdownLayoutProps } from 'astro';
 import { PostMetaData } from '../components/post-metadata'
 import React from 'react'
 import { Sharing } from '../components/sharing'
-import { makeTagUrl } from '../utils/routes'
 import { Pagination } from '../components/pagination'
 import { Tag } from '../components/tag'
 
+import { makeTagUrl } from '../utils/routes'
+import { formatLongDate } from '../utils/dates'
+
 type Props = MarkdownLayoutProps<{
-  date: Date;
+  date: string;
   author: string;
   title: string;
   description: string;
+  minutesRead: string;
   tags: string[];
   header_image?: string;
 }>;
 const { frontmatter, url, file } = Astro.props;
 
+const postDate = new Date(frontmatter.date);
 const editUrl = `https://github.com/browniebroke/browniebroke.com/blob/master/src/${
     file.split("/src/")[1]
   }`;
@@ -26,7 +30,7 @@ const postPath = url || "";
 <BaseLayout>
   <!-- TODO: HEADER IMAGE -->
   <h1 class="text-3xl font-bold mt-8 mb-4">{ frontmatter.title }</h1>
-  <PostMetaData dateTimeToRead={`${frontmatter.date} • TODO Time to read`} editUrl={editUrl} />
+  <PostMetaData dateTimeToRead={`${formatLongDate(postDate)} • ${frontmatter.minutesRead}`} editUrl={editUrl} />
   <slot />
 
 

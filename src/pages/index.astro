@@ -17,13 +17,16 @@ const mostRecent3Posts = allBlogPosts
   .toSorted((p1, p2) => (p2.data.date - p1.data.date))
   .slice(0, 3);
 const mostRecent3PostsPreview = mostRecent3Posts.map(
-  (post) => ({
-    title: post.data.title,
-    description: "",
-    date: formatLongDate(post.data.date),
-    filePath: post.filePath || "",
-  }
-));
+  (post) => {
+    // console.log(post);
+    return ({
+        title: post.data.title,
+        description: '',
+        date: formatLongDate(post.data.date),
+        filePath: post.filePath || '',
+      }
+    )
+  });
 ---
 
 <BaseLayout>
