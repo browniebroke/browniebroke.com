@@ -1,16 +1,19 @@
 ---
-import BaseLayout from './BaseLayout.astro';
-import type { MarkdownLayoutProps } from 'astro';
-import { PostMetaData } from '../components/post-metadata'
 import React from 'react'
+import type { MarkdownLayoutProps } from 'astro';
+
+import BaseLayout from './BaseLayout.astro';
+import { PostMetaData } from '../components/post-metadata'
 import { Sharing } from '../components/sharing'
 import { Pagination } from '../components/pagination'
 import { Tag } from '../components/tag'
 
 import { makeTagUrl } from '../utils/routes'
 import { formatLongDate } from '../utils/dates'
+import { getPostsByMostRecent } from '../utils/contents'
 
 type Props = MarkdownLayoutProps<{
+  id: string;
   date: string;
   author: string;
   title: string;
@@ -20,6 +23,13 @@ type Props = MarkdownLayoutProps<{
   header_image?: string;
 }>;
 const { frontmatter, url, file } = Astro.props;
+
+const currentId = url?.replace("/blog/", "");
+const allPosts = await getPostsByMostRecent();
+const currentPostIndex = allPosts.map((post) => post.id).indexOf(currentId || "")
+const previousPost = allPosts[currentPostIndex + 1];
+const nextPost = allPosts[currentPostIndex - 1];
+
 
 const postDate = new Date(frontmatter.date);
 const editUrl = `https://github.com/browniebroke/browniebroke.com/blob/master/src/${
@@ -42,4 +52,5 @@ const postPath = url || "";
     ))}
   </div>
   <Sharing frontmatter={frontmatter} path={postPath} />
+  <Pagination previous={previousPost} next={nextPost} pathPrefix="blog"/>
 </BaseLayout>

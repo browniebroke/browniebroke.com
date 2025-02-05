@@ -4,6 +4,7 @@ import React from "react";
 import { makePostUrl } from "../utils/routes";
 
 export interface PostPreviewData {
+  id: string;
   title: string;
   description: string;
   date: string;

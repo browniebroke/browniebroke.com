@@ -1,31 +1,14 @@
 ---
-import { getCollection } from 'astro:content'
-
 import React from 'react'
 import { FaRssSquare } from 'react-icons/fa'
-import getReadingTime from 'reading-time'
 
 import BaseLayout from '../layouts/BaseLayout.astro'
 import { SectionTitle } from '../components/section-title'
 import { PostsList } from '../components/post-list'
 
-import { formatLongDate } from '../utils/dates'
+import { getPostsByMostRecent } from '../utils/contents'
 
-const allBlogPosts = await getCollection('blog');
-const allBlogPostsByMostRecent = allBlogPosts
-  .toSorted((p1, p2) => (p2.data.date - p1.data.date))
-  .map(
-    (post) => {
-    const minutesRead = getReadingTime(post.body || "")
-      return ({
-        title: post.data.title,
-        description: post.data.description,
-        date: formatLongDate(post.data.date),
-        filePath: post.filePath || "",
-        minutesReadText: minutesRead.text,
-      })
-    }
-);
+const allBlogPostsByMostRecent = await getPostsByMostRecent();
 ---
 <BaseLayout>
   <section>
