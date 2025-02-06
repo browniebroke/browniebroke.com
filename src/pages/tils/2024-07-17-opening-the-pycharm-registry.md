@@ -1,6 +1,6 @@
 ---
 date: 2024-07-17
-title: 'Opening the PyCharm registry'
+title: "Opening the PyCharm registry"
 ---
 
 Today, I encountered an issue with my IDE (PyCharm) and its integration with Docker. It wouldn't refresh my remote interpreter, which broke most of the intellisense and go to definition. I found [this Youtrack issue](https://youtrack.jetbrains.com/issue/PY-73909) which described my problem close enough.

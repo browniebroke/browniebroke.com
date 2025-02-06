@@ -5,7 +5,9 @@ function makeUrlFrom(filePath: string): string {
 }
 
 export const makePostUrl = (filePath: string) => {
-  return makeUrlFrom(filePath.replace(`/index.mdx`, "").replace(`/index.md`, ""));
-}
+  return makeUrlFrom(
+    filePath.replace(`/index.mdx`, "").replace(`/index.md`, ""),
+  );
+};
 export const makeTILUrl = (filePath: string) => makeUrlFrom(filePath);
 export const makeTagUrl = (tagName: string) => `/blog/tags/${slugify(tagName)}`;

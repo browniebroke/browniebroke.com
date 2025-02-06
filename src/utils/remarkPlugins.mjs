@@ -1,6 +1,5 @@
-import getReadingTime from 'reading-time';
-import { toString } from 'mdast-util-to-string';
-
+import getReadingTime from "reading-time";
+import { toString } from "mdast-util-to-string";
 
 export const getDefaultLayout = () => {
   // @ts-ignore
@@ -9,7 +8,9 @@ export const getDefaultLayout = () => {
     const frontMatterKeys = Object.keys(file.data.astro.frontmatter);
     // If 'author' is present in frontmatter, use blog post layout
     // Otherwise, use TIL Layout
-    const defaultLayout = frontMatterKeys.includes("author") ? "../../../layouts/BlogPostLayout.astro" : "../../layouts/TilsLayout.astro";
+    const defaultLayout = frontMatterKeys.includes("author")
+      ? "../../../layouts/BlogPostLayout.astro"
+      : "../../layouts/TilsLayout.astro";
     file.data.astro.frontmatter.layout =
       file.data.astro.frontmatter.layout || defaultLayout;
   };
@@ -23,4 +24,4 @@ export const remarkReadingTime = () => {
     // i.e. "3 min read"
     file.data.astro.frontmatter.minutesRead = readingTime.text;
   };
-}
+};

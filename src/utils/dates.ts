@@ -3,6 +3,6 @@ export const formatLongDate = (date: Date) => {
     year: "numeric",
     month: "long",
     day: "numeric",
-  })
+  });
   return dateTimeFormat.format(date);
 };
