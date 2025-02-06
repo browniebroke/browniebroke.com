@@ -9,7 +9,8 @@ export interface PostPreviewData {
   description: string;
   date: string;
   filePath: string;
-  minutesReadText: string
+  minutesReadText: string;
+  tags: string[];
 }
 
 interface PostPreviewProp {
@@ -24,7 +25,9 @@ export const PostPreview: React.FC<PostPreviewProp> = ({ post }) => {
           {post.title}
         </a>
       </h3>
-      <small>{post.date} • {post.minutesReadText}</small>
+      <small>
+        {post.date} • {post.minutesReadText}
+      </small>
       <div className="mt-4">{post.description}</div>
     </article>
   );

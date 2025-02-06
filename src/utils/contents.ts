@@ -27,8 +27,9 @@ export async function getPostsByMostRecent(
       id: post.id,
       title: post.data.title,
       description: post.data.description,
-      date: formatLongDate(post.data.date),
       filePath: post.filePath || "",
+      tags: post.data.tags,
+      date: formatLongDate(post.data.date),
       minutesReadText: minutesRead.text,
     };
   });
