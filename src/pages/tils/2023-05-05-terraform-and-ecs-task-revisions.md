@@ -40,7 +40,7 @@ The problem is that Terraform doesn't know about these deployments. After a few 
 
 I found a solution in [this reddit post](https://www.reddit.com/r/aws/comments/nlco6r/terraform_and_ecs_dont_change_task_revision/), where they describe the same issue, and the answer suggest a few solutions. I went with the first one, which works for now:
 
-```hcl{6-8}
+```hcl {6-8}
 resource "aws_ecs_service" "app_service" {
   name            = "app-service"
   task_definition = aws_ecs_task_definition.app_task.arn

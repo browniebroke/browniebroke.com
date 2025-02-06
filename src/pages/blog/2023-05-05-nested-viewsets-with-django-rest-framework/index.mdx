@@ -108,7 +108,7 @@ Also, I didn't realise at the time, but all these actions are using the QuerySet
 
 After a couple of days, while not being happy with my solution, I decided to give it another go. I noticed while implementing my initial solution that I could add extra URL parameters in the `url_path` of the `get_photo` method, which made me think that maybe I could do the same when registering the ViewSet, and sure enough, I could! So I ended up with the following:
 
-```python{6,14-18,20,21,23,24,35-39}
+```python {6,14-18,20,21,23,24,35-39}
 # views.py
 class GalleryViewSet(viewsets.ModelViewSet):
     queryset = Gallery.objects.all()
@@ -178,7 +178,7 @@ If the user doesn't own the gallery, I'm returning a HTTP 404 as I think it's a 
 
 And here is how I use it on my ViewSet:
 
-```python{6}
+```python {6}
 class PhotoViewSet(viewsets.ModelViewSet):
     queryset = Photo.objects.all()
     serializer_class = PhotoSerializer

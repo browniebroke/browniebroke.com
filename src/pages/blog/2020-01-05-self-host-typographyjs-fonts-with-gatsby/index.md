@@ -35,7 +35,7 @@ Ok, looks like I got all the pieces of the puzzle, let's code!
 
 First, let's disable Google font from the `gatsby-plugin-typography` config:
 
-```javascript{9}
+```javascript {9}
 // gatsby-config.js
 {
   ...

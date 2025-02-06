@@ -174,7 +174,7 @@ Pytest had an [unexpected config section][pytest-config] for `pyproject.toml`, I
 
 The consequence of this was that my config was ignored and I didn't run the tests with coverage enabled, which silenced another error in the coverage section `tool.coverage.run`, where source should be an array:
 
-```toml{1,6}
+```toml {1,6}
 [tool.pytest.ini_options]
 addopts = "-v -Wdefault --cov=deezer"
 
@@ -195,7 +195,7 @@ With these changes I eventually got my code coverage reporting back, but it's so
 
 Poetry works nicely with Tox, I followed the [section in their FAQ][tox-poetry], and here is an overview of the changes:
 
-```ini{2,6,8-9}
+```ini {2,6,8-9}
 [tox]
 isolated_build = true
 envlist = py36,py37,py38,py39,pypy3,docs,lint,bandit

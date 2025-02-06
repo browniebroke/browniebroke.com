@@ -45,7 +45,7 @@ Which might be a bit disruptive as it'll fill up your terminal.
 
 Using the `end` keyword argument is useful, you can pass carriage return `\r` to instead update the same line in place:
 
-```python{5}
+```python {5}
 def do_thing_over_many_entries(entries):
     total = len(entries)
     print(f"Starting processing {total} entries")

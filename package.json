@@ -13,6 +13,7 @@
     "@astrojs/tailwind": "^5.1.5",
     "@fontsource/cabin-condensed": "5.1.1",
     "@fontsource/patua-one": "5.1.1",
+    "@shikijs/transformers": "2.3.2",
     "astro": "5.1.10",
     "framer-motion": "11.18.2",
     "htmlparser2": "10.0.0",

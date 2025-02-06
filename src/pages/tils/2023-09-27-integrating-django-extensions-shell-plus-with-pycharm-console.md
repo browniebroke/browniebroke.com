@@ -11,7 +11,7 @@ By default, Pycharm integrated console does not do the automatic imports from `s
 2. Go to the `Build, Execution, Deployment` > `Console` > `Django Console` page
 3. Add the following to the end of the `Starting script` field:
 
-   ```python{7-10}
+   ```python {7-10}
    import sys; print('Python %s on %s' % (sys.version, sys.platform))
    import django; print('Django %s' % django.get_version())
    sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])

@@ -26,17 +26,17 @@
     @apply text-inherit hover:text-blue-300;
   }
 
-  code[class*="language-"],
-  pre[class*="language-"] {
+  code[class*="astro-code"],
+  pre[class*="astro-code"] {
     @apply text-[0.85em] !important;
   }
 
-  .gatsby-highlight {
-    @apply mb-4;
+  pre {
+    @apply p-4;
   }
 
-  .gatsby-highlight-code-line {
-    @apply bg-orange-100 block -mr-[1em] -ml-[1em] pr-[1em] pl-[0.75em] border-l-[0.25em] border-orange-300;
+  .line.highlighted {
+    @apply bg-orange-100 !important;
   }
 
   h1,

@@ -129,7 +129,7 @@ export const Avatar: React.FC = () => (
 
 The `AvatarStyles` was using a nested rule for an `img` tag which is inside the `StaticImage` component. The CSS rule was targeting a non-direct descendant, which ChatGTP initially wrote using an underscore-prefixed prop `_img`:
 
-```js{4-9}
+```js {4-9}
 export const Avatar: React.FC = () => (
   <Box
     padding="1rem"
@@ -154,7 +154,7 @@ export const Avatar: React.FC = () => (
 
 After telling it that it doesn't work, it tried something else, but just failed to produce an output that worked. It seems that this might be an old syntax and the AI didn't know the newer syntax from the version I used. I eventually landed on this:
 
-```js{4-11}
+```js {4-11}
 export const Avatar: React.FC = () => (
   <Box
     padding={4}

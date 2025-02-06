@@ -13,7 +13,7 @@ I could see the URL being used in the test, but nothing obvious came to mind. Th
 
 I wrapped my call to `self.client.get(...)` in my test into a try/except block and inspected the `RedirectCycleError` being raised:
 
-```python{4,6,7}
+```python {4,6,7}
 class MyViewTest(TestCase):
     def test_page_not_accessible(self):
         url = reverse("my-view")

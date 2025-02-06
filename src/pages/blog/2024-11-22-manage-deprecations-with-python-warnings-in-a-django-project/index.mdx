@@ -79,7 +79,7 @@ If other teammates working on other branches start using it in new places, their
 
 You may want to go one step further and log usages on production for a little while. Warnings aren't integrated with the standard logging module by default, but it's not very hard to setup. Here is how you can modify your Django `LOGGING` setting to do it:
 
-```diff{4,23-27}
+```python {4,23-27}
 # settings.py
 import logging
 

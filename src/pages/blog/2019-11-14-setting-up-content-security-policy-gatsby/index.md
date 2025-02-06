@@ -36,7 +36,7 @@ Looks like a few things were missing... Let's customise this plugin!
 
 The plugin has a few options, I quickly glanced the documentation and immediately started adding directives for the errors that were reported. I'm using Google analytics and Google fonts, I need to whitelist them:
 
-```javascript{6-12}
+```javascript {6-12}
 // gatsby-config.js
 module.exports = {
   plugins: [
@@ -44,14 +44,14 @@ module.exports = {
       resolve: `gatsby-plugin-csp`,
       options: {
         directives: {
-          'script-src': `'self' www.google-analytics.com`,
-          'style-src': `'self' 'unsafe-inline' fonts.googleapis.com`,
-          'img-src': `'self' data: www.google-analytics.com`,
+          "script-src": `'self' www.google-analytics.com`,
+          "style-src": `'self' 'unsafe-inline' fonts.googleapis.com`,
+          "img-src": `'self' data: www.google-analytics.com`,
         },
       },
     },
   ],
-}
+};
 ```
 
 Pushed to my branch again, waited for the deployment to be updated, but [it was still not looking great](https://5dc8a896ace0c4000847a904--browniebroke.netlify.com/):
@@ -60,7 +60,7 @@ Pushed to my branch again, waited for the deployment to be updated, but [it was 
 
 Hum, weird it looks even worse! Ok the errors are different, let's keep customising. Looking at the errors, I can see another Google font domain and inlines are missing, let's add them:
 
-```javascript{8-10}
+```javascript {8-10}
 // gatsby-config.js
 module.exports = {
   plugins: [
@@ -68,14 +68,14 @@ module.exports = {
       resolve: `gatsby-plugin-csp`,
       options: {
         directives: {
-          'script-src': `'self' 'unsafe-inline' data: www.google-analytics.com`,
-          'style-src': `'self' 'unsafe-inline' fonts.googleapis.com fonts.gstatic.com`,
-          'img-src': `'self' data: www.google-analytics.com`,
+          "script-src": `'self' 'unsafe-inline' data: www.google-analytics.com`,
+          "style-src": `'self' 'unsafe-inline' fonts.googleapis.com fonts.gstatic.com`,
+          "img-src": `'self' data: www.google-analytics.com`,
         },
       },
     },
   ],
-}
+};
 ```
 
 Let's [deploy again](https://5dc8acc45da30f0008c79aa6--browniebroke.netlify.com/)... But now I'm confused:
