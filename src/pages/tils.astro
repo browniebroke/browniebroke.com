@@ -1,27 +1,13 @@
 ---
-import { getCollection } from 'astro:content'
-
 import React from 'react'
 import { FaRssSquare } from 'react-icons/fa'
 
 import BaseLayout from '../layouts/BaseLayout.astro'
 import { SectionTitle } from '../components/section-title'
 import { makeTILUrl } from '../utils/routes'
+import { getTILsByMostRecent } from '../utils/contents'
 
-const allTILs = await getCollection('tils');
-const allTILsByMostRecent = allTILs
-  .toSorted((t1, t2) => (t2.data.date - t1.data.date))
-  .map(
-    (til) => {
-      const date = til.data.date;
-      const simpleDate = `${date.toISOString().split("T")[0]}`
-      return ({
-        simpleDate: simpleDate,
-        title: til.data.title,
-        filePath: til.filePath,
-      })
-    }
-);
+const allTILsByMostRecent = await getTILsByMostRecent();
 ---
 
 <BaseLayout>

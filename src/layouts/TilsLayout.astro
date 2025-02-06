@@ -6,12 +6,16 @@ import React from 'react'
 import { Sharing } from '../components/sharing'
 import { Pagination } from '../components/pagination'
 import { formatLongDate } from '../utils/dates'
+import { getPagination, getTILsByMostRecent } from '../utils/contents'
 
 type Props = MarkdownLayoutProps<{
   date: string;
   title: string;
 }>;
 const { frontmatter, url, file } = Astro.props;
+
+const currentId = url?.replace("/tils/", "") || ""
+const {previous, next} = await getPagination(currentId, getTILsByMostRecent);
 
 const postDate = new Date(frontmatter.date);
 const editUrl = `https://github.com/browniebroke/browniebroke.com/blob/master/src/${
@@ -25,4 +29,5 @@ const postPath = url || "";
   <slot />
 
   <Sharing frontmatter={frontmatter} path={postPath} />
+  <Pagination previous={previous} next={next} pathPrefix="tils"/>
 </BaseLayout>
