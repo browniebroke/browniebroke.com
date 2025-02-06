@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "gatsby";
+import type { AcceptsChildren } from "./types.ts";
 
-interface TagProps {
+interface TagProps extends AcceptsChildren {
   to: string;
-  children: React.ReactNode;
 }
 
 export const Tag = ({ to, children }: TagProps) => {
