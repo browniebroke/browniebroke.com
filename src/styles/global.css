@@ -36,7 +36,10 @@
   }
 
   .line.highlighted {
-    @apply bg-orange-100 !important;
+    margin: 0 -12px 0 -16px;
+    padding: 0 12px;
+    width: calc(100% + 20px);
+    @apply bg-orange-100 inline-block border-orange-500 border-l-4;
   }
 
   h1,
