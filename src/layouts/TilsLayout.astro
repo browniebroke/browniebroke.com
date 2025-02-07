@@ -1,12 +1,12 @@
 ---
-import BaseLayout from './BaseLayout.astro';
-import type { MarkdownLayoutProps } from 'astro';
-import { PostMetaData } from '../components/post-metadata'
-import React from 'react'
-import { Sharing } from '../components/sharing'
-import { Pagination } from '../components/pagination'
-import { formatLongDate } from '../utils/dates'
-import { getPagination, getTILsByMostRecent } from '../utils/contents'
+import BaseLayout from "./BaseLayout.astro";
+import type { MarkdownLayoutProps } from "astro";
+import { PostMetaData } from "../components/post-metadata";
+import React from "react";
+import { Sharing } from "../components/sharing";
+import { Pagination } from "../components/pagination";
+import { formatLongDate } from "../utils/dates";
+import { getPagination, getTILsByMostRecent } from "../utils/contents";
 
 type Props = MarkdownLayoutProps<{
   date: string;
@@ -14,20 +14,21 @@ type Props = MarkdownLayoutProps<{
 }>;
 const { frontmatter, url, file } = Astro.props;
 
-const currentId = url?.replace("/tils/", "") || ""
-const {previous, next} = await getPagination(currentId, getTILsByMostRecent);
+const currentId = url?.replace("/tils/", "") || "";
+const { previous, next } = await getPagination(currentId, getTILsByMostRecent);
 
 const postDate = new Date(frontmatter.date);
 const editUrl = `https://github.com/browniebroke/browniebroke.com/blob/master/src/${
-    file.split("/src/")[1]
-  }`;
+  file.split("/src/")[1]
+}`;
 const postPath = url || "";
 ---
+
 <BaseLayout>
-  <h1 class="text-3xl font-bold mt-8 mb-4">{ frontmatter.title }</h1>
+  <h1 class="text-3xl font-bold mt-8 mb-4">{frontmatter.title}</h1>
   <PostMetaData dateTimeToRead={formatLongDate(postDate)} editUrl={editUrl} />
   <slot />
 
   <Sharing frontmatter={frontmatter} path={postPath} />
-  <Pagination previous={previous} next={next} pathPrefix="tils"/>
+  <Pagination previous={previous} next={next} pathPrefix="tils" />
 </BaseLayout>

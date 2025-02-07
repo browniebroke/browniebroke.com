@@ -1,19 +1,19 @@
 ---
-import { getCollection } from 'astro:content'
-import React from 'react'
-import slugify from 'slugify'
+import { getCollection } from "astro:content";
+import React from "react";
+import slugify from "slugify";
 
-import BaseLayout from '../../../layouts/BaseLayout.astro'
-import { SeeMoreStyles } from '../../../components/see-more'
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { SeeMoreStyles } from "../../../components/see-more";
 import { PostsList } from "../../../components/post-list";
-import { getPostsByMostRecent } from '../../../utils/contents'
+import { getPostsByMostRecent } from "../../../utils/contents";
 
 export async function getStaticPaths() {
   const allPosts = await getCollection("blog");
   const allTags = allPosts.map((post) => post.data.tags).flat();
   const uniqueTags = [...new Set(allTags)];
-  return uniqueTags.map(tagName => {
-    return ({ params: { tagSlug: slugify(tagName) } });
+  return uniqueTags.map((tagName) => {
+    return { params: { tagSlug: slugify(tagName) } };
   });
 }
 
