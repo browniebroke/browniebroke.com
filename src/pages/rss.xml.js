@@ -2,9 +2,9 @@ import { getFeedForCollection } from "../utils/feeds.js";
 
 export async function GET(context) {
   return await getFeedForCollection(
-    "tils",
+    "blog",
     context,
-    "Bruno Alla - TILs",
-    "Things I Learned (TILs)",
+    "Bruno Alla's Blog",
+    "My personal blog",
   );
 }
