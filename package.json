@@ -9,7 +9,7 @@
   "dependencies": {
     "@fontsource/cabin-condensed": "5.1.1",
     "@fontsource/patua-one": "5.1.1",
-    "framer-motion": "11.18.2",
+    "framer-motion": "12.4.1",
     "gatsby": "5.14.1",
     "gatsby-plugin-csp": "1.1.4",
     "gatsby-plugin-feed": "5.14.0",
