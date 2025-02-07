@@ -10,18 +10,20 @@ import {
   getDefaultLayout,
   remarkReadingTime,
 } from "./src/utils/remarkPlugins.mjs";
+import { site } from "./src/data/siteMetadata.js";
 
 // https://astro.build/config
 export default defineConfig({
+  site: site.siteUrl,
   integrations: [mdx(), react(), tailwind()],
   markdown: {
     remarkPlugins: [getDefaultLayout, remarkReadingTime],
     shikiConfig: {
       themes: {
-        light: 'min-light',
-        dark: 'min-dark',
+        light: "min-light",
+        dark: "min-dark",
       },
-      transformers: [transformerMetaHighlight()]
+      transformers: [transformerMetaHighlight()],
     },
   },
 });
