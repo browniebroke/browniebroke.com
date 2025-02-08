@@ -13,6 +13,12 @@ import { site } from "../data/siteMetadata";
     <link rel="icon" type="image/svg+xml" href={avatarPng.src} />
     <meta name="viewport" content="width=device-width" />
     <title>Home | browniebroke.com</title>
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title="Bruno Alla's blog"
+      href={new URL("rss.xml", Astro.site)}
+    />
   </head>
   <body>
     <Header siteTitle={site.title} />
