@@ -1,6 +1,7 @@
 ---
 import React from "react";
 import type { MarkdownLayoutProps } from "astro";
+import { getEntry } from "astro:content";
 
 import BaseLayout from "./BaseLayout.astro";
 import { PostMetaData } from "../components/post-metadata";
@@ -31,10 +32,12 @@ const postDate = new Date(frontmatter.date);
 const editUrl = `https://github.com/browniebroke/browniebroke.com/blob/master/src/${
   file.split("/src/")[1]
 }`;
-const postPath = url || "";
+
+const entry = await getEntry("blog", currentId);
+const postPath = `/blog/${entry?.id}/`;
 ---
 
-<BaseLayout>
+<BaseLayout coverImage={entry?.data.header_image}>
   <!-- TODO: HEADER IMAGE -->
   <h1 class="text-3xl font-bold mt-8 mb-4">{frontmatter.title}</h1>
   <PostMetaData
