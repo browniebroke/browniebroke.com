@@ -46,6 +46,8 @@ module.exports = {
 
 It all worked fine so I was going to add it to my other website, but then it struck me that maybe I can push this to all websites built with Gatsby by contributing upstream, & multiply my impact! A quick check for [gatsbyjs.org](https://gatsbyjs.org) showed similar results as my own sites:
 
+![Gatsbyjs.org security headers report before](gatbsyjs-security-headers-before.png)
+
 ## Fixing 1000's of website at once
 
 So I went ahead and forked the repository on Github and quickly located [where the Netlify plug-in](https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-plugin-netlify) is located in their monorepo architecture. Once in there, the plug-in codebase is actually pretty small so it was not hard to find the entry point and where to make the change, [in their SECURITY_HEADERS constants](https://github.com/gatsbyjs/gatsby/blob/5ef65a4a8783a9a81c3680d532432a26d2f4a27d/packages/gatsby-plugin-netlify/src/constants.js#L19-L26):
@@ -65,6 +67,8 @@ Ideally I wanted to write tests but couldn't find any for the existing headers. 
 ## Results
 
 After this got merged, I wanted to see my change propagated to the [gatsbyjs.org](https://gatsbyjs.org) site. I checked again and here it was:
+
+![Gatsbyjs.org security headers report after](gatbsyjs-security-headers-after.png)
 
 ## Next steps
 
