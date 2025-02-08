@@ -48,11 +48,7 @@ In production, finding files is done ahead of time via the `collectstatic` admin
 
 My go-to solution for this used to be in [`django-storages`](https://pypi.org/project/django-storages/). It ships with a storage class for saving your files into AWS S3. I would also add a CDN in front to help caching the assets closer to my users. The setup looked like this:
 
-![Static files in a Bucket](./with-bucket.jpg)
-
 However, recently I've switched to [Whitenoise](https://pypi.org/project/whitenoise/), which leads to a simpler setup, and remove the need for a S3 bucket, all hosting comes from the Django app. The CDN should serve most of the traffic anyway:
-
-![Static files with Whitenoise](./with-whitenoise.jpg)
 
 I still use `django-storages` but only for media files, which brings us to the next section...
 
