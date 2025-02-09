@@ -17,7 +17,7 @@ type Props = {
 const { title, description, coverImage } = Astro.props as Props;
 const pageDescription = description || site.description;
 const openGraphImage = coverImage !== undefined ? coverImage : avatarPng;
-const openGraphImageSrc = `${Astro.site}${openGraphImage.src}`;
+const openGraphImageSrc = `${site.siteUrl}${openGraphImage.src}`;
 ---
 
 <html lang="en">
