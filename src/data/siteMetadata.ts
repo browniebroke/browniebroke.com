@@ -7,7 +7,7 @@ const baseUrl =
 
 export const site = {
   title: "browniebroke.com",
-  description: `Bruno Alla's blog - about programming, and other random things that interest me.`,
+  description: `Bruno Alla's personal site and blog - about programming, and other random things that interest me.`,
   author: `Bruno Alla`,
   siteUrl: baseUrl,
   social: {

@@ -9,25 +9,47 @@ import avatarPng from "../assets/avatar.png";
 import { site } from "../data/siteMetadata";
 
 type Props = {
+  title: string;
+  description?: string;
   coverImage?: ImageMetadata;
 };
 
-const { coverImage } = Astro.props as Props;
+const { title, description, coverImage } = Astro.props as Props;
+const pageDescription = description || site.description;
+console.log(coverImage);
+const openGraphImage = coverImage !== undefined ? coverImage : avatarPng;
 ---
 
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href={avatarPng.src} />
     <meta name="viewport" content="width=device-width" />
-    <title>Home | browniebroke.com</title>
+    <title>{title} | browniebroke.com</title>
+    <link rel="icon" type="image/svg+xml" href={avatarPng.src} />
     <link
       rel="alternate"
       type="application/rss+xml"
       title="Bruno Alla's blog"
       href={new URL("rss.xml", Astro.site)}
     />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title="Bruno Alla's TILs"
+      href={new URL("tils.xml", Astro.site)}
+    />
     <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta name="generator" content={Astro.generator} />
+    <meta property="og:type" content="website" />
+    <meta name="title" content={title} />
+    <meta name="description" content={pageDescription} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:image" content={openGraphImage.src} />
+    <meta name="twitter:creator" content="Bruno Alla" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={pageDescription} />
+    <meta name="twitter:image" content={openGraphImage.src} />
   </head>
   <body>
     <Header siteTitle={site.title} />
@@ -52,7 +74,7 @@ const { coverImage } = Astro.props as Props;
             rel="noopener noreferrer"
             class="inherit-color"
           >
-            Astro
+            {Astro.generator}
           </a>
         </span>
       </footer>

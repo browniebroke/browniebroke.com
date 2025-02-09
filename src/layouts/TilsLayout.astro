@@ -24,7 +24,7 @@ const editUrl = `https://github.com/browniebroke/browniebroke.com/blob/master/sr
 const postPath = url || "";
 ---
 
-<BaseLayout>
+<BaseLayout title={frontmatter.title}>
   <h1 class="text-3xl font-bold mt-8 mb-4">{frontmatter.title}</h1>
   <PostMetaData dateTimeToRead={formatLongDate(postDate)} editUrl={editUrl} />
   <slot />

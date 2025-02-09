@@ -26,7 +26,7 @@ const taggedPosts = allPosts.filter((post) => {
 });
 ---
 
-<BaseLayout>
+<BaseLayout title={`Tag "${tagSlug}"`}>
   <section>
     <h1 class="text-3xl font-bold mt-8 mb-4">
       {`Posts tagged as "${tagSlug}"`}

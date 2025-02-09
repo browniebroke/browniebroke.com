@@ -37,8 +37,7 @@ const entry = await getEntry("blog", currentId);
 const postPath = `/blog/${entry?.id}/`;
 ---
 
-<BaseLayout coverImage={entry?.data.header_image}>
-  <!-- TODO: HEADER IMAGE -->
+<BaseLayout title={frontmatter.title} coverImage={entry?.data.header_image}>
   <h1 class="text-3xl font-bold mt-8 mb-4">{frontmatter.title}</h1>
   <PostMetaData
     dateTimeToRead={`${formatLongDate(postDate)} • ${frontmatter.minutesRead}`}
