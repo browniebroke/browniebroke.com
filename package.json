@@ -50,6 +50,7 @@
     "dev": "astro dev",
     "preview": "astro preview",
     "astro": "astro",
+    "prelint:tsc": "astro sync",
     "lint:eslint": "echo 'noop'",
     "lint:prettier": "prettier --check .",
     "lint:tsc": "tsc",
