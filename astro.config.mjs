@@ -12,6 +12,7 @@ import {
   remarkReadingTime,
 } from "./src/utils/remarkPlugins.mjs";
 import { site } from "./src/data/siteMetadata.js";
+import { redirects } from "./src/redirects";
 
 // https://astro.build/config
 export default defineConfig({
@@ -27,4 +28,5 @@ export default defineConfig({
       transformers: [transformerMetaHighlight()],
     },
   },
+  redirects: redirects,
 });
