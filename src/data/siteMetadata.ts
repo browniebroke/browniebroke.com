@@ -1,6 +1,6 @@
 const baseUrl =
   process.env.NODE_ENV === "development"
-    ? "http://localhost:8000"
+    ? "http://localhost:4321"
     : process.env.REVIEW_ID
       ? `https://deploy-preview-${process.env.REVIEW_ID}--browniebroke.netlify.app`
       : `https://browniebroke.com`;

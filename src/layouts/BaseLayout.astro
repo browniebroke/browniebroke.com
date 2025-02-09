@@ -16,8 +16,8 @@ type Props = {
 
 const { title, description, coverImage } = Astro.props as Props;
 const pageDescription = description || site.description;
-console.log(coverImage);
 const openGraphImage = coverImage !== undefined ? coverImage : avatarPng;
+const openGraphImageSrc = `${Astro.site}${openGraphImage.src}`;
 ---
 
 <html lang="en">
@@ -45,11 +45,11 @@ const openGraphImage = coverImage !== undefined ? coverImage : avatarPng;
     <meta name="description" content={pageDescription} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={pageDescription} />
-    <meta property="og:image" content={openGraphImage.src} />
+    <meta property="og:image" content={openGraphImageSrc} />
     <meta name="twitter:creator" content="Bruno Alla" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={pageDescription} />
-    <meta name="twitter:image" content={openGraphImage.src} />
+    <meta name="twitter:image" content={openGraphImageSrc} />
   </head>
   <body>
     <Header siteTitle={site.title} />
