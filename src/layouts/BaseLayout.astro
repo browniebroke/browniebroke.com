@@ -27,6 +27,7 @@ const { coverImage } = Astro.props as Props;
       title="Bruno Alla's blog"
       href={new URL("rss.xml", Astro.site)}
     />
+    <link rel="sitemap" href="/sitemap-index.xml" />
   </head>
   <body>
     <Header siteTitle={site.title} />
