@@ -13,6 +13,7 @@
     "@astrojs/rss": "4.0.11",
     "@astrojs/sitemap": "^3.2.1",
     "@astrojs/tailwind": "^5.1.5",
+    "@astrojs/ts-plugin": "^1.10.4",
     "@fontsource/cabin-condensed": "5.1.1",
     "@fontsource/patua-one": "5.1.1",
     "@shikijs/transformers": "2.3.2",
