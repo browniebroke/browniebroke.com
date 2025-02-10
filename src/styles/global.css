@@ -1,7 +1,7 @@
-@import '@fontsource/cabin-condensed' layer(base);
-@import '@fontsource/patua-one' layer(base);
+@import "@fontsource/cabin-condensed" layer(base);
+@import "@fontsource/patua-one" layer(base);
 
-@import 'tailwindcss';
+@import "tailwindcss";
 
 @theme {
   --font-sans: Cabin Condensed, georgia, sans-serif;
