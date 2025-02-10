@@ -1,9 +1,44 @@
-@import "@fontsource/cabin-condensed";
-@import "@fontsource/patua-one";
+@import '@fontsource/cabin-condensed' layer(base);
+@import '@fontsource/patua-one' layer(base);
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: Cabin Condensed, georgia, sans-serif;
+  --font-heading: Patua One, serif;
+
+  --text-base: 1.25rem;
+
+  --tracking-wide: 0.03em;
+
+  --color-blue-300: #63b3ed;
+  --color-blue-600: #2b6cb0;
+
+  --color-orange-100: #feebc8;
+  --color-orange-300: #f6ad55;
+
+  --spacing-1e: 1em;
+  --spacing-0_75e: 0.75em;
+  --spacing-0_25e: 0.25em;
+}
+
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
+}
 
 @layer base {
   html {
@@ -32,7 +67,7 @@
 
   code[class*="astro-code"],
   pre[class*="astro-code"] {
-    @apply text-[0.85em] !important;
+    @apply text-[0.85em];
   }
 
   pre {
@@ -56,6 +91,6 @@
   }
 
   kbd {
-    @apply px-2 py-1 text-sm font-mono bg-gray-100 border border-gray-300 rounded;
+    @apply px-2 py-1 text-sm font-mono bg-gray-100 border border-gray-300 rounded-sm;
   }
 }
