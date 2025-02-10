@@ -18,7 +18,7 @@ export async function getPostsByMostRecent(
   maxCount?: number | undefined,
 ): Promise<PostPreviewData[]> {
   let allBlogPosts = await getCollection("blog");
-  allBlogPosts = allBlogPosts.toSorted(byMostRecent)
+  allBlogPosts = allBlogPosts.toSorted(byMostRecent);
   if (maxCount !== undefined && maxCount > 0) {
     allBlogPosts = allBlogPosts.slice(0, maxCount);
   }
