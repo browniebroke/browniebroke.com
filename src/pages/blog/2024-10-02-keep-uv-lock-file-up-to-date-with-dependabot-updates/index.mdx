@@ -1,0 +1,60 @@
+---
+date: 2024-10-02
+author: browniebroke
+title: "Keep uv.lock file up-to-date with Dependabot updates"
+description: "A short post on how I augmented the lack of uv supported in Dependabot using GitHub actions."
+tags:
+  - python
+  - uv
+  - github actions
+  - dependabot
+  - renovate
+---
+
+In the past couple of weeks, there has been [a lot of interest](https://micro.webology.dev/2024/09/19/uv-roundup-five.html) in the Python community for what started as a new Python package manager, but is now slowly growing into so much more, shipping features faster that people can blog about them.
+
+I've been looking at adding it to some projects, but one of the main blocker is that [Dependabot doesn't support it yet](https://github.com/dependabot/dependabot-core/issues/10478).
+
+However, as the project dependencies rely on the standard [PEP-621](https://peps.python.org/pep-0621/), updating these is already supported by Dependabot, and it sends some PRs for them, however, the lock file (`uv.lock`) is not updated automatically yet.
+
+To workaround that, I came up with a small workflow powered by GitHub actions:
+
+```yaml
+name: uv
+
+on:
+  pull_request:
+    paths:
+      - "pyproject.toml"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  lock:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GH_PAT }}
+      - uses: astral-sh/setup-uv@v3
+        with:
+          enable-cache: true
+      - run: uv lock
+      - uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: Regenerate uv.lock
+```
+
+Here are a few things to note:
+
+- The workflow only runs on changes to `pyproject.toml`, which is AFAIK the only file that could cause a lock file change.
+- I run the checkout with a Personal Access Token, to trigger the CI build on push. This is explained in [the GitHub action](https://github.com/stefanzweifel/git-auto-commit-action#commits-made-by-this-action-do-not-trigger-new-workflow-runs) I use to push.
+- Finally, `stefanzweifel/git-auto-commit-action` commit and pushes any changes back to the branch, if any.
+
+The fact that I need to set a GitHub token in the repo secrets isn't ideal, but hopefully support will be added soon.
+
+Alternatively, if you've not tied to Dependabot, you can use [Renovate](https://docs.renovatebot.com/) instead, which [already supports](https://docs.renovatebot.com/modules/manager/pep621/#additional-information) the `uv.lock` file.
+
+It's quite nice that we can extend GitHub features like this, the product was quite different a few years ago before actions were introduced.

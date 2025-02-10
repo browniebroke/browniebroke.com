@@ -1,0 +1,59 @@
+---
+import React from "react";
+import type { MarkdownLayoutProps } from "astro";
+import { getEntry } from "astro:content";
+
+import BaseLayout from "./BaseLayout.astro";
+import { PostMetaData } from "../components/post-metadata";
+import { Sharing } from "../components/sharing";
+import { Pagination } from "../components/pagination";
+import { Tag } from "../components/tag";
+
+import { makeTagUrl } from "../utils/routes";
+import { formatLongDate } from "../utils/dates";
+import { getPagination, getPostsByMostRecent } from "../utils/contents";
+
+type Props = MarkdownLayoutProps<{
+  id: string;
+  date: string;
+  author: string;
+  title: string;
+  description: string;
+  minutesRead: string;
+  tags: string[];
+  header_image?: string;
+}>;
+const { frontmatter, url, file } = Astro.props;
+
+const currentId = url?.replace("/blog/", "") || "";
+const { previous, next } = await getPagination(currentId, getPostsByMostRecent);
+
+const postDate = new Date(frontmatter.date);
+const editUrl = `https://github.com/browniebroke/browniebroke.com/blob/master/src/${
+  file.split("/src/")[1]
+}`;
+
+const entry = await getEntry("blog", currentId);
+const postPath = `/blog/${entry?.id}/`;
+---
+
+<BaseLayout title={frontmatter.title} coverImage={entry?.data.header_image}>
+  <h1 class="text-3xl font-bold mt-8 mb-4">{frontmatter.title}</h1>
+  <PostMetaData
+    dateTimeToRead={`${formatLongDate(postDate)} • ${frontmatter.minutesRead}`}
+    editUrl={editUrl}
+  />
+  <slot />
+
+  <div class="flex flex-row gap-2">
+    {
+      frontmatter.tags.map((tag) => (
+        <Tag to={makeTagUrl(tag)} key={tag}>
+          {tag}
+        </Tag>
+      ))
+    }
+  </div>
+  <Sharing frontmatter={frontmatter} path={postPath} />
+  <Pagination previous={previous} next={next} pathPrefix="blog" />
+</BaseLayout>

@@ -1,3 +1,4 @@
+import React from "react";
 import {
   FaGithub,
   FaGitlab,
@@ -5,32 +6,14 @@ import {
   FaMedium,
   FaStackOverflow,
   FaTwitter,
-} from 'react-icons/fa'
-import { FaBluesky, FaThreads } from 'react-icons/fa6'
-import React from 'react'
-import { useStaticQuery, graphql } from 'gatsby'
+} from "react-icons/fa";
+import { FaBluesky, FaThreads } from "react-icons/fa6";
+
+import { site } from "../data/siteMetadata";
 
 export const SocialLinks: React.FC = () => {
-  const { site } = useStaticQuery(graphql`
-    query {
-      site {
-        siteMetadata {
-          social {
-            bsky
-            github
-            gitlab
-            mastodon
-            medium
-            stackoverflow
-            twitter
-          }
-        }
-      }
-    }
-  `)
-
   const { bsky, github, gitlab, mastodon, medium, twitter, stackoverflow } =
-    site.siteMetadata.social
+    site.social;
 
   return (
     <div className="flex flex-row gap-2 mt-2">
@@ -100,5 +83,5 @@ export const SocialLinks: React.FC = () => {
         <FaMedium />
       </a>
     </div>
-  )
-}
+  );
+};

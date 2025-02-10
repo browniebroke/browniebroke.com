@@ -1,74 +1,53 @@
-import React from 'react'
-import { graphql, useStaticQuery } from 'gatsby'
-import { FaTwitter, FaRegEnvelope } from 'react-icons/fa'
-import { FaBluesky, FaMastodon } from 'react-icons/fa6'
+import React from "react";
+import { FaTwitter, FaRegEnvelope } from "react-icons/fa";
+import { FaBluesky, FaMastodon } from "react-icons/fa6";
 
-interface Post {
-  frontmatter: {
-    title: string
-    tags?: string[]
-  }
-}
+import { site } from "../data/siteMetadata";
 
 interface SharingProps {
-  post: Post
-  path: string
+  frontmatter: {
+    title: string;
+    tags?: string[];
+  };
+  path: string;
 }
 
-export const Sharing = ({ post, path }: SharingProps) => {
-  const {
-    site: {
-      siteMetadata: { siteUrl, social },
-    },
-  } = useStaticQuery(graphql`
-    query {
-      site {
-        siteMetadata {
-          siteUrl
-          social {
-            bsky
-            mastodon
-            twitter
-          }
-        }
-      }
-    }
-  `)
-
+export const Sharing = ({ frontmatter, path }: SharingProps) => {
+  const { social, siteUrl } = site;
   // Blusky sharing
-  const hashtagsStr = post.frontmatter.tags
-    ? post.frontmatter.tags.map((ht) => `#${ht.replace(' ', '')}`).join(' ')
-    : ''
+  const hashtagsStr = frontmatter.tags
+    ? frontmatter.tags.map((ht) => `#${ht.replace(" ", "")}`).join(" ")
+    : "";
   const bskyParams = new URLSearchParams({
-    text: `${post.frontmatter.title} by @${social.bsky} ${siteUrl}${path} ${hashtagsStr}`,
-  }).toString()
-  const bskyUrl = `https://bsky.app/intent/compose?${bskyParams}`
+    text: `${frontmatter.title} by @${social.bsky} ${siteUrl}${path} ${hashtagsStr}`,
+  }).toString();
+  const bskyUrl = `https://bsky.app/intent/compose?${bskyParams}`;
 
   // Mastodon sharing
-  const mastodonHashtagsStr = post.frontmatter.tags
-    ? post.frontmatter.tags.map((ht) => `%23${ht.replace(' ', '')}`).join(' ')
-    : ''
-  const mastodonText = `${post.frontmatter.title} by ${social.mastodon} ${siteUrl}${path} ${mastodonHashtagsStr}`
-  const mastodonUrl = `https://toot.kytta.dev/?text=${mastodonText}`
+  const mastodonHashtagsStr = frontmatter.tags
+    ? frontmatter.tags.map((ht) => `%23${ht.replace(" ", "")}`).join(" ")
+    : "";
+  const mastodonText = `${frontmatter.title} by ${social.mastodon} ${siteUrl}${path} ${mastodonHashtagsStr}`;
+  const mastodonUrl = `https://toot.kytta.dev/?text=${mastodonText}`;
 
   // Twitter sharing
-  const hashtags = post.frontmatter.tags
-    ? post.frontmatter.tags.filter((tag) => !tag.includes(' '))
-    : []
+  const hashtags = frontmatter.tags
+    ? frontmatter.tags.filter((tag) => !tag.includes(" "))
+    : [];
   const twitterParams = new URLSearchParams({
-    text: `${post.frontmatter.title} by Bruno Alla`,
+    text: `${frontmatter.title} by Bruno Alla`,
     url: `${siteUrl}${path}`,
     via: social.twitter,
-    hashtags: hashtags.join(','),
-  }).toString()
-  const twitterUrl = `https://twitter.com/intent/tweet/?${twitterParams}`
+    hashtags: hashtags.join(","),
+  }).toString();
+  const twitterUrl = `https://twitter.com/intent/tweet/?${twitterParams}`;
 
   // email sharing
   const mailtoParams = new URLSearchParams({
-    subject: `${post.frontmatter.title} by Bruno Alla`,
+    subject: `${frontmatter.title} by Bruno Alla`,
     body: `${siteUrl}${path}`,
-  }).toString()
-  const emailUrl = `mailto:?${mailtoParams}`
+  }).toString();
+  const emailUrl = `mailto:?${mailtoParams}`;
 
   return (
     <div className="flex flex-col items-center my-12">
@@ -112,5 +91,5 @@ export const Sharing = ({ post, path }: SharingProps) => {
         </a>
       </div>
     </div>
-  )
-}
+  );
+};

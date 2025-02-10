@@ -1,39 +1,39 @@
-import React from 'react'
+import React from "react";
 import {
   FaInfoCircle,
   FaExclamationTriangle,
   FaTimesCircle,
-} from 'react-icons/fa'
-import { type AcceptsChildren } from './types'
+} from "react-icons/fa";
+import { type AcceptsChildren } from "./types";
 
 interface CalloutProps extends AcceptsChildren {
-  level?: 'note' | 'info' | 'warning' | 'error'
-  title?: string
+  level?: "note" | "info" | "warning" | "error";
+  title?: string;
 }
 
 export const Callout = ({ level, title, children }: CalloutProps) => {
   if (level === undefined) {
-    level = 'note'
+    level = "note";
   }
   if (title === undefined) {
-    title = level
+    title = level;
   }
 
-  let Icon = FaInfoCircle
+  let Icon = FaInfoCircle;
 
   switch (level) {
-    case 'note':
-      Icon = FaInfoCircle
-      break
-    case 'info':
-      Icon = FaInfoCircle
-      break
-    case 'warning':
-      Icon = FaExclamationTriangle
-      break
-    case 'error':
-      Icon = FaTimesCircle
-      break
+    case "note":
+      Icon = FaInfoCircle;
+      break;
+    case "info":
+      Icon = FaInfoCircle;
+      break;
+    case "warning":
+      Icon = FaExclamationTriangle;
+      break;
+    case "error":
+      Icon = FaTimesCircle;
+      break;
   }
 
   return (
@@ -46,5 +46,5 @@ export const Callout = ({ level, title, children }: CalloutProps) => {
         <div>{children}</div>
       </div>
     </div>
-  )
-}
+  );
+};

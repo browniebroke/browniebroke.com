@@ -1,5 +1,5 @@
-@import '@fontsource/cabin-condensed';
-@import '@fontsource/patua-one';
+@import "@fontsource/cabin-condensed";
+@import "@fontsource/patua-one";
 
 @tailwind base;
 @tailwind components;
@@ -26,17 +26,20 @@
     @apply text-inherit hover:text-blue-300;
   }
 
-  code[class*='language-'],
-  pre[class*='language-'] {
+  code[class*="astro-code"],
+  pre[class*="astro-code"] {
     @apply text-[0.85em] !important;
   }
 
-  .gatsby-highlight {
-    @apply mb-4;
+  pre {
+    @apply p-4;
   }
 
-  .gatsby-highlight-code-line {
-    @apply bg-orange-100 block -mr-[1em] -ml-[1em] pr-[1em] pl-[0.75em] border-l-[0.25em] border-orange-300;
+  .line.highlighted {
+    margin: 0 -12px 0 -16px;
+    padding: 0 12px;
+    width: calc(100% + 20px);
+    @apply bg-orange-100 inline-block border-orange-500 border-l-4;
   }
 
   h1,

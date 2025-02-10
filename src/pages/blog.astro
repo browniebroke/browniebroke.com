@@ -1,0 +1,25 @@
+---
+import React from "react";
+import { FaRssSquare } from "react-icons/fa";
+
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { SectionTitle } from "../components/section-title";
+import { PostsList } from "../components/post-list";
+
+import { getPostsByMostRecent } from "../utils/contents";
+
+const allBlogPostsByMostRecent = await getPostsByMostRecent();
+---
+
+<BaseLayout title="Blog">
+  <section>
+    <SectionTitle>
+      All posts
+      <a href="/rss.xml">
+        <FaRssSquare />
+      </a>
+    </SectionTitle>
+
+    <PostsList posts={allBlogPostsByMostRecent} />
+  </section>
+</BaseLayout>

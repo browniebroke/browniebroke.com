@@ -1,0 +1,194 @@
+---
+date: 2023-05-05
+author: browniebroke
+title: "Nested ViewSets with Django REST Framework"
+description: "How to place a ViewSet under a parent resource with Django REST Framework"
+header_image: header.png
+tags:
+  - django
+  - django-rest-framework
+  - python
+  - rest
+  - api
+---
+
+I've been using Django REST Framework for a while now but mainly in old projects where lots of code have been written. In most cases, these projects didn't make good use of [`ViewSets`](https://www.django-rest-framework.org/api-guide/viewsets), due to a variety of reasons. It may be due to the original author not knowing about them (that was me at some point), or because the operation behind each HTTP verb needs to be specialised or simply that a single operation is needed. However, in a recent project, I got the opportunity to start a lot of new code and make the most of them. So despite having used DRF for years, I feel like I'm learning a lot of new tricks.
+
+import { Callout } from "../../../components/callout";
+
+<Callout level="note">
+  This post used to be a much shorter version as "TIL", but a few days after
+  writing it, I found a much more elegant solution, which turned into a longer
+  form post. The first solution was the TIL.
+</Callout>
+
+## The problem
+
+In a project, I needed to add multiple HTTP verbs to a nested resource in a ViewSet. Let's take an example to illustrate. Let's imagine an application to manage some galleries of photos. The galleries need to be only accessible to the user that ows them. Assuming the models look like this (simplified for brevity):
+
+```python
+class Gallery(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+
+class Photo(models.Model):
+    gallery = models.ForeignKey(Gallery, on_delete=models.CASCADE)
+```
+
+I needed the following API endpoints:
+
+```http
+GET    /galleries/
+POST   /galleries/
+GET    /galleries/:id/
+GET    /galleries/:id/photos/
+POST   /galleries/:id/photos/
+GET    /galleries/:id/photos/:photoId/
+PUT    /galleries/:id/photos/:photoId/
+PATCH  /galleries/:id/photos/:photoId/
+DELETE /galleries/:id/photos/:photoId/
+```
+
+I already had a `ViewSet` for the getting and creating galleries, meaning the first 3 endpoints existed. I now needed to add photos management to it. I tried to look for how to nest a `ViewSet` inside another, but I couldn't find anything supported out of the box.
+
+## The first solution
+
+I knew about the `@action` decorator, and while looking closer at the DRF docs, I found out about how to route multiple HTTP verbs to an existing action, which I didn't before. This seemed pretty clean, so I decided to give it a go. I ended up with the following:
+
+```python
+class GalleryViewSet(viewsets.ModelViewSet):
+    queryset = Gallery.objects.all()
+    serializer_class = GallerySerializer
+    permission_classes = (IsAuthenticated,)
+
+    def get_queryset(self):
+        return self.queryset.filter(user=self.request.user)
+
+    @action(
+        detail=True,
+        methods=['get'],
+        url_path='photos',
+        url_name='photos-list',
+        serializer_class=PhotoSerializer
+    )
+    def list_photos(self, request):
+        gallery = self.get_object()
+        photos_qs = gallery.photos.all()
+        serializer = self.get_serializer(photos_qs, many=True)
+        return Response(serializer.data)
+
+    @list_photos.mapping.post
+    def create_photo(self, request):
+        ...
+
+    @action(
+        detail=True,
+        methods=['get'],
+        url_path='photos/(?P<photo_id>[^/.]+)',
+        url_name='photos-detail',
+        serializer_class=PhotoSerializer
+    )
+    def get_photo(self, request, pk=None):
+        ...
+
+    @get_photo.mapping.patch
+    def update_photo(self, request, pk=None):
+        ...
+
+    @get_photo.mapping.delete
+    def delete_photo(self, request, pk=None):
+        ...
+```
+
+I liked how it was declarative and how each HTTP verb was separated into its own method. However, it's quite a lot of code, with some bits duplicated, especially each method body. I also needed to check ownership of the gallery. It felt like I was re-implementing all the code for a photo ViewSet as individual methods.
+
+Also, I didn't realise at the time, but all these actions are using the QuerySet from the base ViewSet. This is a simplified example, but in my case, the base ViewSet had several `select_related` and `prefetch_related` to optimise the fetching of the gallery, but these were not needed for the photo management part. So I was fetching a lot of data that I didn't need.
+
+## The second solution
+
+After a couple of days, while not being happy with my solution, I decided to give it another go. I noticed while implementing my initial solution that I could add extra URL parameters in the `url_path` of the `get_photo` method, which made me think that maybe I could do the same when registering the ViewSet, and sure enough, I could! So I ended up with the following:
+
+```python {6,14-18,20,21,23,24,35-39}
+# views.py
+class GalleryViewSet(viewsets.ModelViewSet):
+    queryset = Gallery.objects.all()
+    serializer_class = GallerySerializer
+    permission_classes = (IsAuthenticated,)
+    lookup_url_kwarg = "post_id"
+
+    def get_queryset(self):
+        return self.queryset.filter(user=self.request.user)
+
+    # Note: Removed all the actions methods for photos
+
+
+class PhotoViewSet(viewsets.ModelViewSet):
+    queryset = Photo.objects.all()
+    serializer_class = PhotoSerializer
+    permission_classes = (IsAuthenticated,)
+    lookup_url_kwarg = "photo_id"
+
+    def get_queryset(self):
+        return self.queryset.filter(gallery_id=self.kwargs["gallery_id"])
+
+    def perform_create(self, serializer):
+        serializer.save(gallery_id=self.kwargs["gallery_id"])
+
+
+
+# routers.py
+router = SimpleRouter()
+router.register(
+    "galleries",
+    GalleryViewSet,
+    basename="gallery",
+)
+router.register(
+    "galleries/(?P<gallery_id>[^/.]+)/photos",
+    PhotoViewSet,
+    basename="gallery-photo",
+)
+```
+
+As a bonus, I added a `lookup_url_kwarg` to both ViewSets, to make the URL parameters more consistent and self-explanatory in the API docs. This solution is much more DRY and use the full power of DRF. I was pretty satisfied with it.
+
+## Bug: access control
+
+However, I soon realised that this solution had a bug. The `get_queryset` method of the `PhotoViewSet` was no longer checking the ownership of the gallery! This meant that a user could access photos from galleries that they don't own, and even create photos in them! This was a big no-no. I tried to write a simple method to fetch the gallery and check ownership, but I wanted to do it pretty early and for all methods, including `create()`. I thought of overriding the `dispatch` method, but it felt like there wasn't a good hook for that.
+
+After a bit of thinking, I realised that I needed to control the user had permissions to access the gallery, and DRF has a built-in solution for that, with permissions classes. I implemented my own permission class, which looked like this:
+
+```python
+class UserOwnsGallery(permissions.BasePermission):
+
+    def has_permission(self, request, view):
+        gallery_id = view.kwargs.get("gallery_id")
+        if gallery_id is None:
+            return False
+
+        get_object_or_404(
+            Gallery,
+            id=gallery_id,
+            user_id=request.user.id,
+        )
+        return True
+```
+
+If the user doesn't own the gallery, I'm returning a HTTP 404 as I think it's a security best practice. If I were to return "403 Forbidden" instead, I would reveal some information to a potential attacker, that the gallery with the ID exists. It's probably not a big risk in our application, but it's best to be safe.
+
+And here is how I use it on my ViewSet:
+
+```python {6}
+class PhotoViewSet(viewsets.ModelViewSet):
+    queryset = Photo.objects.all()
+    serializer_class = PhotoSerializer
+    permission_classes = (
+        IsAuthenticated,
+        UserOwnsGallery,
+    )
+    lookup_url_kwarg = "photo_id"
+```
+
+## Conclusion
+
+I'm pretty happy with the final solution. It's DRY, it's using the full power of DRF, and it's secure. I'm not sure if it's the best solution, but it's probably very close from it. I hope this article will help you if you're in a similar situation.

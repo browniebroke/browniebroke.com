@@ -1,0 +1,38 @@
+---
+import { getCollection } from "astro:content";
+import React from "react";
+
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+import { Avatar } from "../components/avatar";
+import { SocialLinks } from "../components/social";
+import { SectionTitle } from "../components/section-title";
+import { SeeMoreStyles } from "../components/see-more";
+import { PostsList } from "../components/post-list";
+
+import { getPostsByMostRecent } from "../utils/contents";
+
+const mostRecent3Posts = await getPostsByMostRecent(3);
+---
+
+<BaseLayout title="Home">
+  <section class="flex flex-col items-center">
+    <h1 class="text-4xl font-bold mt-8 mb-4">Bruno Alla</h1>
+    <Avatar />
+    <p class="text-center max-w-[400px]">
+      Hi! I'm a web developer based in London, I work with Python & Django, I'm
+      a DSF member and I help maintain a few Django projects, most notably
+      Django REST Framework, Cookiecutter Django and DRF-excel.
+    </p>
+    <SocialLinks />
+  </section>
+  <section>
+    <SectionTitle>Most recent posts</SectionTitle>
+
+    <PostsList posts={mostRecent3Posts} />
+
+    <SeeMoreStyles>
+      <a href="/blog/">See more...</a>
+    </SeeMoreStyles>
+  </section>
+</BaseLayout>

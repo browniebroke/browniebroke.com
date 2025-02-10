@@ -1,0 +1,34 @@
+---
+import React from "react";
+import { FaRssSquare } from "react-icons/fa";
+
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { SectionTitle } from "../components/section-title";
+import { makeTILUrl } from "../utils/routes";
+import { getTILsByMostRecent } from "../utils/contents";
+
+const allTILsByMostRecent = await getTILsByMostRecent();
+---
+
+<BaseLayout title="TILs">
+  <section>
+    <SectionTitle>
+      TIL
+      <a href="/tils.xml">
+        <FaRssSquare />
+      </a>
+    </SectionTitle>
+    <p>Things I've learned.</p>
+    {
+      allTILsByMostRecent.map((til) => (
+        <div>
+          <a href={makeTILUrl(til.filePath)} class="inherit-color">
+            <h3 class="text font-bold mt-4">
+              {til.simpleDate} {til.title}
+            </h3>
+          </a>
+        </div>
+      ))
+    }
+  </section>
+</BaseLayout>

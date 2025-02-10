@@ -1,0 +1,39 @@
+---
+date: 2025-01-24
+author: browniebroke
+title: "Migrating from Chakra UI to Tailwind CSS"
+description: "How I migrated this blog from Chakra UI to tailwind CSS in a matter of hours using Cursor"
+header_image: chakra-ui-to-tailwind.png
+tags:
+  - chakra-ui
+  - tailwind
+  - cursor
+  - ai
+  - agent
+---
+
+I wrote before how [I migrated to ChakraUI](/blog/migrate-my-site-design-system-to-chakra-ui-with-chatgpt/) using ChatGPT to guide me and how that sped up the task. Less than a year later, I migrated again my style system but this time it was even more impressive, and even faster.
+
+## The migration
+
+Having heard about [Cursor](https://www.cursor.com/) a lot lately, and having seen it in action with some colleagues at work, I decided to give it a proper go and was really impressed. I opened the "composer" tool in "agent" mode, opened my codebase and asked to "Replace ChakraUI by Tailwind CSS with the minimum amount of visual differences possible".
+
+The agent went off and started looking at the structure of the repo, and my dependencies, detected that I was running Gatsby and suggested a plan. Then it suggested running `npm install ...` command which sadly failed with permissions issues. I ran them myself in another terminal, and told it that to proceed. I sat and watch him make modifications to the codebase, going through my components and migrating them one by one. It then it claimed to have completed it and ended by uninstalling the old dependency (I had to run this manually again due to permissions issues).
+
+I this point I tried to start the site, and it crashed as the migration was in fact not fully completed. I asked it to finish migrating the components and it finally did it. It then asked whether it should proceed with other folders which I instructed it to do it, and eventually reached a point where Chakra UI was gone.
+
+To my amazement, the site started and looked pretty close to what I had before. This whole process took maybe 15 or 20 mins and I didn't type or supervised it very much. I was really impressed. I then only had to do some final tweaks to get the styles closer to what I wanted. I never used Tailwind CSS before so it was a massive speed up.
+
+## Why migrate
+
+As time of writing, this blog is built with GatsbyJS. Unfortunately, the project has been dormant for quite a while now, pretty much since Netlify bought them. At this point, I consider the project dead and while there is no urgency to migrate, some of the tolling starts to fall apart, and with the velocity of Javascript development, I'm concerned that might not be able to migrate in a couple of months time if I don't do it now, as the migration guide might go away one day.
+
+An interesting framework that I might want to try is [Astro](https://docs.astro.build/en/guides/migrate-to-astro/from-gatsby/), but from what I can tell, there is not real integration with Chakra UI (not mentioning that Chakra UI released a new version which doesn't support GatsbyJS AFAIK).
+
+All this made me realise that my design system is too much coupled with the framework I use (React/Gatsby), and that I would benefit to switch to something a bit more framework-agnostic. I never tried Tailwind before, as it wasn't appealing to me, I still don't get the whole utility classes, but I'm giving it a try. Perhaps it's because I'm not a CSS developer or because I'm not working on a big team...
+
+Anyway, I'm hoping that Tailwind, with its huge community will have support in most places, and won't tie me to any framework.
+
+## Next steps
+
+I'll do some more iterations to limit my Tailwind usage to reusable components only, which I think should help if I decide to move off something React-based. That experiment taught me that while doing these kind of migrations used to be a really painful, it will be getting easier and easier, these AI tools are great application for them.
