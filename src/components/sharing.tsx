@@ -3,6 +3,7 @@ import { FaTwitter, FaRegEnvelope } from "react-icons/fa";
 import { FaBluesky, FaMastodon } from "react-icons/fa6";
 
 import { site } from "../data/siteMetadata";
+import { Stack } from "./stack.tsx";
 
 interface SharingProps {
   frontmatter: {
@@ -52,7 +53,7 @@ export const Sharing = ({ frontmatter, path }: SharingProps) => {
   return (
     <div className="flex flex-col items-center my-12">
       <h4 className="text-xl font-bold mb-4">Liked it? Please share it!</h4>
-      <div className="flex flex-row gap-2">
+      <Stack>
         <a
           href={emailUrl}
           title="Share via email"
@@ -89,7 +90,7 @@ export const Sharing = ({ frontmatter, path }: SharingProps) => {
         >
           <FaTwitter />
         </a>
-      </div>
+      </Stack>
     </div>
   );
 };

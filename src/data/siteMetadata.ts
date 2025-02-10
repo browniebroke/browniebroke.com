@@ -6,10 +6,11 @@ const baseUrl =
       : `https://browniebroke.com`;
 
 export const site = {
+  siteUrl: baseUrl,
   title: "browniebroke.com",
   description: `Bruno Alla's personal site and blog - about programming, and other random things that interest me.`,
   author: `Bruno Alla`,
-  siteUrl: baseUrl,
+  bio: `Hi! I'm a web developer based in London, I work with Python & Django, I'm a DSF member and I help maintain a few Django projects, most notably Django REST Framework, Cookiecutter Django and DRF-excel.`,
   social: {
     bsky: `browniebroke.com`,
     github: `browniebroke`,
