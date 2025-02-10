@@ -7,6 +7,8 @@ import BaseLayout from "./BaseLayout.astro";
 import { PostMetaData } from "../components/post-metadata";
 import { Sharing } from "../components/sharing";
 import { Pagination } from "../components/pagination";
+import { PostTitle } from "../components/post-title";
+import { Stack } from "../components/stack";
 import { Tag } from "../components/tag";
 
 import { makeTagUrl } from "../utils/routes";
@@ -38,14 +40,14 @@ const postPath = `/blog/${entry?.id}/`;
 ---
 
 <BaseLayout title={frontmatter.title} coverImage={entry?.data.header_image}>
-  <h1 class="text-3xl font-bold mt-8 mb-4">{frontmatter.title}</h1>
+  <PostTitle>{frontmatter.title}</PostTitle>
   <PostMetaData
     dateTimeToRead={`${formatLongDate(postDate)} • ${frontmatter.minutesRead}`}
     editUrl={editUrl}
   />
   <slot />
 
-  <div class="flex flex-row gap-2">
+  <Stack>
     {
       frontmatter.tags.map((tag) => (
         <Tag to={makeTagUrl(tag)} key={tag}>
@@ -53,7 +55,7 @@ const postPath = `/blog/${entry?.id}/`;
         </Tag>
       ))
     }
-  </div>
+  </Stack>
   <Sharing frontmatter={frontmatter} path={postPath} />
   <Pagination previous={previous} next={next} pathPrefix="blog" />
 </BaseLayout>

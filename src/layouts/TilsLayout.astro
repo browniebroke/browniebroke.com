@@ -1,12 +1,16 @@
 ---
-import BaseLayout from "./BaseLayout.astro";
-import type { MarkdownLayoutProps } from "astro";
-import { PostMetaData } from "../components/post-metadata";
 import React from "react";
+import type { MarkdownLayoutProps } from "astro";
+
+import { PostMetaData } from "../components/post-metadata";
 import { Sharing } from "../components/sharing";
 import { Pagination } from "../components/pagination";
+import { PostTitle } from "../components/post-title";
+
 import { formatLongDate } from "../utils/dates";
 import { getPagination, getTILsByMostRecent } from "../utils/contents";
+
+import BaseLayout from "./BaseLayout.astro";
 
 type Props = MarkdownLayoutProps<{
   date: string;
@@ -25,7 +29,7 @@ const postPath = url || "";
 ---
 
 <BaseLayout title={frontmatter.title}>
-  <h1 class="text-3xl font-bold mt-8 mb-4">{frontmatter.title}</h1>
+  <PostTitle>{frontmatter.title}</PostTitle>
   <PostMetaData dateTimeToRead={formatLongDate(postDate)} editUrl={editUrl} />
   <slot />
 

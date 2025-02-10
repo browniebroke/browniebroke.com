@@ -10,13 +10,14 @@ import {
 import { FaBluesky, FaThreads } from "react-icons/fa6";
 
 import { site } from "../data/siteMetadata";
+import { Stack } from "./stack.tsx";
 
 export const SocialLinks: React.FC = () => {
   const { bsky, github, gitlab, mastodon, medium, twitter, stackoverflow } =
     site.social;
 
   return (
-    <div className="flex flex-row gap-2 mt-2">
+    <Stack>
       <a
         href={`https://fosstodon.org/${mastodon}`}
         title="Mastondon profile"
@@ -82,6 +83,6 @@ export const SocialLinks: React.FC = () => {
       >
         <FaMedium />
       </a>
-    </div>
+    </Stack>
   );
 };
