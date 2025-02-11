@@ -1,9 +1,15 @@
-@import "@fontsource/cabin-condensed";
-@import "@fontsource/patua-one";
+@import "@fontsource/cabin-condensed" layer(base);
+@import "@fontsource/patua-one" layer(base);
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --font-sans: Cabin Condensed, georgia, sans-serif;
+  --font-heading: Patua One, serif;
+
+  --text-base: 1.25rem;
+  --tracking-wide: 0.03em;
+}
 
 @layer base {
   html {
@@ -32,7 +38,7 @@
 
   code[class*="astro-code"],
   pre[class*="astro-code"] {
-    @apply text-[0.85em] !important;
+    @apply text-[0.85em];
   }
 
   pre {
@@ -56,6 +62,6 @@
   }
 
   kbd {
-    @apply px-2 py-1 text-sm font-mono bg-gray-100 border border-gray-300 rounded;
+    @apply px-2 py-1 text-sm font-mono bg-gray-100 border border-gray-300 rounded-sm;
   }
 }

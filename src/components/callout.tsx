@@ -38,7 +38,7 @@ export const Callout = ({ level, title, children }: CalloutProps) => {
 
   return (
     <div className="flex items-start p-4 rounded-md bg-blue-100 border-l-4 border-blue-500">
-      <div className="flex-shrink-0 mt-0.5 text-blue-500">
+      <div className="shrink-0 mt-0.5 text-blue-500">
         <Icon className="h-5 w-5"></Icon>
       </div>
       <div className="ml-3">

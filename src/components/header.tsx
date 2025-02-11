@@ -18,7 +18,7 @@ interface HeaderProps {
 export const Header: React.FC<HeaderProps> = ({ siteTitle }) => (
   <HeaderWrapper>
     <HeaderContainer>
-      <h1 className="m-0 flex-grow text-lg leading-inherit">
+      <h1 className="m-0 grow text-lg leading-inherit">
         <a href="/" className="inherit-color">
           {siteTitle}
         </a>

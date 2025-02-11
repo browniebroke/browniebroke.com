@@ -4,8 +4,8 @@ import { defineConfig } from "astro/config";
 import mdx from "@astrojs/mdx";
 import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
-import tailwind from "@astrojs/tailwind";
 import { transformerMetaHighlight } from "@shikijs/transformers";
+import tailwindcss from "@tailwindcss/vite";
 
 import {
   getDefaultLayout,
@@ -17,7 +17,8 @@ import { redirects } from "./src/redirects";
 // https://astro.build/config
 export default defineConfig({
   site: site.siteUrl,
-  integrations: [mdx(), react(), tailwind(), sitemap()],
+  integrations: [mdx(), react(), sitemap()],
+  vite: { plugins: [tailwindcss()] },
   markdown: {
     remarkPlugins: [getDefaultLayout, remarkReadingTime],
     shikiConfig: {
