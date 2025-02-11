@@ -6,6 +6,7 @@ import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
 import { transformerMetaHighlight } from "@shikijs/transformers";
 import tailwindcss from "@tailwindcss/vite";
+import rehypeExternalLinks from "rehype-external-links";
 
 import {
   getDefaultLayout,
@@ -21,6 +22,7 @@ export default defineConfig({
   vite: { plugins: [tailwindcss()] },
   markdown: {
     remarkPlugins: [getDefaultLayout, remarkReadingTime],
+    rehypePlugins: [[rehypeExternalLinks, { rel: ["nofollow"] }]],
     shikiConfig: {
       themes: {
         light: "min-light",
