@@ -22,9 +22,7 @@ export default defineConfig({
   vite: { plugins: [tailwindcss()] },
   markdown: {
     remarkPlugins: [getDefaultLayout, remarkReadingTime],
-    rehypePlugins: [
-      [rehypeExternalLinks, { rel: ["nofollow"] }],
-    ],
+    rehypePlugins: [[rehypeExternalLinks, { rel: ["nofollow"] }]],
     shikiConfig: {
       themes: {
         light: "min-light",
