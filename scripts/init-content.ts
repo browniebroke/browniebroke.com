@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-const fs = require("fs");
-const slugify = require("slugify");
+import fs from "fs";
+import slugify from "slugify";
 const usage = `usage: init-content.js [til|post] '<title>'`;
 
 const scriptArgs = process.argv.slice(2);
@@ -29,14 +29,14 @@ function getDateStr() {
   return now.toISOString().split("T")[0];
 }
 
-function slugifyLower(title) {
+function slugifyLower(title: string) {
   return slugify(title, {
     remove: /[*+~.()'"!:@]/g,
     lower: true,
   });
 }
 
-function initTIL(title, body) {
+function initTIL(title: string, body: string) {
   const dateStr = getDateStr();
   const slug = slugifyLower(title);
   const bodyStr = body === undefined ? "" : body;
@@ -47,10 +47,10 @@ title: '${title}'
 
 ${bodyStr}
 `;
-  fs.writeFileSync(`src/tils/${dateStr}-${slug}.md`, data, { flag: "w" });
+  fs.writeFileSync(`src/pages/tils/${dateStr}-${slug}.md`, data, { flag: "w" });
 }
 
-function initPost(title) {
+function initPost(title: string) {
   const dateStr = getDateStr();
   const slug = slugifyLower(title);
   const data = `---
@@ -63,7 +63,7 @@ tags:
   - cake
 ---
 `;
-  const dir = `src/posts/${dateStr}-${slug}`;
+  const dir = `src/pages/blog/${dateStr}-${slug}`;
   fs.mkdirSync(dir, { recursive: true });
   fs.writeFileSync(`${dir}/index.md`, data, { flag: "w" });
 }
