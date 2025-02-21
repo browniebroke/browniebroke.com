@@ -5,7 +5,7 @@ title: "Crossed app logo in macOS notifications"
 
 Occasionally, on macOS, I get some notifications with the app logo is crossed out, like this:
 
-![Crossed out Chrome notification](./2024-03-13-notification.png)
+![Crossed out Chrome notification](./_2024-03-13-notification.png)
 
 <br />
 
