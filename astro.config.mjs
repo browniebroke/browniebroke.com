@@ -1,6 +1,7 @@
 // @ts-check
 import { defineConfig } from "astro/config";
 
+import partytown from "@astrojs/partytown";
 import mdx from "@astrojs/mdx";
 import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
@@ -18,7 +19,7 @@ import { redirects } from "./src/redirects";
 // https://astro.build/config
 export default defineConfig({
   site: site.siteUrl,
-  integrations: [mdx(), react(), sitemap()],
+  integrations: [mdx(), react(), sitemap(), partytown()],
   vite: { plugins: [tailwindcss()] },
   markdown: {
     remarkPlugins: [getDefaultLayout, remarkReadingTime],
