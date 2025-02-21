@@ -9,7 +9,6 @@
   "homepage": "https://browniebroke.com",
   "dependencies": {
     "@astrojs/mdx": "4.0.8",
-    "@astrojs/partytown": "^2.1.3",
     "@astrojs/react": "4.2.0",
     "@astrojs/rss": "4.0.11",
     "@astrojs/sitemap": "3.2.1",
