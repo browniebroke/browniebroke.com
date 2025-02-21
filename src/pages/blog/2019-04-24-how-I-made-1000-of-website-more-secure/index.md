@@ -3,7 +3,7 @@ date: 2019-04-24
 author: browniebroke
 title: "How I made 1000's of websites more secure with one line of code"
 description: "This is the story of learning about a new security header, added it to Gatsby, and made tons of sites more secure"
-og_image: gatbsyjs-security-headers-after.png
+og_image: _gatbsyjs-security-headers-after.png
 tags:
   - gatsby
   - security
@@ -15,7 +15,7 @@ Or at least [a lot of them](https://github.com/search?l=JavaScript&o=desc&q=gats
 
 ## Learning about a new security header
 
-Last week, I attended the [London Django meetup](https://www.meetup.com/djangolondon/). Among a very interesting lineup of talks, there was a [lighning presentation](https://skillsmatter.com/skillscasts/13859-london-django-lightening-talk) from [Adam Johnson](https://adamj.eu/) about security headers and how Django helps with them. If you don't know what security headers are, I urge you to watch the talk, it's a bit about Django but it applies about the web in general.
+Last week, I attended the [London Django meetup](https://www.meetup.com/djangolondon/). Among a very interesting lineup of talks, there was a [lighting presentation](https://skillsmatter.com/skillscasts/13859-london-django-lightening-talk) from [Adam Johnson](https://adamj.eu/) about security headers and how Django helps with them. If you don't know what security headers are, I urge you to watch the talk, it's a bit about Django but it applies about the web in general.
 
 While I knew the ones that comes with Django and the very important `Content-Security-Policy`, I discovered the `Referrer-Policy` header, including the [story of the `Referer` header mispelling](https://books.google.co.uk/books?id=3EybAgAAQBAJ&pg=PT541&lpg=PT541&redir_esc=y#v=onepage&q&f=false) from the early days of the web.
 
@@ -46,7 +46,7 @@ module.exports = {
 
 It all worked fine so I was going to add it to my other website, but then it struck me that maybe I can push this to all websites built with Gatsby by contributing upstream, & multiply my impact! A quick check for [gatsbyjs.org](https://gatsbyjs.org) showed similar results as my own sites:
 
-![Gatsbyjs.org security headers report before](gatbsyjs-security-headers-before.png)
+![Gatsbyjs.org security headers report before](_gatbsyjs-security-headers-before.png)
 
 ## Fixing 1000's of website at once
 
@@ -68,7 +68,7 @@ Ideally I wanted to write tests but couldn't find any for the existing headers. 
 
 After this got merged, I wanted to see my change propagated to the [gatsbyjs.org](https://gatsbyjs.org) site. I checked again and here it was:
 
-![Gatsbyjs.org security headers report after](gatbsyjs-security-headers-after.png)
+![Gatsbyjs.org security headers report after](_gatbsyjs-security-headers-after.png)
 
 ## Next steps
 

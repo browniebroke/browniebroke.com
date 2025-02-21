@@ -3,7 +3,7 @@ date: 2025-02-21
 author: browniebroke
 title: "Project-level shareable live templates in PyCharm (or other IntelliJ IDEs)"
 description: "Easily share small snippets of boilerplate code with your team when working on a large project."
-header_image: header.png
+header_image: _header.png
 tags:
   - pycharm
   - templates

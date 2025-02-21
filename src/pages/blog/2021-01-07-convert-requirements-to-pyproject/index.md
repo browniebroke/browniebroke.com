@@ -3,7 +3,7 @@ date: 2021-01-07
 author: browniebroke
 title: "Convert Python requirements to Poetry format"
 description: "Automate your migration to Poetry with dephell."
-header_image: header.png
+header_image: _header.png
 tags:
   - python
   - dephell

@@ -3,7 +3,7 @@ date: 2020-05-03
 author: browniebroke
 title: "Mastering flexbox with Flexbox Zombies"
 description: "A short post to share my recent learning experience."
-header_image: fbz-banner.jpg
+header_image: _fbz-banner.jpg
 tags:
   - flexbox
   - css
