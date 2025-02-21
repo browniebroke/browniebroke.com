@@ -58,7 +58,7 @@ date: ${dateStr}
 author: browniebroke
 title: '${title}'
 description: ''
-header_image: header.png
+header_image: _header.png
 tags:
   - cake
 ---
