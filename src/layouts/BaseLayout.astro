@@ -53,6 +53,7 @@ const isProduction = process.env.PRODUCTION_DEPLOY === "true";
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={pageDescription} />
     <meta name="twitter:image" content={openGraphImageSrc} />
+    <meta name="fediverse:creator" content={site.social.mastodon} />
     {
       isProduction && (
         <script
