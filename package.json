@@ -39,7 +39,7 @@
     "@types/react-dom": "19.0.4",
     "@types/sanitize-html": "2.13.0",
     "postcss": "8.5.3",
-    "prettier": "3.5.1",
+    "prettier": "3.5.2",
     "prettier-plugin-astro": "0.14.1",
     "typescript": "5.7.3"
   },
