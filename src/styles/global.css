@@ -64,4 +64,13 @@
   kbd {
     @apply px-2 py-1 text-sm font-mono bg-gray-100 border border-gray-300 rounded-sm;
   }
+
+  ol {
+    list-style-position: inside;
+    list-style-type: decimal;
+    @apply pl-3;
+    li {
+      @apply my-1;
+    }
+  }
 }
