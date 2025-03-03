@@ -25,7 +25,7 @@ export const getFeedForCollection = async (
       title: entry.data.title,
       // @ts-ignore
       description: entry.data.description,
-      link: `/tils/${entry.id}`,
+      link: `/${collectionName}/${entry.id}`,
       pubDate: entry.data.date,
       content: sanitizeHtml(parser.render(entry?.body || ""), {
         allowedTags: sanitizeHtml.defaults.allowedTags.concat(["img"]),
