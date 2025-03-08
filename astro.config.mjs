@@ -28,7 +28,10 @@ export default defineConfig({
         light: "min-light",
         dark: "min-dark",
       },
-      transformers: [transformerMetaHighlight()],
+      transformers: [
+        // @ts-ignore
+        transformerMetaHighlight(),
+      ],
     },
   },
   redirects: redirects,
