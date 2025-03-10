@@ -17,7 +17,7 @@ However, it can easily become an append-only system, and on a project of a decen
 
 ## The built-in way
 
-Django provides a built-in `squashmigrations` command to help reduce the amount of migrations files, it works on a single app and takes a range of migrations to merge together into a single file, trying to optimize the operations along the way. However, Django - having the user base it has - needs to be absolutely certain and correct about which optimizations to perform, and it is conservative in terms of optimizations.
+Django provides a built-in `squashmigrations` command to help reduce the amount of migrations files, it works on a single app and takes a range of migrations to merge together into a single file, trying to optimize the operations along the way. However, Django - having the user base it has - needs to be absolutely certain and correct about which optimizations to perform, and can only do so much.
 
 A bigger problem, in my opinion, is the limitation to work a single app only. Projects tend to make use of Django apps to modularize the codebase, but without strict guardrails, it's very easy to introduce circular inter-apps dependencies and after enough time, it becomes practically impossible to squash migrations. You want to squash migrations in app A, but they depend on app B. App B depends on app C which in turn depends on app A. If your project has a dozen apps, you quickly get many cycles like this.
 
