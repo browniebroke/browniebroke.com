@@ -18,7 +18,7 @@
     "@shikijs/transformers": "3.2.1",
     "@tailwindcss/postcss": "4.0.15",
     "@tailwindcss/vite": "4.0.15",
-    "astro": "5.5.3",
+    "astro": "5.5.4",
     "markdown-it": "14.1.0",
     "mdast-util-to-string": "4.0.0",
     "react": "19.0.0",
