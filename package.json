@@ -27,7 +27,7 @@
     "reading-time": "1.5.0",
     "rehype-external-links": "3.0.0",
     "replace-in-file": "8.3.0",
-    "sanitize-html": "2.15.0",
+    "sanitize-html": "2.16.0",
     "sharp": "0.34.1",
     "slugify": "1.6.6",
     "tailwindcss": "4.1.4"
