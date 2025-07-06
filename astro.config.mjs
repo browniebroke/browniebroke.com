@@ -19,6 +19,7 @@ import { redirects } from "./src/redirects";
 export default defineConfig({
   site: site.siteUrl,
   integrations: [mdx(), react(), sitemap()],
+  // @ts-ignore
   vite: { plugins: [tailwindcss()] },
   markdown: {
     remarkPlugins: [getDefaultLayout, remarkReadingTime],
