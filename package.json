@@ -8,7 +8,7 @@
   "repository": "https://github.com/browniebroke/browniebroke.com.git",
   "homepage": "https://browniebroke.com",
   "dependencies": {
-    "@astrojs/mdx": "4.3.0",
+    "@astrojs/mdx": "4.3.1",
     "@astrojs/react": "4.3.0",
     "@astrojs/rss": "4.0.12",
     "@astrojs/sitemap": "3.4.1",
