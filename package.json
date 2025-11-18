@@ -8,7 +8,7 @@
   "repository": "https://github.com/browniebroke/browniebroke.com.git",
   "homepage": "https://browniebroke.com",
   "dependencies": {
-    "@astrojs/mdx": "4.3.10",
+    "@astrojs/mdx": "4.3.11",
     "@astrojs/react": "4.4.2",
     "@astrojs/rss": "4.0.13",
     "@astrojs/sitemap": "3.6.0",
@@ -18,7 +18,7 @@
     "@shikijs/transformers": "3.15.0",
     "@tailwindcss/postcss": "4.1.17",
     "@tailwindcss/vite": "4.1.17",
-    "astro": "5.15.8",
+    "astro": "5.15.9",
     "markdown-it": "14.1.0",
     "mdast-util-to-string": "4.0.0",
     "react": "19.2.0",
