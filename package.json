@@ -8,9 +8,9 @@
   "repository": "https://github.com/browniebroke/browniebroke.com.git",
   "homepage": "https://browniebroke.com",
   "dependencies": {
-    "@astrojs/mdx": "4.3.11",
+    "@astrojs/mdx": "4.3.12",
     "@astrojs/react": "4.4.2",
-    "@astrojs/rss": "4.0.13",
+    "@astrojs/rss": "4.0.14",
     "@astrojs/sitemap": "3.6.0",
     "@astrojs/ts-plugin": "1.10.5",
     "@fontsource/cabin-condensed": "5.2.8",
