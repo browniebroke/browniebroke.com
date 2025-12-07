@@ -21,15 +21,23 @@ export const getFeedForCollection = async (
     site: context.site,
     // Array of `<item>`s in output xml
     // See "Generating items" section for examples using content collections and glob imports
-    items: entries.map((entry) => ({
-      title: entry.data.title,
-      // @ts-ignore
-      description: entry.data.description,
-      link: `/${collectionName}/${entry.id}`,
-      pubDate: entry.data.date,
-      content: sanitizeHtml(parser.render(entry?.body || ""), {
-        allowedTags: sanitizeHtml.defaults.allowedTags.concat(["img"]),
-      }),
-    })),
+    items: entries
+      // Return most recent item first
+      .toSorted(
+        (e1, e2) =>
+          Date.parse(e2.data.date.toISOString()) -
+          Date.parse(e1.data.date.toISOString()),
+      )
+      // Serialize the entries as expected
+      .map((entry) => ({
+        title: entry.data.title,
+        // @ts-ignore
+        description: entry.data.description,
+        link: `/${collectionName}/${entry.id}`,
+        pubDate: entry.data.date,
+        content: sanitizeHtml(parser.render(entry?.body || ""), {
+          allowedTags: sanitizeHtml.defaults.allowedTags.concat(["img"]),
+        }),
+      })),
   });
 };
