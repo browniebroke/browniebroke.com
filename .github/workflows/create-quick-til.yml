@@ -25,7 +25,7 @@ jobs:
       - run: npm i
       - run: ./scripts/init-content.js til "${{ github.event.inputs.title }}" "${{ github.event.inputs.body }}"
       - run: npm run format
-      - uses: peter-evans/create-pull-request@v7
+      - uses: peter-evans/create-pull-request@v8
         with:
           token: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
           branch: draft-new-til
