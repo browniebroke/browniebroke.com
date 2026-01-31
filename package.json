@@ -15,7 +15,7 @@
     "@astrojs/ts-plugin": "1.10.6",
     "@fontsource/cabin-condensed": "5.2.8",
     "@fontsource/patua-one": "5.2.8",
-    "@shikijs/transformers": "3.21.0",
+    "@shikijs/transformers": "3.22.0",
     "@tailwindcss/postcss": "4.1.18",
     "@tailwindcss/vite": "4.1.18",
     "astro": "5.17.1",
