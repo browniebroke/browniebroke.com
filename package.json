@@ -34,7 +34,7 @@
   },
   "devDependencies": {
     "@types/markdown-it": "14.1.2",
-    "@types/node": "24.10.9",
+    "@types/node": "24.10.10",
     "@types/react": "19.2.10",
     "@types/react-dom": "19.2.3",
     "@types/sanitize-html": "2.16.0",
