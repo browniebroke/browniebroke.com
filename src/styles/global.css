@@ -36,7 +36,7 @@
     @apply text-inherit hover:text-blue-300;
   }
 
-  code[class*="astro-code"],
+  code,
   pre[class*="astro-code"] {
     @apply text-[0.85em];
   }
