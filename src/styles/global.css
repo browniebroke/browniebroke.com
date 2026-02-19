@@ -43,6 +43,7 @@
 
   pre {
     @apply p-4;
+    line-height: 1.2;
   }
 
   .line.highlighted {
