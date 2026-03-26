@@ -12,7 +12,7 @@ export const HeaderContainer = ({ children }: AcceptsChildren) => (
 );
 
 interface HeaderProps {
-  siteTitle: String;
+  siteTitle: string;
 }
 
 export const Header: React.FC<HeaderProps> = ({ siteTitle }) => (

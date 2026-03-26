@@ -15,7 +15,7 @@ function byMostRecent(a: HasDateData, b: HasDateData) {
 }
 
 export async function getPostsByMostRecent(
-  maxCount?: number | undefined,
+  maxCount?: number,
 ): Promise<PostPreviewData[]> {
   let allBlogPosts = await getCollection("blog");
   allBlogPosts = allBlogPosts.toSorted(byMostRecent);

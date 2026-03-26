@@ -39,26 +39,29 @@
     "@types/react-dom": "19.2.3",
     "@types/sanitize-html": "2.16.0",
     "postcss": "8.5.8",
-    "prettier": "3.8.1",
-    "prettier-plugin-astro": "0.14.1",
-    "typescript": "5.9.3"
+    "typescript": "5.9.3",
+    "vite-plus": "latest"
   },
   "scripts": {
     "build": "astro build",
     "clean": "rm -rf dist",
-    "develop": "astro dev",
     "dev": "astro dev",
     "preview": "astro preview",
     "astro": "astro",
-    "prelint:tsc": "astro sync",
-    "lint:eslint": "echo 'noop'",
-    "lint:prettier": "prettier --check .",
-    "lint:tsc": "tsc",
-    "format": "prettier --write ."
+    "tsc": "tsc",
+    "lint": "vp lint",
+    "format": "vp fmt .",
+    "check": "vp check",
+    "prepare": "vp config"
   },
   "renovate": {
     "extends": [
       "github>browniebroke/renovate-configs:js-app"
     ]
+  },
+  "packageManager": "npm@11.12.1",
+  "overrides": {
+    "vite": "npm:@voidzero-dev/vite-plus-core@latest",
+    "vitest": "npm:@voidzero-dev/vite-plus-test@latest"
   }
 }

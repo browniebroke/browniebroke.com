@@ -11,7 +11,15 @@ concurrency:
 
 jobs:
   lint:
-    uses: browniebroke/github-actions/.github/workflows/ts-lint.yml@v1
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: voidzero-dev/setup-vp@v1
+        with:
+          run-install: true
+          node-version-file: ".nvmrc"
+          cache: true
+      - run: vp check
 
   deploy:
     uses: browniebroke/github-actions/.github/workflows/netlify-deploy.yml@main
