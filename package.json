@@ -41,7 +41,7 @@
     "postcss": "8.5.8",
     "prettier": "3.8.1",
     "prettier-plugin-astro": "0.14.1",
-    "typescript": "5.9.3"
+    "typescript": "6.0.2"
   },
   "scripts": {
     "build": "astro build",
