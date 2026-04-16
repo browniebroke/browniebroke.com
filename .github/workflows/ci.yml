@@ -11,7 +11,7 @@ concurrency:
 
 jobs:
   lint:
-    uses: browniebroke/github-actions/.github/workflows/ts-lint.yml@v1
+    uses: browniebroke/github-actions/.github/workflows/ts-lint.yml@v1.23.0
 
   deploy:
     uses: browniebroke/github-actions/.github/workflows/netlify-deploy.yml@main
