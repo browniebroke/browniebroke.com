@@ -18,7 +18,7 @@
     "@shikijs/transformers": "4.0.2",
     "@tailwindcss/postcss": "4.2.2",
     "@tailwindcss/vite": "4.2.2",
-    "astro": "6.1.6",
+    "astro": "6.1.7",
     "markdown-it": "14.1.1",
     "mdast-util-to-string": "4.0.0",
     "react": "19.2.5",
@@ -27,7 +27,7 @@
     "reading-time": "1.5.0",
     "rehype-external-links": "3.0.0",
     "replace-in-file": "8.4.0",
-    "sanitize-html": "2.17.2",
+    "sanitize-html": "2.17.3",
     "sharp": "0.34.5",
     "slugify": "1.6.9",
     "tailwindcss": "4.2.2"
