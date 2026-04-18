@@ -1,2 +1,0 @@
-tasks:
-  - command: nvm i && npm ci
