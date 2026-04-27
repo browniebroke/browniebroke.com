@@ -57,7 +57,7 @@
     "format": "prettier --write ."
   },
   "overrides": {
-    "vite": "^7.3.2"
+    "vite": "7.3.2"
   },
   "renovate": {
     "extends": [
