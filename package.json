@@ -56,6 +56,9 @@
     "lint:tsc": "tsc",
     "format": "prettier --write ."
   },
+  "overrides": {
+    "vite": "^7.3.2"
+  },
   "renovate": {
     "extends": [
       "github>browniebroke/renovate-configs:js-app"
