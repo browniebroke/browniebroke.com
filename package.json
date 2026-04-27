@@ -58,6 +58,7 @@
   },
   "renovate": {
     "extends": [
+      "helpers:pinGitHubActionDigests",
       "github>browniebroke/renovate-configs:js-app"
     ]
   }
