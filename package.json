@@ -18,7 +18,7 @@
     "@shikijs/transformers": "4.0.2",
     "@tailwindcss/postcss": "4.2.4",
     "@tailwindcss/vite": "4.2.4",
-    "astro": "6.2.0",
+    "astro": "6.2.1",
     "markdown-it": "14.1.1",
     "mdast-util-to-string": "4.0.0",
     "react": "19.2.5",
@@ -38,7 +38,7 @@
     "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
     "@types/sanitize-html": "2.16.1",
-    "postcss": "8.5.12",
+    "postcss": "8.5.13",
     "prettier": "3.8.3",
     "prettier-plugin-astro": "0.14.1",
     "typescript": "6.0.3"
