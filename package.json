@@ -28,7 +28,7 @@
     "rehype-external-links": "3.0.0",
     "replace-in-file": "8.4.0",
     "sanitize-html": "2.17.5",
-    "sharp": "0.34.5",
+    "sharp": "0.35.0",
     "slugify": "1.6.9",
     "tailwindcss": "4.3.0"
   },
