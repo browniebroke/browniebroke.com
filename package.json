@@ -8,7 +8,7 @@
   "repository": "https://github.com/browniebroke/browniebroke.com.git",
   "homepage": "https://browniebroke.com",
   "dependencies": {
-    "@astrojs/mdx": "7.0.0",
+    "@astrojs/mdx": "7.0.1",
     "@astrojs/react": "6.0.0",
     "@astrojs/rss": "4.0.19",
     "@astrojs/sitemap": "3.7.3",
@@ -18,7 +18,7 @@
     "@shikijs/transformers": "4.3.0",
     "@tailwindcss/postcss": "4.3.2",
     "@tailwindcss/vite": "4.3.2",
-    "astro": "7.0.4",
+    "astro": "7.0.5",
     "markdown-it": "14.2.0",
     "mdast-util-to-string": "4.0.0",
     "react": "19.2.7",
@@ -28,7 +28,7 @@
     "rehype-external-links": "3.0.0",
     "replace-in-file": "8.4.0",
     "sanitize-html": "2.17.5",
-    "sharp": "0.35.2",
+    "sharp": "0.35.3",
     "slugify": "1.6.9",
     "tailwindcss": "4.3.2"
   },
