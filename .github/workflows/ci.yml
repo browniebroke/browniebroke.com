@@ -11,10 +11,10 @@ concurrency:
 
 jobs:
   lint:
-    uses: browniebroke/github-actions/.github/workflows/ts-lint.yml@2e443406e88fd4e9f1d23620f0908f425220b38a # v1.25.0
+    uses: browniebroke/github-actions/.github/workflows/ts-lint.yml@f62ef26d5b2705fbcbf9c48ed4619f055efa3481 # v1.26.0
 
   deploy:
-    uses: browniebroke/github-actions/.github/workflows/netlify-deploy.yml@2e443406e88fd4e9f1d23620f0908f425220b38a # v1.25.0
+    uses: browniebroke/github-actions/.github/workflows/netlify-deploy.yml@f62ef26d5b2705fbcbf9c48ed4619f055efa3481 # v1.26.0
     with:
       netlify_site_id: "2d3f146f-3ca0-4651-afa1-4fe16612de76"
       publish_dir: "dist"
