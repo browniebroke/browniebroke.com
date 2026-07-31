@@ -19,7 +19,7 @@
     "@tailwindcss/postcss": "4.3.3",
     "@tailwindcss/vite": "4.3.3",
     "astro": "7.1.6",
-    "markdown-it": "14.3.0",
+    "markdown-it": "15.0.0",
     "mdast-util-to-string": "4.0.0",
     "react": "19.2.8",
     "react-dom": "19.2.8",
