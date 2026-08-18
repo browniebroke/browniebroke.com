@@ -67,9 +67,9 @@
   }
 
   ol {
-    list-style-position: inside;
+    list-style-position: outside;
     list-style-type: decimal;
-    @apply pl-3;
+    @apply pl-8;
     li {
       @apply my-1;
     }
