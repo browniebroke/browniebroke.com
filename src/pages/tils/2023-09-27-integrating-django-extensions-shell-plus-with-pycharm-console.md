@@ -5,7 +5,7 @@ title: "Integrating django-extensions shell plus with Pycharm console"
 
 The `django-extensions` is a package which I install in all my Django projects, it's a toolbox full of useful commands and utilities. One of the commands is `shell_plus` which is a replacement for the standard Django `shell` command, than provides a better DX, close the iPython, as well as automatically importing all the models as well as the most common utilities. As a Pycharm user, I often use the integrated console, which responds to the IDE shortcuts and provides other small DX improvements, similar to what ` shell_plus` offers.
 
-By default, Pycharm integrated console does not do the automatic imports from `shell_plus`, but it's quite easy to add them, hence getting the best of both worlds. Here are the steps:
+By default, PyCharm integrated console does not do the automatic imports from `shell_plus`, but it's quite easy to add them, hence getting the best of both worlds. Here are the steps:
 
 1. Open the settings
 2. Go to the `Build, Execution, Deployment` > `Console` > `Django Console` page
