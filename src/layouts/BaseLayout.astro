@@ -54,25 +54,21 @@ const isProduction = process.env.PRODUCTION_DEPLOY === "true";
     <meta name="twitter:description" content={pageDescription} />
     <meta name="twitter:image" content={openGraphImageSrc} />
     <meta name="fediverse:creator" content={site.social.mastodon} />
-    {
-      isProduction && (
-        <script
-          defer
-          src="https://cloud.umami.is/script.js"
-          data-website-id="a95d92c9-b298-4c50-aef6-a0fd8881ab18"
-        />
-      )
-    }
+    {isProduction && (
+      <script
+        defer
+        src="https://cloud.umami.is/script.js"
+        data-website-id="a95d92c9-b298-4c50-aef6-a0fd8881ab18"
+      ></script>
+    )}
   </head>
   <body>
     <Header siteTitle={site.title} />
-    {
-      coverImage && (
-        <div class="p-0">
-          <Image src={coverImage} alt="" />
-        </div>
-      )
-    }
+    {coverImage && (
+      <div class="p-0">
+        <Image src={coverImage} alt="" />
+      </div>
+    )}
     <Container>
       <main>
         <slot />
