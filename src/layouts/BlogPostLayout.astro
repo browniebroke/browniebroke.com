@@ -48,13 +48,11 @@ const postPath = `/blog/${entry?.id}/`;
   <slot />
 
   <Stack>
-    {
-      frontmatter.tags.map((tag) => (
-        <Tag to={makeTagUrl(tag)} key={tag}>
-          {tag}
-        </Tag>
-      ))
-    }
+    {frontmatter.tags.map((tag) => (
+      <Tag to={makeTagUrl(tag)} key={tag}>
+        {tag}
+      </Tag>
+    ))}
   </Stack>
   <Sharing frontmatter={frontmatter} path={postPath} />
   <Pagination previous={previous} next={next} pathPrefix="blog" />

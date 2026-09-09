@@ -19,16 +19,14 @@ const allTILsByMostRecent = await getTILsByMostRecent();
       </a>
     </SectionTitle>
     <p>Things I've learned.</p>
-    {
-      allTILsByMostRecent.map((til) => (
-        <div>
-          <a href={makeTILUrl(til.filePath)} class="inherit-color">
-            <h3 class="text font-bold mt-4">
-              {til.simpleDate} {til.title}
-            </h3>
-          </a>
-        </div>
-      ))
-    }
+    {allTILsByMostRecent.map((til) => (
+      <div>
+        <a href={makeTILUrl(til.filePath)} class="inherit-color">
+          <h3 class="text font-bold mt-4">
+            {til.simpleDate} {til.title}
+          </h3>
+        </a>
+      </div>
+    ))}
   </section>
 </BaseLayout>

@@ -19,9 +19,7 @@ const mostRecent3Posts = await getPostsByMostRecent(3);
   <section class="flex flex-col items-center">
     <h1 class="text-4xl font-bold mt-8 mb-4">{site.author}</h1>
     <Avatar />
-    <p class="text-center max-w-[400px]">
-      {site.bio}
-    </p>
+    <p class="text-center max-w-[400px]">{site.bio}</p>
     <SocialLinks />
   </section>
   <section>
