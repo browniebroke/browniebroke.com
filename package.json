@@ -10,16 +10,16 @@
   "dependencies": {
     "@astrojs/markdown-remark": "7.3.1",
     "@astrojs/mdx": "8.0.1",
-    "@astrojs/react": "6.0.5",
+    "@astrojs/react": "6.0.6",
     "@astrojs/rss": "4.0.19",
     "@astrojs/sitemap": "3.7.4",
-    "@astrojs/ts-plugin": "1.10.11",
+    "@astrojs/ts-plugin": "1.10.12",
     "@fontsource/cabin-condensed": "5.3.0",
     "@fontsource/patua-one": "5.3.0",
     "@shikijs/transformers": "4.4.3",
     "@tailwindcss/postcss": "4.3.3",
     "@tailwindcss/vite": "4.3.3",
-    "astro": "7.3.2",
+    "astro": "7.3.3",
     "markdown-it": "15.0.2",
     "mdast-util-to-string": "4.0.0",
     "react": "19.3.0",
@@ -41,7 +41,7 @@
     "@types/sanitize-html": "2.16.1",
     "postcss": "8.5.28",
     "prettier": "3.9.7",
-    "prettier-plugin-astro": "1.0.0",
+    "prettier-plugin-astro": "1.0.1",
     "typescript": "7.0.2"
   },
   "scripts": {
