@@ -51,10 +51,10 @@
     "dev": "astro dev",
     "preview": "astro preview",
     "astro": "astro",
-    "prelint:tsc": "astro sync",
-    "lint:eslint": "echo 'noop'",
-    "lint:prettier": "prettier --check .",
-    "lint:tsc": "tsc",
+    "precheck:types": "astro sync",
+    "check:lint": "echo 'noop'",
+    "check:format": "prettier --check .",
+    "check:types": "tsc",
     "format": "prettier --write ."
   },
   "overrides": {
