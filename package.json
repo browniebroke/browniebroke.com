@@ -41,7 +41,7 @@
     "@types/sanitize-html": "2.16.1",
     "postcss": "8.5.28",
     "prettier": "3.9.9",
-    "prettier-plugin-astro": "1.0.1",
+    "prettier-plugin-astro": "1.1.0",
     "typescript": "7.0.2"
   },
   "scripts": {
