@@ -19,7 +19,7 @@
     "@shikijs/transformers": "4.5.0",
     "@tailwindcss/postcss": "4.3.3",
     "@tailwindcss/vite": "4.3.3",
-    "astro": "7.3.7",
+    "astro": "7.3.8",
     "markdown-it": "15.0.2",
     "mdast-util-to-string": "4.0.0",
     "react": "19.3.0",
@@ -58,7 +58,7 @@
     "format": "prettier --write ."
   },
   "overrides": {
-    "vite": "8.3.3"
+    "vite": "8.3.4"
   },
   "renovate": {
     "extends": [
