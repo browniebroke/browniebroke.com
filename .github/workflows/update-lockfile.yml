@@ -1,0 +1,43 @@
+name: Update lock file
+
+on:
+  pull_request:
+    paths: [package.json]
+
+concurrency:
+  group: update-lockfile-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+jobs:
+  update-lockfile:
+    # Can't push to fork branches with GITHUB_TOKEN
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - name: Switch to PR branch
+        env:
+          HEAD_REF: ${{ github.event.pull_request.head.ref }}
+        run: git switch -C "$HEAD_REF"
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version-file: .nvmrc
+      - run: npm install --package-lock-only --ignore-scripts
+      - name: Commit and push lock file changes
+        run: |
+          if git diff --quiet -- package-lock.json; then
+            echo "Lock file up to date"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add package-lock.json
+          git commit -m "chore(deps): update package-lock.json"
+          git push origin "HEAD:refs/heads/$HEAD_REF"
+        env:
+          HEAD_REF: ${{ github.event.pull_request.head.ref }}
