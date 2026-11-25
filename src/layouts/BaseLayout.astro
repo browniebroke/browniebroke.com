@@ -41,6 +41,12 @@ const isProduction = process.env.PRODUCTION_DEPLOY === "true";
       title="Bruno Alla's TILs"
       href={new URL("tils.xml", Astro.site)}
     />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title="Bruno Alla's posts and TILs"
+      href={new URL("all.xml", Astro.site)}
+    />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <meta name="generator" content={Astro.generator} />
     <meta property="og:type" content="website" />
