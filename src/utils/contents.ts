@@ -61,30 +61,60 @@ export async function getTILsByMostRecent(): Promise<TILMetaData[]> {
   return allTils.toSorted(byMostRecent).map(toTILMetaData);
 }
 
-export type LatestEntry =
-  | ({ kind: "post" } & PostPreviewData)
-  | ({ kind: "til" } & TILMetaData);
+export interface LatestPostEntry extends PostPreviewData {
+  kind: "post";
+}
+
+export interface LatestTILEntry extends TILMetaData {
+  kind: "til";
+}
+
+export type LatestEntry = LatestPostEntry | LatestTILEntry;
+
+interface SourcePost {
+  kind: "post";
+  entry: CollectionEntry<"blog">;
+}
+
+interface SourceTIL {
+  kind: "til";
+  entry: CollectionEntry<"tils">;
+}
+
+type SourceEntry = SourcePost | SourceTIL;
+
+function toSourcePost(entry: CollectionEntry<"blog">): SourceEntry {
+  return { kind: "post", entry };
+}
+
+function toSourceTIL(entry: CollectionEntry<"tils">): SourceEntry {
+  return { kind: "til", entry };
+}
+
+function bySourceMostRecent(a: SourceEntry, b: SourceEntry) {
+  return byMostRecent(a.entry, b.entry);
+}
+
+function toLatestEntry(source: SourceEntry): LatestEntry {
+  if (source.kind === "post") {
+    return { kind: "post", ...toPostPreviewData(source.entry) };
+  }
+  return { kind: "til", ...toTILMetaData(source.entry) };
+}
 
 export async function getLatestEntries(
   maxCount: number,
 ): Promise<LatestEntry[]> {
-  const [allBlogPosts, allTils] = await Promise.all([
-    getCollection("blog"),
-    getCollection("tils"),
-  ]);
+  const allBlogPosts = await getCollection("blog");
+  const allTils = await getCollection("tils");
   const allEntries = [
-    ...allBlogPosts.map((post) => ({ kind: "post" as const, entry: post })),
-    ...allTils.map((til) => ({ kind: "til" as const, entry: til })),
+    ...allBlogPosts.map(toSourcePost),
+    ...allTils.map(toSourceTIL),
   ];
   return allEntries
-    .toSorted((a, b) => byMostRecent(a.entry, b.entry))
+    .toSorted(bySourceMostRecent)
     .slice(0, maxCount)
-    .map(
-      (item): LatestEntry =>
-        item.kind === "post"
-          ? { kind: "post", ...toPostPreviewData(item.entry) }
-          : { kind: "til", ...toTILMetaData(item.entry) },
-    );
+    .map(toLatestEntry);
 }
 
 interface PaginatedContent {
