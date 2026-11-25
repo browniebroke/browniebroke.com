@@ -52,7 +52,8 @@
     "preview": "astro preview",
     "astro": "astro",
     "precheck:types": "astro sync",
-    "check:lint": "echo 'noop'",
+    "check:lint": "npm run build && npm run check:links",
+    "check:links": "node scripts/check-links.ts",
     "check:format": "prettier --check .",
     "check:types": "tsc",
     "format": "prettier --write ."
