@@ -12,6 +12,7 @@ import { getLatestEntries } from "../utils/contents";
 import { site } from "../data/siteMetadata";
 
 const latestEntries = await getLatestEntries(6);
+const intro = 'Long blog posts and short "Today I Learned" notes.';
 ---
 
 <BaseLayout title="Home">
@@ -19,9 +20,7 @@ const latestEntries = await getLatestEntries(6);
     <h1 class="text-4xl font-bold mt-8 mb-4">{site.author}</h1>
     <Avatar />
     <p class="text-center max-w-[400px]">{site.bio}</p>
-    <p class="text-center max-w-[400px]">
-      Here you'll find long blog posts and short "Today I Learned" notes.
-    </p>
+    <p class="text-center max-w-[400px]">{intro}</p>
     <SocialLinks />
   </section>
   <section>
