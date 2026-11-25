@@ -96,7 +96,7 @@ export const redirects: Record<string, RedirectConfig> = {
   },
   "/blog/how-i-made-1000-of-website-more-secure/": {
     status: 302,
-    destination: "/blog/2019-04-24-how-i-made-1000-of-website-more-secure/",
+    destination: "/blog/2019-04-24-how-I-made-1000-of-website-more-secure/",
   },
   "/blog/new-year-new-laptop/": {
     status: 302,
@@ -122,7 +122,7 @@ export const redirects: Record<string, RedirectConfig> = {
   },
   "/tils/james-bennets-djangover-suggestion/": {
     status: 302,
-    destination: "/tils/2024-11-25-james-bennets-djangover-suggestion/",
+    destination: "/tils/2024-11-25-james-bennet's-djangover-suggestion/",
   },
   "/tils/new-argument-to-django-redirects/": {
     status: 302,
