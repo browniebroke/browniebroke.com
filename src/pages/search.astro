@@ -1,0 +1,273 @@
+---
+import React from "react";
+
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { SectionTitle } from "../components/section-title";
+---
+
+<BaseLayout title="Search" description="Search all blog posts and TILs.">
+  <section>
+    <SectionTitle>Search</SectionTitle>
+    <form id="search-form" action="/search/" method="get" role="search">
+      <label for="search-input" class="sr-only">Search posts and TILs</label>
+      <input
+        id="search-input"
+        type="search"
+        name="q"
+        autocomplete="off"
+        placeholder="Search posts and TILs, e.g. poetry"
+        class="w-full border border-gray-300 rounded-md px-4 py-2"
+      />
+    </form>
+    <p id="search-status" class="text-sm text-gray-500" aria-live="polite"></p>
+    <div id="search-results"></div>
+  </section>
+</BaseLayout>
+
+<script>
+  import type { SearchEntry } from "../utils/contents";
+
+  interface IndexedEntry extends SearchEntry {
+    lowerTitle: string;
+    lowerTags: string;
+    lowerDescription: string;
+    lowerText: string;
+  }
+
+  interface SearchResult {
+    entry: IndexedEntry;
+    score: number;
+  }
+
+  const SNIPPET_LENGTH = 140;
+  const URL_SYNC_DELAY_MS = 600;
+
+  const form = document.getElementById("search-form") as HTMLFormElement;
+  const input = document.getElementById("search-input") as HTMLInputElement;
+  const status = document.getElementById("search-status") as HTMLElement;
+  const resultsList = document.getElementById("search-results") as HTMLElement;
+
+  let indexPromise: Promise<IndexedEntry[]> | undefined;
+  let latestSearch = 0;
+  let urlSyncTimer: number | undefined;
+
+  function loadIndex(): Promise<IndexedEntry[]> {
+    if (indexPromise === undefined) {
+      indexPromise = fetch("/search.json")
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(`Search index failed to load: ${response.status}`);
+          }
+          return response.json() as Promise<SearchEntry[]>;
+        })
+        .then((entries) =>
+          entries.map((entry) => ({
+            ...entry,
+            lowerTitle: entry.title.toLowerCase(),
+            lowerTags: entry.tags.join(" ").toLowerCase(),
+            lowerDescription: entry.description.toLowerCase(),
+            lowerText: entry.text.toLowerCase(),
+          })),
+        );
+    }
+    return indexPromise;
+  }
+
+  function splitWords(query: string): string[] {
+    return query.toLowerCase().split(/\s+/).filter(Boolean);
+  }
+
+  function scoreEntry(entry: IndexedEntry, words: string[]): number {
+    let score = 0;
+    for (const word of words) {
+      let wordScore = 0;
+      if (entry.lowerTitle.includes(word)) wordScore += 5;
+      if (entry.lowerTags.includes(word)) wordScore += 3;
+      if (entry.lowerDescription.includes(word)) wordScore += 2;
+      if (entry.lowerText.includes(word)) wordScore += 1;
+      if (wordScore === 0) {
+        // Every word must match somewhere.
+        return 0;
+      }
+      score += wordScore;
+    }
+    return score;
+  }
+
+  function byScoreThenDate(a: SearchResult, b: SearchResult): number {
+    return b.score - a.score || b.entry.date.localeCompare(a.entry.date);
+  }
+
+  function excerpt(text: string, around: number): string {
+    let start = Math.max(0, around - Math.floor(SNIPPET_LENGTH / 3));
+    if (start > 0) {
+      const space = text.indexOf(" ", start);
+      if (space !== -1 && space < around) {
+        start = space + 1;
+      }
+    }
+    let end = Math.min(text.length, start + SNIPPET_LENGTH);
+    if (end < text.length) {
+      const space = text.lastIndexOf(" ", end);
+      if (space > around + 20) {
+        end = space;
+      }
+    }
+    const prefix = start > 0 ? "…" : "";
+    const suffix = end < text.length ? "…" : "";
+    return `${prefix}${text.slice(start, end)}${suffix}`;
+  }
+
+  function makeSnippet(entry: IndexedEntry, words: string[]): string {
+    const hits = words
+      .map((word) => entry.lowerText.indexOf(word))
+      .filter((index) => index >= 0);
+    if (hits.length > 0) {
+      return excerpt(entry.text, Math.min(...hits));
+    }
+    return excerpt(entry.description || entry.text, 0);
+  }
+
+  function escapeRegExp(value: string): string {
+    return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  }
+
+  function appendHighlighted(
+    parent: HTMLElement,
+    text: string,
+    words: string[],
+  ) {
+    const pattern = words
+      .toSorted((a, b) => b.length - a.length)
+      .map(escapeRegExp)
+      .join("|");
+    const parts = text.split(new RegExp(`(${pattern})`, "gi"));
+    parts.forEach((part, index) => {
+      if (index % 2 === 1) {
+        const bold = document.createElement("b");
+        bold.textContent = part;
+        parent.append(bold);
+      } else if (part) {
+        parent.append(document.createTextNode(part));
+      }
+    });
+  }
+
+  function renderResult(
+    entry: IndexedEntry,
+    words: string[],
+    query: string,
+  ): HTMLElement {
+    const article = document.createElement("article");
+    article.className = "mb-8";
+
+    const badge = document.createElement("span");
+    badge.className =
+      "inline-block px-2 py-1 text-sm text-white font-medium bg-gray-500 rounded-sm";
+    badge.textContent = entry.type === "post" ? "Post" : "TIL";
+
+    const heading = document.createElement("h3");
+    heading.className = "text-xl font-bold mt-2 mb-1";
+    const link = document.createElement("a");
+    link.href = entry.url;
+    link.className = "inherit-color";
+    link.textContent = entry.title;
+    link.dataset.umamiEvent = "search-result";
+    link.dataset.umamiEventQuery = query;
+    link.dataset.umamiEventUrl = entry.url;
+    heading.append(link);
+
+    const date = document.createElement("small");
+    date.textContent = entry.displayDate;
+
+    const snippet = document.createElement("div");
+    snippet.className = "mt-2";
+    appendHighlighted(snippet, makeSnippet(entry, words), words);
+
+    article.append(badge, heading, date, snippet);
+    return article;
+  }
+
+  async function search(query: string) {
+    const searchId = ++latestSearch;
+    const words = splitWords(query);
+    if (words.length === 0) {
+      status.textContent = "";
+      resultsList.replaceChildren();
+      return;
+    }
+
+    let entries: IndexedEntry[];
+    try {
+      entries = await loadIndex();
+    } catch {
+      indexPromise = undefined;
+      if (searchId === latestSearch) {
+        status.textContent =
+          "Search is not available right now, please try again later.";
+        resultsList.replaceChildren();
+      }
+      return;
+    }
+    if (searchId !== latestSearch) {
+      return;
+    }
+
+    const results: SearchResult[] = entries
+      .map((entry) => ({ entry, score: scoreEntry(entry, words) }))
+      .filter((result) => result.score > 0)
+      .sort(byScoreThenDate);
+
+    const trimmedQuery = query.trim();
+    status.textContent =
+      results.length === 0
+        ? `No results for “${trimmedQuery}”.`
+        : `${results.length} result${results.length === 1 ? "" : "s"}`;
+    resultsList.replaceChildren(
+      ...results.map((result) =>
+        renderResult(result.entry, words, trimmedQuery),
+      ),
+    );
+  }
+
+  function syncUrl(query: string) {
+    const url = new URL(window.location.href);
+    const trimmedQuery = query.trim();
+    if (trimmedQuery) {
+      url.searchParams.set("q", trimmedQuery);
+    } else {
+      url.searchParams.delete("q");
+    }
+    if (url.href !== window.location.href) {
+      history.replaceState(null, "", url);
+    }
+  }
+
+  input.addEventListener("input", () => {
+    search(input.value);
+    window.clearTimeout(urlSyncTimer);
+    urlSyncTimer = window.setTimeout(
+      () => syncUrl(input.value),
+      URL_SYNC_DELAY_MS,
+    );
+  });
+
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    window.clearTimeout(urlSyncTimer);
+    syncUrl(input.value);
+    search(input.value);
+  });
+
+  const initialQuery =
+    new URLSearchParams(window.location.search).get("q") || "";
+  input.value = initialQuery;
+  if (initialQuery) {
+    search(initialQuery);
+  } else {
+    input.focus();
+    loadIndex().catch(() => {
+      indexPromise = undefined;
+    });
+  }
+</script>

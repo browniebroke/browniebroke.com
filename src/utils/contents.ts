@@ -1,7 +1,9 @@
 import { getCollection } from "astro:content";
+import MarkdownIt from "markdown-it";
 import getReadingTime from "reading-time";
 
 import { formatLongDate } from "./dates.ts";
+import { makePostUrl, makeTILUrl } from "./routes.ts";
 import type { PostPreviewData } from "../components/post-preview.tsx";
 
 interface HasDateData {
@@ -55,6 +57,80 @@ export async function getTILsByMostRecent(): Promise<TILMetaData[]> {
       simpleDate: simpleDate,
     };
   });
+}
+
+export interface SearchEntry {
+  type: "post" | "til";
+  title: string;
+  url: string;
+  date: string;
+  displayDate: string;
+  tags: string[];
+  description: string;
+  text: string;
+}
+
+const SEARCH_TEXT_MAX_LENGTH = 2000;
+const markdownParser = new MarkdownIt();
+
+function markdownToSearchText(markdown: string): string {
+  // Drop MDX import/export statements, then keep only the prose:
+  // fenced code, code blocks, HTML/JSX blocks and images are left out.
+  const source = markdown
+    .split("\n")
+    .filter((line) => !/^(import|export)\s/.test(line))
+    .join("\n");
+  const blocks: string[] = [];
+  for (const token of markdownParser.parse(source, {})) {
+    if (token.type !== "inline" || token.children === null) {
+      continue;
+    }
+    let block = "";
+    for (const child of token.children) {
+      if (child.type === "text" || child.type === "code_inline") {
+        block += child.content;
+      } else if (child.type === "softbreak" || child.type === "hardbreak") {
+        block += " ";
+      }
+    }
+    blocks.push(block);
+  }
+  const text = blocks.join(" ").replace(/\s+/g, " ").trim();
+  if (text.length <= SEARCH_TEXT_MAX_LENGTH) {
+    return text;
+  }
+  const truncated = text.slice(0, SEARCH_TEXT_MAX_LENGTH);
+  const lastSpace = truncated.lastIndexOf(" ");
+  return lastSpace > 0 ? truncated.slice(0, lastSpace) : truncated;
+}
+
+export async function getSearchEntries(): Promise<SearchEntry[]> {
+  const posts = await getCollection("blog");
+  const tils = await getCollection("tils");
+  const entries: SearchEntry[] = [
+    ...posts.map((post) => ({
+      type: "post" as const,
+      title: post.data.title,
+      url: makePostUrl(post.filePath || ""),
+      date: post.data.date.toISOString(),
+      displayDate: formatLongDate(post.data.date),
+      tags: post.data.tags,
+      description: post.data.description,
+      text: markdownToSearchText(post.body || ""),
+    })),
+    ...tils.map((til) => ({
+      type: "til" as const,
+      title: til.data.title,
+      url: makeTILUrl(til.filePath || ""),
+      date: til.data.date.toISOString(),
+      displayDate: formatLongDate(til.data.date),
+      tags: [],
+      description: "",
+      text: markdownToSearchText(til.body || ""),
+    })),
+  ];
+  // ISO 8601 date strings sort chronologically; most recent first.
+  return entries.toSorted((a, b) => b.date.localeCompare(a.date));
 }
 
 interface PaginatedContent {

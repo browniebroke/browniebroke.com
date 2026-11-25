@@ -30,6 +30,9 @@ export const Header: React.FC<HeaderProps> = ({ siteTitle }) => (
         <a href="/blog/" className="inherit-color">
           Blog
         </a>
+        <a href="/search/" className="inherit-color">
+          Search
+        </a>
       </div>
     </HeaderContainer>
   </HeaderWrapper>
