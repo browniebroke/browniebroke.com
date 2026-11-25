@@ -132,11 +132,7 @@ import { SectionTitle } from "../components/section-title";
     return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   }
 
-  function appendHighlighted(
-    parent: HTMLElement,
-    text: string,
-    words: string[],
-  ) {
+  function highlight(parent: HTMLElement, text: string, words: string[]) {
     const pattern = words
       .toSorted((a, b) => b.length - a.length)
       .map(escapeRegExp)
@@ -182,7 +178,7 @@ import { SectionTitle } from "../components/section-title";
 
     const snippet = document.createElement("div");
     snippet.className = "mt-2";
-    appendHighlighted(snippet, makeSnippet(entry, words), words);
+    highlight(snippet, makeSnippet(entry, words), words);
 
     article.append(badge, heading, date, snippet);
     return article;
@@ -223,11 +219,10 @@ import { SectionTitle } from "../components/section-title";
       results.length === 0
         ? `No results for “${trimmedQuery}”.`
         : `${results.length} result${results.length === 1 ? "" : "s"}`;
-    resultsList.replaceChildren(
-      ...results.map((result) =>
-        renderResult(result.entry, words, trimmedQuery),
-      ),
-    );
+    resultsList.replaceChildren();
+    for (const result of results) {
+      resultsList.append(renderResult(result.entry, words, trimmedQuery));
+    }
   }
 
   function syncUrl(query: string) {
@@ -259,8 +254,8 @@ import { SectionTitle } from "../components/section-title";
     search(input.value);
   });
 
-  const initialQuery =
-    new URLSearchParams(window.location.search).get("q") || "";
+  const params = new URLSearchParams(window.location.search);
+  const initialQuery = params.get("q") || "";
   input.value = initialQuery;
   if (initialQuery) {
     search(initialQuery);
