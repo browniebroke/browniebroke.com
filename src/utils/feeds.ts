@@ -2,7 +2,15 @@ import rss from "@astrojs/rss";
 import { getCollection } from "astro:content";
 import sanitizeHtml from "sanitize-html";
 import MarkdownIt from "markdown-it";
+
+import { makePostUrl, makeTILUrl } from "./routes";
+
 const parser = new MarkdownIt();
+
+const renderContent = (body: string | undefined) =>
+  sanitizeHtml(parser.render(body || ""), {
+    allowedTags: sanitizeHtml.defaults.allowedTags.concat(["img"]),
+  });
 
 export const getFeedForCollection = async (
   collectionName: "blog" | "tils",
@@ -35,9 +43,42 @@ export const getFeedForCollection = async (
         description: entry.data.description,
         link: `/${collectionName}/${entry.id}`,
         pubDate: entry.data.date,
-        content: sanitizeHtml(parser.render(entry?.body || ""), {
-          allowedTags: sanitizeHtml.defaults.allowedTags.concat(["img"]),
-        }),
+        content: renderContent(entry.body),
       })),
+  });
+};
+
+export const getFeedForAllCollections = async (
+  context: any,
+  title: string,
+  description: string,
+) => {
+  const [posts, tils] = await Promise.all([
+    getCollection("blog"),
+    getCollection("tils"),
+  ]);
+  const items = [
+    ...posts.map((post) => ({
+      title: post.data.title,
+      description: post.data.description,
+      link: makePostUrl(post.filePath || ""),
+      pubDate: post.data.date,
+      content: renderContent(post.body),
+    })),
+    ...tils.map((til) => ({
+      title: til.data.title,
+      // TILs have no description, use their title instead
+      description: til.data.title,
+      link: makeTILUrl(til.filePath || ""),
+      pubDate: til.data.date,
+      content: renderContent(til.body),
+    })),
+  ];
+  return rss({
+    title: title,
+    description: description,
+    site: context.site,
+    // Most recent item first
+    items: items.toSorted((a, b) => Number(b.pubDate) - Number(a.pubDate)),
   });
 };
